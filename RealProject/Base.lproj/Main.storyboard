@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Log In View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController storyboardIdentifier="LogInViewController" id="BYZ-38-t0r" customClass="LogInViewController" customModule="RealProject" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="GitLab_Logo.svg" translatesAutoresizingMaskIntoConstraints="NO" id="97f-BL-9ZC">
+                                <rect key="frame" x="112.5" y="258.5" width="150" height="150"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="150" id="wnq-qG-QBR"/>
+                                    <constraint firstAttribute="width" constant="150" id="x2L-CG-C8C"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NFT-Hf-emH">
+                                <rect key="frame" x="97.5" y="424.5" width="180" height="50"/>
+                                <color key="backgroundColor" red="0.96862745100000003" green="0.55294117649999996" blue="0.1058823529" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="180" id="FBH-3g-UR2"/>
+                                    <constraint firstAttribute="height" constant="50" id="Ma9-eB-g82"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="150" id="n96-w6-mdH"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Symbol" family="Symbol" pointSize="17"/>
+                                <state key="normal" title="Log In">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="cornerRadius" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="loginButtonDidTouch:" destination="BYZ-38-t0r" eventType="touchUpInside" id="C5B-6O-N6g"/>
+                                </connections>
+                            </button>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="bDX-a2-wpd">
+                                <rect key="frame" x="169" y="315" width="37" height="37"/>
+                            </activityIndicatorView>
+                        </subviews>
+                        <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="97f-BL-9ZC" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="18e-9d-lQH"/>
+                            <constraint firstItem="97f-BL-9ZC" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="3y5-ml-AG7"/>
+                            <constraint firstItem="bDX-a2-wpd" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Gqe-v0-Nc1"/>
+                            <constraint firstItem="bDX-a2-wpd" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="MPB-nq-Cw8"/>
+                            <constraint firstItem="NFT-Hf-emH" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="q3x-xa-GMg"/>
+                            <constraint firstItem="NFT-Hf-emH" firstAttribute="top" secondItem="97f-BL-9ZC" secondAttribute="bottom" constant="16" id="sRe-H7-FNf"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="F8F-s7-Vj6"/>
+                    <connections>
+                        <outlet property="activityIndicator" destination="bDX-a2-wpd" id="5TO-9W-h6U"/>
+                        <outlet property="logInButton" destination="NFT-Hf-emH" id="Gh6-YN-6bW"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="110" y="27"/>
+        </scene>
+        <!--Second View Controller-->
+        <scene sceneID="oRL-f0-Ee8">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Xth-Hd-KcM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewController storyboardIdentifier="SecondViewController" id="LI3-e3-alf" customClass="SecondViewController" customModule="RealProject" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="VB9-Nj-7GL">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="OUy-kf-r5U"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="V9m-n4-HrZ"/>
+                </viewController>
+            </objects>
+            <point key="canvasLocation" x="1039" y="27"/>
+        </scene>
+        <!--Item 2-->
+        <scene sceneID="7i4-ra-gg7">
+            <objects>
+                <viewController id="XOg-g5-ogm" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="uNe-J1-AZd">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="2hG-Wp-Y25"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Item 2" id="8HK-d0-KtD"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="MtZ-X3-qCX" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3002" y="359"/>
+        </scene>
+        <!--Item 1-->
+        <scene sceneID="HmA-Ls-m1o">
+            <objects>
+                <viewController id="Vty-Rv-UdZ" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Qb7-Xv-Ykm">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="tqB-2K-aIc">
+                                <rect key="frame" x="0.0" y="20" width="375" height="598"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="100" id="4ee-TM-Wvh">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="100"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="4ee-TM-Wvh" id="6RL-Lk-vDY">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="99.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="tqB-2K-aIc" firstAttribute="trailing" secondItem="Mdt-qC-iuE" secondAttribute="trailing" id="115-OQ-4yk"/>
+                            <constraint firstItem="Mdt-qC-iuE" firstAttribute="bottom" secondItem="tqB-2K-aIc" secondAttribute="bottom" id="6ha-dB-A9m"/>
+                            <constraint firstItem="tqB-2K-aIc" firstAttribute="leading" secondItem="Mdt-qC-iuE" secondAttribute="leading" id="Nuv-Gs-Fz0"/>
+                            <constraint firstItem="tqB-2K-aIc" firstAttribute="top" secondItem="Mdt-qC-iuE" secondAttribute="top" id="PrO-WG-W3r"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Mdt-qC-iuE"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Item 1" id="BJ9-lI-DaJ"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VeA-Lp-35g" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3000.8000000000002" y="-306.29685157421289"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="RyU-qr-IXI">
+            <objects>
+                <tabBarController id="mdX-HD-bTo" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="X5C-Zs-8Ry">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="Vty-Rv-UdZ" kind="relationship" relationship="viewControllers" id="xHY-U6-jyN"/>
+                        <segue destination="XOg-g5-ogm" kind="relationship" relationship="viewControllers" id="eNF-Bq-dWx"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6F2-TL-S7L" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2046" y="27"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="GitLab_Logo.svg" width="2000" height="1848"/>
+    </resources>
+</document>
