@@ -23,7 +23,7 @@ class Router: MainRouterType, ApplicationRouterType {
     var factory: ViewControllerFactory
     
     enum Identifier: String {
-        case main = "SecondViewController"
+        case main = "OAuthLogInViewController"
         case settings = "SettingsViewController"
     }
     

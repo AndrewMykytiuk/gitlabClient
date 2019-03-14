@@ -13,7 +13,7 @@
         <!--Log In View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController storyboardIdentifier="LogInViewController" id="BYZ-38-t0r" customClass="LogInViewController" customModule="RealProject" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LogInViewController" id="BYZ-38-t0r" customClass="LogInViewController" customModule="GitlabClient" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -70,11 +70,10 @@
             </objects>
             <point key="canvasLocation" x="110" y="27"/>
         </scene>
-        <!--Second View Controller-->
+        <!--Auth Log In View Controller-->
         <scene sceneID="oRL-f0-Ee8">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Xth-Hd-KcM" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <viewController storyboardIdentifier="SecondViewController" id="LI3-e3-alf" customClass="SecondViewController" customModule="RealProject" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="OAuthLogInViewController" id="LI3-e3-alf" customClass="OAuthLogInViewController" customModule="GitlabClient" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="VB9-Nj-7GL">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -83,6 +82,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="V9m-n4-HrZ"/>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Xth-Hd-KcM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1039" y="27"/>
         </scene>
@@ -156,7 +156,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6F2-TL-S7L" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2046" y="27"/>
+            <point key="canvasLocation" x="1988" y="27"/>
         </scene>
     </scenes>
     <resources>

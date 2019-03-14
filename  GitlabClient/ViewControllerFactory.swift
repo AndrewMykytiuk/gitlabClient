@@ -16,7 +16,7 @@ protocol ViewControllerFactoryType {
 class ViewControllerFactory: ViewControllerFactoryType {
     
     enum Identifier: String {
-        case main = "SecondViewController"
+        case main = "OAuthLogInViewController"
         case login = "LogInViewController"
         case settings = ""
     }
