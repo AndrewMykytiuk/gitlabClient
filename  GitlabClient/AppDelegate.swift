@@ -23,7 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         self.router = Router(factory: ViewControllerFactory())
         
-        router?.navigateFromWindow(window)
+        router?.initializeStartNavigationFromWindow(window)
         
         return true
     }

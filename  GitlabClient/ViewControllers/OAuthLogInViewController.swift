@@ -24,6 +24,7 @@ class OAuthLogInViewController: BaseViewController {
         case .success(let url):
             webView.load(URLRequest(url: url))
             self.view.addSubview(webView)
+            webView.frame = self.view.frame
         case .error(let error):
             break
         }
@@ -47,7 +48,11 @@ extension OAuthLogInViewController: WKNavigationDelegate {
                 loginManager.getToken(with: code) { (result) in
                     switch result {
                     case .success(let token):
-                        if token.count > 0 {  }
+                        if token.count > 0 {
+                            DispatchQueue.main.async {
+                                self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
+                            }
+                        }
                     case .error(_):
                         decisionHandler(.cancel)
                     }

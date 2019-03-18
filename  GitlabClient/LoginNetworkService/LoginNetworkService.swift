@@ -19,10 +19,10 @@ class LoginNetworkService {
         let request = LoginRequest(method: .POST, path: AuthHelper.URLKind.token.rawValue, code: code)
         let networkManager = NetworkManager()
         
-        networkManager.sendRequest(request) { [weak self] (data) in
+        networkManager.sendRequest(request) { /*[weak self]*/ (data) in
             switch data {
             case .success(let data):
-                self?.processData(data, completion: completion)
+                self.processData(data, completion: completion)
                 case .error(let error):
                     return completion(.error(error))
             }

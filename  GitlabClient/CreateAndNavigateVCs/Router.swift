@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 protocol ApplicationRouterType {
-    func navigateFromWindow(_ window: UIWindow?)
+    func initializeStartNavigationFromWindow(_ window: UIWindow?)
 }
 
 protocol MainRouterType {
@@ -39,21 +39,32 @@ class Router: MainRouterType, ApplicationRouterType {
         case .oauth:
             vc = factory.createNewVc(with: .oauth)
             vc.router = self
+           let authNavigationVC =  UIApplication.shared.delegate?.window??.rootViewController?.presentedViewController as? UINavigationController
+//            let mainNavigation =  UIApplication.shared.delegate?.window??.rootViewController?.children.last as? UINavigationController
+            authNavigationVC?.pushViewController(vc, animated: animated)
         case .main:
             vc = factory.createNewVc(with: .main)
             vc.router = self
+            let mainNavigationVC = UIApplication.shared.delegate?.window??.rootViewController as? UINavigationController
+            mainNavigationVC?.pushViewController(vc, animated: animated)
         }
         
-       let mainNavigation = UIApplication.shared.delegate?.window??.rootViewController as? UINavigationController
-        mainNavigation?.pushViewController(vc, animated: animated)
     }
     
-    func navigateFromWindow(_ window: UIWindow?) {
+    func initializeStartNavigationFromWindow(_ window: UIWindow?) {
         
-        let rootViewController = factory.createNewVc(with: .login)
-        rootViewController.router = self
-        let navigationController = UINavigationController(rootViewController: rootViewController)
-        window?.rootViewController = navigationController
+        let mainViewController = factory.createNewVc(with: .main)
+        let loginViewController = factory.createNewVc(with: .login)
+        
+        mainViewController.router = self
+        loginViewController.router = self
+        
+        let mainNavigationController = UINavigationController(rootViewController: mainViewController)
+        window?.rootViewController = mainNavigationController
+        
+        let loginNavigationController = UINavigationController(rootViewController: loginViewController)
+        window?.rootViewController?.present(loginNavigationController, animated: false, completion: nil)
+        //loginNavigationController.didMove(toParent: window?.rootViewController)
     }
     
 }

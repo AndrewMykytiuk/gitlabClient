@@ -86,10 +86,10 @@
             </objects>
             <point key="canvasLocation" x="1039" y="27"/>
         </scene>
-        <!--View Controller-->
+        <!--Main View Controller-->
         <scene sceneID="3jB-4M-p7f">
             <objects>
-                <viewController storyboardIdentifier="MainViewController" id="ePM-cj-NTy" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MainViewController" id="ePM-cj-NTy" customClass="MainViewController" customModule="GitlabClient" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="xZj-o2-GRs">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
