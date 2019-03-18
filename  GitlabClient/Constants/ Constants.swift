@@ -19,5 +19,12 @@ enum globalConstants: String {
     case responseType = "code"
     case grantType = "authorization_code"
     case state = "1234567"
+    case clientIDKey = "client_id"
+    case redirectURLKey = "redirect_uri"
+    case responseTypeKey = "response_type"
+    case stateKey = "state"
+    case accessTokenKey = "access_token"
+    case clientSecretKey = "client_secret"
+    case grantTypeKey = "grant_type"
     
 }

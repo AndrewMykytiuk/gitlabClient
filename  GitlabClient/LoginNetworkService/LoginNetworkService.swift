@@ -33,8 +33,8 @@ class LoginNetworkService {
             let dictionary = NetworkManager.dictionaryFromData(data)
             switch dictionary {
             case .success(let dict):
-                if let temp = dict["access_token"] as? String {
-                    return completion(.success(temp))
+                if let token = dict[globalConstants.accessTokenKey.rawValue] as? String {
+                    return completion(.success(token))
                 } else {
                     return completion(.error(ParsingError.wrongProccessing))
                 }
