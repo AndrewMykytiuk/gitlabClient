@@ -9,58 +9,52 @@
 import UIKit
 import WebKit
 
-class OAuthLogInViewController: BaseViewController, WKNavigationDelegate {
-   
-    //weak var router: Router?
-    
-    let webView = WKWebView()
-    let helper = Helper()
-    
+class OAuthLogInViewController: BaseViewController {
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let webView = WKWebView()
         webView.navigationDelegate = self
+        webView.allowsBackForwardNavigationGestures = true
 
         self.navigationController?.setNavigationBarHidden(false, animated: true)
         
-        let url = helper.createURL(for: .authorize)
+        switch AuthHelper.createURL(for: .authorize) {
+        case .success(let url):
+            webView.load(URLRequest(url: url))
+            self.view.addSubview(webView)
+        case .error(let error):
+            break
+        }
         
-        webView.load(URLRequest(url: url))
-        webView.allowsBackForwardNavigationGestures = true
-        self.view = webView
     }
-    
-    //MARK: - WKNavigationDelegate
+}
+
+extension OAuthLogInViewController: WKNavigationDelegate {
     
     func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
         
-        let url = navigationAction.request.url
-        
-        if url?.relativePath == Helper.URLKind.redirect.rawValue {
-            
-            guard let tempURL = url else { return }
-            let tempString = tempURL.absoluteString
+        guard let tempURL = navigationAction.request.url else {  decisionHandler(.cancel); return }
 
-            switch helper.getAccessCode(from: tempString){
+        if tempURL.relativePath == AuthHelper.URLKind.redirect.rawValue {
+            
+            let tempString = tempURL.absoluteString
+            
+            switch AuthHelper.getAccessCode(from: tempString){
             case .success(let code):
                 let loginManager = LoginNetworkService()
                 loginManager.getToken(with: code) { (result) in
                     switch result {
                     case .success(let token):
-                        print(token)
-                    case .error(let error):
-                        break
-                        
+                        if token.count > 0 {  }
+                    case .error(_):
+                        decisionHandler(.cancel)
                     }
                 }
             default:
-                break
+                decisionHandler(.cancel)
             }
-
-//            let tokenURLString = "\(baseURL)oauth/token"
-//
-//            let accessUrl = URL(string: "\(tokenURLString)?\(clientID)&\(clientSecret)&code=\(code)&\(grantType)&\(redirectURL)")!
-
         }
         
         decisionHandler(.allow)
@@ -68,4 +62,3 @@ class OAuthLogInViewController: BaseViewController, WKNavigationDelegate {
     }
     
 }
-

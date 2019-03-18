@@ -13,22 +13,16 @@ class NetworkManager {
     
     func sendRequest(_ request: Request, completion: @escaping(Result<Data>) -> Void) {
         
-        var components = URLComponents()
-
-        components.scheme = secureScheme
-        components.host = host
+        var components = NetworkManager.createBaseUrlComponents()
         components.path = request.path
-        components.queryItems = []
         
         for param in request.parameters {
-            if let temp = param.value as? String {
-                let queryItem = URLQueryItem(name: param.key, value: temp)
-                components.queryItems?.append(queryItem)
-            }
+            let queryItem = URLQueryItem(name: param.key, value: param.value as? String)
+            components.queryItems?.append(queryItem)
         }
         
         guard let url = components.url else {
-            return completion(.error(NSError(domain: "Invalid URL", code: 400, userInfo: [:])))}
+            return completion(.error(NetworkError.invalidUrl))}
         
         let session = URLSession.shared
 
@@ -38,23 +32,42 @@ class NetworkManager {
         tempRequest.addValue("application/json", forHTTPHeaderField: "Content-Type")
         tempRequest.addValue("application/json", forHTTPHeaderField: "Accept")
         
-        var dataR = Data()
-        
         let task = session.dataTask(with: tempRequest as URLRequest, completionHandler: { data, response, error in
             
             if let requiredError = error {
                 return completion(.error(requiredError))
             }
             
-            guard data != nil else {
-                return completion(.error(NSError(domain: "No data received", code: 404, userInfo: [:])))
+            guard let data = data else {
+                return completion(.error(NetworkError.invalidReceivedData))
             }
-            
-            dataR = data ?? Data()
-            return completion(.success(dataR))
+            return completion(.success(data))
         })
         task.resume()
         
+    }
+    
+    static func dictionaryFromData(_ data: Data) -> Result<[String:Any]> {
+        var dictionary: [String:Any] = [:]
+        
+        do {
+            if let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String: Any] {
+                dictionary = json
+            }
+        } catch let error {
+            return .error(error)
+        }
+        return .success(dictionary)
+    }
+    
+    static func createBaseUrlComponents() -> URLComponents {
+        var components = URLComponents()
+        
+        components.scheme = globalConstants.secureScheme.rawValue
+        components.host = globalConstants.host.rawValue
+        components.queryItems = []
+        
+        return components
     }
     
 }

@@ -20,11 +20,11 @@ protocol MainRouterType {
 
 class Router: MainRouterType, ApplicationRouterType {
     
-    var factory: ViewControllerFactory
+    private var factory: ViewControllerFactory
     
-    enum Identifier: String {
-        case main = "OAuthLogInViewController"
-        case settings = "SettingsViewController"
+    internal enum Identifier: String {
+        case oauth = "OAuthLogInViewController"
+        case main = "MainViewController"
     }
     
      init(factory: ViewControllerFactory) {
@@ -36,11 +36,11 @@ class Router: MainRouterType, ApplicationRouterType {
         var vc = BaseViewController()
         
         switch identifier {
+        case .oauth:
+            vc = factory.createNewVc(with: .oauth)
+            vc.router = self
         case .main:
             vc = factory.createNewVc(with: .main)
-            vc.router = self
-        case .settings:
-            vc = factory.createNewVc(with: .settings)
             vc.router = self
         }
         

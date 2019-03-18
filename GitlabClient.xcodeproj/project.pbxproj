@@ -16,13 +16,14 @@
 		CE6FF02B2237B0E4003F7C56 /* ViewControllerFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6FF02A2237B0E4003F7C56 /* ViewControllerFactory.swift */; };
 		CE6FF02D2237DD9E003F7C56 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6FF02C2237DD9E003F7C56 /* Router.swift */; };
 		CE6FF02F22390905003F7C56 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6FF02E22390905003F7C56 /* BaseViewController.swift */; };
-		CE6FF032223A6A17003F7C56 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6FF031223A6A17003F7C56 /* Helper.swift */; };
+		CE6FF032223A6A17003F7C56 /* AuthHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6FF031223A6A17003F7C56 /* AuthHelper.swift */; };
 		CE6FF034223AAB01003F7C56 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6FF033223AAB01003F7C56 /* Result.swift */; };
 		CE6FF036223AAD0C003F7C56 /*  Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6FF035223AAD0C003F7C56 /*  Constants.swift */; };
 		CE6FF03C223AE29E003F7C56 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6FF03B223AE29E003F7C56 /* NetworkManager.swift */; };
 		CE6FF03E223AE376003F7C56 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6FF03D223AE376003F7C56 /* Request.swift */; };
 		CE6FF041223B96CB003F7C56 /* LoginRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6FF040223B96CB003F7C56 /* LoginRequest.swift */; };
 		CE6FF043223B96EE003F7C56 /* LoginNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6FF042223B96EE003F7C56 /* LoginNetworkService.swift */; };
+		CE729F18223EE6660006C37C /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE729F17223EE6660006C37C /* Errors.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,13 +38,14 @@
 		CE6FF02A2237B0E4003F7C56 /* ViewControllerFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerFactory.swift; sourceTree = "<group>"; };
 		CE6FF02C2237DD9E003F7C56 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		CE6FF02E22390905003F7C56 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
-		CE6FF031223A6A17003F7C56 /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
+		CE6FF031223A6A17003F7C56 /* AuthHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthHelper.swift; sourceTree = "<group>"; };
 		CE6FF033223AAB01003F7C56 /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		CE6FF035223AAD0C003F7C56 /*  Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = " Constants.swift"; sourceTree = "<group>"; };
 		CE6FF03B223AE29E003F7C56 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		CE6FF03D223AE376003F7C56 /* Request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
 		CE6FF040223B96CB003F7C56 /* LoginRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRequest.swift; sourceTree = "<group>"; };
 		CE6FF042223B96EE003F7C56 /* LoginNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginNetworkService.swift; sourceTree = "<group>"; };
+		CE729F17223EE6660006C37C /* Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,11 +78,12 @@
 		CE6FF0122236AECB003F7C56 /*  GitlabClient */ = {
 			isa = PBXGroup;
 			children = (
+				CE729F16223EE5AF0006C37C /* Enums */,
 				CE6FF03F223B967F003F7C56 /* LoginNetworkService */,
 				CE6FF03A223AE261003F7C56 /* Networking */,
 				CE6FF039223AE19B003F7C56 /* Helpers */,
 				CE6FF038223AB689003F7C56 /* Constants */,
-				CE6FF037223AB65E003F7C56 /* Architecture */,
+				CE6FF037223AB65E003F7C56 /* CreateAndNavigateVCs */,
 				CE6FF03022390AB0003F7C56 /* ViewControllers */,
 				CE6FF0172236AECB003F7C56 /* Main.storyboard */,
 				CE6FF0132236AECB003F7C56 /* AppDelegate.swift */,
@@ -101,19 +104,18 @@
 			path = ViewControllers;
 			sourceTree = "<group>";
 		};
-		CE6FF037223AB65E003F7C56 /* Architecture */ = {
+		CE6FF037223AB65E003F7C56 /* CreateAndNavigateVCs */ = {
 			isa = PBXGroup;
 			children = (
 				CE6FF02C2237DD9E003F7C56 /* Router.swift */,
 				CE6FF02A2237B0E4003F7C56 /* ViewControllerFactory.swift */,
 			);
-			path = Architecture;
+			path = CreateAndNavigateVCs;
 			sourceTree = "<group>";
 		};
 		CE6FF038223AB689003F7C56 /* Constants */ = {
 			isa = PBXGroup;
 			children = (
-				CE6FF033223AAB01003F7C56 /* Result.swift */,
 				CE6FF035223AAD0C003F7C56 /*  Constants.swift */,
 			);
 			path = Constants;
@@ -122,7 +124,7 @@
 		CE6FF039223AE19B003F7C56 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				CE6FF031223A6A17003F7C56 /* Helper.swift */,
+				CE6FF031223A6A17003F7C56 /* AuthHelper.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -143,6 +145,15 @@
 				CE6FF042223B96EE003F7C56 /* LoginNetworkService.swift */,
 			);
 			path = LoginNetworkService;
+			sourceTree = "<group>";
+		};
+		CE729F16223EE5AF0006C37C /* Enums */ = {
+			isa = PBXGroup;
+			children = (
+				CE6FF033223AAB01003F7C56 /* Result.swift */,
+				CE729F17223EE6660006C37C /* Errors.swift */,
+			);
+			path = Enums;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -218,10 +229,11 @@
 			files = (
 				CE6FF0292236B1EA003F7C56 /* OAuthLogInViewController.swift in Sources */,
 				CE6FF043223B96EE003F7C56 /* LoginNetworkService.swift in Sources */,
-				CE6FF032223A6A17003F7C56 /* Helper.swift in Sources */,
+				CE6FF032223A6A17003F7C56 /* AuthHelper.swift in Sources */,
 				CE6FF03C223AE29E003F7C56 /* NetworkManager.swift in Sources */,
 				CE6FF041223B96CB003F7C56 /* LoginRequest.swift in Sources */,
 				CE6FF036223AAD0C003F7C56 /*  Constants.swift in Sources */,
+				CE729F18223EE6660006C37C /* Errors.swift in Sources */,
 				CE6FF03E223AE376003F7C56 /* Request.swift in Sources */,
 				CE6FF02B2237B0E4003F7C56 /* ViewControllerFactory.swift in Sources */,
 				CE6FF0162236AECB003F7C56 /* LogInViewController.swift in Sources */,

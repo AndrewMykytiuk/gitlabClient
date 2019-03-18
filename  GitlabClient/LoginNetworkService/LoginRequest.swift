@@ -9,22 +9,20 @@
 import Foundation
 
 struct LoginRequest: Request {
-   
-    var HTTPMethod: HTTPMethod
     
-     var path: String
+    let HTTPMethod: HTTPMethod
     
-     var parameters: [(key: String, value: Any)]
+    var path: String
+    
+    var parameters: [(key: String, value: Any)]
     
     init(method: HTTPMethod, path: String, code: String) {
         self.HTTPMethod = method
         self.path = path
         
-        let params: [String: Any] = ["client_id": clientID, "client_secret": clientSecret, "code": code, "grant_type": grantType, "redirect_uri": redirectURL]
+        let params: [String: Any] = ["client_id": globalConstants.clientID.rawValue, "client_secret": globalConstants.clientSecret.rawValue, "code": code, "grant_type": globalConstants.grantType.rawValue, "redirect_uri": globalConstants.redirectURL.rawValue]
         let sorted = params.sorted {$0.key < $1.key}
         self.parameters = sorted
     }
-    
-    //var parameters: [String : Any]
     
 }

@@ -15,10 +15,10 @@ protocol ViewControllerFactoryType {
 
 class ViewControllerFactory: ViewControllerFactoryType {
     
-    enum Identifier: String {
-        case main = "OAuthLogInViewController"
+    internal enum Identifier: String {
+        case oauth = "OAuthLogInViewController"
         case login = "LogInViewController"
-        case settings = ""
+        case main = "MainViewController"
     }
     
     func createNewVc(with identifier: Identifier) -> BaseViewController {
@@ -31,7 +31,7 @@ class ViewControllerFactory: ViewControllerFactoryType {
         switch identifier {
         case .main:
             _ = 9
-        case .settings:
+        case .oauth:
             _ = 10
         case .login:
             _ = 11
