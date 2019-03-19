@@ -20,7 +20,10 @@ protocol MainRouterType {
 
 class Router: MainRouterType, ApplicationRouterType {
     
+
     private var factory: ViewControllerFactory
+    static var rootVC: UINavigationController?
+    static var authRootVC: UINavigationController?
     
     internal enum Identifier: String {
         case oauth = "OAuthLogInViewController"
@@ -39,13 +42,11 @@ class Router: MainRouterType, ApplicationRouterType {
         case .oauth:
             vc = factory.createNewVc(with: .oauth)
             vc.router = self
-           let authNavigationVC =  UIApplication.shared.delegate?.window??.rootViewController?.presentedViewController as? UINavigationController
-//            let mainNavigation =  UIApplication.shared.delegate?.window??.rootViewController?.children.last as? UINavigationController
-            authNavigationVC?.pushViewController(vc, animated: animated)
+            Router.authRootVC?.pushViewController(vc, animated: animated)
         case .main:
             vc = factory.createNewVc(with: .main)
             vc.router = self
-            let mainNavigationVC = UIApplication.shared.delegate?.window??.rootViewController as? UINavigationController
+            let mainNavigationVC = Router.rootVC
             mainNavigationVC?.pushViewController(vc, animated: animated)
         }
         
@@ -54,17 +55,34 @@ class Router: MainRouterType, ApplicationRouterType {
     func initializeStartNavigationFromWindow(_ window: UIWindow?) {
         
         let mainViewController = factory.createNewVc(with: .main)
-        let loginViewController = factory.createNewVc(with: .login)
-        
-        mainViewController.router = self
-        loginViewController.router = self
-        
         let mainNavigationController = UINavigationController(rootViewController: mainViewController)
         window?.rootViewController = mainNavigationController
         
-        let loginNavigationController = UINavigationController(rootViewController: loginViewController)
-        window?.rootViewController?.present(loginNavigationController, animated: false, completion: nil)
-        //loginNavigationController.didMove(toParent: window?.rootViewController)
+        mainViewController.router = self
+        Router.rootVC = mainNavigationController
+        
+        let loginNavigationController = createAuthNavigation()
+        mainNavigationController.present(loginNavigationController, animated: false, completion: nil)
     }
+    
+    func createAuthNavigation() -> UINavigationController {
+        
+        let loginViewController = factory.createNewVc(with: .login)
+        let loginNavigationController = UINavigationController(rootViewController: loginViewController)
+        
+        loginViewController.router = self
+        Router.authRootVC = loginNavigationController
+
+        return loginNavigationController
+    }
+    
+}
+
+extension Router : OAuthDidFinishLoginDelegate {
+    
+    func didFinishDownloading(with token: String) {
+        
+    }
+    
     
 }

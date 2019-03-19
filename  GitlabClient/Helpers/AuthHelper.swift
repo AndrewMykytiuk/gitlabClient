@@ -70,4 +70,13 @@ class AuthHelper {
     
     }
     
+    static func createAlert(message: String) -> UIAlertController {
+        let alert = UIAlertController(title: "Something go wrong", message: message, preferredStyle: .alert)
+        
+        alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: nil))
+        alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
+        
+        return alert
+    }
+    
 }

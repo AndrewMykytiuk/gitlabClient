@@ -11,7 +11,6 @@ import UIKit
 class LogInViewController: BaseViewController {
 
     @IBOutlet weak var logInButton: UIButton!
-    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,17 +27,7 @@ class LogInViewController: BaseViewController {
     }
     
     @IBAction func loginButtonDidTouch(_ sender: UIButton) {
-        activityIndicator.isHidden = false
-        activityIndicator.startAnimating()
-        logInButton.isEnabled = false
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-            
-            self.activityIndicator.stopAnimating()
-            self.logInButton.isEnabled = true
-            
             self.router?.navigateToScreen(with: .oauth, animated: true)
-        }
     }
     
 }
