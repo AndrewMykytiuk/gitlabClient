@@ -24,6 +24,7 @@
 		CE6FF041223B96CB003F7C56 /* LoginRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6FF040223B96CB003F7C56 /* LoginRequest.swift */; };
 		CE6FF043223B96EE003F7C56 /* LoginNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6FF042223B96EE003F7C56 /* LoginNetworkService.swift */; };
 		CE729F18223EE6660006C37C /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE729F17223EE6660006C37C /* Errors.swift */; };
+		CE729F1F224125240006C37C /* DependencyProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE729F1E224125240006C37C /* DependencyProvider.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +47,7 @@
 		CE6FF040223B96CB003F7C56 /* LoginRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRequest.swift; sourceTree = "<group>"; };
 		CE6FF042223B96EE003F7C56 /* LoginNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginNetworkService.swift; sourceTree = "<group>"; };
 		CE729F17223EE6660006C37C /* Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
+		CE729F1E224125240006C37C /* DependencyProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DependencyProvider.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +80,7 @@
 		CE6FF0122236AECB003F7C56 /*  GitlabClient */ = {
 			isa = PBXGroup;
 			children = (
+				CE729F1D224124EA0006C37C /* DependencyProviders */,
 				CE729F16223EE5AF0006C37C /* Enums */,
 				CE6FF03F223B967F003F7C56 /* LoginNetworkService */,
 				CE6FF03A223AE261003F7C56 /* Networking */,
@@ -156,6 +159,14 @@
 			path = Enums;
 			sourceTree = "<group>";
 		};
+		CE729F1D224124EA0006C37C /* DependencyProviders */ = {
+			isa = PBXGroup;
+			children = (
+				CE729F1E224125240006C37C /* DependencyProvider.swift */,
+			);
+			path = DependencyProviders;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -227,6 +238,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE729F1F224125240006C37C /* DependencyProvider.swift in Sources */,
 				CE6FF0292236B1EA003F7C56 /* OAuthLogInViewController.swift in Sources */,
 				CE6FF043223B96EE003F7C56 /* LoginNetworkService.swift in Sources */,
 				CE6FF032223A6A17003F7C56 /* AuthHelper.swift in Sources */,

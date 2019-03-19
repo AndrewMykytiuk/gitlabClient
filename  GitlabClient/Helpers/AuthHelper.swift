@@ -11,11 +11,11 @@ import UIKit
 
 class AuthHelper { 
     
-    private enum Constants {
+    private enum ConstantExpressions {
         static let pattern = "(code=)(.+?)&"
     }
     
-    internal enum URLKind: String {
+    enum URLKind: String {
         
         case authorize = "/oauth/authorize"
         case token = "/oauth/token"
@@ -25,8 +25,8 @@ class AuthHelper {
     
     static func getAccessCode(from string: String) -> Result<String> {
         
-        guard let regex = try? NSRegularExpression(pattern: Constants.pattern) else {
-            return .error(ParsingError.wrongInstruments)
+        guard let regex = try? NSRegularExpression(pattern: ConstantExpressions.pattern) else {
+            return .error(ParsingError.wrongInstrumentsFor(ConstantExpressions.pattern))
         }
         let match = regex.firstMatch(in: string, options: [], range: NSRange(string.startIndex..., in: string))
         
@@ -36,20 +36,20 @@ class AuthHelper {
             return .success(code)
             
         }
-        return .error(ParsingError.wrongResult)
+        return .error(ParsingError.emptyResult(match?.range.description))
     }
     
     static func createURL(for operation: URLKind) -> Result<URL> {
         
-        var components = NetworkManager.createBaseUrlComponents()
+        var components = AuthHelper.createBaseUrlComponents()
         components.path = operation.rawValue
-        let queryItemClientID = URLQueryItem(name: globalConstants.clientIDKey.rawValue, value: globalConstants.clientID.rawValue)
+        let queryItemClientID = URLQueryItem(name: Constants.KeyValues.clientIDKey.rawValue, value: Constants.Network.clientID.rawValue)
         
         switch operation {
         case .authorize:
-            let queryItemRedirectURI = URLQueryItem(name: globalConstants.redirectURLKey.rawValue, value: globalConstants.redirectURL.rawValue)
-            let queryItemResponseType = URLQueryItem(name: globalConstants.responseTypeKey.rawValue, value: globalConstants.responseType.rawValue)
-            let queryItemState = URLQueryItem(name: globalConstants.stateKey.rawValue, value: globalConstants.state.rawValue)
+            let queryItemRedirectURI = URLQueryItem(name: Constants.KeyValues.redirectURLKey.rawValue, value: Constants.Network.redirectURL.rawValue)
+            let queryItemResponseType = URLQueryItem(name: Constants.KeyValues.responseTypeKey.rawValue, value: Constants.Network.responseType.rawValue)
+            let queryItemState = URLQueryItem(name: Constants.KeyValues.stateKey.rawValue, value: Constants.Network.state.rawValue)
             
             components.queryItems = [queryItemClientID, queryItemRedirectURI, queryItemResponseType, queryItemState]
         default:
@@ -59,9 +59,19 @@ class AuthHelper {
         if let url = components.url {
             return .success(url)
         } else {
-            return .error(NetworkError.invalidUrl)
+            return .error(NetworkError.invalidUrl(components.description))
         }
         
+    }
+    
+    static func createBaseUrlComponents() -> URLComponents {
+        var components = URLComponents()
+        
+        components.scheme = Constants.Network.secureScheme.rawValue
+        components.host = Constants.Network.host.rawValue
+        components.queryItems = []
+        
+        return components
     }
     
 }

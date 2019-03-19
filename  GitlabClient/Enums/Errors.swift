@@ -8,15 +8,15 @@
 
 import Foundation
 
-enum ParsingError: String, Error {
-    case wrongEnterData = "wrongEnterData"
-    case wrongProccessing = "wrongProccessing"
-    case wrongInstruments = "wrongInstruments"
-    case wrongResult = "wrongResult"
+enum ParsingError: Error {
+    case wrongEnterData(_ data: Data)
+    case wrongProccessing(_ string: String)
+    case wrongInstrumentsFor(_ string: String)
+    case emptyResult(_ string: String?)
 }
 
-enum NetworkError: String, Error {
-    case invalidUrl = "invalidUrl"
-    case invalidRequest = "invalidRequest"
-    case invalidReceivedData = "invalidReceivedData"
+enum NetworkError: Error {
+    case invalidUrl(_ string: String)
+    case invalidRequest(_ request: Request)
+    case invalidReceivedData(_ data: Data)
 }

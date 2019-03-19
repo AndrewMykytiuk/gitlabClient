@@ -12,34 +12,44 @@ protocol LoginNetworkServiceType {
     func getToken(with code: String, completion: @escaping (Result<String>) -> Void)
 }
 
-class LoginNetworkService {
+class LoginNetworkService: LoginNetworkServiceType {
+    
+    private let networkManager: NetworkManager
+    
+    init(networkManager: NetworkManager) {
+        self.networkManager = networkManager
+    }
     
     func getToken(with code: String, completion: @escaping (Result<String>) -> Void) {
         
         let request = LoginRequest(method: .POST, path: AuthHelper.URLKind.token.rawValue, code: code)
-        let networkManager = NetworkManager()
         
         networkManager.sendRequest(request) { [weak self] (data) in
             switch data {
             case .success(let data):
                 self?.processData(data, completion: completion)
-                case .error(let error):
-                    return completion(.error(error))
+            case .error(let error):
+                return completion(.error(error))
             }
         }
     }
     
-    func processData(_ data: Data, completion: @escaping (Result<String>) -> Void) {
-            let dictionary = NetworkManager.dictionaryFromData(data)
-            switch dictionary {
-            case .success(let dict):
-                if let token = dict[globalConstants.accessTokenKey.rawValue] as? String {
-                    return completion(.success(token))
-                } else {
-                    return completion(.error(ParsingError.wrongProccessing))
-                }
-            case .error(let error):
-                completion(.error(error))
+    private func processData(_ data: Data, completion: @escaping (Result<String>) -> Void) {
+        let dictionary = self.codeFromData(data)
+        switch dictionary {
+        case .success(let token):
+            completion(.success(token))
+        case .error(let error):
+            completion(.error(error))
+        }
+        
+    }
+    
+    private func codeFromData(_ data: Data) -> Result<String> {
+        if let json = try? JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String: Any], let code = json?[Constants.KeyValues.accessTokenKey.rawValue] as? String {
+            return .success(code)
+        } else {
+            return .error(ParsingError.emptyResult(String(data: data, encoding: String.Encoding.utf8)))
         }
         
     }

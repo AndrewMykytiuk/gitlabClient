@@ -11,6 +11,8 @@ import WebKit
 
 class OAuthLogInViewController: BaseViewController {
 
+    var loginManager: LoginNetworkServiceType? 
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -24,40 +26,49 @@ class OAuthLogInViewController: BaseViewController {
         case .success(let url):
             webView.load(URLRequest(url: url))
             self.view.addSubview(webView)
+            webView.frame = self.view.frame
         case .error(let error):
             break
         }
         
     }
-}
-
-extension OAuthLogInViewController: WKNavigationDelegate {
     
-    func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
-        
+    func wkNavigationDelegateAction(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
         guard let tempURL = navigationAction.request.url else {  decisionHandler(.cancel); return }
-
+        
         if tempURL.relativePath == AuthHelper.URLKind.redirect.rawValue {
             
             let tempString = tempURL.absoluteString
             
             switch AuthHelper.getAccessCode(from: tempString){
             case .success(let code):
-                let loginManager = LoginNetworkService()
-                loginManager.getToken(with: code) { (result) in
-                    switch result {
-                    case .success(let token):
-                        if token.count > 0 {  }
-                    case .error(_):
-                        decisionHandler(.cancel)
-                    }
-                }
+                receivingToken(with: code)
             default:
                 decisionHandler(.cancel)
             }
         }
         
         decisionHandler(.allow)
+    }
+    
+    func receivingToken(with code: String) {
+        loginManager?.getToken(with: code) { (result) in
+            switch result {
+            case .success(let token):
+                if token.count > 0 {  }
+            case .error(_):
+                break
+            }
+        }
+    }
+    
+}
+
+extension OAuthLogInViewController: WKNavigationDelegate {
+    
+    func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
+        
+        self.wkNavigationDelegateAction(webView, decidePolicyFor: navigationAction, decisionHandler: decisionHandler)
         
     }
     
