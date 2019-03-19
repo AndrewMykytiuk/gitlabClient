@@ -15,13 +15,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     private var router: Router?
 
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         self.window = UIWindow()
         self.window?.makeKeyAndVisible()
         
-        self.router = Router(factory: ViewControllerFactory())
+        let dependencyProvider = DependencyProvider()
+        let factory = ViewControllerFactory(provider: dependencyProvider)
+        self.router = Router(factory: factory)
         
         router?.initializeStartNavigationFromWindow(window)
         

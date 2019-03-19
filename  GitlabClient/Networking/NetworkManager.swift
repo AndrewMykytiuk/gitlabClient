@@ -13,7 +13,7 @@ class NetworkManager {
     
     func sendRequest(_ request: Request, completion: @escaping(Result<Data>) -> Void) {
         
-        var components = NetworkManager.createBaseUrlComponents()
+        var components = AuthHelper.createBaseUrlComponents()
         components.path = request.path
         
         for param in request.parameters {
@@ -22,7 +22,7 @@ class NetworkManager {
         }
         
         guard let url = components.url else {
-            return completion(.error(NetworkError.invalidUrl))}
+            return completion(.error(NetworkError.invalidUrl(components.description)))}
         
         let session = URLSession.shared
 
@@ -39,35 +39,12 @@ class NetworkManager {
             }
             
             guard let data = data else {
-                return completion(.error(NetworkError.invalidReceivedData))
+                return completion(.error(ParsingError.emptyResult(response?.description)))
             }
             return completion(.success(data))
         })
         task.resume()
         
-    }
-    
-    static func dictionaryFromData(_ data: Data) -> Result<[String:Any]> {
-        var dictionary: [String:Any] = [:]
-        
-        do {
-            if let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String: Any] {
-                dictionary = json
-            }
-        } catch let error {
-            return .error(error)
-        }
-        return .success(dictionary)
-    }
-    
-    static func createBaseUrlComponents() -> URLComponents {
-        var components = URLComponents()
-        
-        components.scheme = globalConstants.secureScheme.rawValue
-        components.host = globalConstants.host.rawValue
-        components.queryItems = []
-        
-        return components
     }
     
 }

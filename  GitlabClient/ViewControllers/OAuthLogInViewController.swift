@@ -18,6 +18,7 @@ class OAuthLogInViewController: BaseViewController {
     var delegate: OAuthDidFinishLoginDelegate?
     private let webView = WKWebView()
     private let activityIndicator = UIActivityIndicatorView()
+    var loginManager: LoginNetworkServiceType?
     
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         activityIndicator.stopAnimating()
@@ -69,12 +70,8 @@ class OAuthLogInViewController: BaseViewController {
         webView.frame = view.frame
         activityIndicator.frame = view.frame
     }
-}
-
-extension OAuthLogInViewController: WKNavigationDelegate {
     
-    func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
-        
+    func wkNavigationDelegateAction(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
         guard let tempURL = navigationAction.request.url else {  decisionHandler(.cancel); return }
         
         if tempURL.relativePath == AuthHelper.URLKind.redirect.rawValue {
@@ -84,33 +81,32 @@ extension OAuthLogInViewController: WKNavigationDelegate {
             activityIndicator.startAnimating()
             switch AuthHelper.getAccessCode(from: tempString){
             case .success(let code):
-                let loginManager = LoginNetworkService()
-                loginManager.getToken(with: code) { (result) in
-                    switch result {
-                    case .success(let token):
-                        if token.count > 0 {
-                            DispatchQueue.main.async {
-                                self.activityIndicator.stopAnimating()
-                                Router.rootVC?.dismiss(animated: true, completion: nil)
-                            }
-                        }
-                    case .error(let error):
-                        self.activityIndicator.stopAnimating()
-                        let alert = AuthHelper.createAlert(message: error.localizedDescription)
-                        self.present(alert, animated: true)
-                        decisionHandler(.cancel)
-                        
-                    }
-                }
-            case .error(let error):
-                activityIndicator.stopAnimating()
-                let alert = AuthHelper.createAlert(message: error.localizedDescription)
-                self.present(alert, animated: true)
+                receivingToken(with: code)
+            default:
                 decisionHandler(.cancel)
             }
         }
         
         decisionHandler(.allow)
+    }
+    
+    func receivingToken(with code: String) {
+        loginManager?.getToken(with: code) { (result) in
+            switch result {
+            case .success(let token):
+                if token.count > 0 {  }
+            case .error(_):
+                break
+            }
+        }
+    }
+}
+
+extension OAuthLogInViewController: WKNavigationDelegate {
+    
+    func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
+        
+        self.wkNavigationDelegateAction(webView, decidePolicyFor: navigationAction, decisionHandler: decisionHandler)
         
     }
     

@@ -14,8 +14,8 @@ protocol ApplicationRouterType {
 }
 
 protocol MainRouterType {
-    associatedtype Identifier
-    func navigateToScreen(with identifier: Identifier, animated: Bool)
+    associatedtype Destination
+    func navigateToScreen(with identifier: Destination, animated: Bool)
 }
 
 class Router: MainRouterType, ApplicationRouterType {
@@ -25,7 +25,7 @@ class Router: MainRouterType, ApplicationRouterType {
     static var rootVC: UINavigationController?
     static var authRootVC: UINavigationController?
     
-    internal enum Identifier: String {
+    enum Destination: String {
         case oauth = "OAuthLogInViewController"
         case main = "MainViewController"
     }
@@ -34,7 +34,7 @@ class Router: MainRouterType, ApplicationRouterType {
         self.factory = factory
     }
     
-    func navigateToScreen(with identifier: Identifier, animated: Bool) {
+    func navigateToScreen(with identifier: Destination, animated: Bool) {
         
         var vc = BaseViewController()
         

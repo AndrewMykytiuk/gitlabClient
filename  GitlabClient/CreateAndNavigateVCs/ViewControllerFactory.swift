@@ -9,35 +9,42 @@
 import UIKit
 
 protocol ViewControllerFactoryType {
-    associatedtype Identifier
-    func createNewVc(with identifier: Identifier) -> BaseViewController
+    associatedtype ViewControllerIdentifier
+    func createNewVc(with identifier: ViewControllerIdentifier) -> BaseViewController
 }
 
 class ViewControllerFactory: ViewControllerFactoryType {
     
-    internal enum Identifier: String {
+    private let storyboard = UIStoryboard(name: "Main", bundle: nil)
+    private let dependencyProvider: DependencyProvider
+    
+    enum ViewControllerIdentifier: String {
         case oauth = "OAuthLogInViewController"
         case login = "LogInViewController"
         case main = "MainViewController"
     }
     
-    func createNewVc(with identifier: Identifier) -> BaseViewController {
+    init(provider: DependencyProvider) {
+        self.dependencyProvider = provider
+    }
+    
+    func createNewVc(with identifier: ViewControllerIdentifier) -> BaseViewController {
         
-        var vc = BaseViewController()
+        guard var vcTemp = storyboard.instantiateViewController(withIdentifier: identifier.rawValue) as? BaseViewController else { fatalError("Cannot create View storyboard ") }
         
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        if let vcTemp = storyboard.instantiateViewController(withIdentifier: identifier.rawValue) as? BaseViewController {
-        vc = vcTemp
         switch identifier {
         case .main:
             _ = 9
         case .oauth:
-            _ = 10
+            if let oAuthLogInViewController = vcTemp as? OAuthLogInViewController {
+                oAuthLogInViewController.loginManager = LoginNetworkService(networkManager: dependencyProvider.networkManager)
+                
+                vcTemp = oAuthLogInViewController
+            }
         case .login:
             _ = 11
         }
-        }
-        return vc
+        return vcTemp
     }
  
 }
