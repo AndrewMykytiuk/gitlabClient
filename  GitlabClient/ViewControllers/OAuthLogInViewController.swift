@@ -82,7 +82,11 @@ class OAuthLogInViewController: BaseViewController {
             switch AuthHelper.getAccessCode(from: tempString){
             case .success(let code):
                 receivingToken(with: code)
-            default:
+            case .error(let error):
+                activityIndicator.stopAnimating()
+                let alert = AuthHelper.createAlert(message: error.localizedDescription)
+                self.present(alert, animated: true)
+
                 decisionHandler(.cancel)
             }
         }
@@ -94,9 +98,14 @@ class OAuthLogInViewController: BaseViewController {
         loginManager?.getToken(with: code) { (result) in
             switch result {
             case .success(let token):
-                if token.count > 0 {  }
-            case .error(_):
-                break
+                DispatchQueue.main.async {
+                    self.activityIndicator.stopAnimating()
+                    Router.rootVC?.dismiss(animated: true, completion: nil)
+                }
+            case .error(let error):
+                self.activityIndicator.stopAnimating()
+                let alert = AuthHelper.createAlert(message: error.localizedDescription)
+                self.present(alert, animated: true)
             }
         }
     }
