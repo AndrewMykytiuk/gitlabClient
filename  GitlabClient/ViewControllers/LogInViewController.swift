@@ -13,8 +13,6 @@ class LogInViewController: BaseViewController {
     @IBOutlet weak var logInButton: UIButton!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
-    //weak var router: Router?
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -30,7 +28,6 @@ class LogInViewController: BaseViewController {
     }
     
     @IBAction func loginButtonDidTouch(_ sender: UIButton) {
-        
         activityIndicator.isHidden = false
         activityIndicator.startAnimating()
         logInButton.isEnabled = false
@@ -40,9 +37,8 @@ class LogInViewController: BaseViewController {
             self.activityIndicator.stopAnimating()
             self.logInButton.isEnabled = true
             
-            self.router?.navigateToScreen(with: .main, animated: true)
+            self.router?.navigateToScreen(with: .oauth, animated: true)
         }
-        
     }
     
 }
