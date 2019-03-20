@@ -18,7 +18,7 @@ class OAuthLogInViewController: BaseViewController {
     var delegate: OAuthDidFinishLoginDelegate?
     private let webView = WKWebView()
     private let activityIndicator = UIActivityIndicatorView()
-    var loginManager: LoginNetworkServiceType?
+    var loginManager: LoginService?
     
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         activityIndicator.stopAnimating()
@@ -95,30 +95,18 @@ class OAuthLogInViewController: BaseViewController {
     }
     
     func receivingToken(with code: String) {
-        loginManager?.getToken(with: code) { (result) in
+        loginManager?.login(with: code, completion: { (result) in
             switch result {
-            case .success(let token):
-                self.finishingAuthNavigation(with: token)
+            case .success(_):
+                DispatchQueue.main.async {
+                    self.activityIndicator.stopAnimating()
+                    Router.rootVC?.dismiss(animated: true, completion: nil)
+                }
             case .error(let error):
-                self.activityIndicator.stopAnimating()
                 let alert = AuthHelper.createAlert(message: error.localizedDescription)
                 self.present(alert, animated: true)
             }
-        }
-    }
-    
-    func finishingAuthNavigation(with token:String) {
-        switch KeychainItem.savePassword(token) {
-        case .success(let success):
-            if success {  }
-        case .error(let error):
-            let alert = AuthHelper.createAlert(message: error.localizedDescription)
-            self.present(alert, animated: true)
-        }
-        DispatchQueue.main.async {
-            self.activityIndicator.stopAnimating()
-            Router.rootVC?.dismiss(animated: true, completion: nil)
-        }
+        })
     }
 }
 

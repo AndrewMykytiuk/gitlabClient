@@ -37,7 +37,7 @@ class ViewControllerFactory: ViewControllerFactoryType {
             _ = 9
         case .oauth:
             if let oAuthLogInViewController = vcTemp as? OAuthLogInViewController {
-                oAuthLogInViewController.loginManager = LoginNetworkService(networkManager: dependencyProvider.networkManager)
+                oAuthLogInViewController.loginManager = LoginService(networkManager: dependencyProvider.networkManager, keychainItem: dependencyProvider.keychainItem)
                 
                 vcTemp = oAuthLogInViewController
             }

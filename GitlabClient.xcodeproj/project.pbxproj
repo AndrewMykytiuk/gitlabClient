@@ -24,9 +24,10 @@
 		CE6FF041223B96CB003F7C56 /* LoginRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6FF040223B96CB003F7C56 /* LoginRequest.swift */; };
 		CE6FF043223B96EE003F7C56 /* LoginNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6FF042223B96EE003F7C56 /* LoginNetworkService.swift */; };
 		CE729F18223EE6660006C37C /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE729F17223EE6660006C37C /* Errors.swift */; };
-		CE729F1C223FF6F40006C37C /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE729F1B223FF6F40006C37C /* MainViewController.swift */; };
 		CE729F1F224125240006C37C /* DependencyProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE729F1E224125240006C37C /* DependencyProvider.swift */; };
-		CE729F23224146290006C37C /* KeychainItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE729F22224146290006C37C /* KeychainItem.swift */; };
+		CE729F252242582B0006C37C /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE729F24224258210006C37C /* MainViewController.swift */; };
+		CE729F2822426FA60006C37C /* KeychainItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE729F2722426FA20006C37C /* KeychainItem.swift */; };
+		CE729F2B224271240006C37C /* LoginService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE729F2A224271240006C37C /* LoginService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,9 +50,10 @@
 		CE6FF040223B96CB003F7C56 /* LoginRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRequest.swift; sourceTree = "<group>"; };
 		CE6FF042223B96EE003F7C56 /* LoginNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginNetworkService.swift; sourceTree = "<group>"; };
 		CE729F17223EE6660006C37C /* Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
-		CE729F1B223FF6F40006C37C /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		CE729F1E224125240006C37C /* DependencyProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DependencyProvider.swift; sourceTree = "<group>"; };
-		CE729F22224146290006C37C /* KeychainItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainItem.swift; sourceTree = "<group>"; };
+		CE729F24224258210006C37C /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		CE729F2722426FA20006C37C /* KeychainItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainItem.swift; sourceTree = "<group>"; };
+		CE729F2A224271240006C37C /* LoginService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,7 +86,8 @@
 		CE6FF0122236AECB003F7C56 /*  GitlabClient */ = {
 			isa = PBXGroup;
 			children = (
-				CE729F212241460A0006C37C /* Keychain */,
+				CE729F29224271020006C37C /* Services */,
+				CE729F2622426FA20006C37C /* Keychain */,
 				CE729F1D224124EA0006C37C /* DependencyProviders */,
 				CE729F16223EE5AF0006C37C /* Enums */,
 				CE6FF03F223B967F003F7C56 /* LoginNetworkService */,
@@ -105,7 +108,7 @@
 		CE6FF03022390AB0003F7C56 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				CE729F1B223FF6F40006C37C /* MainViewController.swift */,
+				CE729F24224258210006C37C /* MainViewController.swift */,
 				CE6FF02E22390905003F7C56 /* BaseViewController.swift */,
 				CE6FF0282236B1EA003F7C56 /* OAuthLogInViewController.swift */,
 				CE6FF0152236AECB003F7C56 /* LogInViewController.swift */,
@@ -173,12 +176,20 @@
 			path = DependencyProviders;
 			sourceTree = "<group>";
 		};
-		CE729F212241460A0006C37C /* Keychain */ = {
+		CE729F2622426FA20006C37C /* Keychain */ = {
 			isa = PBXGroup;
 			children = (
-				CE729F22224146290006C37C /* KeychainItem.swift */,
+				CE729F2722426FA20006C37C /* KeychainItem.swift */,
 			);
 			path = Keychain;
+			sourceTree = "<group>";
+		};
+		CE729F29224271020006C37C /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				CE729F2A224271240006C37C /* LoginService.swift */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -213,11 +224,6 @@
 				TargetAttributes = {
 					CE6FF00F2236AECB003F7C56 = {
 						CreatedOnToolsVersion = 10.1;
-						SystemCapabilities = {
-							com.apple.Keychain = {
-								enabled = 0;
-							};
-						};
 					};
 				};
 			};
@@ -259,17 +265,18 @@
 			files = (
 				CE729F1F224125240006C37C /* DependencyProvider.swift in Sources */,
 				CE6FF0292236B1EA003F7C56 /* OAuthLogInViewController.swift in Sources */,
-				CE729F23224146290006C37C /* KeychainItem.swift in Sources */,
 				CE6FF043223B96EE003F7C56 /* LoginNetworkService.swift in Sources */,
 				CE6FF032223A6A17003F7C56 /* AuthHelper.swift in Sources */,
 				CE6FF03C223AE29E003F7C56 /* NetworkManager.swift in Sources */,
 				CE6FF041223B96CB003F7C56 /* LoginRequest.swift in Sources */,
 				CE6FF036223AAD0C003F7C56 /*  Constants.swift in Sources */,
+				CE729F2822426FA60006C37C /* KeychainItem.swift in Sources */,
+				CE729F252242582B0006C37C /* MainViewController.swift in Sources */,
 				CE729F18223EE6660006C37C /* Errors.swift in Sources */,
 				CE6FF03E223AE376003F7C56 /* Request.swift in Sources */,
 				CE6FF02B2237B0E4003F7C56 /* ViewControllerFactory.swift in Sources */,
-				CE729F1C223FF6F40006C37C /* MainViewController.swift in Sources */,
 				CE6FF0162236AECB003F7C56 /* LogInViewController.swift in Sources */,
+				CE729F2B224271240006C37C /* LoginService.swift in Sources */,
 				CE6FF02D2237DD9E003F7C56 /* Router.swift in Sources */,
 				CE6FF02F22390905003F7C56 /* BaseViewController.swift in Sources */,
 				CE6FF034223AAB01003F7C56 /* Result.swift in Sources */,

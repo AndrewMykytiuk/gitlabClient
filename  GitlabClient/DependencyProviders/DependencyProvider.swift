@@ -10,8 +10,10 @@ import Foundation
 
 protocol DependencyProviderType {
     var networkManager: NetworkManager { get }
+    var keychainItem: KeychainItem { get }
 }
 
 class DependencyProvider: DependencyProviderType {
     let networkManager = NetworkManager()
+    let keychainItem = KeychainItem()
 }

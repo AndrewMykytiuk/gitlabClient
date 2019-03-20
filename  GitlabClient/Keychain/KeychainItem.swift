@@ -8,9 +8,15 @@
 
 import Foundation
 
+//protocol KeychainItemType {
+//    func readToken() -> Result<String>
+//    func saveToken(_ password: String) -> Result<Void>
+//    func removeToken(_ password: String) -> Result<Void>
+//}
+
 class KeychainItem {
     
-    class func readPassword() -> Result<String>  {
+      func readToken() -> Result<String>  {
         
         var query = [String : AnyObject]()
         query[kSecClass as String] = kSecClassGenericPassword
@@ -35,13 +41,13 @@ class KeychainItem {
         return .success(password)
     }
     
-    class func savePassword(_ password: String) -> Result<Bool> {
+    func saveToken(_ password: String) -> Result<Void> {
         
         guard let passwordData = password.data(using: String.Encoding.utf8) else {
             return .error(KeychainError.noPassword(password.description))
         }
         
-        guard let _ = try? readPassword() else {
+        guard let _ = try? readToken() else {
             
             var newItem = [String : AnyObject]()
             newItem[kSecClass as String] = kSecClassGenericPassword
@@ -62,10 +68,10 @@ class KeychainItem {
         
         guard status == noErr else { return .error(KeychainError.unhandledError(noErr.description))}
         
-        return .success(true)
+        return .success(Void())
     }
     
-    class func removePassword(_ password: String) -> Result<Bool> {
+    func removeToken(_ password: String) -> Result<Void> {
         
         guard let passwordData = password.data(using: String.Encoding.utf8) else {
             return .error(KeychainError.noPassword(password.description))
@@ -80,7 +86,7 @@ class KeychainItem {
         
         guard status == noErr else { return .error(KeychainError.unhandledError(noErr.description))}
         
-        return .success(true)
+        return .success(Void())
     }
     
 }
