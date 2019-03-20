@@ -98,15 +98,26 @@ class OAuthLogInViewController: BaseViewController {
         loginManager?.getToken(with: code) { (result) in
             switch result {
             case .success(let token):
-                DispatchQueue.main.async {
-                    self.activityIndicator.stopAnimating()
-                    Router.rootVC?.dismiss(animated: true, completion: nil)
-                }
+                self.finishingAuthNavigation(with: token)
             case .error(let error):
                 self.activityIndicator.stopAnimating()
                 let alert = AuthHelper.createAlert(message: error.localizedDescription)
                 self.present(alert, animated: true)
             }
+        }
+    }
+    
+    func finishingAuthNavigation(with token:String) {
+        switch KeychainItem.savePassword(token) {
+        case .success(let success):
+            if success {  }
+        case .error(let error):
+            let alert = AuthHelper.createAlert(message: error.localizedDescription)
+            self.present(alert, animated: true)
+        }
+        DispatchQueue.main.async {
+            self.activityIndicator.stopAnimating()
+            Router.rootVC?.dismiss(animated: true, completion: nil)
         }
     }
 }

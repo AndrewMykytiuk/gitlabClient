@@ -26,6 +26,7 @@
 		CE729F18223EE6660006C37C /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE729F17223EE6660006C37C /* Errors.swift */; };
 		CE729F1C223FF6F40006C37C /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE729F1B223FF6F40006C37C /* MainViewController.swift */; };
 		CE729F1F224125240006C37C /* DependencyProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE729F1E224125240006C37C /* DependencyProvider.swift */; };
+		CE729F23224146290006C37C /* KeychainItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE729F22224146290006C37C /* KeychainItem.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,6 +51,7 @@
 		CE729F17223EE6660006C37C /* Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
 		CE729F1B223FF6F40006C37C /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		CE729F1E224125240006C37C /* DependencyProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DependencyProvider.swift; sourceTree = "<group>"; };
+		CE729F22224146290006C37C /* KeychainItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainItem.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +84,7 @@
 		CE6FF0122236AECB003F7C56 /*  GitlabClient */ = {
 			isa = PBXGroup;
 			children = (
+				CE729F212241460A0006C37C /* Keychain */,
 				CE729F1D224124EA0006C37C /* DependencyProviders */,
 				CE729F16223EE5AF0006C37C /* Enums */,
 				CE6FF03F223B967F003F7C56 /* LoginNetworkService */,
@@ -170,6 +173,14 @@
 			path = DependencyProviders;
 			sourceTree = "<group>";
 		};
+		CE729F212241460A0006C37C /* Keychain */ = {
+			isa = PBXGroup;
+			children = (
+				CE729F22224146290006C37C /* KeychainItem.swift */,
+			);
+			path = Keychain;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -202,6 +213,11 @@
 				TargetAttributes = {
 					CE6FF00F2236AECB003F7C56 = {
 						CreatedOnToolsVersion = 10.1;
+						SystemCapabilities = {
+							com.apple.Keychain = {
+								enabled = 0;
+							};
+						};
 					};
 				};
 			};
@@ -243,6 +259,7 @@
 			files = (
 				CE729F1F224125240006C37C /* DependencyProvider.swift in Sources */,
 				CE6FF0292236B1EA003F7C56 /* OAuthLogInViewController.swift in Sources */,
+				CE729F23224146290006C37C /* KeychainItem.swift in Sources */,
 				CE6FF043223B96EE003F7C56 /* LoginNetworkService.swift in Sources */,
 				CE6FF032223A6A17003F7C56 /* AuthHelper.swift in Sources */,
 				CE6FF03C223AE29E003F7C56 /* NetworkManager.swift in Sources */,

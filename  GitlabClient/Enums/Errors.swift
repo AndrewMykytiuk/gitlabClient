@@ -20,3 +20,10 @@ enum NetworkError: Error {
     case invalidRequest(_ request: Request)
     case invalidReceivedData(_ data: Data)
 }
+
+enum KeychainError: Error {
+    case noPassword(_ string: String)
+    case unexpectedPasswordString(_ string: String?)
+    case unexpectedItemData(_ data: Data)
+    case unhandledError(_ string: String)
+}
