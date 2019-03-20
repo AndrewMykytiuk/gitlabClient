@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:RealProject.xcodeproj">
+      location = "self:/Users/user/Develop/RealProject/GitlabClient.xcodeproj">
    </FileRef>
 </Workspace>

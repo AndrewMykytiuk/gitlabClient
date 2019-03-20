@@ -14,33 +14,33 @@ protocol ApplicationRouterType {
 }
 
 protocol MainRouterType {
-    associatedtype Identifier
-    func navigateToScreen(with identifier: Identifier, animated: Bool)
+    associatedtype Destination
+    func navigateToScreen(with identifier: Destination, animated: Bool)
 }
 
 class Router: MainRouterType, ApplicationRouterType {
     
-    var factory: ViewControllerFactory
+    private var factory: ViewControllerFactory
     
-    enum Identifier: String {
-        case main = "SecondViewController"
-        case settings = "SettingsViewController"
+    enum Destination: String {
+        case oauth = "OAuthLogInViewController"
+        case main = "MainViewController"
     }
     
      init(factory: ViewControllerFactory) {
         self.factory = factory
     }
     
-    func navigateToScreen(with identifier: Identifier, animated: Bool) {
+    func navigateToScreen(with identifier: Destination, animated: Bool) {
         
         var vc = BaseViewController()
         
         switch identifier {
+        case .oauth:
+            vc = factory.createNewVc(with: .oauth)
+            vc.router = self
         case .main:
             vc = factory.createNewVc(with: .main)
-            vc.router = self
-        case .settings:
-            vc = factory.createNewVc(with: .settings)
             vc.router = self
         }
         
