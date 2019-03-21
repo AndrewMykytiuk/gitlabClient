@@ -11,10 +11,5 @@ import UIKit
 class BaseViewController: UIViewController {
 
     weak var router: Router?
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-    }
 
 }

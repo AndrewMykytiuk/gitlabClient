@@ -20,3 +20,8 @@ enum NetworkError: Error {
     case invalidRequest(_ request: Request)
     case invalidReceivedData(_ data: Data)
 }
+
+enum FatalError: String, Error {
+    case invalidStoryboardCreate = "Cannot create View storyboard"
+}
+
