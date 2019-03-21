@@ -9,28 +9,60 @@
 import UIKit
 import WebKit
 
-class OAuthLogInViewController: BaseViewController {
+protocol OAuthLogInViewControllerDelegate: class {
+    func viewControllerDidFinishLogin(oAuthViewController: OAuthLogInViewController)
+}
 
-    var loginManager: LoginNetworkServiceType? 
+class OAuthLogInViewController: BaseViewController {
+    
+    weak var delegate: OAuthLogInViewControllerDelegate?
+    private let webView = WKWebView()
+    private let activityIndicator = UIActivityIndicatorView()
+    var loginManager: LoginNetworkServiceType?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let webView = WKWebView()
+        activityIndicator.startAnimating()
+        
         webView.navigationDelegate = self
         webView.allowsBackForwardNavigationGestures = true
-
+        
+        self.view.addSubview(webView)
+        self.view.addSubview(activityIndicator)
+        activityIndicator.style = .whiteLarge
+        activityIndicator.color = .gray
+        
         self.navigationController?.setNavigationBarHidden(false, animated: true)
         
         switch AuthHelper.createURL(for: .authorize) {
         case .success(let url):
             webView.load(URLRequest(url: url))
-            self.view.addSubview(webView)
-            webView.frame = self.view.frame
         case .error(let error):
-            break
+            if error.localizedDescription.count > 0 {}
+            let alert = AlertHelper.createErrorAlert(message: error.localizedDescription, handler: nil)
+            self.present(alert, animated: true)
         }
         
+    }
+    
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        setup(with: self.view)
+    }
+    
+    private func setup(with view: UIView) {
+        
+        webView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        webView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
+        webView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
+        webView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        
+        activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+        
+        webView.frame = view.frame
+        activityIndicator.frame = view.frame
     }
     
     func wkNavigationDelegateAction(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
@@ -43,7 +75,9 @@ class OAuthLogInViewController: BaseViewController {
             switch AuthHelper.getAccessCode(from: tempString){
             case .success(let code):
                 receivingToken(with: code)
-            default:
+            case .error(let error):
+                let alert = AlertHelper.createErrorAlert(message: error.localizedDescription, handler: nil)
+                self.present(alert, animated: true)
                 decisionHandler(.cancel)
             }
         }
@@ -52,19 +86,26 @@ class OAuthLogInViewController: BaseViewController {
     }
     
     func receivingToken(with code: String) {
-        loginManager?.getToken(with: code) { (result) in
+        self.activityIndicator.startAnimating()
+        loginManager?.getToken(with: code) { [weak self] (result) in
+            guard let welf = self else { return }
+            welf.activityIndicator.stopAnimating()
             switch result {
             case .success(let token):
-                if token.count > 0 {  }
-            case .error(_):
-                break
+                welf.delegate?.viewControllerDidFinishLogin(oAuthViewController: welf)
+            case .error(let error):
+                let alert = AlertHelper.createErrorAlert(message: error.localizedDescription, handler: nil)
+                welf.present(alert, animated: true)
             }
         }
     }
-    
 }
 
 extension OAuthLogInViewController: WKNavigationDelegate {
+    
+    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+        activityIndicator.stopAnimating()
+    }
     
     func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
         

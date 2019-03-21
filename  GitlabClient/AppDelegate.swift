@@ -24,7 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let factory = ViewControllerFactory(provider: dependencyProvider)
         self.router = Router(factory: factory)
         
-        router?.navigateFromWindow(window)
+        router?.navigate(from: window)
         
         return true
     }

@@ -45,16 +45,11 @@
                                     <action selector="loginButtonDidTouch:" destination="BYZ-38-t0r" eventType="touchUpInside" id="C5B-6O-N6g"/>
                                 </connections>
                             </button>
-                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="bDX-a2-wpd">
-                                <rect key="frame" x="169" y="315" width="37" height="37"/>
-                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="97f-BL-9ZC" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="18e-9d-lQH"/>
                             <constraint firstItem="97f-BL-9ZC" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="3y5-ml-AG7"/>
-                            <constraint firstItem="bDX-a2-wpd" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Gqe-v0-Nc1"/>
-                            <constraint firstItem="bDX-a2-wpd" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="MPB-nq-Cw8"/>
                             <constraint firstItem="NFT-Hf-emH" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="q3x-xa-GMg"/>
                             <constraint firstItem="NFT-Hf-emH" firstAttribute="top" secondItem="97f-BL-9ZC" secondAttribute="bottom" constant="16" id="sRe-H7-FNf"/>
                         </constraints>
@@ -62,7 +57,6 @@
                     </view>
                     <navigationItem key="navigationItem" id="F8F-s7-Vj6"/>
                     <connections>
-                        <outlet property="activityIndicator" destination="bDX-a2-wpd" id="5TO-9W-h6U"/>
                         <outlet property="logInButton" destination="NFT-Hf-emH" id="Gh6-YN-6bW"/>
                     </connections>
                 </viewController>
@@ -86,10 +80,10 @@
             </objects>
             <point key="canvasLocation" x="1039" y="27"/>
         </scene>
-        <!--View Controller-->
+        <!--Main View Controller-->
         <scene sceneID="3jB-4M-p7f">
             <objects>
-                <viewController storyboardIdentifier="MainViewController" id="ePM-cj-NTy" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MainViewController" id="ePM-cj-NTy" customClass="MainViewController" customModule="GitlabClient" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="xZj-o2-GRs">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
