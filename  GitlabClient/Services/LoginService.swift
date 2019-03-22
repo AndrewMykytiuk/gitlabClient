@@ -22,15 +22,14 @@ class LoginService {
     
     func login(with code: String, completion: @escaping (Result<String>) -> Void) {
         
-        loginManager.getToken(with: code) { (result) in
+        loginManager.getToken(with: code) { [weak self] (result) in
             switch result {
             case .success(let token):
-                self.saveToken(token, completion: { (saveResult) in
-                    switch saveResult {
-                    case .success(_):
-                        completion(.success(token))
-                    case .error(let error):
+                self?.saveToken(token, completion: { [weak self] (errorResult) in
+                    if let error = errorResult {
                         completion(.error(error))
+                    } else {
+                        completion(.success(token))
                     }
                 })
                 
@@ -40,12 +39,12 @@ class LoginService {
         }
     }
     
-    private func saveToken(_ token: String, completion: @escaping(Result<Void>) -> Void) {
+    private func saveToken(_ token: String, completion: @escaping(Error?) -> Void) {
         switch keychainItem.saveToken(token) {
         case .success:
-            completion (.success(Void()))
+            completion (nil)
         case .error(let error):
-            completion (.error(error))
+            completion (error)
         }
     }
     
