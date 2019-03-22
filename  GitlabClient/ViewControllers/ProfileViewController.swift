@@ -29,15 +29,12 @@ class ProfileViewController: BaseViewController {
 
     @IBAction func logOutButtonAction(_ sender: UIButton) {
         
-        loginManager.logout { [weak self] (result) in
-            guard let welf = self else { return }
-            switch result {
-            case .success:
-                welf.delegate?.viewControllerLogOut(profileViewController: welf)
-            case .error(let error):
-                let alert = AlertHelper.createErrorAlert(message: error.localizedDescription, handler: nil)
-                welf.present(alert, animated: true)
-            }
+        switch loginManager.logout() {
+        case .success:
+            self.delegate?.viewControllerLogOut(profileViewController: self)
+        case.error(let error):
+            let alert = AlertHelper.createErrorAlert(message: error.localizedDescription, handler: nil)
+            self.present(alert, animated: true)
         }
         
     }

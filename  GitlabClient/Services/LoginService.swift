@@ -48,29 +48,28 @@ class LoginService {
         }
     }
     
-    func logout(completion: @escaping (Result<Void>) -> Void) {
+    func logout() -> Result<Void> {
         
         switch keychainItem.readToken() { 
         case .success(let token):
-            self.removeToken(token) { (removeError) in
-                if let error = removeError {
-                    completion(.error(error))
-                } else {
-                    completion(.success(Void()))
-                }
+            let removeError = self.removeToken(token)
+            if let error = removeError {
+                return .error(error)
+            } else {
+                return .success(Void())
             }
         case .error(let error):
-            completion(.error(error))
+            return .error(error)
         }
         
     }
     
-    private func removeToken(_ token: String, completion: @escaping(Error?) -> Void) {
+    private func removeToken(_ token: String) -> Error? {
         switch keychainItem.removeToken(token) {
         case .success:
-            completion (nil)
+             return nil
         case .error(let error):
-            completion (error)
+            return error
         }
     }
     
