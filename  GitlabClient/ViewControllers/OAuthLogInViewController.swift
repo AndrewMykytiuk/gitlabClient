@@ -18,7 +18,7 @@ class OAuthLogInViewController: BaseViewController {
     weak var delegate: OAuthLogInViewControllerDelegate?
     private let webView = WKWebView()
     private let activityIndicator = UIActivityIndicatorView()
-    private var loginManager: LoginService?
+    private var loginManager: LoginService!
     
     func configure(with loginService: LoginService) {
         self.loginManager = loginService
