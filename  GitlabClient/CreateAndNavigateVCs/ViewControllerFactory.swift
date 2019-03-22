@@ -53,12 +53,12 @@ class ViewControllerFactory: ViewControllerFactoryType {
  
     func createNewTabBarVC(with mainViewController: BaseViewController, profileViewController: BaseViewController) -> UITabBarController {
         
-        let tapBarController = UITabBarController()
-        
         mainViewController.tabBarItem = UITabBarItem(title: Constants.TabBarItemNames.main.rawValue, image: nil, tag: Constants.TabBarItemIndexes.main.rawValue)
         profileViewController.tabBarItem = UITabBarItem(title: Constants.TabBarItemNames.profile.rawValue, image: nil, tag: Constants.TabBarItemIndexes.profile.rawValue)
         
         let viewControllers = [mainViewController, profileViewController]
+        
+        let tapBarController = UITabBarController()
         tapBarController.viewControllers = viewControllers
         
         return tapBarController
