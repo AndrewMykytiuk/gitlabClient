@@ -42,8 +42,21 @@ class KeychainItem {
             return .error(KeychainError.noPassword(password.description))
         }
         
-        guard let _ = try? readToken() else {
+        let result = readToken()
+        
+        switch result {
+        case .success:
+            var attributesToUpdate = [String : AnyObject]()
+            attributesToUpdate[kSecValueData as String] = passwordData as AnyObject?
             
+            var query = [String : AnyObject]()
+            query[kSecClass as String] = kSecClassGenericPassword
+            let status = SecItemUpdate(query as CFDictionary, attributesToUpdate as CFDictionary)
+            
+            guard status == noErr else { return .error(KeychainError.unhandledError(noErr.description))}
+            return .success(Void())
+            
+        case .error:
             var newItem = [String : AnyObject]()
             newItem[kSecClass as String] = kSecClassGenericPassword
             newItem[kSecValueData as String] = passwordData as AnyObject?
@@ -51,19 +64,8 @@ class KeychainItem {
             let status = SecItemAdd(newItem as CFDictionary, nil)
             
             guard status == noErr else { return .error(KeychainError.unhandledError(noErr.description))}
-            
+            return .success(Void())
         }
-        
-        var attributesToUpdate = [String : AnyObject]()
-        attributesToUpdate[kSecValueData as String] = passwordData as AnyObject?
-        
-        var query = [String : AnyObject]()
-        query[kSecClass as String] = kSecClassGenericPassword
-        let status = SecItemUpdate(query as CFDictionary, attributesToUpdate as CFDictionary)
-        
-        guard status == noErr else { return .error(KeychainError.unhandledError(noErr.description))}
-        
-        return .success(Void())
     }
     
     func removeToken(_ password: String) -> Result<Void> {

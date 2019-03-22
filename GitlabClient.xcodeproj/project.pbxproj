@@ -120,8 +120,8 @@
 			children = (
 				CE729F24224258210006C37C /* MainViewController.swift */,
 				CE6FF02E22390905003F7C56 /* BaseViewController.swift */,
-				CE6FF0282236B1EA003F7C56 /* OAuthLogInViewController.swift */,
 				CE6FF0152236AECB003F7C56 /* LogInViewController.swift */,
+				CE6FF0282236B1EA003F7C56 /* OAuthLogInViewController.swift */,
 				CE729F3C2244F5120006C37C /* ProfileViewController.swift */,
 			);
 			path = ViewControllers;

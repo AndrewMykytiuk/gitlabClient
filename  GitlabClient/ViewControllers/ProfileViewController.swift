@@ -16,14 +16,30 @@ protocol ProfileViewControllerDelegate: class {
 class ProfileViewController: BaseViewController {
     
     weak var delegate: ProfileViewControllerDelegate?
-  
+    private var loginManager: LoginService!
+    
+    func configure(with loginService: LoginService) {
+        self.loginManager = loginService
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.setNavigationBarHidden(true, animated: animated)
     }
 
     @IBAction func logOutButtonAction(_ sender: UIButton) {
-        self.delegate?.viewControllerLogOut(profileViewController: self)
+        
+        loginManager.logout { [weak self] (result) in
+            guard let welf = self else { return }
+            switch result {
+            case .success:
+                welf.delegate?.viewControllerLogOut(profileViewController: welf)
+            case .error(let error):
+                let alert = AlertHelper.createErrorAlert(message: error.localizedDescription, handler: nil)
+                welf.present(alert, animated: true)
+            }
+        }
+        
     }
     
 }
