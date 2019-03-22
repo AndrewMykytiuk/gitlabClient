@@ -34,7 +34,12 @@ enum Constants {
         case grantTypeKey = "grant_type"
         
     }
-
+    
+    enum AlertStrings: String {
+        case title = "Error"
+        case okButton = "OK"
+        
+    }
     
 }
 

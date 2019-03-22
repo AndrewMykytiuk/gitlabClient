@@ -9,20 +9,16 @@
 import UIKit
 import WebKit
 
-protocol OAuthDidFinishLoginDelegate {
-    func didFinishDownloading(with token: String)
+protocol OAuthLogInViewControllerDelegate: class {
+    func viewControllerDidFinishLogin(oAuthViewController: OAuthLogInViewController)
 }
 
 class OAuthLogInViewController: BaseViewController {
     
-    var delegate: OAuthDidFinishLoginDelegate?
+    var delegate: OAuthLogInViewControllerDelegate?
     private let webView = WKWebView()
     private let activityIndicator = UIActivityIndicatorView()
     var loginManager: LoginService?
-    
-    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-        activityIndicator.stopAnimating()
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,29 +39,27 @@ class OAuthLogInViewController: BaseViewController {
         case .success(let url):
             webView.load(URLRequest(url: url))
         case .error(let error):
-            let alert = AuthHelper.createAlert(message: error.localizedDescription)
+            if error.localizedDescription.count > 0 {}
+            let alert = AlertHelper.createErrorAlert(message: error.localizedDescription, handler: nil)
             self.present(alert, animated: true)
         }
         
     }
     
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        setUpUI(with: self.view)
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        setup(with: self.view)
     }
     
-    private func setUpUI(with view: UIView) {
-        view.addConstraints([
-            NSLayoutConstraint(item: webView, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .width, multiplier: 1.0, constant: 0),
-            NSLayoutConstraint(item: webView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .height, multiplier: 1.0, constant: 0),
-            NSLayoutConstraint(item: webView, attribute: .centerX, relatedBy: .equal, toItem: view, attribute: .centerX, multiplier: 1.0, constant: 0),
-            NSLayoutConstraint(item: webView, attribute: .centerY, relatedBy: .equal, toItem: view, attribute: .centerY, multiplier: 1.0, constant: 0),
-            ])
+    private func setup(with view: UIView) {
         
-        activityIndicator.centerXAnchor.constraint(
-            equalTo: view.centerXAnchor).isActive = true
-        activityIndicator.centerYAnchor.constraint(
-            equalTo: view.centerYAnchor).isActive = true
+        webView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        webView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
+        webView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
+        webView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        
+        activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
         
         webView.frame = view.frame
         activityIndicator.frame = view.frame
@@ -78,15 +72,12 @@ class OAuthLogInViewController: BaseViewController {
             
             let tempString = tempURL.absoluteString
             
-            activityIndicator.startAnimating()
             switch AuthHelper.getAccessCode(from: tempString){
             case .success(let code):
                 receivingToken(with: code)
             case .error(let error):
-                activityIndicator.stopAnimating()
-                let alert = AuthHelper.createAlert(message: error.localizedDescription)
+                let alert = AlertHelper.createErrorAlert(message: error.localizedDescription, handler: nil)
                 self.present(alert, animated: true)
-
                 decisionHandler(.cancel)
             }
         }
@@ -95,22 +86,26 @@ class OAuthLogInViewController: BaseViewController {
     }
     
     func receivingToken(with code: String) {
-        loginManager?.login(with: code, completion: { (result) in
+        self.activityIndicator.startAnimating()
+        loginManager?.login(with: code, completion: { [weak self] (result) in
+        guard let welf = self else { return }
+        welf.activityIndicator.stopAnimating()
             switch result {
             case .success(_):
-                DispatchQueue.main.async {
-                    self.activityIndicator.stopAnimating()
-                    Router.rootVC?.dismiss(animated: true, completion: nil)
-                }
+                welf.delegate?.viewControllerDidFinishLogin(oAuthViewController: welf)
             case .error(let error):
-                let alert = AuthHelper.createAlert(message: error.localizedDescription)
-                self.present(alert, animated: true)
+        let alert = AlertHelper.createErrorAlert(message: error.localizedDescription, handler: nil)
+        welf.present(alert, animated: true)
             }
         })
     }
 }
 
 extension OAuthLogInViewController: WKNavigationDelegate {
+    
+    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+        activityIndicator.stopAnimating()
+    }
     
     func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
         

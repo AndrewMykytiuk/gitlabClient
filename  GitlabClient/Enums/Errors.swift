@@ -27,3 +27,9 @@ enum KeychainError: Error {
     case unexpectedItemData(_ data: Data)
     case unhandledError(_ string: String)
 }
+
+enum FatalError: String, Error {
+    case invalidStoryboardCreate = "Cannot create View storyboard"
+}
+
+

@@ -30,7 +30,7 @@ class ViewControllerFactory: ViewControllerFactoryType {
     
     func createNewVc(with identifier: ViewControllerIdentifier) -> BaseViewController {
         
-        guard var vcTemp = storyboard.instantiateViewController(withIdentifier: identifier.rawValue) as? BaseViewController else { fatalError("Cannot create View storyboard ") }
+        guard var vcTemp = storyboard.instantiateViewController(withIdentifier: identifier.rawValue) as? BaseViewController else { fatalError(FatalError.invalidStoryboardCreate.rawValue) }
         
         switch identifier {
         case .main:
