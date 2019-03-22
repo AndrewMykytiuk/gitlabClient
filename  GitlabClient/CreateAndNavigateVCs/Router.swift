@@ -107,9 +107,9 @@ extension Router : ProfileViewControllerDelegate {
     
     func viewControllerLogOut(profileViewController: ProfileViewController) {
         let loginNavigationController = self.createAuthNavigation()
-        self.tabBarVC?.selectedIndex = Constants.TabBarItemIndexes.main.rawValue
         DispatchQueue.main.async {
             self.rootVC?.present(loginNavigationController, animated: false, completion: nil)
+            self.tabBarVC?.selectedIndex = Constants.TabBarItemNames.main.info.index
         }
     }
     

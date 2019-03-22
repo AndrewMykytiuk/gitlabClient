@@ -41,15 +41,22 @@ enum Constants {
         
     }
     
-    enum TabBarItemNames: String {
-        case main = "Feed"
-        case profile = "Profile"
+    enum TabBarItemNames {
+    
+        case main
+        case profile
+       
+        var info: (index: Int, description: String) {
+            switch self {
+            case .profile:
+                return (1, "Profile")
+            case .main:
+                return (0, "Feed")
+            }
+        }
+        
     }
     
-    enum TabBarItemIndexes: Int {
-        case main = 0
-        case profile = 1
-    }
     
 }
 
