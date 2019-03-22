@@ -18,7 +18,11 @@ class OAuthLogInViewController: BaseViewController {
     weak var delegate: OAuthLogInViewControllerDelegate?
     private let webView = WKWebView()
     private let activityIndicator = UIActivityIndicatorView()
-    var loginManager: LoginNetworkServiceType?
+    private var loginManager: LoginService!
+    
+    func configure(with loginService: LoginService) {
+        self.loginManager = loginService
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -65,7 +69,7 @@ class OAuthLogInViewController: BaseViewController {
         activityIndicator.frame = view.frame
     }
     
-    func wkNavigationDelegateAction(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
+    private func wkNavigationDelegateAction(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
         guard let tempURL = navigationAction.request.url else {  decisionHandler(.cancel); return }
         
         if tempURL.relativePath == AuthHelper.URLKind.redirect.rawValue {
@@ -85,19 +89,19 @@ class OAuthLogInViewController: BaseViewController {
         decisionHandler(.allow)
     }
     
-    func receivingToken(with code: String) {
+    private func receivingToken(with code: String) {
         self.activityIndicator.startAnimating()
-        loginManager?.getToken(with: code) { [weak self] (result) in
-            guard let welf = self else { return }
-            welf.activityIndicator.stopAnimating()
+        loginManager?.login(with: code, completion: { [weak self] (result) in
+        guard let welf = self else { return }
+        welf.activityIndicator.stopAnimating()
             switch result {
-            case .success(let token):
+            case .success:
                 welf.delegate?.viewControllerDidFinishLogin(oAuthViewController: welf)
             case .error(let error):
-                let alert = AlertHelper.createErrorAlert(message: error.localizedDescription, handler: nil)
-                welf.present(alert, animated: true)
+        let alert = AlertHelper.createErrorAlert(message: error.localizedDescription, handler: nil)
+        welf.present(alert, animated: true)
             }
-        }
+        })
     }
 }
 

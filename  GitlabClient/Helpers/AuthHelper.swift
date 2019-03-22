@@ -73,5 +73,4 @@ class AuthHelper {
         
         return components
     }
-        
 }

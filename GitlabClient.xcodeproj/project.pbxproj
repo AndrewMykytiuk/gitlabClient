@@ -28,6 +28,8 @@
 		CE729F252242582B0006C37C /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE729F24224258210006C37C /* MainViewController.swift */; };
 		CE729F2D2243A1C40006C37C /* AlertHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE729F2C2243A1C40006C37C /* AlertHelper.swift */; };
 		CE729F322243E5BA0006C37C /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = CE729F342243E5BA0006C37C /* Localizable.strings */; };
+		CE729F382244D7580006C37C /* LoginService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE729F372244D7560006C37C /* LoginService.swift */; };
+		CE729F3B2244D7720006C37C /* KeychainItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE729F3A2244D7720006C37C /* KeychainItem.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -57,6 +59,8 @@
 		CE729F2F2243E4230006C37C /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		CE729F332243E5BA0006C37C /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		CE729F352243E5D60006C37C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		CE729F372244D7560006C37C /* LoginService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginService.swift; sourceTree = "<group>"; };
+		CE729F3A2244D7720006C37C /* KeychainItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainItem.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +93,8 @@
 		CE6FF0122236AECB003F7C56 /*  GitlabClient */ = {
 			isa = PBXGroup;
 			children = (
+				CE729F392244D7720006C37C /* Keychain */,
+				CE729F362244D7560006C37C /* Services */,
 				CE729F1D224124EA0006C37C /* DependencyProviders */,
 				CE729F16223EE5AF0006C37C /* Enums */,
 				CE6FF03F223B967F003F7C56 /* LoginNetworkService */,
@@ -179,6 +185,22 @@
 			path = DependencyProviders;
 			sourceTree = "<group>";
 		};
+		CE729F362244D7560006C37C /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				CE729F372244D7560006C37C /* LoginService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		CE729F392244D7720006C37C /* Keychain */ = {
+			isa = PBXGroup;
+			children = (
+				CE729F3A2244D7720006C37C /* KeychainItem.swift */,
+			);
+			path = Keychain;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -264,9 +286,11 @@
 				CE6FF02B2237B0E4003F7C56 /* ViewControllerFactory.swift in Sources */,
 				CE6FF0162236AECB003F7C56 /* LogInViewController.swift in Sources */,
 				CE729F2D2243A1C40006C37C /* AlertHelper.swift in Sources */,
+				CE729F382244D7580006C37C /* LoginService.swift in Sources */,
 				CE6FF02D2237DD9E003F7C56 /* Router.swift in Sources */,
 				CE6FF02F22390905003F7C56 /* BaseViewController.swift in Sources */,
 				CE6FF034223AAB01003F7C56 /* Result.swift in Sources */,
+				CE729F3B2244D7720006C37C /* KeychainItem.swift in Sources */,
 				CE6FF0142236AECB003F7C56 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

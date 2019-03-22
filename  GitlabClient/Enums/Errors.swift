@@ -21,7 +21,15 @@ enum NetworkError: Error {
     case invalidReceivedData(_ data: Data)
 }
 
+enum KeychainError: Error {
+    case noPassword(_ string: String)
+    case unexpectedPasswordString(_ string: String?)
+    case unexpectedItemData(_ data: Data)
+    case unhandledError(_ string: String)
+}
+
 enum FatalError: String, Error {
     case invalidStoryboardCreate = "Cannot create View storyboard"
 }
+
 

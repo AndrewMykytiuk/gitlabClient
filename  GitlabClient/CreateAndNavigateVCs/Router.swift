@@ -20,7 +20,6 @@ protocol MainRouterType {
 
 class Router: MainRouterType, ApplicationRouterType {
     
-
     private let factory: ViewControllerFactory
     private var rootVC: UINavigationController?
     private var authRootVC: UINavigationController?
@@ -88,4 +87,5 @@ extension Router : OAuthLogInViewControllerDelegate {
             self.rootVC?.dismiss(animated: true, completion: nil)
         }
     }
+    
 }

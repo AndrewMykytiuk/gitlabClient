@@ -35,7 +35,6 @@ enum Constants {
         
     }
     
-    
     enum AlertStrings: String {
         case title = "Error"
         case okButton = "OK"
