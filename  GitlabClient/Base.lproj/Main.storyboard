@@ -95,6 +95,45 @@
             </objects>
             <point key="canvasLocation" x="1982" y="27"/>
         </scene>
+        <!--Profile View Controller-->
+        <scene sceneID="rLL-Jh-W1m">
+            <objects>
+                <viewController storyboardIdentifier="ProfileViewController" id="lMf-Lp-Jls" customClass="ProfileViewController" customModule="GitlabClient" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="r43-2j-0xm">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" alpha="0.80000000000000004" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4aZ-Sc-OKG">
+                                <rect key="frame" x="0.0" y="617" width="375" height="50"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="d0a-u0-g5W"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Symbol" family="Symbol" pointSize="17"/>
+                                <state key="normal" title="Log Out">
+                                    <color key="titleColor" red="0.8862745098" green="0.2784313725" blue="0.28235294119999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="cornerRadius" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="logOutButtonAction:" destination="lMf-Lp-Jls" eventType="touchUpInside" id="iKW-uU-VLq"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="4aZ-Sc-OKG" firstAttribute="leading" secondItem="p9x-Q3-4Yq" secondAttribute="leading" id="TCH-Mz-s3h"/>
+                            <constraint firstItem="p9x-Q3-4Yq" firstAttribute="trailing" secondItem="4aZ-Sc-OKG" secondAttribute="trailing" id="ZvH-7l-eOE"/>
+                            <constraint firstItem="p9x-Q3-4Yq" firstAttribute="bottom" secondItem="4aZ-Sc-OKG" secondAttribute="bottom" id="ife-rb-o6a"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="p9x-Q3-4Yq"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="arM-Sl-16v" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2804" y="21.139430284857571"/>
+        </scene>
     </scenes>
     <resources>
         <image name="GitLab_Logo.svg" width="2000" height="1848"/>

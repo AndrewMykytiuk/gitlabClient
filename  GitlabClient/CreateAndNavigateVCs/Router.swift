@@ -23,13 +23,14 @@ class Router: MainRouterType, ApplicationRouterType {
     private let factory: ViewControllerFactory
     private var rootVC: UINavigationController?
     private var authRootVC: UINavigationController?
+    private var tabBarVC: UITabBarController?
     
     enum Destination: String {
         case oauth = "OAuthLogInViewController"
         case main = "MainViewController"
     }
     
-     init(factory: ViewControllerFactory) {
+    init(factory: ViewControllerFactory) {
         self.factory = factory
     }
     
@@ -56,18 +57,30 @@ class Router: MainRouterType, ApplicationRouterType {
     
     func navigate(from window: UIWindow?) {
         
+        
         let mainViewController = factory.createNewVc(with: .main)
-        let mainNavigationController = UINavigationController(rootViewController: mainViewController)
+        var profileViewController = factory.createNewVc(with: .profile)
+        
+        if let profileVC = profileViewController as? ProfileViewController {
+            profileVC.delegate = self
+            profileViewController = profileVC
+        }
+        
+        let mainTabBarController = factory.createNewTabBarVC(with: mainViewController, profileViewController: profileViewController)
+        
+        let mainNavigationController = UINavigationController(rootViewController: mainTabBarController)
         window?.rootViewController = mainNavigationController
         
         mainViewController.router = self
+        profileViewController.router = self
         self.rootVC = mainNavigationController
+        self.tabBarVC = mainTabBarController
         
         let loginNavigationController = createAuthNavigation()
         mainNavigationController.present(loginNavigationController, animated: false, completion: nil)
     }
     
-    func createAuthNavigation() -> UINavigationController {
+   private func createAuthNavigation() -> UINavigationController {
         
         let loginViewController = factory.createNewVc(with: .login)
         let loginNavigationController = UINavigationController(rootViewController: loginViewController)
@@ -85,6 +98,18 @@ extension Router : OAuthLogInViewControllerDelegate {
     func viewControllerDidFinishLogin(oAuthViewController: OAuthLogInViewController) {
         DispatchQueue.main.async {
             self.rootVC?.dismiss(animated: true, completion: nil)
+        }
+    }
+    
+}
+
+extension Router : ProfileViewControllerDelegate {
+    
+    func viewControllerLogOut(profileViewController: ProfileViewController) {
+        let loginNavigationController = self.createAuthNavigation()
+        self.tabBarVC?.selectedIndex = Constants.TabBarItemIndexes.main.rawValue
+        DispatchQueue.main.async {
+            self.rootVC?.present(loginNavigationController, animated: false, completion: nil)
         }
     }
     

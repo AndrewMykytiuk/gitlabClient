@@ -41,6 +41,16 @@ enum Constants {
         
     }
     
+    enum TabBarItemNames: String {
+        case main = "Feed"
+        case profile = "Profile"
+    }
+    
+    enum TabBarItemIndexes: Int {
+        case main = 0
+        case profile = 1
+    }
+    
 }
 
 
