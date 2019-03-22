@@ -22,6 +22,7 @@ class ViewControllerFactory: ViewControllerFactoryType {
         case oauth = "OAuthLogInViewController"
         case login = "LogInViewController"
         case main = "MainViewController"
+        case profile = "ProfileViewController"
     }
     
     init(provider: DependencyProvider) {
@@ -44,8 +45,23 @@ class ViewControllerFactory: ViewControllerFactoryType {
             }
         case .login:
             _ = 11
+        case .profile:
+            _ = 12
         }
         return vcTemp
     }
  
+    func createNewTabBarVC(with mainViewController: BaseViewController, profileViewController: BaseViewController) -> UITabBarController {
+        
+        mainViewController.tabBarItem = UITabBarItem(title: Constants.TabBarItemNames.main.info.description, image: nil, tag: Constants.TabBarItemNames.main.info.index)
+        profileViewController.tabBarItem = UITabBarItem(title: Constants.TabBarItemNames.profile.info.description, image: nil, tag: Constants.TabBarItemNames.profile.info.index)
+        
+        let viewControllers = [mainViewController, profileViewController]
+        
+        let tapBarController = UITabBarController()
+        tapBarController.viewControllers = viewControllers
+        
+        return tapBarController
+    }
+    
 }

@@ -8,11 +8,6 @@
 
 import Foundation
 
-//protocol KeychainItemType {
-//    func readToken() -> Result<String>
-//    func saveToken(_ password: String) -> Result<Void>
-//    func removeToken(_ password: String) -> Result<Void>
-//}
 
 class KeychainItem {
     
@@ -20,13 +15,13 @@ class KeychainItem {
         
         var query = [String : AnyObject]()
         query[kSecClass as String] = kSecClassGenericPassword
-        query[kSecMatchLimit as String] = kSecMatchLimitOne //limit match - one or all
+        query[kSecMatchLimit as String] = kSecMatchLimitOne
         query[kSecReturnAttributes as String] = kCFBooleanTrue
         query[kSecReturnData as String] = kCFBooleanTrue
         
         var queryResult: AnyObject?
         let status = withUnsafeMutablePointer(to: &queryResult) {
-            SecItemCopyMatching(query as CFDictionary, UnsafeMutablePointer($0)) //Proverka na vhojdenie
+            SecItemCopyMatching(query as CFDictionary, UnsafeMutablePointer($0)) 
         }
         
         guard status != errSecItemNotFound else {

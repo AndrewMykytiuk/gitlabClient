@@ -30,6 +30,7 @@
 		CE729F322243E5BA0006C37C /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = CE729F342243E5BA0006C37C /* Localizable.strings */; };
 		CE729F382244D7580006C37C /* LoginService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE729F372244D7560006C37C /* LoginService.swift */; };
 		CE729F3B2244D7720006C37C /* KeychainItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE729F3A2244D7720006C37C /* KeychainItem.swift */; };
+		CE729F3D2244F5120006C37C /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE729F3C2244F5120006C37C /* ProfileViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -61,6 +62,7 @@
 		CE729F352243E5D60006C37C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		CE729F372244D7560006C37C /* LoginService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginService.swift; sourceTree = "<group>"; };
 		CE729F3A2244D7720006C37C /* KeychainItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainItem.swift; sourceTree = "<group>"; };
+		CE729F3C2244F5120006C37C /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,6 +122,7 @@
 				CE6FF02E22390905003F7C56 /* BaseViewController.swift */,
 				CE6FF0282236B1EA003F7C56 /* OAuthLogInViewController.swift */,
 				CE6FF0152236AECB003F7C56 /* LogInViewController.swift */,
+				CE729F3C2244F5120006C37C /* ProfileViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -275,6 +278,7 @@
 			files = (
 				CE729F1F224125240006C37C /* DependencyProvider.swift in Sources */,
 				CE6FF0292236B1EA003F7C56 /* OAuthLogInViewController.swift in Sources */,
+				CE729F3D2244F5120006C37C /* ProfileViewController.swift in Sources */,
 				CE6FF043223B96EE003F7C56 /* LoginNetworkService.swift in Sources */,
 				CE6FF032223A6A17003F7C56 /* AuthHelper.swift in Sources */,
 				CE6FF03C223AE29E003F7C56 /* NetworkManager.swift in Sources */,

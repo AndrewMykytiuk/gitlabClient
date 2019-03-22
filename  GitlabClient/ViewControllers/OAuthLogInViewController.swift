@@ -92,14 +92,16 @@ class OAuthLogInViewController: BaseViewController {
     private func receivingToken(with code: String) {
         self.activityIndicator.startAnimating()
         loginManager?.login(with: code, completion: { [weak self] (result) in
-        guard let welf = self else { return }
-        welf.activityIndicator.stopAnimating()
+            guard let welf = self else { return }
+            DispatchQueue.main.async {
+                welf.activityIndicator.stopAnimating()
+            }
             switch result {
             case .success:
                 welf.delegate?.viewControllerDidFinishLogin(oAuthViewController: welf)
             case .error(let error):
-        let alert = AlertHelper.createErrorAlert(message: error.localizedDescription, handler: nil)
-        welf.present(alert, animated: true)
+                let alert = AlertHelper.createErrorAlert(message: error.localizedDescription, handler: nil)
+                welf.present(alert, animated: true)
             }
         })
     }
