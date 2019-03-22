@@ -46,7 +46,12 @@ class ViewControllerFactory: ViewControllerFactoryType {
         case .login:
             _ = 11
         case .profile:
-            _ = 12
+            if let profileViewController = vcTemp as? ProfileViewController {
+                let loginService = LoginService(networkManager: dependencyProvider.networkManager, keychainItem: dependencyProvider.keychainItem)
+                profileViewController.configure(with: loginService)
+                
+                vcTemp = profileViewController
+            }
         }
         return vcTemp
     }
