@@ -31,6 +31,10 @@
 		CE729F382244D7580006C37C /* LoginService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE729F372244D7560006C37C /* LoginService.swift */; };
 		CE729F3B2244D7720006C37C /* KeychainItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE729F3A2244D7720006C37C /* KeychainItem.swift */; };
 		CE729F3D2244F5120006C37C /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE729F3C2244F5120006C37C /* ProfileViewController.swift */; };
+		CE729F40224532750006C37C /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE729F3F224532750006C37C /* User.swift */; };
+		CE729F43224536B80006C37C /* ProfileRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE729F42224536B80006C37C /* ProfileRequest.swift */; };
+		CE729F45224536CF0006C37C /* ProfileNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE729F44224536CF0006C37C /* ProfileNetworkService.swift */; };
+		CE729F4722453AD60006C37C /* ProfileService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE729F4622453AD60006C37C /* ProfileService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -63,6 +67,10 @@
 		CE729F372244D7560006C37C /* LoginService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginService.swift; sourceTree = "<group>"; };
 		CE729F3A2244D7720006C37C /* KeychainItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainItem.swift; sourceTree = "<group>"; };
 		CE729F3C2244F5120006C37C /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		CE729F3F224532750006C37C /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		CE729F42224536B80006C37C /* ProfileRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileRequest.swift; sourceTree = "<group>"; };
+		CE729F44224536CF0006C37C /* ProfileNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileNetworkService.swift; sourceTree = "<group>"; };
+		CE729F4622453AD60006C37C /* ProfileService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,6 +103,8 @@
 		CE6FF0122236AECB003F7C56 /*  GitlabClient */ = {
 			isa = PBXGroup;
 			children = (
+				CE729F412245366C0006C37C /* ProfileNetworkService */,
+				CE729F3E2245325B0006C37C /* Model */,
 				CE729F392244D7720006C37C /* Keychain */,
 				CE729F362244D7560006C37C /* Services */,
 				CE729F1D224124EA0006C37C /* DependencyProviders */,
@@ -192,6 +202,7 @@
 			isa = PBXGroup;
 			children = (
 				CE729F372244D7560006C37C /* LoginService.swift */,
+				CE729F4622453AD60006C37C /* ProfileService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -202,6 +213,23 @@
 				CE729F3A2244D7720006C37C /* KeychainItem.swift */,
 			);
 			path = Keychain;
+			sourceTree = "<group>";
+		};
+		CE729F3E2245325B0006C37C /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				CE729F3F224532750006C37C /* User.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		CE729F412245366C0006C37C /* ProfileNetworkService */ = {
+			isa = PBXGroup;
+			children = (
+				CE729F42224536B80006C37C /* ProfileRequest.swift */,
+				CE729F44224536CF0006C37C /* ProfileNetworkService.swift */,
+			);
+			path = ProfileNetworkService;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -281,8 +309,10 @@
 				CE729F3D2244F5120006C37C /* ProfileViewController.swift in Sources */,
 				CE6FF043223B96EE003F7C56 /* LoginNetworkService.swift in Sources */,
 				CE6FF032223A6A17003F7C56 /* AuthHelper.swift in Sources */,
+				CE729F45224536CF0006C37C /* ProfileNetworkService.swift in Sources */,
 				CE6FF03C223AE29E003F7C56 /* NetworkManager.swift in Sources */,
 				CE6FF041223B96CB003F7C56 /* LoginRequest.swift in Sources */,
+				CE729F43224536B80006C37C /* ProfileRequest.swift in Sources */,
 				CE6FF036223AAD0C003F7C56 /*  Constants.swift in Sources */,
 				CE729F252242582B0006C37C /* MainViewController.swift in Sources */,
 				CE729F18223EE6660006C37C /* Errors.swift in Sources */,
@@ -291,11 +321,13 @@
 				CE6FF0162236AECB003F7C56 /* LogInViewController.swift in Sources */,
 				CE729F2D2243A1C40006C37C /* AlertHelper.swift in Sources */,
 				CE729F382244D7580006C37C /* LoginService.swift in Sources */,
+				CE729F4722453AD60006C37C /* ProfileService.swift in Sources */,
 				CE6FF02D2237DD9E003F7C56 /* Router.swift in Sources */,
 				CE6FF02F22390905003F7C56 /* BaseViewController.swift in Sources */,
 				CE6FF034223AAB01003F7C56 /* Result.swift in Sources */,
 				CE729F3B2244D7720006C37C /* KeychainItem.swift in Sources */,
 				CE6FF0142236AECB003F7C56 /* AppDelegate.swift in Sources */,
+				CE729F40224532750006C37C /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
