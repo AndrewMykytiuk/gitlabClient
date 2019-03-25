@@ -22,8 +22,8 @@ struct User: Codable {
     let location: String?
     let organization: String?
     let bio: String?
-    let privateProfile: String?
-    
+    let privateProfile: Bool
+    let avatarUrl: URL
     
     private enum CodingKeys: String, CodingKey {
         
@@ -40,6 +40,7 @@ struct User: Codable {
         case organization
         case bio
         case privateProfile = "private_profile"
+        case avatarUrl = "avatar_url"
         
     }
     
@@ -57,7 +58,8 @@ struct User: Codable {
         location = try container.decode(String?.self, forKey: .location)
         organization = try container.decode(String?.self, forKey: .organization)
         bio = try container.decode(String?.self, forKey: .bio)
-        privateProfile = try container.decode(String?.self, forKey: .privateProfile)
+        privateProfile = try container.decode(Bool.self, forKey: .privateProfile)
+        avatarUrl = try container.decode(URL.self, forKey: .avatarUrl)
     }
     
 }

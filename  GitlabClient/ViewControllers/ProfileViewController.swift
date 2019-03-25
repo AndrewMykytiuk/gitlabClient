@@ -15,6 +15,16 @@ protocol ProfileViewControllerDelegate: class {
 
 class ProfileViewController: BaseViewController {
     
+    @IBOutlet weak var avatarImage: UIImageView!
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var statusLabel: UILabel!
+    @IBOutlet weak var emailTF: UITextField!
+    @IBOutlet weak var locationTF: UITextField!
+    @IBOutlet weak var skypeTF: UITextField!
+    @IBOutlet weak var linkedinTF: UITextField!
+    @IBOutlet weak var twitterTF: UITextField!
+    @IBOutlet weak var websiteUrlTF: UITextField!
+    
     weak var delegate: ProfileViewControllerDelegate?
     private var loginService: LoginService!
     private var profileService: ProfileService!
@@ -24,23 +34,44 @@ class ProfileViewController: BaseViewController {
         self.profileService = profileService
     }
     
-    override func loadView() {
-        super.loadView()
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.setNavigationBarHidden(true, animated: animated)
         
         profileService?.getUser { (result) in
             switch result {
-            case .success:
-                _ = 12
-            case .error:
-                break
+            case .success(let user):
+                self.setup(with: user)
+            case .error(let error):
+                let alert = AlertHelper.createErrorAlert(message: error.localizedDescription, handler: nil)
+                self.present(alert, animated: true)
             }
         }
         
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        self.navigationController?.setNavigationBarHidden(true, animated: animated)
+//    override func viewDidLayoutSubviews() {
+//        super.viewDidLayoutSubviews()
+//        avatarImage.layer.cornerRadius = avatarImage.frame.height / 2
+//    }
+    
+    func setup (with user:User) {
+        if let data = try? Data(contentsOf: user.avatarUrl) {
+        DispatchQueue.main.async {
+            self.avatarImage.image = UIImage(data: data)
+        }
+        }
+        DispatchQueue.main.async {
+            self.nameLabel.text = user.name
+            self.statusLabel.text = user.bio
+            self.emailTF.text = user.email
+            self.locationTF.text = user.location
+            self.skypeTF.text = user.skype
+            self.linkedinTF.text = user.linkedin
+            self.twitterTF.text = user.twitter
+            self.websiteUrlTF.text = user.websiteUrl
+        }
+       
     }
 
     @IBAction func logOutButtonAction(_ sender: UIButton) {

@@ -120,15 +120,161 @@
                                     <action selector="logOutButtonAction:" destination="lMf-Lp-Jls" eventType="touchUpInside" id="iKW-uU-VLq"/>
                                 </connections>
                             </button>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Zr0-vS-96H">
+                                <rect key="frame" x="15" y="20" width="70" height="70"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="70" id="JVP-fy-9by"/>
+                                    <constraint firstAttribute="height" constant="70" id="eTP-IE-fcm"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <integer key="value" value="35"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="900-4g-R6U">
+                                <rect key="frame" x="100" y="25" width="260" height="17"/>
+                                <fontDescription key="fontDescription" name="Symbol" family="Symbol" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="DWZ-xy-psp">
+                                <rect key="frame" x="100" y="73" width="260" height="17"/>
+                                <fontDescription key="fontDescription" name="Symbol" family="Symbol" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NhM-SA-ZN1">
+                                <rect key="frame" x="26.5" y="150" width="47.5" height="17"/>
+                                <fontDescription key="fontDescription" name="Symbol" family="Symbol" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fug-3U-ix1">
+                                <rect key="frame" x="94" y="150" width="266" height="17"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" name="Symbol" family="Symbol" pointSize="17"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress" returnKeyType="done" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
+                            </textField>
+                            <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Xr8-Hs-CLr">
+                                <rect key="frame" x="104.5" y="207" width="255.5" height="17"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" name="Symbol" family="Symbol" pointSize="17"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress" returnKeyType="done" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eO8-ga-XJP">
+                                <rect key="frame" x="15.5" y="207" width="69" height="17"/>
+                                <fontDescription key="fontDescription" name="Symbol" family="Symbol" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Skype:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xd2-yg-CF3">
+                                <rect key="frame" x="24" y="264" width="52" height="17"/>
+                                <fontDescription key="fontDescription" name="Symbol" family="Symbol" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NXl-pT-jkL">
+                                <rect key="frame" x="96" y="264" width="264" height="17"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" name="Symbol" family="Symbol" pointSize="17"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress" returnKeyType="done" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Linkedin:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gbs-WH-AhJ">
+                                <rect key="frame" x="16" y="321" width="68.5" height="17"/>
+                                <fontDescription key="fontDescription" name="Symbol" family="Symbol" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="frJ-Eh-Qix">
+                                <rect key="frame" x="104.5" y="321" width="255.5" height="17"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" name="Symbol" family="Symbol" pointSize="17"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress" returnKeyType="done" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Twitter:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PTL-24-Uuj">
+                                <rect key="frame" x="22.5" y="378" width="55" height="17"/>
+                                <fontDescription key="fontDescription" name="Symbol" family="Symbol" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Qbl-Pp-raK">
+                                <rect key="frame" x="97.5" y="378" width="262.5" height="17"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" name="Symbol" family="Symbol" pointSize="17"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress" returnKeyType="done" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Website url:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZFF-ZF-t5t">
+                                <rect key="frame" x="5.5" y="435" width="89" height="17"/>
+                                <fontDescription key="fontDescription" name="Symbol" family="Symbol" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="n0q-kw-KbV">
+                                <rect key="frame" x="114.5" y="435" width="245.5" height="17"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" name="Symbol" family="Symbol" pointSize="17"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress" returnKeyType="done" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="gbs-WH-AhJ" firstAttribute="centerX" secondItem="Xd2-yg-CF3" secondAttribute="centerX" id="19P-LC-Q9S"/>
+                            <constraint firstItem="Zr0-vS-96H" firstAttribute="top" secondItem="p9x-Q3-4Yq" secondAttribute="top" id="1La-3d-bRP"/>
+                            <constraint firstItem="eO8-ga-XJP" firstAttribute="centerX" secondItem="NhM-SA-ZN1" secondAttribute="centerX" id="4Iz-c8-9S3"/>
+                            <constraint firstItem="PTL-24-Uuj" firstAttribute="top" secondItem="gbs-WH-AhJ" secondAttribute="bottom" constant="40" id="9aZ-8E-UYW"/>
+                            <constraint firstItem="ZFF-ZF-t5t" firstAttribute="top" secondItem="PTL-24-Uuj" secondAttribute="bottom" constant="40" id="Ay5-kH-bX1"/>
+                            <constraint firstItem="NXl-pT-jkL" firstAttribute="centerY" secondItem="Xd2-yg-CF3" secondAttribute="centerY" id="CXj-ab-Lgr"/>
+                            <constraint firstItem="p9x-Q3-4Yq" firstAttribute="trailing" secondItem="Qbl-Pp-raK" secondAttribute="trailing" constant="15" id="D18-ej-fKd"/>
+                            <constraint firstItem="p9x-Q3-4Yq" firstAttribute="trailing" secondItem="DWZ-xy-psp" secondAttribute="trailing" constant="15" id="FtU-rD-MwP"/>
+                            <constraint firstItem="PTL-24-Uuj" firstAttribute="centerX" secondItem="gbs-WH-AhJ" secondAttribute="centerX" id="Gdb-u3-sRK"/>
+                            <constraint firstItem="NhM-SA-ZN1" firstAttribute="centerX" secondItem="Zr0-vS-96H" secondAttribute="centerX" id="HDx-qx-yfA"/>
+                            <constraint firstItem="Xr8-Hs-CLr" firstAttribute="centerY" secondItem="eO8-ga-XJP" secondAttribute="centerY" id="Hb8-Bv-bIa"/>
+                            <constraint firstItem="Qbl-Pp-raK" firstAttribute="leading" secondItem="PTL-24-Uuj" secondAttribute="trailing" constant="20" id="Ivr-pY-BVL"/>
+                            <constraint firstItem="Xd2-yg-CF3" firstAttribute="top" secondItem="eO8-ga-XJP" secondAttribute="bottom" constant="40" id="Job-lB-pby"/>
+                            <constraint firstItem="Xd2-yg-CF3" firstAttribute="centerX" secondItem="eO8-ga-XJP" secondAttribute="centerX" id="JpH-DJ-ETt"/>
+                            <constraint firstItem="p9x-Q3-4Yq" firstAttribute="trailing" secondItem="NXl-pT-jkL" secondAttribute="trailing" constant="15" id="MKa-yn-fde"/>
+                            <constraint firstItem="NhM-SA-ZN1" firstAttribute="top" secondItem="Zr0-vS-96H" secondAttribute="bottom" constant="60" id="NC5-Cm-69U"/>
+                            <constraint firstItem="NXl-pT-jkL" firstAttribute="leading" secondItem="Xd2-yg-CF3" secondAttribute="trailing" constant="20" id="NT8-f6-6Ht"/>
+                            <constraint firstItem="p9x-Q3-4Yq" firstAttribute="trailing" secondItem="Xr8-Hs-CLr" secondAttribute="trailing" constant="15" id="PfP-8u-CdC"/>
+                            <constraint firstItem="900-4g-R6U" firstAttribute="top" secondItem="p9x-Q3-4Yq" secondAttribute="top" constant="5" id="Rum-fx-p0E"/>
+                            <constraint firstItem="frJ-Eh-Qix" firstAttribute="leading" secondItem="gbs-WH-AhJ" secondAttribute="trailing" constant="20" id="RxA-i7-9Ml"/>
+                            <constraint firstItem="n0q-kw-KbV" firstAttribute="centerY" secondItem="ZFF-ZF-t5t" secondAttribute="centerY" id="SEw-LJ-3xB"/>
+                            <constraint firstItem="eO8-ga-XJP" firstAttribute="top" secondItem="NhM-SA-ZN1" secondAttribute="bottom" constant="40" id="SHm-e0-Mdr"/>
                             <constraint firstItem="4aZ-Sc-OKG" firstAttribute="leading" secondItem="p9x-Q3-4Yq" secondAttribute="leading" id="TCH-Mz-s3h"/>
+                            <constraint firstItem="Zr0-vS-96H" firstAttribute="leading" secondItem="p9x-Q3-4Yq" secondAttribute="leading" constant="15" id="TfX-6I-o3X"/>
+                            <constraint firstItem="ZFF-ZF-t5t" firstAttribute="centerX" secondItem="PTL-24-Uuj" secondAttribute="centerX" id="Whi-kp-wXF"/>
+                            <constraint firstItem="DWZ-xy-psp" firstAttribute="leading" secondItem="Zr0-vS-96H" secondAttribute="trailing" constant="15" id="YCU-QB-DXH"/>
+                            <constraint firstItem="p9x-Q3-4Yq" firstAttribute="trailing" secondItem="900-4g-R6U" secondAttribute="trailing" constant="15" id="Zsx-ns-vbC"/>
                             <constraint firstItem="p9x-Q3-4Yq" firstAttribute="trailing" secondItem="4aZ-Sc-OKG" secondAttribute="trailing" id="ZvH-7l-eOE"/>
+                            <constraint firstItem="p9x-Q3-4Yq" firstAttribute="trailing" secondItem="frJ-Eh-Qix" secondAttribute="trailing" constant="15" id="aKq-OS-4mO"/>
+                            <constraint firstItem="p9x-Q3-4Yq" firstAttribute="trailing" secondItem="n0q-kw-KbV" secondAttribute="trailing" constant="15" id="cbS-6A-nGK"/>
+                            <constraint firstItem="fug-3U-ix1" firstAttribute="centerY" secondItem="NhM-SA-ZN1" secondAttribute="centerY" id="dNY-yr-Dxk"/>
+                            <constraint firstItem="n0q-kw-KbV" firstAttribute="leading" secondItem="ZFF-ZF-t5t" secondAttribute="trailing" constant="20" id="fl1-gt-sW8"/>
                             <constraint firstItem="p9x-Q3-4Yq" firstAttribute="bottom" secondItem="4aZ-Sc-OKG" secondAttribute="bottom" id="ife-rb-o6a"/>
+                            <constraint firstItem="frJ-Eh-Qix" firstAttribute="centerY" secondItem="gbs-WH-AhJ" secondAttribute="centerY" id="lqq-mf-QIp"/>
+                            <constraint firstItem="Qbl-Pp-raK" firstAttribute="centerY" secondItem="PTL-24-Uuj" secondAttribute="centerY" id="tOy-KA-uvX"/>
+                            <constraint firstItem="DWZ-xy-psp" firstAttribute="bottom" secondItem="Zr0-vS-96H" secondAttribute="bottom" id="tiK-fR-x64"/>
+                            <constraint firstItem="DWZ-xy-psp" firstAttribute="height" secondItem="900-4g-R6U" secondAttribute="height" id="tnv-xv-UMx"/>
+                            <constraint firstItem="fug-3U-ix1" firstAttribute="leading" secondItem="NhM-SA-ZN1" secondAttribute="trailing" constant="20" id="urm-tc-NSc"/>
+                            <constraint firstItem="Xr8-Hs-CLr" firstAttribute="leading" secondItem="eO8-ga-XJP" secondAttribute="trailing" constant="20" id="w68-l6-giE"/>
+                            <constraint firstItem="p9x-Q3-4Yq" firstAttribute="trailing" secondItem="fug-3U-ix1" secondAttribute="trailing" constant="15" id="xWD-Sh-KGc"/>
+                            <constraint firstItem="900-4g-R6U" firstAttribute="leading" secondItem="Zr0-vS-96H" secondAttribute="trailing" constant="15" id="yhO-si-bh3"/>
+                            <constraint firstItem="gbs-WH-AhJ" firstAttribute="top" secondItem="Xd2-yg-CF3" secondAttribute="bottom" constant="40" id="zam-sI-Fkr"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="p9x-Q3-4Yq"/>
                     </view>
+                    <connections>
+                        <outlet property="avatarImage" destination="Zr0-vS-96H" id="zRk-s6-E55"/>
+                        <outlet property="emailTF" destination="fug-3U-ix1" id="LnB-Ab-NQZ"/>
+                        <outlet property="linkedinTF" destination="frJ-Eh-Qix" id="6to-ZS-sxh"/>
+                        <outlet property="locationTF" destination="Xr8-Hs-CLr" id="9L7-L3-pRn"/>
+                        <outlet property="nameLabel" destination="900-4g-R6U" id="Qnu-t4-gYd"/>
+                        <outlet property="skypeTF" destination="NXl-pT-jkL" id="LEf-LD-T8z"/>
+                        <outlet property="statusLabel" destination="DWZ-xy-psp" id="J2d-fG-d7z"/>
+                        <outlet property="twitterTF" destination="Qbl-Pp-raK" id="gbl-4O-DrQ"/>
+                        <outlet property="websiteUrlTF" destination="n0q-kw-KbV" id="iAC-n4-4pY"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="arM-Sl-16v" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
