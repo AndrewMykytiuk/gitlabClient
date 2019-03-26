@@ -11,6 +11,12 @@ import Foundation
 
 class NetworkManager {
     
+    private var token: String?
+    
+    func configure(token: String?) {
+        self.token = token
+    }
+    
     func sendRequest(_ request: Request, completion: @escaping(Result<Data>) -> Void) {
         
         var components = AuthHelper.createBaseUrlComponents()
@@ -18,6 +24,10 @@ class NetworkManager {
         
         for param in request.parameters {
             let queryItem = URLQueryItem(name: param.key, value: param.value as? String)
+            components.queryItems?.append(queryItem) }
+        
+        if token != nil {
+            let queryItem = URLQueryItem(name: Constants.KeyValues.accessTokenKey.rawValue, value: token)
             components.queryItems?.append(queryItem)
         }
         

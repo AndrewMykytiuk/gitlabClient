@@ -16,10 +16,26 @@ protocol ProfileViewControllerDelegate: class {
 class ProfileViewController: BaseViewController {
     
     weak var delegate: ProfileViewControllerDelegate?
-    private var loginManager: LoginService!
+    private var loginService: LoginService!
+    private var profileService: ProfileService!
     
-    func configure(with loginService: LoginService) {
-        self.loginManager = loginService
+    func configure(with loginService: LoginService, profileService: ProfileService) {
+        self.loginService = loginService
+        self.profileService = profileService
+    }
+    
+    override func loadView() {
+        super.loadView()
+        
+        profileService?.getUser { (result) in
+            switch result {
+            case .success:
+                _ = 12
+            case .error:
+                break
+            }
+        }
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -29,7 +45,7 @@ class ProfileViewController: BaseViewController {
 
     @IBAction func logOutButtonAction(_ sender: UIButton) {
         
-        loginManager.logout { [weak self] (result) in
+        loginService.logout { [weak self] (result) in
             guard let welf = self else { return }
             switch result {
             case .success:

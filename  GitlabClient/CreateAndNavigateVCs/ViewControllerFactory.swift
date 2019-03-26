@@ -35,7 +35,7 @@ class ViewControllerFactory: ViewControllerFactoryType {
         
         switch identifier {
         case .main:
-            _ = 9
+           _ = 9
         case .oauth:
             if let oAuthLogInViewController = vcTemp as? OAuthLogInViewController {
                 let loginService = LoginService(networkManager: dependencyProvider.networkManager, keychainItem: dependencyProvider.keychainItem)
@@ -48,8 +48,8 @@ class ViewControllerFactory: ViewControllerFactoryType {
         case .profile:
             if let profileViewController = vcTemp as? ProfileViewController {
                 let loginService = LoginService(networkManager: dependencyProvider.networkManager, keychainItem: dependencyProvider.keychainItem)
-                profileViewController.configure(with: loginService)
-                
+                let profileService = ProfileService(networkManager: dependencyProvider.networkManager)
+                profileViewController.configure(with: loginService, profileService: profileService)
                 vcTemp = profileViewController
             }
         }
