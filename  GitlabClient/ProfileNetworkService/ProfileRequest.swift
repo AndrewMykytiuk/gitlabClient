@@ -16,11 +16,10 @@ struct ProfileRequest: Request {
     
     var parameters: [(key: String, value: Any)]
     
-    init(method: HTTPMethod, path: String, token: String) {
+    init(method: HTTPMethod, path: String) {
         self.HTTPMethod = method
         self.path = path
-        
-        let params: [String: Any] = [Constants.KeyValues.accessTokenKey.rawValue: token]
+        let params: [String: Any] = [:]
         let sorted = params.sorted {$0.key < $1.key}
         self.parameters = sorted
     }

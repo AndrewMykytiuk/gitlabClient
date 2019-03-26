@@ -48,7 +48,7 @@ class ViewControllerFactory: ViewControllerFactoryType {
         case .profile:
             if let profileViewController = vcTemp as? ProfileViewController {
                 let loginService = LoginService(networkManager: dependencyProvider.networkManager, keychainItem: dependencyProvider.keychainItem)
-                let profileService = ProfileService(networkManager: dependencyProvider.networkManager, keychainItem: dependencyProvider.keychainItem)
+                let profileService = ProfileService(networkManager: dependencyProvider.networkManager)
                 profileViewController.configure(with: loginService, profileService: profileService)
                 vcTemp = profileViewController
             }

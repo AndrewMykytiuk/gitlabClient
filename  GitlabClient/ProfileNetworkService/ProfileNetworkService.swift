@@ -9,7 +9,7 @@
 import Foundation
 
 protocol ProfileNetworkServiceType {
-    func getUser(with token: String, completion: @escaping (Result<User>) -> Void)
+    func getUser(completion: @escaping (Result<User>) -> Void)
 }
 
 class ProfileNetworkService: ProfileNetworkServiceType {
@@ -20,9 +20,9 @@ class ProfileNetworkService: ProfileNetworkServiceType {
         self.networkManager = networkManager
     }
     
-    func getUser(with token: String, completion: @escaping (Result<User>) -> Void) {
+    func getUser(completion: @escaping (Result<User>) -> Void) {
         
-        let request = ProfileRequest(method: .GET, path: Constants.NetworkPath.profile.rawValue, token: token)
+        let request = ProfileRequest(method: .GET, path: Constants.NetworkPath.profile.rawValue)
         
         networkManager.sendRequest(request) { [weak self] (data) in
             switch data {
@@ -35,8 +35,9 @@ class ProfileNetworkService: ProfileNetworkServiceType {
     }
     
     private func processData(_ data: Data, completion: @escaping (Result<User>) -> Void) {
-        let dictionary = self.modelFromData(data)
-        switch dictionary {
+        
+        let result: Result<User> = DecoderHelper.modelFromData(data)
+        switch result {
         case .success(let user):
             completion(.success(user))
         case .error(let error):
@@ -45,28 +46,4 @@ class ProfileNetworkService: ProfileNetworkServiceType {
         
     }
     
-    private func modelFromData(_ data: Data) -> Result<User> {
-//        let decoder = JSONDecoder()
-//        if let userData = try? decoder.decode(User.self, from: data) {
-//            return .success(userData)
-//        } else {
-//            return .error(ParsingError.emptyResult(String(data: data, encoding: String.Encoding.utf8)))
-//        }
-        
-        do {
-            let decoder = JSONDecoder()
-            let userData = try decoder.decode(User.self, from: data)
-            return .success(userData)
-        } catch DecodingError.dataCorrupted(let context) {
-            return .error(DecodingError.dataCorrupted(context))
-        } catch DecodingError.keyNotFound(let key, let context) {
-            return .error(DecodingError.keyNotFound(key,context))
-        } catch DecodingError.typeMismatch(let type, let context) {
-            return .error(DecodingError.typeMismatch(type,context))
-        } catch DecodingError.valueNotFound(let value, let context) {
-            return .error(DecodingError.valueNotFound(value,context))
-        } catch let error {
-            return .error(error)
-        }
-    }
 }

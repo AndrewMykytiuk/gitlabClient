@@ -11,29 +11,22 @@ import Foundation
 class ProfileService {
     
     private let networkManager: NetworkManager
-    private let keychainItem: KeychainItem
     private let profileManager: ProfileNetworkService
     
-    init(networkManager: NetworkManager, keychainItem: KeychainItem) {
+    init(networkManager: NetworkManager) {
         self.networkManager = networkManager
-        self.keychainItem = keychainItem
         self.profileManager = ProfileNetworkService(networkManager: networkManager)
     }
     
     func getUser(completion: @escaping (Result<User>) -> Void) {
         
-        switch keychainItem.readToken() {
-        case .success(let token):
-            profileManager.getUser(with: token) { [weak self] (result) in
-                switch result {
-                case .success(let model):
-                    completion(.success(model))
-                case .error(let error):
-                    completion(.error(error))
-                }
+        profileManager.getUser { [weak self] (result) in
+            switch result {
+            case .success(let model):
+                completion(.success(model))
+            case .error(let error):
+                completion(.error(error))
             }
-        case .error(let error):
-            completion(.error(error))
         }
         
     }
