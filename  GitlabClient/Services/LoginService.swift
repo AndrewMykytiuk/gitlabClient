@@ -42,6 +42,7 @@ class LoginService {
     private func saveToken(_ token: String, completion: @escaping(Error?) -> Void) {
         switch keychainItem.saveToken(token) {
         case .success:
+            networkManager.configure(token: token)
             completion (nil)
         case .error(let error):
             completion (error)
@@ -56,6 +57,7 @@ class LoginService {
                 if let error = removeError {
                     completion(.error(error))
                 } else {
+                    self.networkManager.configure(token: nil)
                     completion(.success(Void()))
                 }
             }

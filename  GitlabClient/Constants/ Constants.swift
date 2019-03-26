@@ -23,6 +23,10 @@ enum Constants {
         
     }
     
+    enum NetworkPath: String {
+        case profile = "/api/v4/user"
+    }
+    
     enum KeyValues: String {
         
         case clientIDKey = "client_id"
