@@ -11,7 +11,7 @@ import UIKit
 
 enum Constants {
     
-    static let font = (Fonts.symbol.info)
+    static let font = (name: "Symbol", size: CGFloat(17))
     
     enum Network: String {
         
@@ -46,17 +46,6 @@ enum Constants {
         case title = "Error"
         case okButton = "OK"
         
-    }
-    
-    enum Fonts {
-        case symbol
-        
-        var info: (size: CGFloat, name: String) {
-            switch self {
-            case .symbol:
-                return (17, "Symbol")
-            }
-        }
     }
     
     enum TabBarItemNames {
