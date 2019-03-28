@@ -11,6 +11,8 @@ import UIKit
 
 enum Constants {
     
+    static let font = (size: CGFloat(17), name: "Symbol")
+    
     enum Network: String {
         
         case secureScheme = "https"

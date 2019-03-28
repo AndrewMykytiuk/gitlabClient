@@ -23,7 +23,7 @@ class ProfileViewController: BaseViewController {
     weak var delegate: ProfileViewControllerDelegate?
     private var loginService: LoginService!
     private var profileService: ProfileService!
-    private var userData: [ProfileItemViewModel]?
+    private var userData: [ProfileItemViewModel]!
     
     func configure(with loginService: LoginService, profileService: ProfileService) {
         self.loginService = loginService
@@ -58,17 +58,19 @@ class ProfileViewController: BaseViewController {
             self.statusLabel.text = user.bio
         }}
         
-        let email = ProfileItemViewModel.init(title: tableViewLabels.email.rawValue, description: user.email)
-        let location = ProfileItemViewModel.init(title: tableViewLabels.location.rawValue, description: user.location)
-        let skype = ProfileItemViewModel.init(title: tableViewLabels.skype.rawValue, description: user.skype)
-        let linkedin = ProfileItemViewModel.init(title: tableViewLabels.linkdn.rawValue, description: user.linkedin)
-        let twitter = ProfileItemViewModel.init(title: tableViewLabels.twitter.rawValue, description: user.twitter)
-        let website = ProfileItemViewModel.init(title: tableViewLabels.website.rawValue, description: user.websiteUrl)
+        let email = ProfileItemViewModel(title: tableViewLabels.email.rawValue, description: user.email)
+        let location = ProfileItemViewModel(title: tableViewLabels.location.rawValue, description: user.location)
+        let skype = ProfileItemViewModel(title: tableViewLabels.skype.rawValue, description: user.skype)
+        let linkedin = ProfileItemViewModel(title: tableViewLabels.linkdn.rawValue, description: user.linkedin)
+        let twitter = ProfileItemViewModel(title: tableViewLabels.twitter.rawValue, description: user.twitter)
+        let website = ProfileItemViewModel(title: tableViewLabels.website.rawValue, description: user.websiteUrl)
         
-        userData?.append(email); userData?.append(location); userData?.append(skype);
-        userData?.append(linkedin); userData?.append(twitter); userData?.append(website)
-        
-        
+        userData?.append(email)
+        userData?.append(location)
+        userData?.append(skype)
+        userData?.append(linkedin)
+        userData?.append(twitter)
+        userData?.append(website)
         
     }
 
@@ -100,24 +102,28 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
         case website = "Website"
     }
     
+    private func setupCell(cell: ProfileTableViewCell, indexPath: IndexPath) {
+        cell.titleLabel.text = userData[indexPath.row].title
+        cell.descriptionLabel.text = userData[indexPath.row].description
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return userData?.count ?? 0
+        return userData.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: ProfileTableViewCell.identifier, for: indexPath) as? ProfileTableViewCell else {
             fatalError(FatalError.invalidCellCreate.rawValue + ProfileTableViewCell.identifier)
         }
-        cell.titleLabel.text = userData?[indexPath.row].title
-        cell.descriptionLabel.text = userData?[indexPath.row].description
         
+        setupCell(cell: cell, indexPath: indexPath)
         
         return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        let attributes = [NSAttributedString.Key.font:UIFont(name: Constants.Fonts.symbol.info.name, size: Constants.Fonts.symbol.info.size)]
-        let string = userData?[indexPath.row].description
+        let attributes = [NSAttributedString.Key.font:UIFont(name: Constants.font.name, size: Constants.font.size)]
+        let string = userData[indexPath.row].description
         
         guard let text = string, text.count > 0 else {
             return 0
