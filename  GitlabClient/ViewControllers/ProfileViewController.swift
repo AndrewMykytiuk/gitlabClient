@@ -23,8 +23,7 @@ class ProfileViewController: BaseViewController {
     weak var delegate: ProfileViewControllerDelegate?
     private var loginService: LoginService!
     private var profileService: ProfileService!
-    private var data: [String?] = []
-    private var labels: [String] = []
+    private var userData: [ProfileItemViewModel]?
     
     func configure(with loginService: LoginService, profileService: ProfileService) {
         self.loginService = loginService
@@ -35,16 +34,17 @@ class ProfileViewController: BaseViewController {
         super.viewWillAppear(animated)
         self.navigationController?.setNavigationBarHidden(true, animated: animated)
         
-        profileService?.getUser { (result) in
+        profileService?.getUser { [weak self] (result) in
+            guard let welf = self else { return }
             switch result {
             case .success(let user):
-                self.setup(with: user)
+                welf.setup(with: user)
                 DispatchQueue.main.async {
-                    self.profileTableView.reloadData()
+                    welf.profileTableView.reloadData()
                 }
             case .error(let error):
                 let alert = AlertHelper.createErrorAlert(message: error.localizedDescription, handler: nil)
-                self.present(alert, animated: true)
+                welf.present(alert, animated: true)
             }
         }
         
@@ -57,19 +57,18 @@ class ProfileViewController: BaseViewController {
             self.nameLabel.text = user.name
             self.statusLabel.text = user.bio
         }}
-        self.data.append(user.email)
-        self.data.append(user.location)
-        self.data.append(user.skype)
-        self.data.append(user.linkedin)
-        self.data.append(user.twitter)
-        self.data.append(user.websiteUrl)
         
-        self.labels.append(tableViewLabels.email.rawValue)
-        self.labels.append(tableViewLabels.location.rawValue)
-        self.labels.append(tableViewLabels.skype.rawValue)
-        self.labels.append(tableViewLabels.linkdn.rawValue)
-        self.labels.append(tableViewLabels.twitter.rawValue)
-        self.labels.append(tableViewLabels.website.rawValue)
+        let email = ProfileItemViewModel.init(title: tableViewLabels.email.rawValue, description: user.email)
+        let location = ProfileItemViewModel.init(title: tableViewLabels.location.rawValue, description: user.location)
+        let skype = ProfileItemViewModel.init(title: tableViewLabels.skype.rawValue, description: user.skype)
+        let linkedin = ProfileItemViewModel.init(title: tableViewLabels.linkdn.rawValue, description: user.linkedin)
+        let twitter = ProfileItemViewModel.init(title: tableViewLabels.twitter.rawValue, description: user.twitter)
+        let website = ProfileItemViewModel.init(title: tableViewLabels.website.rawValue, description: user.websiteUrl)
+        
+        userData?.append(email); userData?.append(location); userData?.append(skype);
+        userData?.append(linkedin); userData?.append(twitter); userData?.append(website)
+        
+        
         
     }
 
@@ -102,24 +101,25 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return data.count
+        return userData?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "ProfileTableViewCell", for: indexPath) as? ProfileTableViewCell else {
-            fatalError("The dequeued cell is not an instance of ProfileTableViewCell.")
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: ProfileTableViewCell.identifier, for: indexPath) as? ProfileTableViewCell else {
+            fatalError(FatalError.invalidCellCreate.rawValue + ProfileTableViewCell.identifier)
         }
-            cell.infoLabel.text = labels[indexPath.row]
-            cell.dataLabel.text = data[indexPath.row]
+        cell.titleLabel.text = userData?[indexPath.row].title
+        cell.descriptionLabel.text = userData?[indexPath.row].description
+        
         
         return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        let attributes = [NSAttributedString.Key.font:UIFont(name: "Symbol", size: 17)]
-        let string = data[indexPath.row]
+        let attributes = [NSAttributedString.Key.font:UIFont(name: Constants.Fonts.symbol.info.name, size: Constants.Fonts.symbol.info.size)]
+        let string = userData?[indexPath.row].description
         
-        guard let text = string, text.count > 0 else  {
+        guard let text = string, text.count > 0 else {
             return 0
         }
         
@@ -128,7 +128,7 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
             options: [.usesLineFragmentOrigin, .usesFontLeading],
             attributes: attributes as [NSAttributedString.Key : Any], context: nil)
         
-        let height = 8 + rect.height + 8
+        let height = ProfileTableViewCell.cellOffset + rect.height + ProfileTableViewCell.cellOffset
         
         return height
     }

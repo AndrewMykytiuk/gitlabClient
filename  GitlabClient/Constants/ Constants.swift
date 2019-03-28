@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 enum Constants {
     
@@ -43,6 +44,17 @@ enum Constants {
         case title = "Error"
         case okButton = "OK"
         
+    }
+    
+    enum Fonts {
+        case symbol
+        
+        var info: (size: CGFloat, name: String) {
+            switch self {
+            case .symbol:
+                return (17, "Symbol")
+            }
+        }
     }
     
     enum TabBarItemNames {

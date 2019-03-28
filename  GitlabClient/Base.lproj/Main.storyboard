@@ -195,8 +195,8 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
-                                            <outlet property="dataLabel" destination="pfb-d7-Iye" id="5w5-Q4-AHy"/>
-                                            <outlet property="infoLabel" destination="dfs-JX-uHV" id="uEH-LA-HVV"/>
+                                            <outlet property="descriptionLabel" destination="pfb-d7-Iye" id="w4S-aA-mAk"/>
+                                            <outlet property="titleLabel" destination="dfs-JX-uHV" id="Wsf-U1-BLN"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>

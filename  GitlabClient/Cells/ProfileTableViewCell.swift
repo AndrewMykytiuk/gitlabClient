@@ -10,7 +10,10 @@ import UIKit
 
 class ProfileTableViewCell: UITableViewCell {
     
-    @IBOutlet weak var infoLabel: UILabel!
-    @IBOutlet weak var dataLabel: UILabel!
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var descriptionLabel: UILabel!
+    
+    static let identifier = "ProfileTableViewCell"
+    static let cellOffset: CGFloat = 8
 
 }
