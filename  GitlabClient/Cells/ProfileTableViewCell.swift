@@ -15,5 +15,10 @@ class ProfileTableViewCell: UITableViewCell {
     
     static let identifier = "ProfileTableViewCell"
     static let cellOffset: CGFloat = 8
+    
+    func setup(with viewModel: ProfileItemViewModel) {
+        self.titleLabel.text = viewModel.title
+        self.descriptionLabel.text = viewModel.description
+    }
 
 }

@@ -23,7 +23,7 @@ class ProfileViewController: BaseViewController {
     weak var delegate: ProfileViewControllerDelegate?
     private var loginService: LoginService!
     private var profileService: ProfileService!
-    private var userData: [ProfileItemViewModel]!
+    private var userData: [ProfileItemViewModel] = []
     
     func configure(with loginService: LoginService, profileService: ProfileService) {
         self.loginService = loginService
@@ -65,12 +65,12 @@ class ProfileViewController: BaseViewController {
         let twitter = ProfileItemViewModel(title: tableViewLabels.twitter.rawValue, description: user.twitter)
         let website = ProfileItemViewModel(title: tableViewLabels.website.rawValue, description: user.websiteUrl)
         
-        userData?.append(email)
-        userData?.append(location)
-        userData?.append(skype)
-        userData?.append(linkedin)
-        userData?.append(twitter)
-        userData?.append(website)
+        userData.append(email)
+        userData.append(location)
+        userData.append(skype)
+        userData.append(linkedin)
+        userData.append(twitter)
+        userData.append(website)
         
     }
 
@@ -102,10 +102,7 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
         case website = "Website"
     }
     
-    private func setupCell(cell: ProfileTableViewCell, indexPath: IndexPath) {
-        cell.titleLabel.text = userData[indexPath.row].title
-        cell.descriptionLabel.text = userData[indexPath.row].description
-    }
+    
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return userData.count
@@ -116,7 +113,7 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
             fatalError(FatalError.invalidCellCreate.rawValue + ProfileTableViewCell.identifier)
         }
         
-        setupCell(cell: cell, indexPath: indexPath)
+        cell.setup(with: userData[indexPath.row])
         
         return cell
     }

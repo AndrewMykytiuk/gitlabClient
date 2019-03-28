@@ -11,7 +11,7 @@ import UIKit
 
 enum Constants {
     
-    static let font = (size: CGFloat(17), name: "Symbol")
+    static let font = (Fonts.symbol.info)
     
     enum Network: String {
         
