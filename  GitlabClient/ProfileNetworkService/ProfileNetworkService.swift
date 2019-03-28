@@ -34,6 +34,21 @@ class ProfileNetworkService: ProfileNetworkServiceType {
         }
     }
     
+    func getProjects(completion: @escaping (Result<Data>) -> Void) {
+        
+        let request = ProfileRequest(method: .GET, path: Constants.NetworkPath.projects.rawValue)
+        
+        networkManager.sendRequest(request) { [weak self] (data) in
+            switch data {
+            case .success(let data):
+                //self?.processData(data, completion: completion)
+                if 1 > 0 {}
+            case .error(let error):
+                return completion(.error(error))
+            }
+        }
+    }
+    
     private func processData(_ data: Data, completion: @escaping (Result<User>) -> Void) {
         let result: Result<User> = DecoderHelper.modelFromData(data)
         switch result {

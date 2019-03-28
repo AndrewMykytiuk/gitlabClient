@@ -31,4 +31,17 @@ class ProfileService {
         
     }
     
+    func getProject(completion: @escaping (Result<Data>) -> Void) {
+        
+        profileManager.getProjects { [weak self] (result) in
+            switch result {
+            case .success(let model):
+                completion(.success(model))
+            case .error(let error):
+                completion(.error(error))
+            }
+        }
+        
+    }
+    
 }

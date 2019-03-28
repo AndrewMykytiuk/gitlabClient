@@ -25,6 +25,7 @@ enum Constants {
     
     enum NetworkPath: String {
         case profile = "/api/v4/user"
+        case projects = "/api/v4/users/4904/projects"
     }
     
     enum KeyValues: String {

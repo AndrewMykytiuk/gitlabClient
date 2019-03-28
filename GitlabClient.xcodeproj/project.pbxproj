@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CE147D53224BBE5600C08C11 /* NewsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE147D52224BBE5600C08C11 /* NewsTableViewCell.swift */; };
 		CE6FF0142236AECB003F7C56 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6FF0132236AECB003F7C56 /* AppDelegate.swift */; };
 		CE6FF0162236AECB003F7C56 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6FF0152236AECB003F7C56 /* LogInViewController.swift */; };
 		CE6FF0192236AECC003F7C56 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE6FF0172236AECB003F7C56 /* Main.storyboard */; };
@@ -39,6 +40,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CE147D52224BBE5600C08C11 /* NewsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsTableViewCell.swift; sourceTree = "<group>"; };
 		CE6FF0102236AECB003F7C56 /* GitlabClient.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GitlabClient.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE6FF0132236AECB003F7C56 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CE6FF0152236AECB003F7C56 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
@@ -135,6 +137,7 @@
 				CE6FF0152236AECB003F7C56 /* LogInViewController.swift */,
 				CE6FF0282236B1EA003F7C56 /* OAuthLogInViewController.swift */,
 				CE729F3C2244F5120006C37C /* ProfileViewController.swift */,
+				CE147D52224BBE5600C08C11 /* NewsTableViewCell.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -311,6 +314,7 @@
 				CE6FF0292236B1EA003F7C56 /* OAuthLogInViewController.swift in Sources */,
 				CE729F3D2244F5120006C37C /* ProfileViewController.swift in Sources */,
 				CE6FF043223B96EE003F7C56 /* LoginNetworkService.swift in Sources */,
+				CE147D53224BBE5600C08C11 /* NewsTableViewCell.swift in Sources */,
 				CE6FF032223A6A17003F7C56 /* AuthHelper.swift in Sources */,
 				CE729F45224536CF0006C37C /* ProfileNetworkService.swift in Sources */,
 				CE6FF03C223AE29E003F7C56 /* NetworkManager.swift in Sources */,
