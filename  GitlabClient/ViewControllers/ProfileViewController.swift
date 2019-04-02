@@ -20,7 +20,7 @@ class ProfileViewController: BaseViewController {
     @IBOutlet weak var statusLabel: UILabel!
     @IBOutlet weak var profileTableView: UITableView! {
         didSet {
-            self.profileCell = ProfileTableViewCell(frame: profileTableView.frame)
+            createProfileCellPrototype()
         }
     }
     
@@ -34,11 +34,6 @@ class ProfileViewController: BaseViewController {
     func configure(with loginService: LoginService, profileService: ProfileService) {
         self.loginService = loginService
         self.profileService = profileService
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-       createProfileCellPrototype()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -78,7 +73,7 @@ class ProfileViewController: BaseViewController {
     }
     
     private func createProfileCellPrototype() {
-        let cell = self.profileTableView.dequeueReusableCell(withIdentifier: profileCell.identifier()) as? ProfileTableViewCell
+        let cell = self.profileTableView.dequeueReusableCell(withIdentifier: ProfileTableViewCell.identifier()) as? ProfileTableViewCell
         if let tempCell = cell {
             profileCell = tempCell
         }
@@ -134,8 +129,8 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: profileCell.identifier(), for: indexPath) as? ProfileTableViewCell else {
-            fatalError(FatalError.invalidCellCreate.rawValue + profileCell.identifier())
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: ProfileTableViewCell.identifier(), for: indexPath) as? ProfileTableViewCell else {
+            fatalError(FatalError.invalidCellCreate.rawValue + ProfileTableViewCell.identifier())
         }
         
         cell.setup(with: userData[indexPath.row])

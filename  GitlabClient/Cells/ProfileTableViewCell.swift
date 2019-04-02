@@ -38,7 +38,7 @@ class ProfileTableViewCell: UITableViewCell {
         }
     }
     
-    func identifier() -> String {
+    class func identifier() -> String {
         return "ProfileTableViewCell"
     }
 
