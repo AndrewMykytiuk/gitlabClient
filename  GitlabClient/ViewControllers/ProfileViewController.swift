@@ -24,10 +24,19 @@ class ProfileViewController: BaseViewController {
     private var loginService: LoginService!
     private var profileService: ProfileService!
     private var userData: [ProfileItemViewModel] = []
+    private var profileCell = ProfileTableViewCell()
     
     func configure(with loginService: LoginService, profileService: ProfileService) {
         self.loginService = loginService
         self.profileService = profileService
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+            let cell = self.profileTableView.dequeueReusableCell(withIdentifier: profileCell.getIdentifier()) as? ProfileTableViewCell
+            if let tempCell = cell {
+                profileCell = tempCell
+            }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -40,6 +49,7 @@ class ProfileViewController: BaseViewController {
             case .success(let user):
                 welf.setup(with: user)
                 DispatchQueue.main.async {
+                    welf.userData.removeAll()
                     welf.profileTableView.reloadData()
                 }
             case .error(let error):
@@ -50,6 +60,12 @@ class ProfileViewController: BaseViewController {
         
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        self.profileCell.frame = CGRect(origin: CGPoint.zero, size: profileTableView.frame.size)
+        self.profileCell.layoutIfNeeded()
+    }
+    
     func setup (with user:User) {
         if let data = try? Data(contentsOf: user.avatarUrl) {
         DispatchQueue.main.async {
@@ -58,12 +74,12 @@ class ProfileViewController: BaseViewController {
             self.statusLabel.text = user.bio
         }}
         
-        let email = ProfileItemViewModel(title: tableViewLabels.email.rawValue, description: user.email)
-        let location = ProfileItemViewModel(title: tableViewLabels.location.rawValue, description: user.location)
-        let skype = ProfileItemViewModel(title: tableViewLabels.skype.rawValue, description: user.skype)
-        let linkedin = ProfileItemViewModel(title: tableViewLabels.linkdn.rawValue, description: user.linkedin)
-        let twitter = ProfileItemViewModel(title: tableViewLabels.twitter.rawValue, description: user.twitter)
-        let website = ProfileItemViewModel(title: tableViewLabels.website.rawValue, description: user.websiteUrl)
+        let email = ProfileItemViewModel(title: NSLocalizedString(tableViewTitles.email.rawValue, comment: ""), description: user.email)
+        let location = ProfileItemViewModel(title: NSLocalizedString(tableViewTitles.location.rawValue, comment: ""), description: user.location)
+        let skype = ProfileItemViewModel(title: NSLocalizedString(tableViewTitles.skype.rawValue, comment: ""), description: user.skype)
+        let linkedin = ProfileItemViewModel(title: NSLocalizedString(tableViewTitles.linkdn.rawValue, comment: ""), description: user.linkedin)
+        let twitter = ProfileItemViewModel(title: NSLocalizedString(tableViewTitles.twitter.rawValue, comment: ""), description: user.twitter)
+        let website = ProfileItemViewModel(title: NSLocalizedString(tableViewTitles.website.rawValue, comment: ""), description: user.websiteUrl)
         
         userData.append(email)
         userData.append(location)
@@ -93,7 +109,7 @@ class ProfileViewController: BaseViewController {
 
 extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
     
-    private enum tableViewLabels: String {
+    private enum tableViewTitles: String {
         case email = "Email"
         case location = "Location"
         case skype = "Skype"
@@ -102,15 +118,13 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
         case website = "Website"
     }
     
-    
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return userData.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: ProfileTableViewCell.identifier, for: indexPath) as? ProfileTableViewCell else {
-            fatalError(FatalError.invalidCellCreate.rawValue + ProfileTableViewCell.identifier)
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: profileCell.getIdentifier(), for: indexPath) as? ProfileTableViewCell else {
+            fatalError(FatalError.invalidCellCreate.rawValue + profileCell.getIdentifier())
         }
         
         cell.setup(with: userData[indexPath.row])
@@ -118,22 +132,43 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        let attributes = [NSAttributedString.Key.font:UIFont(name: Constants.font.name, size: Constants.font.size)]
-        let string = userData[indexPath.row].description
+    override func willTransition(to newCollection: UITraitCollection, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: newCollection.accessibilityFrame.size, with: coordinator)
         
-        guard let text = string, text.count > 0 else {
+        let completionHandler: ((UIViewControllerTransitionCoordinatorContext) -> Void) = { [weak self] (context) in
+            guard let welf = self else { return }
+            if welf.profileTableView != nil {
+                welf.profileTableView.reloadData()
+            }
+        }
+        coordinator.animate(alongsideTransition: completionHandler, completion: completionHandler)
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        let attributes = [NSAttributedString.Key.font: Constants.font]
+        
+        let titleString = userData[indexPath.row].title
+        let descriptionString = userData[indexPath.row].description
+        let size = profileCell.getLabelsSize(with: userData[indexPath.row])
+        
+        guard let descriptionText = descriptionString, descriptionText.count > 0 else {
+            return 0
+        }
+        guard titleString.count > 0 else {
             return 0
         }
         
-        let rect = NSString(string: text).boundingRect(
-            with: CGSize(width: tableView.frame.width, height: CGFloat.greatestFiniteMagnitude),
+        let titleRect = NSString(string: titleString).boundingRect(
+            with: CGSize(width: size.titleWidth, height: size.titleHeight),
             options: [.usesLineFragmentOrigin, .usesFontLeading],
             attributes: attributes as [NSAttributedString.Key : Any], context: nil)
         
-        let height = ProfileTableViewCell.cellOffset + rect.height + ProfileTableViewCell.cellOffset
+        let descriptionRect = NSString(string: descriptionText).boundingRect(
+            with: CGSize(width: size.descriptionWidth, height: size.descriptionHeight),
+            options: [.usesLineFragmentOrigin, .usesFontLeading],
+            attributes: attributes as [NSAttributedString.Key : Any], context: nil)
         
-        return height
+        return max(descriptionRect.height, titleRect.height) + profileCell.verticalOffsets()
     }
     
     

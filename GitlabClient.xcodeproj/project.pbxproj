@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		CE147D56224CD70200C08C11 /* ProfileItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE147D55224CD70200C08C11 /* ProfileItemViewModel.swift */; };
+		CE3B694D2252578F00FB7DEA /* ProfileCellSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3B694C2252578F00FB7DEA /* ProfileCellSize.swift */; };
 		CE6FF0142236AECB003F7C56 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6FF0132236AECB003F7C56 /* AppDelegate.swift */; };
 		CE6FF0162236AECB003F7C56 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6FF0152236AECB003F7C56 /* LogInViewController.swift */; };
 		CE6FF0192236AECC003F7C56 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE6FF0172236AECB003F7C56 /* Main.storyboard */; };
@@ -42,6 +43,7 @@
 
 /* Begin PBXFileReference section */
 		CE147D55224CD70200C08C11 /* ProfileItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileItemViewModel.swift; sourceTree = "<group>"; };
+		CE3B694C2252578F00FB7DEA /* ProfileCellSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCellSize.swift; sourceTree = "<group>"; };
 		CE6FF0102236AECB003F7C56 /* GitlabClient.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GitlabClient.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE6FF0132236AECB003F7C56 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CE6FF0152236AECB003F7C56 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
@@ -94,6 +96,7 @@
 			isa = PBXGroup;
 			children = (
 				CE147D55224CD70200C08C11 /* ProfileItemViewModel.swift */,
+				CE3B694C2252578F00FB7DEA /* ProfileCellSize.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -329,6 +332,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE3B694D2252578F00FB7DEA /* ProfileCellSize.swift in Sources */,
 				CE729F1F224125240006C37C /* DependencyProvider.swift in Sources */,
 				CE6FF0292236B1EA003F7C56 /* OAuthLogInViewController.swift in Sources */,
 				CE729F3D2244F5120006C37C /* ProfileViewController.swift in Sources */,
