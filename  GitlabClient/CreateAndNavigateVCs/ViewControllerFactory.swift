@@ -35,7 +35,11 @@ class ViewControllerFactory: ViewControllerFactoryType {
         
         switch identifier {
         case .main:
-           _ = 9
+            if let mainViewController = vcTemp as? MainViewController {
+                let projectsService = ProjectService(networkManager: dependencyProvider.networkManager)
+                mainViewController.configure(with: projectsService)
+                vcTemp = mainViewController
+            }
         case .oauth:
             if let oAuthLogInViewController = vcTemp as? OAuthLogInViewController {
                 let loginService = LoginService(networkManager: dependencyProvider.networkManager, keychainItem: dependencyProvider.keychainItem)

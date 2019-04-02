@@ -1,18 +1,18 @@
 //
-//  ProfileNetworkService.swift
+//  ProjectsNetworkService.swift
 //  GitlabClient
 //
-//  Created by User on 22/04/2019.
+//  Created by User on 02/04/2019.
 //  Copyright © 2019 MPTechnologies. All rights reserved.
 //
 
 import Foundation
 
-protocol ProfileNetworkServiceType {
-    func getUser(completion: @escaping (Result<User>) -> Void)
+protocol ProjectsNetworkServiceType {
+    func getProjects(completion: @escaping (Result<Project>) -> Void)
 }
 
-class ProfileNetworkService: ProfileNetworkServiceType {
+class ProjectsNetworkService: ProjectsNetworkServiceType {
     
     private let networkManager: NetworkManager
     
@@ -20,9 +20,9 @@ class ProfileNetworkService: ProfileNetworkServiceType {
         self.networkManager = networkManager
     }
     
-    func getUser(completion: @escaping (Result<User>) -> Void) {
+    func getProjects(completion: @escaping (Result<Project>) -> Void) {
         
-        let request = ProfileRequest(method: .GET, path: Constants.NetworkPath.profile.rawValue)
+        let request = ProjectRequest(method: .GET, path: Constants.NetworkPath.projects.rawValue)
         
         networkManager.sendRequest(request) { [weak self] (data) in
             switch data {
@@ -34,16 +34,19 @@ class ProfileNetworkService: ProfileNetworkServiceType {
         }
     }
     
-    private func processData(_ data: Data, completion: @escaping (Result<User>) -> Void) {
-        let result: Result<User> = DecoderHelper.modelFromData(data)
+    private func processData(_ data: Data, completion: @escaping (Result<Project>) -> Void) {
+        let result: Result<[Project]> = DecoderHelper.modelFromData(data)
         switch result {
-        case .success(let user):
-            completion(.success(user))
+        case .success(let project):
+            if project.count > 0 {
+            completion(.success(project[0]))
+            }
         case .error(let error):
             completion(.error(error))
         }
         
     }
     
-   
+    
 }
+

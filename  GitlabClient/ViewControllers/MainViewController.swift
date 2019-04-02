@@ -10,17 +10,24 @@ import UIKit
 
 class MainViewController: BaseViewController {
     
-    private var profileService: ProfileService!
+    private var projectsService: ProjectService!
     
-    func configure(with profileService: ProfileService) {
-        self.profileService = profileService
+    func configure(with projectsService: ProjectService) {
+        self.projectsService = projectsService
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.setNavigationBarHidden(true, animated: animated)
         
-        
+        projectsService?.getProjects { (result) in
+            switch result {
+            case .success:
+                _ = 12
+            case .error:
+                break
+            }
+        }
     }
     
 }
@@ -38,25 +45,6 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
         
         return cell
     }
-    
-//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        let attributes = [NSAttributedString.Key.font:UIFont(name: "Symbol", size: 17)]
-//        let string: String?
-//        string = ""
-//
-//        guard let text = string, text.count > 0 else  {
-//            return 0
-//        }
-//
-//        let rect = NSString(string: text).boundingRect(
-//            with: CGSize(width: tableView.frame.width, height: CGFloat.greatestFiniteMagnitude),
-//            options: [.usesLineFragmentOrigin, .usesFontLeading],
-//            attributes: attributes as [NSAttributedString.Key : Any], context: nil)
-//
-//        let height = 8 + rect.height + 8
-//
-//        return height
-//    }
     
     
 }

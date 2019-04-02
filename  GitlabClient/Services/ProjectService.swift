@@ -1,26 +1,26 @@
 //
-//  ProfileService.swift
+//  ProjectService.swift
 //  GitlabClient
 //
-//  Created by User on 22/04/2019.
+//  Created by User on 02/04/2019.
 //  Copyright © 2019 MPTechnologies. All rights reserved.
 //
 
 import Foundation
 
-class ProfileService {
+class ProjectService {
     
     private let networkManager: NetworkManager
-    private let profileManager: ProfileNetworkService
+    private let projectsManager: ProjectsNetworkService
     
     init(networkManager: NetworkManager) {
         self.networkManager = networkManager
-        self.profileManager = ProfileNetworkService(networkManager: networkManager)
+        self.projectsManager = ProjectsNetworkService(networkManager: networkManager)
     }
     
-    func getUser(completion: @escaping (Result<User>) -> Void) {
+    func getProjects(completion: @escaping (Result<Project>) -> Void) {
         
-        profileManager.getUser { [weak self] (result) in
+        projectsManager.getProjects { (result) in
             switch result {
             case .success(let model):
                 completion(.success(model))
