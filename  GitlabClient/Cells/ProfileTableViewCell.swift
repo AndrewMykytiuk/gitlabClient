@@ -16,8 +16,6 @@ class ProfileTableViewCell: UITableViewCell {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     
-    private let identifier = "ProfileTableViewCell"
-    
     func setup(with viewModel: ProfileItemViewModel) {
         self.titleLabel.text = viewModel.title
         self.descriptionLabel.text = viewModel.description
@@ -40,8 +38,8 @@ class ProfileTableViewCell: UITableViewCell {
         }
     }
     
-    func getIdentifier() -> String {
-        return identifier
+    func identifier() -> String {
+        return "ProfileTableViewCell"
     }
 
 }

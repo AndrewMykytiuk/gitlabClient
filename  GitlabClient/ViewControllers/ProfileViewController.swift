@@ -18,13 +18,18 @@ class ProfileViewController: BaseViewController {
     @IBOutlet weak var avatarImage: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var statusLabel: UILabel!
-    @IBOutlet weak var profileTableView: UITableView!
+    @IBOutlet weak var profileTableView: UITableView! {
+        didSet {
+            self.profileCell = ProfileTableViewCell(frame: profileTableView.frame)
+        }
+    }
     
     weak var delegate: ProfileViewControllerDelegate?
     private var loginService: LoginService!
     private var profileService: ProfileService!
     private var userData: [ProfileItemViewModel] = []
-    private var profileCell = ProfileTableViewCell()
+    private var profileCell: ProfileTableViewCell!
+    
     
     func configure(with loginService: LoginService, profileService: ProfileService) {
         self.loginService = loginService
@@ -33,31 +38,13 @@ class ProfileViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-            let cell = self.profileTableView.dequeueReusableCell(withIdentifier: profileCell.getIdentifier()) as? ProfileTableViewCell
-            if let tempCell = cell {
-                profileCell = tempCell
-            }
+       createProfileCellPrototype()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.setNavigationBarHidden(true, animated: animated)
-        
-        profileService?.getUser { [weak self] (result) in
-            guard let welf = self else { return }
-            switch result {
-            case .success(let user):
-                welf.setup(with: user)
-                DispatchQueue.main.async {
-                    welf.userData.removeAll()
-                    welf.profileTableView.reloadData()
-                }
-            case .error(let error):
-                let alert = AlertHelper.createErrorAlert(message: error.localizedDescription, handler: nil)
-                welf.present(alert, animated: true)
-            }
-        }
-        
+        getUser()
     }
     
     override func viewDidLayoutSubviews() {
@@ -66,7 +53,7 @@ class ProfileViewController: BaseViewController {
         self.profileCell.layoutIfNeeded()
     }
     
-    func setup (with user:User) {
+    private func setup (with user:User) {
         if let data = try? Data(contentsOf: user.avatarUrl) {
         DispatchQueue.main.async {
             self.avatarImage.image = UIImage(data: data)
@@ -88,6 +75,30 @@ class ProfileViewController: BaseViewController {
         userData.append(twitter)
         userData.append(website)
         
+    }
+    
+    private func createProfileCellPrototype() {
+        let cell = self.profileTableView.dequeueReusableCell(withIdentifier: profileCell.identifier()) as? ProfileTableViewCell
+        if let tempCell = cell {
+            profileCell = tempCell
+        }
+    }
+    
+    private func getUser() {
+        profileService?.getUser { [weak self] (result) in
+            guard let welf = self else { return }
+            switch result {
+            case .success(let user):
+                welf.userData.removeAll()
+                welf.setup(with: user)
+                DispatchQueue.main.async {
+                    welf.profileTableView.reloadData()
+                }
+            case .error(let error):
+                let alert = AlertHelper.createErrorAlert(message: error.localizedDescription, handler: nil)
+                welf.present(alert, animated: true)
+            }
+        }
     }
 
     @IBAction func logOutButtonAction(_ sender: UIButton) {
@@ -123,8 +134,8 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: profileCell.getIdentifier(), for: indexPath) as? ProfileTableViewCell else {
-            fatalError(FatalError.invalidCellCreate.rawValue + profileCell.getIdentifier())
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: profileCell.identifier(), for: indexPath) as? ProfileTableViewCell else {
+            fatalError(FatalError.invalidCellCreate.rawValue + profileCell.identifier())
         }
         
         cell.setup(with: userData[indexPath.row])
