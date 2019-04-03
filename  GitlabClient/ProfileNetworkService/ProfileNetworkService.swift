@@ -35,6 +35,7 @@ class ProfileNetworkService: ProfileNetworkServiceType {
     }
     
     private func processData(_ data: Data, completion: @escaping (Result<User>) -> Void) {
+        
         let result: Result<User> = DecoderHelper.modelFromData(data)
         switch result {
         case .success(let user):
@@ -45,5 +46,4 @@ class ProfileNetworkService: ProfileNetworkServiceType {
         
     }
     
-   
 }

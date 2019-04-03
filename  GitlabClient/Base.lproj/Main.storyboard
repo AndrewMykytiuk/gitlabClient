@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
+    <device id="retina4_7" orientation="landscape">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -15,11 +15,11 @@
             <objects>
                 <viewController storyboardIdentifier="LogInViewController" id="BYZ-38-t0r" customClass="LogInViewController" customModule="GitlabClient" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="GitLab_Logo.svg" translatesAutoresizingMaskIntoConstraints="NO" id="97f-BL-9ZC">
-                                <rect key="frame" x="112.5" y="258.5" width="150" height="150"/>
+                                <rect key="frame" x="258.5" y="112.5" width="150" height="150"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="150" id="wnq-qG-QBR"/>
@@ -27,14 +27,14 @@
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NFT-Hf-emH">
-                                <rect key="frame" x="97.5" y="424.5" width="180" height="50"/>
+                                <rect key="frame" x="243.5" y="278.5" width="180" height="50"/>
                                 <color key="backgroundColor" red="0.96862745100000003" green="0.55294117649999996" blue="0.1058823529" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="180" id="FBH-3g-UR2"/>
                                     <constraint firstAttribute="height" constant="50" id="Ma9-eB-g82"/>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="150" id="n96-w6-mdH"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="Symbol" family="Symbol" pointSize="17"/>
+                                <fontDescription key="fontDescription" name="Verdana" family="Verdana" pointSize="17"/>
                                 <state key="normal" title="Log In">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
@@ -69,7 +69,7 @@
             <objects>
                 <viewController storyboardIdentifier="OAuthLogInViewController" id="LI3-e3-alf" customClass="OAuthLogInViewController" customModule="GitlabClient" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="VB9-Nj-7GL">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="OUy-kf-r5U"/>
@@ -85,7 +85,7 @@
             <objects>
                 <viewController storyboardIdentifier="MainViewController" id="ePM-cj-NTy" customClass="MainViewController" customModule="GitlabClient" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="xZj-o2-GRs">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.8862745098" green="0.2784313725" blue="0.28235294119999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="ZZj-74-obh"/>
@@ -100,16 +100,16 @@
             <objects>
                 <viewController storyboardIdentifier="ProfileViewController" id="lMf-Lp-Jls" customClass="ProfileViewController" customModule="GitlabClient" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="r43-2j-0xm">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" alpha="0.80000000000000004" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4aZ-Sc-OKG">
-                                <rect key="frame" x="0.0" y="617" width="375" height="50"/>
+                                <rect key="frame" x="0.0" y="325" width="667" height="50"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="d0a-u0-g5W"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="Symbol" family="Symbol" pointSize="17"/>
+                                <fontDescription key="fontDescription" name="Verdana" family="Verdana" pointSize="17"/>
                                 <state key="normal" title="Log Out">
                                     <color key="titleColor" red="0.8862745098" green="0.2784313725" blue="0.28235294119999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
@@ -120,15 +120,115 @@
                                     <action selector="logOutButtonAction:" destination="lMf-Lp-Jls" eventType="touchUpInside" id="iKW-uU-VLq"/>
                                 </connections>
                             </button>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Zr0-vS-96H">
+                                <rect key="frame" x="15" y="10" width="70" height="70"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="70" id="JVP-fy-9by"/>
+                                    <constraint firstAttribute="height" constant="70" id="eTP-IE-fcm"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <integer key="value" value="35"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </imageView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="top" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="LNQ-eB-nhZ">
+                                <rect key="frame" x="120" y="10" width="532" height="70"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="900-4g-R6U">
+                                        <rect key="frame" x="0.0" y="0.0" width="532" height="31.5"/>
+                                        <fontDescription key="fontDescription" name="Verdana" family="Verdana" pointSize="17"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Status" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="DWZ-xy-psp">
+                                        <rect key="frame" x="0.0" y="36.5" width="532" height="33.5"/>
+                                        <fontDescription key="fontDescription" name="Verdana" family="Verdana" pointSize="17"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="900-4g-R6U" firstAttribute="centerX" secondItem="LNQ-eB-nhZ" secondAttribute="centerX" id="auZ-ad-15v"/>
+                                    <constraint firstItem="DWZ-xy-psp" firstAttribute="centerX" secondItem="LNQ-eB-nhZ" secondAttribute="centerX" id="k9B-jN-mzg"/>
+                                </constraints>
+                            </stackView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Sdc-dg-CwC">
+                                <rect key="frame" x="0.0" y="110" width="667" height="215"/>
+                                <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="ProfileTableViewCell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ProfileTableViewCell" rowHeight="37" id="rpd-Pa-FQA" customClass="ProfileTableViewCell" customModule="GitlabClient" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="667" height="37"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="rpd-Pa-FQA" id="dXW-Fm-tO8">
+                                            <rect key="frame" x="0.0" y="0.0" width="667" height="37"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" semanticContentAttribute="forceLeftToRight" text="SOS" lineBreakMode="characterWrap" numberOfLines="0" baselineAdjustment="none" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pfb-d7-Iye">
+                                                    <rect key="frame" x="105" y="8" width="557" height="21"/>
+                                                    <fontDescription key="fontDescription" name="Verdana" family="Verdana" pointSize="17"/>
+                                                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="center" semanticContentAttribute="forceLeftToRight" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email:" lineBreakMode="characterWrap" numberOfLines="0" baselineAdjustment="none" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ciB-pg-cCX">
+                                                    <rect key="frame" x="5" y="8" width="80" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="80" id="6kh-lL-3MH"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="Verdana" family="Verdana" pointSize="17"/>
+                                                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="pfb-d7-Iye" firstAttribute="top" secondItem="dXW-Fm-tO8" secondAttribute="top" constant="8" id="3c5-B1-rfN"/>
+                                                <constraint firstAttribute="trailing" secondItem="pfb-d7-Iye" secondAttribute="trailing" constant="5" id="Iar-em-n0k"/>
+                                                <constraint firstAttribute="bottom" secondItem="pfb-d7-Iye" secondAttribute="bottom" constant="8" id="ndz-it-quf"/>
+                                                <constraint firstItem="pfb-d7-Iye" firstAttribute="leading" secondItem="ciB-pg-cCX" secondAttribute="trailing" constant="20" id="o0a-Qr-vJg"/>
+                                                <constraint firstItem="ciB-pg-cCX" firstAttribute="firstBaseline" secondItem="pfb-d7-Iye" secondAttribute="firstBaseline" id="oEc-Zy-IQv"/>
+                                                <constraint firstItem="ciB-pg-cCX" firstAttribute="leading" secondItem="dXW-Fm-tO8" secondAttribute="leading" constant="5" id="rrF-bt-W9i"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <connections>
+                                            <outlet property="descriptionLabel" destination="pfb-d7-Iye" id="w4S-aA-mAk"/>
+                                            <outlet property="descriptionLabelBottomConstraint" destination="ndz-it-quf" id="p0T-Qw-yF2"/>
+                                            <outlet property="descriptionLabelTopConstraint" destination="3c5-B1-rfN" id="eAa-Bf-Csa"/>
+                                            <outlet property="titleLabel" destination="ciB-pg-cCX" id="qqD-1a-Cgr"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="lMf-Lp-Jls" id="7YN-XG-zSm"/>
+                                    <outlet property="delegate" destination="lMf-Lp-Jls" id="Je6-UC-UX3"/>
+                                </connections>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="Zr0-vS-96H" firstAttribute="top" secondItem="p9x-Q3-4Yq" secondAttribute="top" constant="10" id="1La-3d-bRP"/>
+                            <constraint firstItem="LNQ-eB-nhZ" firstAttribute="top" secondItem="p9x-Q3-4Yq" secondAttribute="top" constant="10" id="5AR-La-huQ"/>
+                            <constraint firstItem="Sdc-dg-CwC" firstAttribute="top" secondItem="Zr0-vS-96H" secondAttribute="bottom" constant="30" id="6Cv-zR-fWb"/>
+                            <constraint firstItem="Sdc-dg-CwC" firstAttribute="leading" secondItem="p9x-Q3-4Yq" secondAttribute="leading" id="Eh1-ps-J8V"/>
+                            <constraint firstItem="Sdc-dg-CwC" firstAttribute="width" secondItem="4aZ-Sc-OKG" secondAttribute="width" id="Hci-xE-I03"/>
+                            <constraint firstItem="4aZ-Sc-OKG" firstAttribute="top" secondItem="Sdc-dg-CwC" secondAttribute="bottom" id="J6Y-c2-rHN"/>
                             <constraint firstItem="4aZ-Sc-OKG" firstAttribute="leading" secondItem="p9x-Q3-4Yq" secondAttribute="leading" id="TCH-Mz-s3h"/>
+                            <constraint firstItem="Zr0-vS-96H" firstAttribute="leading" secondItem="p9x-Q3-4Yq" secondAttribute="leading" constant="15" id="TfX-6I-o3X"/>
+                            <constraint firstItem="LNQ-eB-nhZ" firstAttribute="height" secondItem="Zr0-vS-96H" secondAttribute="height" id="VNc-HE-6Mu"/>
                             <constraint firstItem="p9x-Q3-4Yq" firstAttribute="trailing" secondItem="4aZ-Sc-OKG" secondAttribute="trailing" id="ZvH-7l-eOE"/>
+                            <constraint firstItem="p9x-Q3-4Yq" firstAttribute="trailing" secondItem="LNQ-eB-nhZ" secondAttribute="trailing" constant="15" id="bf4-b8-teX"/>
                             <constraint firstItem="p9x-Q3-4Yq" firstAttribute="bottom" secondItem="4aZ-Sc-OKG" secondAttribute="bottom" id="ife-rb-o6a"/>
+                            <constraint firstItem="Sdc-dg-CwC" firstAttribute="trailing" secondItem="p9x-Q3-4Yq" secondAttribute="trailing" id="jR8-8q-Evv"/>
+                            <constraint firstItem="LNQ-eB-nhZ" firstAttribute="leading" secondItem="Zr0-vS-96H" secondAttribute="trailing" constant="35" id="rRS-DV-HMM"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="p9x-Q3-4Yq"/>
                     </view>
+                    <connections>
+                        <outlet property="avatarImage" destination="Zr0-vS-96H" id="zRk-s6-E55"/>
+                        <outlet property="nameLabel" destination="900-4g-R6U" id="Qnu-t4-gYd"/>
+                        <outlet property="profileTableView" destination="Sdc-dg-CwC" id="TRa-ke-n2h"/>
+                        <outlet property="statusLabel" destination="DWZ-xy-psp" id="J2d-fG-d7z"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="arM-Sl-16v" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

@@ -22,7 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let dependencyProvider = DependencyProvider()
         let factory = ViewControllerFactory(provider: dependencyProvider)
-        self.router = Router(factory: factory)
+        self.router = Router(factory: factory, keychainItem: dependencyProvider.keychainItem)
         
         router?.navigate(from: window)
         

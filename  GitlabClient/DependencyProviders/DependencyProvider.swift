@@ -14,6 +14,18 @@ protocol DependencyProviderType {
 }
 
 class DependencyProvider: DependencyProviderType {
-    let networkManager = NetworkManager()
+    
+    lazy var networkManager: NetworkManager = {
+        let networkManager = NetworkManager()
+        switch keychainItem.readToken() {
+        case .success(let string):
+            networkManager.configure(token: string)
+        case .error(_):
+            networkManager.configure(token: nil)
+        }
+        
+        return networkManager
+    }()
+    
     let keychainItem = KeychainItem()
 }

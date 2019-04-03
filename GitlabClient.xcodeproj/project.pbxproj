@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CE147D56224CD70200C08C11 /* ProfileItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE147D55224CD70200C08C11 /* ProfileItemViewModel.swift */; };
+		CE3B694D2252578F00FB7DEA /* ProfileCellSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3B694C2252578F00FB7DEA /* ProfileCellSize.swift */; };
 		CE6FF0142236AECB003F7C56 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6FF0132236AECB003F7C56 /* AppDelegate.swift */; };
 		CE6FF0162236AECB003F7C56 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6FF0152236AECB003F7C56 /* LogInViewController.swift */; };
 		CE6FF0192236AECC003F7C56 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE6FF0172236AECB003F7C56 /* Main.storyboard */; };
@@ -36,9 +38,12 @@
 		CE729F45224536CF0006C37C /* ProfileNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE729F44224536CF0006C37C /* ProfileNetworkService.swift */; };
 		CE729F4722453AD60006C37C /* ProfileService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE729F4622453AD60006C37C /* ProfileService.swift */; };
 		CE729F49224A24B80006C37C /* DecoderHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE729F48224A24B80006C37C /* DecoderHelper.swift */; };
+		CE729F4C224A7DAC0006C37C /* ProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE729F4B224A7DAC0006C37C /* ProfileTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CE147D55224CD70200C08C11 /* ProfileItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileItemViewModel.swift; sourceTree = "<group>"; };
+		CE3B694C2252578F00FB7DEA /* ProfileCellSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCellSize.swift; sourceTree = "<group>"; };
 		CE6FF0102236AECB003F7C56 /* GitlabClient.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GitlabClient.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE6FF0132236AECB003F7C56 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CE6FF0152236AECB003F7C56 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
@@ -73,6 +78,7 @@
 		CE729F44224536CF0006C37C /* ProfileNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileNetworkService.swift; sourceTree = "<group>"; };
 		CE729F4622453AD60006C37C /* ProfileService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileService.swift; sourceTree = "<group>"; };
 		CE729F48224A24B80006C37C /* DecoderHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecoderHelper.swift; sourceTree = "<group>"; };
+		CE729F4B224A7DAC0006C37C /* ProfileTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +92,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CE147D54224CD6C900C08C11 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				CE147D55224CD70200C08C11 /* ProfileItemViewModel.swift */,
+				CE3B694C2252578F00FB7DEA /* ProfileCellSize.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
 		CE6FF0072236AECB003F7C56 = {
 			isa = PBXGroup;
 			children = (
@@ -116,6 +131,8 @@
 				CE6FF039223AE19B003F7C56 /* Helpers */,
 				CE6FF038223AB689003F7C56 /* Constants */,
 				CE6FF037223AB65E003F7C56 /* CreateAndNavigateVCs */,
+				CE147D54224CD6C900C08C11 /* ViewModels */,
+				CE729F4A224A7D3A0006C37C /* Cells */,
 				CE6FF03022390AB0003F7C56 /* ViewControllers */,
 				CE6FF0172236AECB003F7C56 /* Main.storyboard */,
 				CE6FF0132236AECB003F7C56 /* AppDelegate.swift */,
@@ -235,6 +252,14 @@
 			path = ProfileNetworkService;
 			sourceTree = "<group>";
 		};
+		CE729F4A224A7D3A0006C37C /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				CE729F4B224A7DAC0006C37C /* ProfileTableViewCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -307,6 +332,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE3B694D2252578F00FB7DEA /* ProfileCellSize.swift in Sources */,
 				CE729F1F224125240006C37C /* DependencyProvider.swift in Sources */,
 				CE6FF0292236B1EA003F7C56 /* OAuthLogInViewController.swift in Sources */,
 				CE729F3D2244F5120006C37C /* ProfileViewController.swift in Sources */,
@@ -316,6 +342,8 @@
 				CE6FF03C223AE29E003F7C56 /* NetworkManager.swift in Sources */,
 				CE6FF041223B96CB003F7C56 /* LoginRequest.swift in Sources */,
 				CE729F43224536B80006C37C /* ProfileRequest.swift in Sources */,
+				CE729F4C224A7DAC0006C37C /* ProfileTableViewCell.swift in Sources */,
+				CE147D56224CD70200C08C11 /* ProfileItemViewModel.swift in Sources */,
 				CE6FF036223AAD0C003F7C56 /*  Constants.swift in Sources */,
 				CE729F252242582B0006C37C /* MainViewController.swift in Sources */,
 				CE729F18223EE6660006C37C /* Errors.swift in Sources */,

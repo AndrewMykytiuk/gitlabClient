@@ -7,8 +7,11 @@
 //
 
 import Foundation
+import UIKit
 
 enum Constants {
+    
+    static let font = UIFont(name: "Verdana", size: CGFloat(17))
     
     enum Network: String {
         

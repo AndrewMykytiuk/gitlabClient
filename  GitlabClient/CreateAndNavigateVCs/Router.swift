@@ -24,14 +24,17 @@ class Router: MainRouterType, ApplicationRouterType {
     private var rootVC: UINavigationController?
     private var authRootVC: UINavigationController?
     private var tabBarVC: UITabBarController?
+    private let keychainItem: KeychainItem
     
     enum Destination: String {
         case oauth = "OAuthLogInViewController"
         case main = "MainViewController"
     }
     
-    init(factory: ViewControllerFactory) {
+    init(factory: ViewControllerFactory,
+         keychainItem: KeychainItem) {
         self.factory = factory
+        self.keychainItem = keychainItem
     }
     
     func navigateToScreen(with identifier: Destination, animated: Bool) {
@@ -76,8 +79,13 @@ class Router: MainRouterType, ApplicationRouterType {
         self.rootVC = mainNavigationController
         self.tabBarVC = mainTabBarController
         
-        let loginNavigationController = createAuthNavigation()
-        mainNavigationController.present(loginNavigationController, animated: false, completion: nil)
+        switch keychainItem.readToken() {
+        case .success(_ ):
+            break
+        case .error(let error):
+            let loginNavigationController = createAuthNavigation()
+            mainNavigationController.present(loginNavigationController, animated: false, completion: nil)
+        }
     }
     
    private func createAuthNavigation() -> UINavigationController {
