@@ -29,6 +29,7 @@ class ProfileViewController: BaseViewController {
     private var profileService: ProfileService!
     private var userData: [ProfileItemViewModel] = []
     private var profileCell: ProfileTableViewCell!
+    private let activityIndicator = UIActivityIndicatorView()
     
     
     func configure(with loginService: LoginService, profileService: ProfileService) {
@@ -36,10 +37,31 @@ class ProfileViewController: BaseViewController {
         self.profileService = profileService
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        self.view.addSubview(activityIndicator)
+        activityIndicator.style = .whiteLarge
+       
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.setNavigationBarHidden(true, animated: animated)
         getUser()
+    }
+    
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        setupConstraints(with: self.view)
+    }
+    
+    private func setupConstraints(with view: UIView) {
+        
+        activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+        
+        activityIndicator.frame = view.frame
     }
     
     override func viewDidLayoutSubviews() {
@@ -80,6 +102,9 @@ class ProfileViewController: BaseViewController {
     }
     
     private func getUser() {
+        if userData.count == 0 {
+            activityIndicator.startAnimating()
+        }
         profileService?.getUser { [weak self] (result) in
             guard let welf = self else { return }
             switch result {
@@ -88,8 +113,12 @@ class ProfileViewController: BaseViewController {
                 welf.setup(with: user)
                 DispatchQueue.main.async {
                     welf.profileTableView.reloadData()
+                    welf.activityIndicator.stopAnimating()
                 }
             case .error(let error):
+                DispatchQueue.main.async {
+                    welf.activityIndicator.stopAnimating()
+                }
                 let alert = AlertHelper.createErrorAlert(message: error.localizedDescription, handler: nil)
                 welf.present(alert, animated: true)
             }

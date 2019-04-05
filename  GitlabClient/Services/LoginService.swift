@@ -76,6 +76,16 @@ class LoginService {
         }
     }
     
+    func checkReachability(completion: @escaping (Bool) -> Void) {
+        networkManager.checkReachability { (result) in
+            if result {
+                return completion(true)
+            } else {
+                return completion(false)
+            }
+        }
+    }
+    
 }
 
 

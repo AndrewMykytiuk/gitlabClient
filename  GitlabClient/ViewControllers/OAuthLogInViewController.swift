@@ -11,6 +11,7 @@ import WebKit
 
 protocol OAuthLogInViewControllerDelegate: class {
     func viewControllerDidFinishLogin(oAuthViewController: OAuthLogInViewController)
+    func viewControllerDidFinishWithError(oAuthViewController: OAuthLogInViewController)
 }
 
 class OAuthLogInViewController: BaseViewController {
@@ -29,9 +30,6 @@ class OAuthLogInViewController: BaseViewController {
         
         activityIndicator.startAnimating()
         
-        webView.navigationDelegate = self
-        webView.allowsBackForwardNavigationGestures = true
-        
         self.view.addSubview(webView)
         self.view.addSubview(activityIndicator)
         activityIndicator.style = .whiteLarge
@@ -39,20 +37,39 @@ class OAuthLogInViewController: BaseViewController {
         
         self.navigationController?.setNavigationBarHidden(false, animated: true)
         
-        switch AuthHelper.createURL(for: .authorize) {
-        case .success(let url):
-            webView.load(URLRequest(url: url))
-        case .error(let error):
-            if error.localizedDescription.count > 0 {}
-            let alert = AlertHelper.createErrorAlert(message: error.localizedDescription, handler: nil)
-            self.present(alert, animated: true)
-        }
+       setupWebView()
         
     }
     
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         setup(with: self.view)
+    }
+    
+    private func setupWebView() {
+        
+        webView.navigationDelegate = self
+        webView.allowsBackForwardNavigationGestures = true
+        
+        switch AuthHelper.createURL(for: .authorize) {
+        case .success(let url):
+            loginManager.checkReachability { [weak self] (result) in
+                guard let welf = self else { return }
+                if result {
+                    welf.webView.load(URLRequest(url: url))
+                } else {
+                    let alert = AlertHelper.createErrorAlert(message: FatalError.reachabilityError.rawValue) { (action) in
+                        welf.delegate?.viewControllerDidFinishWithError(oAuthViewController: welf)
+                    }
+                    welf.present(alert, animated: true)
+                }
+            }
+        case .error(let error):
+            let alert = AlertHelper.createErrorAlert(message: error.localizedDescription) { (action) in
+                self.delegate?.viewControllerDidFinishWithError(oAuthViewController: self)
+            }
+            self.present(alert, animated: true)
+        }
     }
     
     private func setup(with view: UIView) {
@@ -80,7 +97,9 @@ class OAuthLogInViewController: BaseViewController {
             case .success(let code):
                 receivingToken(with: code)
             case .error(let error):
-                let alert = AlertHelper.createErrorAlert(message: error.localizedDescription, handler: nil)
+                let alert = AlertHelper.createErrorAlert(message: error.localizedDescription) { (action) in
+                    self.delegate?.viewControllerDidFinishWithError(oAuthViewController: self)
+                }
                 self.present(alert, animated: true)
                 decisionHandler(.cancel)
             }
@@ -100,7 +119,9 @@ class OAuthLogInViewController: BaseViewController {
             case .success:
                 welf.delegate?.viewControllerDidFinishLogin(oAuthViewController: welf)
             case .error(let error):
-                let alert = AlertHelper.createErrorAlert(message: error.localizedDescription, handler: nil)
+                let alert = AlertHelper.createErrorAlert(message: error.localizedDescription) { (action) in
+                    welf.delegate?.viewControllerDidFinishWithError(oAuthViewController: welf)
+                }
                 welf.present(alert, animated: true)
             }
         })
@@ -117,6 +138,20 @@ extension OAuthLogInViewController: WKNavigationDelegate {
         
         self.wkNavigationDelegateAction(webView, decidePolicyFor: navigationAction, decisionHandler: decisionHandler)
         
+    }
+
+    func webView(_ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: Error) {
+        if error._code == -1001 || error._code == -1009 {
+        let alert = AlertHelper.createErrorAlert(message: error.localizedDescription) { (action) in
+            self.delegate?.viewControllerDidFinishWithError(oAuthViewController: self)
+        }
+        self.present(alert, animated: true)
+        }
+    }
+    
+    func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
+        let alert = AlertHelper.createErrorAlert(message: error.localizedDescription, handler: nil)
+        self.present(alert, animated: true)
     }
     
 }

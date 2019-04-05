@@ -29,6 +29,7 @@ enum KeychainError: Error {
 }
 
 enum FatalError: String, Error {
+    case reachabilityError = "No network connection"
     case invalidStoryboardCreate = "Cannot create View storyboard"
     case invalidCellCreate = "The dequeued cell is not an instance of "
 }

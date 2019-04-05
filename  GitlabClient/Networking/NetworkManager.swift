@@ -7,7 +7,7 @@
 //
 
 import Foundation
-
+import SystemConfiguration
 
 class NetworkManager {
     
@@ -42,19 +42,46 @@ class NetworkManager {
         tempRequest.addValue("application/json", forHTTPHeaderField: "Content-Type")
         tempRequest.addValue("application/json", forHTTPHeaderField: "Accept")
         
-        let task = session.dataTask(with: tempRequest as URLRequest, completionHandler: { data, response, error in
-            
-            if let requiredError = error {
-                return completion(.error(requiredError))
-            }
-            
-            guard let data = data else {
-                return completion(.error(ParsingError.emptyResult(response?.description)))
-            }
-            return completion(.success(data))
-        })
-        task.resume()
+        tempRequest.timeoutInterval = .init(10)
         
+        
+        checkReachability { (reachability) in
+            if reachability {
+                
+                let task = session.dataTask(with: tempRequest as URLRequest, completionHandler: { data, response, error in
+                    
+                    if let requiredError = error {
+                        return completion(.error(requiredError))
+                    }
+                    
+                    guard let data = data else {
+                        return completion(.error(ParsingError.emptyResult(response?.description)))
+                    }
+                    return completion(.success(data))
+                })
+                task.resume()
+            } else {
+                return completion(.error(FatalError.reachabilityError))
+        }
+    }
+   
+    }
+    
+    func checkReachability(completion: @escaping (Bool) -> Void) {
+        
+        let reachability = SCNetworkReachabilityCreateWithName(nil, Constants.Network.baseUrl.rawValue)
+        let queue = DispatchQueue.main
+        var isReachable = false
+        
+        guard let reachabilityb = reachability else { return completion(isReachable) }
+        
+        var flags = SCNetworkReachabilityFlags()
+        
+        queue.async {
+            SCNetworkReachabilityGetFlags(reachabilityb, &flags)
+            isReachable = flags.contains(.reachable)
+            return completion(isReachable)
+        }
     }
     
 }
