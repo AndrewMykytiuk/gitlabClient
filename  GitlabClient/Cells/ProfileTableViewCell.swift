@@ -16,20 +16,22 @@ class ProfileTableViewCell: UITableViewCell {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     
+    private var ranges: [NSRange] = []
+    
     func setup(with viewModel: ProfileItemViewModel) {
         
         self.titleLabel.text = viewModel.title
         
         guard let text = viewModel.description else { return }
         
-        guard let attribute = checkForUrl(text: text) else {
+        guard let attribute = checkForUrl(text: text, storeRange: false) else {
             self.descriptionLabel.text = text
             return
         }
          self.descriptionLabel.attributedText = attribute
     }
     
-    func checkForUrl(text: String) -> NSMutableAttributedString? {
+    func checkForUrl(text: String, storeRange: Bool) -> NSMutableAttributedString? {
         let attributes = [NSAttributedString.Key.font: Constants.font]
         switch DecoderHelper.urlsInString(with: text) {
         case .success(let urls):
@@ -37,6 +39,9 @@ class ProfileTableViewCell: UITableViewCell {
                 let attribute = NSMutableAttributedString.init(string: text, attributes: attributes as [NSAttributedString.Key : Any])
                 for url in urls {
                     let range = (text as NSString).range(of: url)
+                    if storeRange {
+                        ranges.append(range)
+                    }
                     attribute.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.blue, range: range)
                 }
                  return attribute
@@ -57,7 +62,7 @@ class ProfileTableViewCell: UITableViewCell {
         self.titleLabel.text = viewModel.title
         guard let text = viewModel.description else { return  ProfileCellSize(titleHeight: 0, descriptionHeight: 0, titleWidth: 0, descriptionWidth: 0) }
             
-            if let attribute = checkForUrl(text: text) {
+            if let attribute = checkForUrl(text: text, storeRange: false) {
                 self.descriptionLabel.attributedText = attribute
                 self.descriptionLabel.sizeToFit()
             } else {
@@ -74,6 +79,14 @@ class ProfileTableViewCell: UITableViewCell {
     
     class func identifier() -> String {
         return "ProfileTableViewCell"
+    }
+    
+    func getRanges() -> [NSRange] {
+        return ranges
+    }
+    
+    func removeRanges() {
+        ranges.removeAll()
     }
 
 }
