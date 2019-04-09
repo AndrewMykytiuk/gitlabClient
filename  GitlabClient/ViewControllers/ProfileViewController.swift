@@ -21,7 +21,6 @@ class ProfileViewController: BaseViewController {
     @IBOutlet weak var profileTableView: UITableView! {
         didSet {
             createProfileCellPrototype()
-            gesture = UITapGestureRecognizer(target: self, action: #selector(tapLabel))
         }
     }
     
@@ -113,24 +112,6 @@ class ProfileViewController: BaseViewController {
         
     }
     
-    @IBAction func tapLabel(gesture: UITapGestureRecognizer) {
-        guard let text = profileCell.descriptionLabel.text else { return }
-        
-        profileCell.checkForUrl(text: text, storeRange: true)
-        let ranges =  profileCell.getRanges()
-        for range in ranges {
-            if gesture.didTapAttributedTextInLabel(profileCell.descriptionLabel, inRange: range) {
-                let string = (String)(Array(text)[range.location...(range.location + range.length - 1)])
-                guard let url = URL(string: string) else {
-                    return
-                }
-                UIApplication.shared.open(url, options: [:], completionHandler: nil)
-            }
-        }
-        
-        profileCell.removeRanges()
-    }
-    
 }
 
 extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
@@ -203,17 +184,5 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
 
          return max(descriptionRect.height, titleRect.height) + profileCell.verticalOffsets()
     }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        guard let cell = tableView.cellForRow(at: indexPath) as? ProfileTableViewCell else {
-            fatalError(FatalError.invalidCellCreate.rawValue + ProfileTableViewCell.identifier())
-        }
-        profileCell.descriptionLabel.text = cell.descriptionLabel.text
-        if let tempGesture = gesture {
-        tapLabel(gesture: tempGesture)
-        }
-    }
-    
     
 }

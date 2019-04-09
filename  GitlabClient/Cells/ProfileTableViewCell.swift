@@ -29,6 +29,11 @@ class ProfileTableViewCell: UITableViewCell {
             return
         }
          self.descriptionLabel.attributedText = attribute
+        
+        let gesture = UITapGestureRecognizer(target: self, action: #selector(tapLabel))
+        gesture.numberOfTapsRequired = 1
+        self.descriptionLabel.addGestureRecognizer(gesture)
+        self.descriptionLabel.isUserInteractionEnabled = true
     }
     
     func checkForUrl(text: String, storeRange: Bool) -> NSMutableAttributedString? {
@@ -36,7 +41,7 @@ class ProfileTableViewCell: UITableViewCell {
         switch DecoderHelper.urlsInString(with: text) {
         case .success(let urls):
             if urls.count > 0 {
-                let attribute = NSMutableAttributedString.init(string: text, attributes: attributes as [NSAttributedString.Key : Any])
+                let attribute = NSMutableAttributedString(string: text, attributes: attributes as [NSAttributedString.Key : Any])
                 for url in urls {
                     let range = (text as NSString).range(of: url)
                     if storeRange {
@@ -60,7 +65,7 @@ class ProfileTableViewCell: UITableViewCell {
     func getLabelsSize(with viewModel: ProfileItemViewModel) -> ProfileCellSize {
         if titleLabel != nil {
         self.titleLabel.text = viewModel.title
-        guard let text = viewModel.description else { return  ProfileCellSize(titleHeight: 0, descriptionHeight: 0, titleWidth: 0, descriptionWidth: 0) }
+        guard let text = viewModel.description else { return  ProfileCellSize(titleHeight: titleLabel.frame.height, descriptionHeight: 0, titleWidth: titleLabel.frame.width, descriptionWidth: 0) }
             
             if let attribute = checkForUrl(text: text, storeRange: false) {
                 self.descriptionLabel.attributedText = attribute
@@ -81,12 +86,20 @@ class ProfileTableViewCell: UITableViewCell {
         return "ProfileTableViewCell"
     }
     
-    func getRanges() -> [NSRange] {
-        return ranges
+    @IBAction func tapLabel(gesture: UITapGestureRecognizer) {
+        guard let text = self.descriptionLabel.text else { return }
+        
+        let attribute = self.checkForUrl(text: text, storeRange: true)
+        for range in ranges {
+            if gesture.didTapAttributedTextInLabel(self.descriptionLabel, inRange: range) {
+                let string = (String)(Array(text)[range.location...(range.location + range.length - 1)])
+                guard let url = URL(string: string) else { return }
+                guard let tempAttribute = attribute else { return }
+                tempAttribute.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.purple, range: range)
+                self.descriptionLabel.attributedText = attribute
+                UIApplication.shared.open(url, options: [:], completionHandler: nil)
+            }
+        }
+         ranges.removeAll()
     }
-    
-    func removeRanges() {
-        ranges.removeAll()
-    }
-
 }
