@@ -34,4 +34,13 @@ enum FatalError: String, Error {
     case invalidCellCreate = "The dequeued cell is not an instance of "
 }
 
+enum CodeError: Int, Error {
+    case requestTimeout
+    
+    var range:Range<Int> {
+        switch self {
+        case .requestTimeout : return -1011 ..< -1000
+        }
+    }
+}
 

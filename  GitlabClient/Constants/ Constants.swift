@@ -49,6 +49,10 @@ enum Constants {
         
     }
     
+    enum UIElements: CGFloat {
+        case activityIndicatorSize = 40
+    }
+    
     enum TabBarItemNames {
     
         case main

@@ -141,7 +141,7 @@ extension OAuthLogInViewController: WKNavigationDelegate {
     }
 
     func webView(_ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: Error) {
-        if error._code == -1001 || error._code == -1009 {
+        if CodeError.requestTimeout.range.contains(error._code) {
         let alert = AlertHelper.createErrorAlert(message: error.localizedDescription) { (action) in
             self.delegate?.viewControllerDidFinishWithError(oAuthViewController: self)
         }

@@ -37,14 +37,6 @@ class ProfileViewController: BaseViewController {
         self.profileService = profileService
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        self.view.addSubview(activityIndicator)
-        activityIndicator.style = .whiteLarge
-       
-    }
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.setNavigationBarHidden(true, animated: animated)
@@ -53,15 +45,14 @@ class ProfileViewController: BaseViewController {
     
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
-        setupConstraints(with: self.view)
+        setupFrames(with: self.view)
     }
     
-    private func setupConstraints(with view: UIView) {
-        
-        activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
-        
-        activityIndicator.frame = view.frame
+    private func setupFrames(with view: UIView) {
+        activityIndicator.frame = CGRect(x: 0, y: 0, width: Constants.UIElements.activityIndicatorSize.rawValue, height: Constants.UIElements.activityIndicatorSize.rawValue)
+        activityIndicator.center = self.view.center
+        activityIndicator.style = .whiteLarge
+        self.view.addSubview(activityIndicator)
     }
     
     override func viewDidLayoutSubviews() {

@@ -12,6 +12,7 @@ import SystemConfiguration
 class NetworkManager {
     
     private var token: String?
+    private let reachability = SCNetworkReachabilityCreateWithName(nil, Constants.Network.baseUrl.rawValue)
     
     func configure(token: String?) {
         self.token = token
@@ -69,16 +70,15 @@ class NetworkManager {
     
     func checkReachability(completion: @escaping (Bool) -> Void) {
         
-        let reachability = SCNetworkReachabilityCreateWithName(nil, Constants.Network.baseUrl.rawValue)
         let queue = DispatchQueue.main
         var isReachable = false
         
-        guard let reachabilityb = reachability else { return completion(isReachable) }
+        guard let tempReachability = reachability else { return completion(isReachable) }
         
         var flags = SCNetworkReachabilityFlags()
         
         queue.async {
-            SCNetworkReachabilityGetFlags(reachabilityb, &flags)
+            SCNetworkReachabilityGetFlags(tempReachability, &flags)
             isReachable = flags.contains(.reachable)
             return completion(isReachable)
         }
