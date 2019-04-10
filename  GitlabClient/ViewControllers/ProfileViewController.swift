@@ -29,7 +29,6 @@ class ProfileViewController: BaseViewController {
     private var profileService: ProfileService!
     private var userData: [ProfileItemViewModel] = []
     private var profileCell: ProfileTableViewCell!
-    private var gesture: UITapGestureRecognizer?
     private let activityIndicator = UIActivityIndicatorView(style: .whiteLarge)
     
     
