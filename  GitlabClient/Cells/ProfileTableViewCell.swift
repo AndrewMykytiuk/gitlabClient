@@ -17,6 +17,12 @@ class ProfileTableViewCell: UITableViewCell {
     @IBOutlet weak var descriptionLabel: UILabel!
     
     private var ranges: [NSRange] = []
+    private var gesture: UITapGestureRecognizer?
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        gesture = UITapGestureRecognizer(target: self, action: #selector(tapLabel))
+    }
     
     func setup(with viewModel: ProfileItemViewModel) {
         
@@ -28,12 +34,14 @@ class ProfileTableViewCell: UITableViewCell {
             self.descriptionLabel.text = text
             return
         }
-         self.descriptionLabel.attributedText = attribute
         
-        let gesture = UITapGestureRecognizer(target: self, action: #selector(tapLabel))
-        gesture.numberOfTapsRequired = 1
-        self.descriptionLabel.addGestureRecognizer(gesture)
+        self.descriptionLabel.attributedText = attribute
         self.descriptionLabel.isUserInteractionEnabled = true
+        
+        if let gesture = gesture {
+            gesture.numberOfTapsRequired = 1
+            self.descriptionLabel.addGestureRecognizer(gesture)
+        }
     }
     
     func checkForUrl(text: String, storeRange: Bool) -> NSMutableAttributedString? {
