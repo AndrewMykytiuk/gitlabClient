@@ -103,20 +103,19 @@ class ProfileViewController: BaseViewController {
         }
         profileService?.getUser { [weak self] (result) in
             guard let welf = self else { return }
-            let queue = DispatchQueue.main
-            switch result {
-            case .success(let user):
-                welf.userData.removeAll()
-                welf.setup(with: user)
-                queue.async {
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let user):
+                    welf.userData.removeAll()
+                    welf.setup(with: user)
                     welf.profileTableView.reloadData()
                     welf.activityIndicator.stopAnimating()
-                }
-            case .error(let error):
-                queue.async {
+                    
+                case .error(let error):
                     welf.activityIndicator.stopAnimating()
                     let alert = AlertHelper.createErrorAlert(message: error.localizedDescription, handler: nil)
                     welf.present(alert, animated: true)
+                    
                 }
             }
         }
