@@ -109,6 +109,12 @@ extension Router : OAuthLogInViewControllerDelegate {
         }
     }
     
+    func viewControllerDidFinishWithError(oAuthViewController: OAuthLogInViewController) {
+        DispatchQueue.main.async {
+            self.authRootVC?.popToRootViewController(animated: false)
+        }
+    }
+    
 }
 
 extension Router : ProfileViewControllerDelegate {

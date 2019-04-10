@@ -29,6 +29,7 @@ class ProfileViewController: BaseViewController {
     private var profileService: ProfileService!
     private var userData: [ProfileItemViewModel] = []
     private var profileCell: ProfileTableViewCell!
+    private let activityIndicator = UIActivityIndicatorView(style: .whiteLarge)
     
     
     func configure(with loginService: LoginService, profileService: ProfileService) {
@@ -40,6 +41,23 @@ class ProfileViewController: BaseViewController {
         super.viewWillAppear(animated)
         self.navigationController?.setNavigationBarHidden(true, animated: animated)
         getUser()
+    }
+    
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        setupActivityIndicator(with: self.view)
+    }
+    
+    private func setupActivityIndicator(with view: UIView) {
+        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+        self.view.addSubview(activityIndicator)
+        let horizontalConstraint = activityIndicator
+            .centerXAnchor.constraint(equalTo: self.view.centerXAnchor)
+        let verticalConstraint = activityIndicator
+            .centerYAnchor.constraint(equalTo: self.view.centerYAnchor)
+        view.addConstraint(horizontalConstraint)
+        view.addConstraint(verticalConstraint)
+
     }
     
     override func viewDidLayoutSubviews() {
@@ -80,18 +98,25 @@ class ProfileViewController: BaseViewController {
     }
     
     private func getUser() {
+        if userData.count == 0 {
+            activityIndicator.startAnimating()
+        }
         profileService?.getUser { [weak self] (result) in
             guard let welf = self else { return }
-            switch result {
-            case .success(let user):
-                welf.userData.removeAll()
-                welf.setup(with: user)
-                DispatchQueue.main.async {
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let user):
+                    welf.userData.removeAll()
+                    welf.setup(with: user)
                     welf.profileTableView.reloadData()
+                    welf.activityIndicator.stopAnimating()
+                    
+                case .error(let error):
+                    welf.activityIndicator.stopAnimating()
+                    let alert = AlertHelper.createErrorAlert(message: error.localizedDescription, handler: nil)
+                    welf.present(alert, animated: true)
+                    
                 }
-            case .error(let error):
-                let alert = AlertHelper.createErrorAlert(message: error.localizedDescription, handler: nil)
-                welf.present(alert, animated: true)
             }
         }
     }
