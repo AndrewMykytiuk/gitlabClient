@@ -8,3 +8,9 @@
 
 "Error" = "Error";
 "OK" = "OK";
+"Email" = "Email:";
+"Location" = "Location:";
+"Skype" = "Skype:";
+"Linkedin" = "Linkedin:";
+"Twitter" = "Twitter:";
+"Website" = "Website:";

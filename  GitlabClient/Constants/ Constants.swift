@@ -7,11 +7,15 @@
 //
 
 import Foundation
+import UIKit
 
 enum Constants {
     
+    static let font = UIFont(name: "Verdana", size: CGFloat(17))
+    
     enum Network: String {
         
+        case baseUrl = "www.gitlab.dataart.com"
         case secureScheme = "https"
         case host = "gitlab.dataart.com"
         case clientID = "84318559ea36e249bd51365dca13ba9f937aa09442e67dc1c31c25a376adcafa"
@@ -46,6 +50,10 @@ enum Constants {
         case title = "Error"
         case okButton = "OK"
         
+    }
+    
+    enum UIElements: CGFloat {
+        case activityIndicatorSize = 40
     }
     
     enum TabBarItemNames {

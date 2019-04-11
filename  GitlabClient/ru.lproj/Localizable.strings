@@ -8,3 +8,9 @@
 
 "Error" = "Ошибка";
 "OK" = "Согласимся";
+"Email" = "Почта:";
+"Location" = "Страна:";
+"Skype" = "Skype:";
+"Linkedin" = "Linkedin:";
+"Twitter" = "Twitter:";
+"Website" = "Сайт:";
