@@ -39,6 +39,7 @@
 		CE729F4722453AD60006C37C /* ProfileService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE729F4622453AD60006C37C /* ProfileService.swift */; };
 		CE729F49224A24B80006C37C /* DecoderHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE729F48224A24B80006C37C /* DecoderHelper.swift */; };
 		CE729F4C224A7DAC0006C37C /* ProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE729F4B224A7DAC0006C37C /* ProfileTableViewCell.swift */; };
+		CEE51014225B467F0049EC69 /* UITapGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE51013225B467F0049EC69 /* UITapGestureRecognizer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -79,6 +80,7 @@
 		CE729F4622453AD60006C37C /* ProfileService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileService.swift; sourceTree = "<group>"; };
 		CE729F48224A24B80006C37C /* DecoderHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecoderHelper.swift; sourceTree = "<group>"; };
 		CE729F4B224A7DAC0006C37C /* ProfileTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableViewCell.swift; sourceTree = "<group>"; };
+		CEE51013225B467F0049EC69 /* UITapGestureRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITapGestureRecognizer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -132,6 +134,7 @@
 				CE6FF038223AB689003F7C56 /* Constants */,
 				CE6FF037223AB65E003F7C56 /* CreateAndNavigateVCs */,
 				CE147D54224CD6C900C08C11 /* ViewModels */,
+				CEE51012225B464A0049EC69 /* Extensions */,
 				CE729F4A224A7D3A0006C37C /* Cells */,
 				CE6FF03022390AB0003F7C56 /* ViewControllers */,
 				CE6FF0172236AECB003F7C56 /* Main.storyboard */,
@@ -260,6 +263,14 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
+		CEE51012225B464A0049EC69 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				CEE51013225B467F0049EC69 /* UITapGestureRecognizer.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -353,6 +364,7 @@
 				CE6FF0162236AECB003F7C56 /* LogInViewController.swift in Sources */,
 				CE729F2D2243A1C40006C37C /* AlertHelper.swift in Sources */,
 				CE729F382244D7580006C37C /* LoginService.swift in Sources */,
+				CEE51014225B467F0049EC69 /* UITapGestureRecognizer.swift in Sources */,
 				CE729F4722453AD60006C37C /* ProfileService.swift in Sources */,
 				CE6FF02D2237DD9E003F7C56 /* Router.swift in Sources */,
 				CE6FF02F22390905003F7C56 /* BaseViewController.swift in Sources */,

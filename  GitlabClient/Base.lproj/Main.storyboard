@@ -87,28 +87,13 @@
                     <view key="view" contentMode="scaleToFill" id="xZj-o2-GRs">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" semanticContentAttribute="forceLeftToRight" text="FEEDS" textAlignment="center" lineBreakMode="characterWrap" numberOfLines="0" baselineAdjustment="none" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="00l-li-GYI">
-                                <rect key="frame" x="112" y="140" width="151.5" height="80"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="80" id="ta6-nX-Qj2"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="Verdana" family="Verdana" pointSize="46"/>
-                                <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
                         <color key="backgroundColor" red="0.8862745098" green="0.2784313725" blue="0.28235294119999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstItem="00l-li-GYI" firstAttribute="centerX" secondItem="ZZj-74-obh" secondAttribute="centerX" id="4wF-Xv-FlE"/>
-                            <constraint firstItem="00l-li-GYI" firstAttribute="top" secondItem="ZZj-74-obh" secondAttribute="top" constant="120" id="qzA-Pz-3wb"/>
-                        </constraints>
                         <viewLayoutGuide key="safeArea" id="ZZj-74-obh"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="w2R-Pv-MlL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1981.5999999999999" y="26.53673163418291"/>
+            <point key="canvasLocation" x="1982" y="27"/>
         </scene>
         <!--Profile View Controller-->
         <scene sceneID="rLL-Jh-W1m">
@@ -150,15 +135,15 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="top" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="LNQ-eB-nhZ">
                                 <rect key="frame" x="120" y="30" width="240" height="70"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="900-4g-R6U">
-                                        <rect key="frame" x="0.0" y="0.0" width="240" height="65"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="900-4g-R6U">
+                                        <rect key="frame" x="0.0" y="0.0" width="240" height="31.5"/>
                                         <fontDescription key="fontDescription" name="Verdana" family="Verdana" pointSize="17"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="DWZ-xy-psp">
-                                        <rect key="frame" x="0.0" y="70" width="240" height="0.0"/>
-                                        <fontDescription key="fontDescription" name="Verdana" family="Verdana" pointSize="15"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Status" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="DWZ-xy-psp">
+                                        <rect key="frame" x="0.0" y="36.5" width="240" height="33.5"/>
+                                        <fontDescription key="fontDescription" name="Verdana" family="Verdana" pointSize="17"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -168,7 +153,7 @@
                                     <constraint firstItem="DWZ-xy-psp" firstAttribute="centerX" secondItem="LNQ-eB-nhZ" secondAttribute="centerX" id="k9B-jN-mzg"/>
                                 </constraints>
                             </stackView>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Sdc-dg-CwC">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Sdc-dg-CwC">
                                 <rect key="frame" x="0.0" y="130" width="375" height="487"/>
                                 <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
@@ -179,7 +164,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="37"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" semanticContentAttribute="forceLeftToRight" text="SOS" lineBreakMode="characterWrap" numberOfLines="0" baselineAdjustment="none" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pfb-d7-Iye">
+                                                <label opaque="NO" contentMode="TopLeft" semanticContentAttribute="forceLeftToRight" text="SOS" lineBreakMode="characterWrap" numberOfLines="0" baselineAdjustment="none" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pfb-d7-Iye">
                                                     <rect key="frame" x="105" y="8" width="265" height="21"/>
                                                     <fontDescription key="fontDescription" name="Verdana" family="Verdana" pointSize="17"/>
                                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

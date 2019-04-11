@@ -194,13 +194,19 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
             options: [.usesLineFragmentOrigin, .usesFontLeading],
             attributes: attributes as [NSAttributedString.Key : Any], context: nil)
         
-        let descriptionRect = NSString(string: descriptionText).boundingRect(
-            with: CGSize(width: size.descriptionWidth, height: size.descriptionHeight),
-            options: [.usesLineFragmentOrigin, .usesFontLeading],
-            attributes: attributes as [NSAttributedString.Key : Any], context: nil)
+        guard let attribute = profileCell.checkForUrl(text: descriptionText, storeRange: false) else {
+            
+            let descriptionRect = NSString(string: descriptionText).boundingRect(
+                with: CGSize(width: size.descriptionWidth, height: size.descriptionHeight),
+                options: [.usesLineFragmentOrigin, .usesFontLeading],
+                attributes: attributes as [NSAttributedString.Key : Any], context: nil)
+            
+            return max(descriptionRect.height, titleRect.height) + profileCell.verticalOffsets()
+        }
         
-        return max(descriptionRect.height, titleRect.height) + profileCell.verticalOffsets()
+        let descriptionRect = NSMutableAttributedString(attributedString: attribute).boundingRect(with: CGSize(width: size.descriptionWidth, height: size.descriptionHeight), options: [.usesLineFragmentOrigin, .usesFontLeading,], context: nil)
+
+         return max(descriptionRect.height, titleRect.height) + profileCell.verticalOffsets()
     }
-    
     
 }
