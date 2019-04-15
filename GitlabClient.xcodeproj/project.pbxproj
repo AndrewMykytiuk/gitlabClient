@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		CE147D53224BBE5600C08C11 /* NewsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE147D52224BBE5600C08C11 /* NewsTableViewCell.swift */; };
+		CE147D53224BBE5600C08C11 /* ProjectsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE147D52224BBE5600C08C11 /* ProjectsTableViewCell.swift */; };
 		CE3B6950225374EA00FB7DEA /* ProjectRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3B694F225374EA00FB7DEA /* ProjectRequest.swift */; };
 		CE3B69522253750200FB7DEA /* ProjectsNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3B69512253750200FB7DEA /* ProjectsNetworkService.swift */; };
 		CE3B695422537BED00FB7DEA /* ProjectService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3B695322537BED00FB7DEA /* ProjectService.swift */; };
@@ -41,10 +41,18 @@
 		CE729F45224536CF0006C37C /* ProfileNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE729F44224536CF0006C37C /* ProfileNetworkService.swift */; };
 		CE729F4722453AD60006C37C /* ProfileService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE729F4622453AD60006C37C /* ProfileService.swift */; };
 		CE729F49224A24B80006C37C /* DecoderHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE729F48224A24B80006C37C /* DecoderHelper.swift */; };
+		CEE51019225F38070049EC69 /* UITapGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE51016225F38070049EC69 /* UITapGestureRecognizer.swift */; };
+		CEE5101A225F38070049EC69 /* ProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE51018225F38070049EC69 /* ProfileTableViewCell.swift */; };
+		CEE5101E225F384A0049EC69 /* ProfileItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE5101C225F384A0049EC69 /* ProfileItemViewModel.swift */; };
+		CEE5101F225F384A0049EC69 /* ProfileCellSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE5101D225F384A0049EC69 /* ProfileCellSize.swift */; };
+		CEE51021225F461C0049EC69 /* MergeRqst.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE51020225F461C0049EC69 /* MergeRqst.swift */; };
+		CEE51023225F4DC90049EC69 /* MergeRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE51022225F4DC90049EC69 /* MergeRequest.swift */; };
+		CEE51025225F532F0049EC69 /* MergeRequestNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE51024225F532F0049EC69 /* MergeRequestNetworkService.swift */; };
+		CEE510282260B71E0049EC69 /* ProjectsCellSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE510272260B71E0049EC69 /* ProjectsCellSize.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		CE147D52224BBE5600C08C11 /* NewsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsTableViewCell.swift; sourceTree = "<group>"; };
+		CE147D52224BBE5600C08C11 /* ProjectsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectsTableViewCell.swift; sourceTree = "<group>"; };
 		CE3B694F225374EA00FB7DEA /* ProjectRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectRequest.swift; sourceTree = "<group>"; };
 		CE3B69512253750200FB7DEA /* ProjectsNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectsNetworkService.swift; sourceTree = "<group>"; };
 		CE3B695322537BED00FB7DEA /* ProjectService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectService.swift; sourceTree = "<group>"; };
@@ -83,6 +91,14 @@
 		CE729F44224536CF0006C37C /* ProfileNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileNetworkService.swift; sourceTree = "<group>"; };
 		CE729F4622453AD60006C37C /* ProfileService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileService.swift; sourceTree = "<group>"; };
 		CE729F48224A24B80006C37C /* DecoderHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecoderHelper.swift; sourceTree = "<group>"; };
+		CEE51016225F38070049EC69 /* UITapGestureRecognizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITapGestureRecognizer.swift; sourceTree = "<group>"; };
+		CEE51018225F38070049EC69 /* ProfileTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileTableViewCell.swift; sourceTree = "<group>"; };
+		CEE5101C225F384A0049EC69 /* ProfileItemViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileItemViewModel.swift; sourceTree = "<group>"; };
+		CEE5101D225F384A0049EC69 /* ProfileCellSize.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileCellSize.swift; sourceTree = "<group>"; };
+		CEE51020225F461C0049EC69 /* MergeRqst.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MergeRqst.swift; sourceTree = "<group>"; };
+		CEE51022225F4DC90049EC69 /* MergeRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MergeRequest.swift; sourceTree = "<group>"; };
+		CEE51024225F532F0049EC69 /* MergeRequestNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MergeRequestNetworkService.swift; sourceTree = "<group>"; };
+		CEE510272260B71E0049EC69 /* ProjectsCellSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectsCellSize.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,6 +140,10 @@
 		CE6FF0122236AECB003F7C56 /*  GitlabClient */ = {
 			isa = PBXGroup;
 			children = (
+				CEE51026225F53360049EC69 /* MergeRequestNetworkService */,
+				CEE5101B225F384A0049EC69 /* ViewModels */,
+				CEE51017225F38070049EC69 /* Cells */,
+				CEE51015225F38070049EC69 /* Extensions */,
 				CE3B694E225374B800FB7DEA /*  ProjectsNetworkService */,
 				CE729F412245366C0006C37C /* ProfileNetworkService */,
 				CE729F3E2245325B0006C37C /* Model */,
@@ -155,7 +175,6 @@
 				CE6FF0152236AECB003F7C56 /* LogInViewController.swift */,
 				CE6FF0282236B1EA003F7C56 /* OAuthLogInViewController.swift */,
 				CE729F3C2244F5120006C37C /* ProfileViewController.swift */,
-				CE147D52224BBE5600C08C11 /* NewsTableViewCell.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -245,6 +264,7 @@
 			children = (
 				CE729F3F224532750006C37C /* User.swift */,
 				CE3B695522537CE500FB7DEA /* Project.swift */,
+				CEE51022225F4DC90049EC69 /* MergeRequest.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -256,6 +276,42 @@
 				CE729F44224536CF0006C37C /* ProfileNetworkService.swift */,
 			);
 			path = ProfileNetworkService;
+			sourceTree = "<group>";
+		};
+		CEE51015225F38070049EC69 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				CEE51016225F38070049EC69 /* UITapGestureRecognizer.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		CEE51017225F38070049EC69 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				CEE51018225F38070049EC69 /* ProfileTableViewCell.swift */,
+				CE147D52224BBE5600C08C11 /* ProjectsTableViewCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		CEE5101B225F384A0049EC69 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				CEE5101C225F384A0049EC69 /* ProfileItemViewModel.swift */,
+				CEE5101D225F384A0049EC69 /* ProfileCellSize.swift */,
+				CEE510272260B71E0049EC69 /* ProjectsCellSize.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		CEE51026225F53360049EC69 /* MergeRequestNetworkService */ = {
+			isa = PBXGroup;
+			children = (
+				CEE51020225F461C0049EC69 /* MergeRqst.swift */,
+				CEE51024225F532F0049EC69 /* MergeRequestNetworkService.swift */,
+			);
+			path = MergeRequestNetworkService;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -335,12 +391,17 @@
 				CE6FF0292236B1EA003F7C56 /* OAuthLogInViewController.swift in Sources */,
 				CE729F3D2244F5120006C37C /* ProfileViewController.swift in Sources */,
 				CE6FF043223B96EE003F7C56 /* LoginNetworkService.swift in Sources */,
+				CEE5101E225F384A0049EC69 /* ProfileItemViewModel.swift in Sources */,
 				CE3B6950225374EA00FB7DEA /* ProjectRequest.swift in Sources */,
-				CE147D53224BBE5600C08C11 /* NewsTableViewCell.swift in Sources */,
+				CE147D53224BBE5600C08C11 /* ProjectsTableViewCell.swift in Sources */,
 				CE6FF032223A6A17003F7C56 /* AuthHelper.swift in Sources */,
 				CE729F45224536CF0006C37C /* ProfileNetworkService.swift in Sources */,
 				CE6FF03C223AE29E003F7C56 /* NetworkManager.swift in Sources */,
+				CEE51023225F4DC90049EC69 /* MergeRequest.swift in Sources */,
+				CEE5101F225F384A0049EC69 /* ProfileCellSize.swift in Sources */,
+				CEE5101A225F38070049EC69 /* ProfileTableViewCell.swift in Sources */,
 				CE6FF041223B96CB003F7C56 /* LoginRequest.swift in Sources */,
+				CEE51019225F38070049EC69 /* UITapGestureRecognizer.swift in Sources */,
 				CE729F43224536B80006C37C /* ProfileRequest.swift in Sources */,
 				CE6FF036223AAD0C003F7C56 /*  Constants.swift in Sources */,
 				CE729F252242582B0006C37C /* MainViewController.swift in Sources */,
@@ -352,6 +413,8 @@
 				CE729F382244D7580006C37C /* LoginService.swift in Sources */,
 				CE729F4722453AD60006C37C /* ProfileService.swift in Sources */,
 				CE3B69522253750200FB7DEA /* ProjectsNetworkService.swift in Sources */,
+				CEE510282260B71E0049EC69 /* ProjectsCellSize.swift in Sources */,
+				CEE51021225F461C0049EC69 /* MergeRqst.swift in Sources */,
 				CE6FF02D2237DD9E003F7C56 /* Router.swift in Sources */,
 				CE6FF02F22390905003F7C56 /* BaseViewController.swift in Sources */,
 				CE3B695622537CE500FB7DEA /* Project.swift in Sources */,
@@ -360,6 +423,7 @@
 				CE3B695422537BED00FB7DEA /* ProjectService.swift in Sources */,
 				CE6FF0142236AECB003F7C56 /* AppDelegate.swift in Sources */,
 				CE729F40224532750006C37C /* User.swift in Sources */,
+				CEE51025225F532F0049EC69 /* MergeRequestNetworkService.swift in Sources */,
 				CE729F49224A24B80006C37C /* DecoderHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

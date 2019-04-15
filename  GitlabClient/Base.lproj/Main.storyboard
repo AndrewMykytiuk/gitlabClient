@@ -88,63 +88,89 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="26S-wY-Qn0">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="26S-wY-Qn0">
                                 <rect key="frame" x="0.0" y="35" width="375" height="632"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="NewsTableViewCell" rowHeight="120" id="ehY-M5-qwO" customClass="NewsTableViewCell" customModule="GitlabClient" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="120"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ProjectsTableViewCell" rowHeight="130" id="ehY-M5-qwO" customClass="ProjectsTableViewCell" customModule="GitlabClient" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="130"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ehY-M5-qwO" id="BNE-zz-ooe">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="119.5"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ehY-M5-qwO" id="BNE-zz-ooe">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="129.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mCa-FL-wMU">
-                                                    <rect key="frame" x="20" y="11" width="335" height="20"/>
-                                                    <fontDescription key="fontDescription" name="Symbol" family="Symbol" pointSize="20"/>
-                                                    <nil key="textColor"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="none" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BH5-Gd-3dh">
+                                                    <rect key="frame" x="5" y="92" width="365" height="29.5"/>
+                                                    <fontDescription key="fontDescription" name="Verdana" family="Verdana" pointSize="17"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FJU-iH-GmM">
-                                                    <rect key="frame" x="20" y="41" width="335" height="17"/>
-                                                    <fontDescription key="fontDescription" name="Symbol" family="Symbol" pointSize="17"/>
-                                                    <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FdK-El-ywR">
+                                                    <rect key="frame" x="5" y="37" width="165" height="21"/>
+                                                    <fontDescription key="fontDescription" name="Verdana" family="Verdana" pointSize="17"/>
+                                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0gy-Sy-mva">
-                                                    <rect key="frame" x="20" y="68" width="335" height="15"/>
-                                                    <fontDescription key="fontDescription" name="Symbol" family="Symbol" pointSize="15"/>
-                                                    <color key="textColor" red="0.51764705879999995" green="0.57647058819999997" blue="0.6588235294" alpha="1" colorSpace="calibratedRGB"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pbc-Pf-V5v">
+                                                    <rect key="frame" x="190" y="37" width="165" height="21"/>
+                                                    <fontDescription key="fontDescription" name="Verdana" family="Verdana" pointSize="17"/>
+                                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s2G-FW-2gZ">
-                                                    <rect key="frame" x="20" y="83" width="335" height="15"/>
-                                                    <fontDescription key="fontDescription" name="Symbol" family="Symbol" pointSize="15"/>
-                                                    <color key="textColor" red="0.51764705879999995" green="0.57647058819999997" blue="0.6588235294" alpha="1" colorSpace="calibratedRGB"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FJU-iH-GmM">
+                                                    <rect key="frame" x="5" y="8" width="365" height="21"/>
+                                                    <fontDescription key="fontDescription" name="Verdana" family="Verdana" pointSize="17"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Vy-qN-Q8l">
+                                                    <rect key="frame" x="5" y="63" width="165" height="21"/>
+                                                    <fontDescription key="fontDescription" name="Verdana" family="Verdana" pointSize="17"/>
+                                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HCA-e4-Fo3">
+                                                    <rect key="frame" x="190" y="63" width="165" height="21"/>
+                                                    <fontDescription key="fontDescription" name="Verdana" family="Verdana" pointSize="17"/>
+                                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
+                                            <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
-                                                <constraint firstItem="0gy-Sy-mva" firstAttribute="leading" secondItem="BNE-zz-ooe" secondAttribute="leadingMargin" constant="5" id="2aN-iL-Ehv"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="0gy-Sy-mva" secondAttribute="trailing" constant="5" id="9iF-WI-WDM"/>
-                                                <constraint firstItem="mCa-FL-wMU" firstAttribute="leading" secondItem="BNE-zz-ooe" secondAttribute="leadingMargin" constant="5" id="F5l-39-0qA"/>
-                                                <constraint firstItem="mCa-FL-wMU" firstAttribute="top" secondItem="BNE-zz-ooe" secondAttribute="topMargin" id="S2N-jQ-N8Z"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="FJU-iH-GmM" secondAttribute="trailing" constant="5" id="WJM-Bv-PrJ"/>
-                                                <constraint firstItem="FJU-iH-GmM" firstAttribute="top" secondItem="mCa-FL-wMU" secondAttribute="bottom" constant="10" id="ZU9-yX-Ncv"/>
-                                                <constraint firstItem="s2G-FW-2gZ" firstAttribute="leading" secondItem="BNE-zz-ooe" secondAttribute="leadingMargin" constant="5" id="ZlE-TA-F0r"/>
-                                                <constraint firstItem="s2G-FW-2gZ" firstAttribute="top" secondItem="0gy-Sy-mva" secondAttribute="bottom" id="aMs-r9-qHh"/>
-                                                <constraint firstItem="0gy-Sy-mva" firstAttribute="top" secondItem="FJU-iH-GmM" secondAttribute="bottom" constant="10" id="eMI-cd-Lc4"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="s2G-FW-2gZ" secondAttribute="trailing" constant="5" id="nXq-J9-iGR"/>
-                                                <constraint firstItem="FJU-iH-GmM" firstAttribute="leading" secondItem="BNE-zz-ooe" secondAttribute="leadingMargin" constant="5" id="pFR-Qo-EDn"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="mCa-FL-wMU" secondAttribute="trailing" constant="5" id="xSy-mR-z88"/>
-                                                <constraint firstItem="s2G-FW-2gZ" firstAttribute="top" secondItem="0gy-Sy-mva" secondAttribute="bottom" id="yaN-nr-GbE"/>
+                                                <constraint firstItem="FdK-El-ywR" firstAttribute="top" secondItem="FJU-iH-GmM" secondAttribute="bottom" constant="8" id="30J-3r-Nei"/>
+                                                <constraint firstItem="pbc-Pf-V5v" firstAttribute="leading" secondItem="FdK-El-ywR" secondAttribute="trailing" constant="20" id="4MS-dE-h3w"/>
+                                                <constraint firstAttribute="trailing" secondItem="FJU-iH-GmM" secondAttribute="trailing" constant="5" id="6Lb-Rr-xtM"/>
+                                                <constraint firstItem="BH5-Gd-3dh" firstAttribute="leading" secondItem="BNE-zz-ooe" secondAttribute="leading" constant="5" id="6av-wB-bHb"/>
+                                                <constraint firstItem="FJU-iH-GmM" firstAttribute="top" secondItem="BNE-zz-ooe" secondAttribute="top" constant="8" id="6to-ZO-qFo"/>
+                                                <constraint firstItem="FdK-El-ywR" firstAttribute="leading" secondItem="BNE-zz-ooe" secondAttribute="leading" constant="5" id="H0m-l4-tFR"/>
+                                                <constraint firstItem="1Vy-qN-Q8l" firstAttribute="top" secondItem="FdK-El-ywR" secondAttribute="bottom" constant="5" id="LsT-yD-jWZ"/>
+                                                <constraint firstItem="BH5-Gd-3dh" firstAttribute="top" secondItem="1Vy-qN-Q8l" secondAttribute="bottom" constant="8" id="NTX-dP-EdG"/>
+                                                <constraint firstItem="FJU-iH-GmM" firstAttribute="leading" secondItem="BNE-zz-ooe" secondAttribute="leading" constant="5" id="ONV-i2-B73"/>
+                                                <constraint firstItem="pbc-Pf-V5v" firstAttribute="centerY" secondItem="FdK-El-ywR" secondAttribute="centerY" id="OZa-wN-KhS"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="pbc-Pf-V5v" secondAttribute="trailing" constant="5" id="PtE-GL-Dv6"/>
+                                                <constraint firstItem="HCA-e4-Fo3" firstAttribute="leading" secondItem="1Vy-qN-Q8l" secondAttribute="trailing" constant="20" id="UW2-cf-BHU"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="HCA-e4-Fo3" secondAttribute="trailing" constant="5" id="Yr0-LM-UfQ"/>
+                                                <constraint firstItem="HCA-e4-Fo3" firstAttribute="centerY" secondItem="1Vy-qN-Q8l" secondAttribute="centerY" id="ZEp-PV-T0a"/>
+                                                <constraint firstItem="1Vy-qN-Q8l" firstAttribute="width" secondItem="HCA-e4-Fo3" secondAttribute="width" id="cue-kD-OY4"/>
+                                                <constraint firstAttribute="trailing" secondItem="BH5-Gd-3dh" secondAttribute="trailing" constant="5" id="hvm-du-5h2"/>
+                                                <constraint firstItem="1Vy-qN-Q8l" firstAttribute="leading" secondItem="BNE-zz-ooe" secondAttribute="leading" constant="5" id="ofg-ym-W3C"/>
+                                                <constraint firstAttribute="bottom" secondItem="BH5-Gd-3dh" secondAttribute="bottom" constant="8" id="r1b-vN-dZx"/>
+                                                <constraint firstItem="pbc-Pf-V5v" firstAttribute="width" secondItem="FdK-El-ywR" secondAttribute="width" id="yv2-E8-3Db"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="firstCommitNameLabel" destination="0gy-Sy-mva" id="Bps-yX-vLh"/>
-                                            <outlet property="mergeNotesLabel" destination="FJU-iH-GmM" id="pxa-pW-nPE"/>
-                                            <outlet property="projectNameLabel" destination="mCa-FL-wMU" id="sE0-1N-ZSp"/>
-                                            <outlet property="secondCommitNameLabel" destination="s2G-FW-2gZ" id="ZCb-6I-wqi"/>
+                                            <outlet property="assignToLabel" destination="pbc-Pf-V5v" id="rrA-qx-qh2"/>
+                                            <outlet property="assignToNameLabel" destination="HCA-e4-Fo3" id="vrv-JO-Tc4"/>
+                                            <outlet property="authorLabel" destination="FdK-El-ywR" id="yga-Yg-cTc"/>
+                                            <outlet property="authorNameLabel" destination="1Vy-qN-Q8l" id="vMm-CZ-ndG"/>
+                                            <outlet property="mergesLabel" destination="FJU-iH-GmM" id="Stq-wZ-V3l"/>
+                                            <outlet property="mergesLabelDescription" destination="BH5-Gd-3dh" id="QlL-px-ZYN"/>
+                                            <outletCollection property="cellNSLayoutConstraints" destination="6to-ZO-qFo" collectionClass="NSMutableArray" id="oPa-kW-brc"/>
+                                            <outletCollection property="cellNSLayoutConstraints" destination="30J-3r-Nei" collectionClass="NSMutableArray" id="IxC-TO-9Ll"/>
+                                            <outletCollection property="cellNSLayoutConstraints" destination="LsT-yD-jWZ" collectionClass="NSMutableArray" id="xIE-TU-4es"/>
+                                            <outletCollection property="cellNSLayoutConstraints" destination="NTX-dP-EdG" collectionClass="NSMutableArray" id="RTl-1F-cuD"/>
+                                            <outletCollection property="cellNSLayoutConstraints" destination="r1b-vN-dZx" collectionClass="NSMutableArray" id="4eP-x2-Gna"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -163,6 +189,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="ZZj-74-obh"/>
                     </view>
+                    <connections>
+                        <outlet property="projectsTableView" destination="26S-wY-Qn0" id="9Mo-SQ-Ajf"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="w2R-Pv-MlL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

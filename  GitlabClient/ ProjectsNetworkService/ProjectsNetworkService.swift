@@ -9,7 +9,7 @@
 import Foundation
 
 protocol ProjectsNetworkServiceType {
-    func getProjects(completion: @escaping (Result<Project>) -> Void)
+    func getProjects(completion: @escaping (Result<[Project]>) -> Void)
 }
 
 class ProjectsNetworkService: ProjectsNetworkServiceType {
@@ -20,7 +20,7 @@ class ProjectsNetworkService: ProjectsNetworkServiceType {
         self.networkManager = networkManager
     }
     
-    func getProjects(completion: @escaping (Result<Project>) -> Void) {
+    func getProjects(completion: @escaping (Result<[Project]>) -> Void) {
         
         let request = ProjectRequest(method: .GET, path: Constants.NetworkPath.projects.rawValue)
         
@@ -34,12 +34,12 @@ class ProjectsNetworkService: ProjectsNetworkServiceType {
         }
     }
     
-    private func processData(_ data: Data, completion: @escaping (Result<Project>) -> Void) {
+    private func processData(_ data: Data, completion: @escaping (Result<[Project]>) -> Void) {
         let result: Result<[Project]> = DecoderHelper.modelFromData(data)
         switch result {
-        case .success(let project):
-            if project.count > 0 {
-            completion(.success(project[0]))
+        case .success(let projects):
+            if projects.count > 0 {
+            completion(.success(projects))
             }
         case .error(let error):
             completion(.error(error))

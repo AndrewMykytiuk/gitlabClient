@@ -98,9 +98,7 @@ class ProfileViewController: BaseViewController {
     }
     
     private func getUser() {
-        if userData.count == 0 {
             activityIndicator.startAnimating()
-        }
         profileService?.getUser { [weak self] (result) in
             guard let welf = self else { return }
             DispatchQueue.main.async {

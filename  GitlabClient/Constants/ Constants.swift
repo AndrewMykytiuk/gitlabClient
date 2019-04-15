@@ -30,6 +30,7 @@ enum Constants {
     enum NetworkPath: String {
         case profile = "/api/v4/user"
         case projects = "/api/v4/projects"
+        case mergeRequest = "/api/v4/projects/"
     }
     
     enum KeyValues: String {
@@ -43,6 +44,8 @@ enum Constants {
         case grantTypeKey = "grant_type"
         case membershipKey = "membership"
         case membershipYesKey = "yes"
+        case stateOpenedKey = "opened"
+        case mergeRequestsKey = "/merge_requests"
         
     }
     
