@@ -55,6 +55,10 @@ enum Constants {
         case okButton = "OK"
     }
     
+    enum RefreshControl: String {
+        case title = "Fetching Projects Data"
+    }
+    
     enum TabBarItemNames {
     
         case main
