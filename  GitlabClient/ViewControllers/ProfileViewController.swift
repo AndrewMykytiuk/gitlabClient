@@ -57,7 +57,7 @@ class ProfileViewController: BaseViewController {
             .centerYAnchor.constraint(equalTo: self.view.centerYAnchor)
         view.addConstraint(horizontalConstraint)
         view.addConstraint(verticalConstraint)
-
+        
     }
     
     override func viewDidLayoutSubviews() {
@@ -68,11 +68,11 @@ class ProfileViewController: BaseViewController {
     
     private func setup (with user:User) {
         if let data = try? Data(contentsOf: user.avatarUrl) {
-        DispatchQueue.main.async {
-            self.avatarImage.image = UIImage(data: data)
-            self.nameLabel.text = user.name
-            self.statusLabel.text = user.bio
-        }}
+            DispatchQueue.main.async {
+                self.avatarImage.image = UIImage(data: data)
+                self.nameLabel.text = user.name
+                self.statusLabel.text = user.bio
+            }}
         
         let email = ProfileItemViewModel(title: NSLocalizedString(tableViewTitles.email.rawValue, comment: ""), description: user.email)
         let location = ProfileItemViewModel(title: NSLocalizedString(tableViewTitles.location.rawValue, comment: ""), description: user.location)
@@ -98,7 +98,7 @@ class ProfileViewController: BaseViewController {
     }
     
     private func getUser() {
-            activityIndicator.startAnimating()
+        activityIndicator.startAnimating()
         profileService?.getUser { [weak self] (result) in
             guard let welf = self else { return }
             DispatchQueue.main.async {
@@ -118,7 +118,7 @@ class ProfileViewController: BaseViewController {
             }
         }
     }
-
+    
     @IBAction func logOutButtonAction(_ sender: UIButton) {
         
         loginService.logout { [weak self] (result) in
@@ -194,8 +194,8 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
         }
         
         let descriptionHeight = TextHelper.getHeightForNSAttributedStringInLabel(with: attribute, width: size.descriptionWidth)
-
-         return max(descriptionHeight, titleHeight) + profileCell.verticalOffsets()
+        
+        return max(descriptionHeight, titleHeight) + profileCell.verticalOffsets()
     }
     
 }

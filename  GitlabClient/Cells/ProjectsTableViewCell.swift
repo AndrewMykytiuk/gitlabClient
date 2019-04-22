@@ -26,6 +26,7 @@ class ProjectsTableViewCell: UITableViewCell {
     @IBOutlet private weak var assignToNameLabel: UILabel!
 
     weak var delegate: ProjectsTableViewCellDelegate?
+    private let numberOfLines: Int = 2
     
     private enum cellStaticTitles: String {
         case authorTitle = "author:"
@@ -35,7 +36,6 @@ class ProjectsTableViewCell: UITableViewCell {
     }
     
     private enum constraintsForCell: CGFloat {
-        case numberOfLines = 2
         case buttonNeeded = 23
         case noButtonNeeded = 8
     }
@@ -50,7 +50,7 @@ class ProjectsTableViewCell: UITableViewCell {
         self.assignToNameLabel.text = request.assignee.name
         
         let mergeRequestDescriptionHeight = TextHelper.getHeightForStringInLabel(with: request.description, width: mergesLabelDescription.frame.width)
-        if mergeRequestDescriptionHeight > mergesLabelDescription.font.lineHeight * constraintsForCell.numberOfLines.rawValue {
+        if mergeRequestDescriptionHeight > mergesLabelDescription.font.lineHeight * CGFloat(numberOfLines) {
             setupForButton(isNeeded: true, isExpanded: isExpanded)
         } else {
             setupForButton(isNeeded: false, isExpanded: isExpanded)
@@ -63,12 +63,12 @@ class ProjectsTableViewCell: UITableViewCell {
         if isNeeded {
             self.showMoreButton.isHidden = false
             setUpBottomConstraint(isButtonNeeded: isNeeded)
-            self.mergesLabelDescription.numberOfLines = isExpanded ? 0 : Int(constraintsForCell.numberOfLines.rawValue)
+            self.mergesLabelDescription.numberOfLines = isExpanded ? 0 : numberOfLines
             self.showMoreButton.setTitle(isExpanded ? cellStaticTitles.lessButtonTitle.rawValue : cellStaticTitles.moreButtonTitle.rawValue, for: .normal)
         } else {
             self.showMoreButton.isHidden = true
             setUpBottomConstraint(isButtonNeeded: isNeeded)
-            self.mergesLabelDescription.numberOfLines = Int(constraintsForCell.numberOfLines.rawValue)
+            self.mergesLabelDescription.numberOfLines = numberOfLines
         }
     }
     

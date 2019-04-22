@@ -31,7 +31,7 @@ class MainViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupActivityIndicator(with: self.view)
-       setupRefreshControl()
+        setupRefreshControl()
         getData(isFromRefreshController: false)
     }
     
@@ -151,7 +151,7 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-            return projectsCell.getCellSize(with: tableViewInfoDictionary[indexPath.section].value[indexPath.row], isExpanded: indexPathOfExpendedCell == indexPath)
+        return projectsCell.getCellSize(with: tableViewInfoDictionary[indexPath.section].value[indexPath.row], isExpanded: indexPathOfExpendedCell == indexPath)
     }
     
 }
@@ -166,7 +166,7 @@ extension MainViewController: ProjectsTableViewCellDelegate {
         } else {
             indexPathOfExpendedCell = nil
         }
-    
+        
         self.projectsTableView.beginUpdates()
         self.projectsTableView.reloadRows(at: [indexPath], with: .automatic)
         self.projectsTableView.endUpdates()
