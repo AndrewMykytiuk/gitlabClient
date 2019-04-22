@@ -1,5 +1,5 @@
 //
-//  MergeRequest.swift
+//  MergeRequestModel.swift
 //  GitlabClient
 //
 //  Created by User on 11/04/2019.
@@ -8,13 +8,13 @@
 
 import Foundation
 
-struct MergeRequest: Codable {
+struct MergeRequestModel: Codable {
     
     let iid: Int
     let title: String
     let description: String
-    let author: MergeRequestAuthor
-    let assignee: MergeRequestAssignee
+    let author: UserModel
+    let assignee: UserModel
     
     private enum CodingKeys: String, CodingKey {
         

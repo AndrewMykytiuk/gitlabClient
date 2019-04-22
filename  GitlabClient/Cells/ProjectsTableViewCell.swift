@@ -19,14 +19,21 @@ class ProjectsTableViewCell: UITableViewCell {
     @IBOutlet private weak var showMoreButton: UIButton!
     
     @IBOutlet private weak var mergesLabel: UILabel!
-    @IBOutlet private weak var mergesLabelDescription: UILabel!
+    @IBOutlet private weak var mergesLabelDescription: UILabel! {
+        didSet {
+         numberOfLinesHeight = self.mergesLabelDescription.font.lineHeight * CGFloat(numberOfLines)
+        }
+    }
+    
     @IBOutlet private weak var authorLabel: UILabel!
     @IBOutlet private weak var assignToLabel: UILabel!
     @IBOutlet private weak var authorNameLabel: UILabel!
     @IBOutlet private weak var assignToNameLabel: UILabel!
 
     weak var delegate: ProjectsTableViewCellDelegate?
+    
     private let numberOfLines: Int = 2
+    private var numberOfLinesHeight: CGFloat = 0
     
     private enum cellStaticTitles: String {
         case authorTitle = "author:"
@@ -40,7 +47,7 @@ class ProjectsTableViewCell: UITableViewCell {
         case noButtonNeeded = 8
     }
     
-    func setup(with request: MergeRequest, isExpanded: Bool) {
+    func setup(with request: MergeRequestModel, isExpanded: Bool) {
         let localStrings = getAuthorAndAssignTitles()
         
         self.mergesLabel.text = request.title
@@ -50,26 +57,36 @@ class ProjectsTableViewCell: UITableViewCell {
         self.assignToNameLabel.text = request.assignee.name
         
         let mergeRequestDescriptionHeight = TextHelper.getHeightForStringInLabel(with: request.description, width: mergesLabelDescription.frame.width)
-        if mergeRequestDescriptionHeight > mergesLabelDescription.font.lineHeight * CGFloat(numberOfLines) {
-            setupForButton(isNeeded: true, isExpanded: isExpanded)
-        } else {
-            setupForButton(isNeeded: false, isExpanded: isExpanded)
-        }
+        
+        let isButtonNeeded = mergeRequestDescriptionHeight > numberOfLinesHeight
+        setupForButton(isNeeded: isButtonNeeded, isExpanded: isExpanded)
+//
+//        if mergeRequestDescriptionHeight > numberOfLinesHeight {
+//
+//        } else {
+//            setupForButton(isNeeded: false, isExpanded: isExpanded)
+//        }
         
         self.mergesLabelDescription.text = request.description
     }
     
     private func setupForButton(isNeeded: Bool, isExpanded: Bool) {
-        if isNeeded {
-            self.showMoreButton.isHidden = false
-            setUpBottomConstraint(isButtonNeeded: isNeeded)
-            self.mergesLabelDescription.numberOfLines = isExpanded ? 0 : numberOfLines
-            self.showMoreButton.setTitle(isExpanded ? cellStaticTitles.lessButtonTitle.rawValue : cellStaticTitles.moreButtonTitle.rawValue, for: .normal)
-        } else {
-            self.showMoreButton.isHidden = true
-            setUpBottomConstraint(isButtonNeeded: isNeeded)
-            self.mergesLabelDescription.numberOfLines = numberOfLines
-        }
+//        if isNeeded {
+//            self.showMoreButton.isHidden = false
+//            setUpBottomConstraint(isButtonNeeded: isNeeded)
+//            self.mergesLabelDescription.numberOfLines = isExpanded ? 0 : numberOfLines
+//            self.showMoreButton.setTitle(isExpanded ? cellStaticTitles.lessButtonTitle.rawValue : cellStaticTitles.moreButtonTitle.rawValue, for: .normal)
+//        } else {
+//            self.showMoreButton.isHidden = true
+//            setUpBottomConstraint(isButtonNeeded: isNeeded)
+//            self.mergesLabelDescription.numberOfLines = numberOfLines
+//        }
+        
+        self.showMoreButton.isHidden = !isNeeded
+        setUpBottomConstraint(isButtonNeeded: isNeeded)
+        self.mergesLabelDescription.numberOfLines = isExpanded ? 0 : numberOfLines
+        self.showMoreButton.setTitle(isExpanded ? cellStaticTitles.lessButtonTitle.rawValue : cellStaticTitles.moreButtonTitle.rawValue, for: .normal)
+        
     }
     
     private func setUpBottomConstraint(isButtonNeeded: Bool) {
@@ -80,7 +97,7 @@ class ProjectsTableViewCell: UITableViewCell {
         }
     }
     
-    func getCellSize(with request: MergeRequest, isExpanded: Bool) -> CGFloat {
+    func getCellSize(with request: MergeRequestModel, isExpanded: Bool) -> CGFloat {
         var height: CGFloat = 0
         let names = self.getAuthorAndAssignTitles()
         
@@ -100,11 +117,14 @@ class ProjectsTableViewCell: UITableViewCell {
     
     private func calculatingHeightForDescriptionLabel(with string: String, isExpanded: Bool) -> (CGFloat, Bool) {
          let mergeRequestDescriptionHeight = TextHelper.getHeightForStringInLabel(with: string, width: mergesLabelDescription.frame.width)
-        if mergeRequestDescriptionHeight > mergesLabelDescription.font.lineHeight * 2 {
+        
+        let isButtonNeeded = mergeRequestDescriptionHeight > numberOfLinesHeight
+        
+        if isButtonNeeded {
             if isExpanded {
                 return (mergeRequestDescriptionHeight, true)
             }
-            return (mergesLabelDescription.font.lineHeight * 2, true)
+            return (numberOfLinesHeight, true)
         }
         return (mergeRequestDescriptionHeight, false)
     }
@@ -116,11 +136,7 @@ class ProjectsTableViewCell: UITableViewCell {
     private func cellOffsets(isNeeded: Bool) -> CGFloat {
         var sum: CGFloat = 0
         
-        if !isNeeded {
-            setUpBottomConstraint(isButtonNeeded: isNeeded)
-        } else {
-            setUpBottomConstraint(isButtonNeeded: isNeeded)
-        }
+        setUpBottomConstraint(isButtonNeeded: isNeeded)
         
         for constraint in cellNSLayoutConstraints {
             sum += constraint.constant

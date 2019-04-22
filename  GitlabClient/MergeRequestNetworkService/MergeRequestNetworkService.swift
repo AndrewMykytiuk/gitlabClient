@@ -9,7 +9,7 @@
 import Foundation
 
 protocol MergeRequestNetworkServiceType {
-    func getMergeRequests(id: Int, completion: @escaping (Result<[MergeRequest]>) -> Void)
+    func getMergeRequests(id: Int, completion: @escaping (Result<[MergeRequestModel]>) -> Void)
 }
 
 class MergeRequestNetworkService: MergeRequestNetworkServiceType {
@@ -20,7 +20,7 @@ class MergeRequestNetworkService: MergeRequestNetworkServiceType {
         self.networkManager = networkManager
     }
     
-    func getMergeRequests(id: Int, completion: @escaping (Result<[MergeRequest]>) -> Void) {
+    func getMergeRequests(id: Int, completion: @escaping (Result<[MergeRequestModel]>) -> Void) {
         
         let request = MergeRqst(method: .GET, path: Constants.NetworkPath.api.rawValue + Constants.NetworkPath.mergeRequest.rawValue + "\(id)" + Constants.KeyValues.mergeRequestsKey.rawValue)
         
@@ -34,8 +34,8 @@ class MergeRequestNetworkService: MergeRequestNetworkServiceType {
         }
     }
     
-    private func processData(_ data: Data, completion: @escaping (Result<[MergeRequest]>) -> Void) {
-        let result: Result<[MergeRequest]> = DecoderHelper.modelFromData(data)
+    private func processData(_ data: Data, completion: @escaping (Result<[MergeRequestModel]>) -> Void) {
+        let result: Result<[MergeRequestModel]> = DecoderHelper.modelFromData(data)
         switch result {
         case .success(let requests):
             completion(.success(requests))

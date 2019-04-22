@@ -19,7 +19,7 @@ class MainViewController: BaseViewController {
     
     private var projectsService: ProjectService!
     private var projectsCell: ProjectsTableViewCell!
-    private var tableViewInfoDictionary: [(key: Project, value: [MergeRequest])] = []
+    private var tableViewInfoDictionary: [(key: ProjectModel, value: [MergeRequestModel])] = []
     private let activityIndicator = UIActivityIndicatorView(style: .whiteLarge)
     private let refreshControl = UIRefreshControl()
     private var indexPathOfExpendedCell: IndexPath?
@@ -32,7 +32,7 @@ class MainViewController: BaseViewController {
         super.viewDidLoad()
         setupActivityIndicator(with: self.view)
         setupRefreshControl()
-        getData(isFromRefreshController: false)
+        getData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -65,13 +65,12 @@ class MainViewController: BaseViewController {
     }
     
     @objc private func refreshProjectsData(_ sender: Any) {
-        getData(isFromRefreshController: true)
+        getData()
+        activityIndicator.stopAnimating()
     }
     
-    private func getData(isFromRefreshController: Bool) {
-        if !isFromRefreshController {
-            activityIndicator.startAnimating()
-        }
+    private func getData() {
+        activityIndicator.startAnimating()
         projectsService.getProjectsInfo { [weak self] (result) in
             guard let welf = self else { return }
             DispatchQueue.main.async {

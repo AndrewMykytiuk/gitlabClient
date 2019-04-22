@@ -1,5 +1,5 @@
 //
-//  User.swift
+//  UserModel.swift
 //  GitlabClient
 //
 //  Created by User on 22/04/2019.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct User: Codable {
+struct UserModel: Codable {
     
     let id: Int
     let name: String

@@ -66,7 +66,7 @@ class ProfileViewController: BaseViewController {
         self.profileCell.layoutIfNeeded()
     }
     
-    private func setup (with user:User) {
+    private func setup (with user:UserModel) {
         if let data = try? Data(contentsOf: user.avatarUrl) {
             DispatchQueue.main.async {
                 self.avatarImage.image = UIImage(data: data)

@@ -18,7 +18,7 @@ class ProfileService {
         self.profileManager = ProfileNetworkService(networkManager: networkManager)
     }
     
-    func getUser(completion: @escaping (Result<User>) -> Void) {
+    func getUser(completion: @escaping (Result<UserModel>) -> Void) {
         
         profileManager.getUser { [weak self] (result) in
             switch result {
