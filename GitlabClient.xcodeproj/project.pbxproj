@@ -48,7 +48,11 @@
 		CEE51021225F461C0049EC69 /* MergeRqst.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE51020225F461C0049EC69 /* MergeRqst.swift */; };
 		CEE51023225F4DC90049EC69 /* MergeRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE51022225F4DC90049EC69 /* MergeRequest.swift */; };
 		CEE51025225F532F0049EC69 /* MergeRequestNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE51024225F532F0049EC69 /* MergeRequestNetworkService.swift */; };
-		CEE510282260B71E0049EC69 /* ProjectsCellSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE510272260B71E0049EC69 /* ProjectsCellSize.swift */; };
+		CEE5102A2264F36E0049EC69 /* URLHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE510292264F36E0049EC69 /* URLHelper.swift */; };
+		CEE5102C2265E2E50049EC69 /* TextHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE5102B2265E2E50049EC69 /* TextHelper.swift */; };
+		CEE5102E22673BF10049EC69 /* DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE5102D22673BF10049EC69 /* DateFormatter.swift */; };
+		CEE510302267405D0049EC69 /* MergeRequestAuthor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE5102F2267405D0049EC69 /* MergeRequestAuthor.swift */; };
+		CEE510322267413D0049EC69 /* MergeRequestAssignee.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE510312267413D0049EC69 /* MergeRequestAssignee.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -98,7 +102,11 @@
 		CEE51020225F461C0049EC69 /* MergeRqst.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MergeRqst.swift; sourceTree = "<group>"; };
 		CEE51022225F4DC90049EC69 /* MergeRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MergeRequest.swift; sourceTree = "<group>"; };
 		CEE51024225F532F0049EC69 /* MergeRequestNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MergeRequestNetworkService.swift; sourceTree = "<group>"; };
-		CEE510272260B71E0049EC69 /* ProjectsCellSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectsCellSize.swift; sourceTree = "<group>"; };
+		CEE510292264F36E0049EC69 /* URLHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLHelper.swift; sourceTree = "<group>"; };
+		CEE5102B2265E2E50049EC69 /* TextHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextHelper.swift; sourceTree = "<group>"; };
+		CEE5102D22673BF10049EC69 /* DateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatter.swift; sourceTree = "<group>"; };
+		CEE5102F2267405D0049EC69 /* MergeRequestAuthor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MergeRequestAuthor.swift; sourceTree = "<group>"; };
+		CEE510312267413D0049EC69 /* MergeRequestAssignee.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MergeRequestAssignee.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,7 +150,6 @@
 			children = (
 				CEE51026225F53360049EC69 /* MergeRequestNetworkService */,
 				CEE5101B225F384A0049EC69 /* ViewModels */,
-				CEE51017225F38070049EC69 /* Cells */,
 				CEE51015225F38070049EC69 /* Extensions */,
 				CE3B694E225374B800FB7DEA /*  ProjectsNetworkService */,
 				CE729F412245366C0006C37C /* ProfileNetworkService */,
@@ -156,6 +163,7 @@
 				CE6FF039223AE19B003F7C56 /* Helpers */,
 				CE6FF038223AB689003F7C56 /* Constants */,
 				CE6FF037223AB65E003F7C56 /* CreateAndNavigateVCs */,
+				CEE51017225F38070049EC69 /* Cells */,
 				CE6FF03022390AB0003F7C56 /* ViewControllers */,
 				CE6FF0172236AECB003F7C56 /* Main.storyboard */,
 				CE6FF0132236AECB003F7C56 /* AppDelegate.swift */,
@@ -202,6 +210,8 @@
 				CE6FF031223A6A17003F7C56 /* AuthHelper.swift */,
 				CE729F2C2243A1C40006C37C /* AlertHelper.swift */,
 				CE729F48224A24B80006C37C /* DecoderHelper.swift */,
+				CEE510292264F36E0049EC69 /* URLHelper.swift */,
+				CEE5102B2265E2E50049EC69 /* TextHelper.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -265,6 +275,8 @@
 				CE729F3F224532750006C37C /* User.swift */,
 				CE3B695522537CE500FB7DEA /* Project.swift */,
 				CEE51022225F4DC90049EC69 /* MergeRequest.swift */,
+				CEE5102F2267405D0049EC69 /* MergeRequestAuthor.swift */,
+				CEE510312267413D0049EC69 /* MergeRequestAssignee.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -282,6 +294,7 @@
 			isa = PBXGroup;
 			children = (
 				CEE51016225F38070049EC69 /* UITapGestureRecognizer.swift */,
+				CEE5102D22673BF10049EC69 /* DateFormatter.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -300,7 +313,6 @@
 			children = (
 				CEE5101C225F384A0049EC69 /* ProfileItemViewModel.swift */,
 				CEE5101D225F384A0049EC69 /* ProfileCellSize.swift */,
-				CEE510272260B71E0049EC69 /* ProjectsCellSize.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -411,12 +423,15 @@
 				CE6FF0162236AECB003F7C56 /* LogInViewController.swift in Sources */,
 				CE729F2D2243A1C40006C37C /* AlertHelper.swift in Sources */,
 				CE729F382244D7580006C37C /* LoginService.swift in Sources */,
+				CEE5102A2264F36E0049EC69 /* URLHelper.swift in Sources */,
 				CE729F4722453AD60006C37C /* ProfileService.swift in Sources */,
 				CE3B69522253750200FB7DEA /* ProjectsNetworkService.swift in Sources */,
-				CEE510282260B71E0049EC69 /* ProjectsCellSize.swift in Sources */,
+				CEE5102C2265E2E50049EC69 /* TextHelper.swift in Sources */,
+				CEE5102E22673BF10049EC69 /* DateFormatter.swift in Sources */,
 				CEE51021225F461C0049EC69 /* MergeRqst.swift in Sources */,
 				CE6FF02D2237DD9E003F7C56 /* Router.swift in Sources */,
 				CE6FF02F22390905003F7C56 /* BaseViewController.swift in Sources */,
+				CEE510302267405D0049EC69 /* MergeRequestAuthor.swift in Sources */,
 				CE3B695622537CE500FB7DEA /* Project.swift in Sources */,
 				CE6FF034223AAB01003F7C56 /* Result.swift in Sources */,
 				CE729F3B2244D7720006C37C /* KeychainItem.swift in Sources */,
@@ -424,6 +439,7 @@
 				CE6FF0142236AECB003F7C56 /* AppDelegate.swift in Sources */,
 				CE729F40224532750006C37C /* User.swift in Sources */,
 				CEE51025225F532F0049EC69 /* MergeRequestNetworkService.swift in Sources */,
+				CEE510322267413D0049EC69 /* MergeRequestAssignee.swift in Sources */,
 				CE729F49224A24B80006C37C /* DecoderHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -586,6 +602,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 5P387F5RT9;
 				INFOPLIST_FILE = "$(SRCROOT)/ GitlabClient/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -604,6 +621,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 5P387F5RT9;
 				INFOPLIST_FILE = "$(SRCROOT)/ GitlabClient/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
