@@ -32,7 +32,7 @@ class MainViewController: BaseViewController {
         super.viewDidLoad()
         setupActivityIndicator(with: self.view)
         setupRefreshControl()
-        getData(isFromRefreshController: false)
+        getData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -50,7 +50,7 @@ class MainViewController: BaseViewController {
         let attributes = [NSAttributedString.Key.font: Constants.font]
         refreshControl.addTarget(self, action: #selector(refreshProjectsData(_:)), for: .valueChanged)
         refreshControl.tintColor = UIColor(red:226/256, green:71/256, blue:72/256, alpha:1.0)
-        refreshControl.attributedTitle = NSAttributedString(string: "Fetching Projects Data ...", attributes: attributes as [NSAttributedString.Key : Any])
+        refreshControl.attributedTitle = NSAttributedString(string: NSLocalizedString(Constants.RefreshControl.title.rawValue, comment: ""), attributes: attributes as [NSAttributedString.Key : Any])
     }
     
     private func setupActivityIndicator(with view: UIView) {
@@ -65,13 +65,12 @@ class MainViewController: BaseViewController {
     }
     
     @objc private func refreshProjectsData(_ sender: Any) {
-        getData(isFromRefreshController: true)
+        getData()
+         activityIndicator.stopAnimating()
     }
     
-    private func getData(isFromRefreshController: Bool) {
-        if !isFromRefreshController {
-            activityIndicator.startAnimating()
-        }
+    private func getData() {
+        activityIndicator.startAnimating()
         projectsService.getProjectsInfo { [weak self] (result) in
             guard let welf = self else { return }
             DispatchQueue.main.async {
@@ -161,16 +160,17 @@ extension MainViewController: ProjectsTableViewCellDelegate {
     func moreTapped(cell: ProjectsTableViewCell) {
         guard let indexPath = projectsTableView.indexPath(for: cell) else { return }
         
-        if indexPath != indexPathOfExpendedCell {
+        if indexPath != indexPathOfExpendedCell && indexPathOfExpendedCell == nil {
             indexPathOfExpendedCell = indexPath
-        } else {
+        } else if indexPath == indexPathOfExpendedCell {
             indexPathOfExpendedCell = nil
         }
         
+        if indexPath == indexPathOfExpendedCell || indexPathOfExpendedCell == nil {
         self.projectsTableView.beginUpdates()
         self.projectsTableView.reloadRows(at: [indexPath], with: .automatic)
         self.projectsTableView.endUpdates()
-        
+        }
     }
 }
 
