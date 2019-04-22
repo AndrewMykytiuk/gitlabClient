@@ -28,9 +28,10 @@ enum Constants {
     }
     
     enum NetworkPath: String {
-        case profile = "/api/v4/user"
-        case projects = "/api/v4/projects"
-        case mergeRequest = "/api/v4/projects/"
+        case api = "/api/v4/"
+        case profile = "user"
+        case projects = "projects"
+        case mergeRequest = "projects/"
     }
     
     enum KeyValues: String {
@@ -52,11 +53,6 @@ enum Constants {
     enum AlertStrings: String {
         case title = "Error"
         case okButton = "OK"
-        
-    }
-    
-    enum UIElements: CGFloat {
-        case activityIndicatorSize = 40
     }
     
     enum TabBarItemNames {
@@ -73,6 +69,11 @@ enum Constants {
             }
         }
         
+    }
+    
+    enum DateFormatter: String {
+        case dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZZZZZ"
+        case locale = "en_US_POSIX"
     }
     
     

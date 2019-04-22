@@ -11,12 +11,12 @@ import UIKit
 
 struct ProjectsCellSize {
     
-    let mergeRequest: (height: CGFloat, width: CGFloat)
-    let authorName: (height: CGFloat, width: CGFloat)
-    let assignName: (height: CGFloat, width: CGFloat)
-    let authorNameData: (height: CGFloat, width: CGFloat)
-    let assignNameData: (height: CGFloat, width: CGFloat)
-    let mergeRequestDesription: (height: CGFloat, width: CGFloat)
+    let mergeRequest: CGFloat
+    let authorName: CGFloat
+    let assignName: CGFloat
+    let authorNameData: CGFloat
+    let assignNameData: CGFloat
+    let mergeRequestDesription: CGFloat
     
 }
 

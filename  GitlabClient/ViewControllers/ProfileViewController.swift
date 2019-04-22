@@ -174,8 +174,6 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        let attributes = [NSAttributedString.Key.font: Constants.font]
-        
         let titleString = userData[indexPath.row].title
         let descriptionString = userData[indexPath.row].description
         let size = profileCell.getLabelsSize(with: userData[indexPath.row])
@@ -187,24 +185,17 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
             return 0
         }
         
-        let titleRect = NSString(string: titleString).boundingRect(
-            with: CGSize(width: size.titleWidth, height: size.titleHeight),
-            options: [.usesLineFragmentOrigin, .usesFontLeading],
-            attributes: attributes as [NSAttributedString.Key : Any], context: nil)
+        let titleHeight = TextHelper.getHeightForStringInLabel(with: titleString, width: size.titleWidth)
         
         guard let attribute = profileCell.checkForUrl(text: descriptionText, storeRange: false) else {
+            let descriptionHeight = TextHelper.getHeightForStringInLabel(with: descriptionText, width: size.descriptionWidth)
             
-            let descriptionRect = NSString(string: descriptionText).boundingRect(
-                with: CGSize(width: size.descriptionWidth, height: size.descriptionHeight),
-                options: [.usesLineFragmentOrigin, .usesFontLeading],
-                attributes: attributes as [NSAttributedString.Key : Any], context: nil)
-            
-            return max(descriptionRect.height, titleRect.height) + profileCell.verticalOffsets()
+            return max(descriptionHeight, titleHeight) + profileCell.verticalOffsets()
         }
         
-        let descriptionRect = NSMutableAttributedString(attributedString: attribute).boundingRect(with: CGSize(width: size.descriptionWidth, height: size.descriptionHeight), options: [.usesLineFragmentOrigin, .usesFontLeading,], context: nil)
+        let descriptionHeight = TextHelper.getHeightForNSAttributedStringInLabel(with: attribute, width: size.descriptionWidth)
 
-         return max(descriptionRect.height, titleRect.height) + profileCell.verticalOffsets()
+         return max(descriptionHeight, titleHeight) + profileCell.verticalOffsets()
     }
     
 }

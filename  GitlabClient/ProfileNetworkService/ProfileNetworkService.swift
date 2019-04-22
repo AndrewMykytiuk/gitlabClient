@@ -22,7 +22,7 @@ class ProfileNetworkService: ProfileNetworkServiceType {
     
     func getUser(completion: @escaping (Result<User>) -> Void) {
         
-        let request = ProfileRequest(method: .GET, path: Constants.NetworkPath.profile.rawValue)
+        let request = ProfileRequest(method: .GET, path: Constants.NetworkPath.api.rawValue + Constants.NetworkPath.profile.rawValue)
         
         networkManager.sendRequest(request) { [weak self] (data) in
             switch data {

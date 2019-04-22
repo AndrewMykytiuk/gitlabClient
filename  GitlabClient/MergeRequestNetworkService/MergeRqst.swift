@@ -12,16 +12,14 @@ struct MergeRqst: Request {
     
     let HTTPMethod: HTTPMethod
     
-    var path: String
+    let path: String
     
     var parameters: [(key: String, value: Any)]
     
     init(method: HTTPMethod, path: String) {
         self.HTTPMethod = method
         self.path = path
-        let params: [String: Any] = [Constants.KeyValues.stateKey.rawValue: Constants.KeyValues.stateOpenedKey.rawValue]
-        let sorted = params.sorted {$0.key < $1.key}
-        self.parameters = sorted
+        self.parameters = [(key: Constants.KeyValues.stateKey.rawValue, value: Constants.KeyValues.stateOpenedKey.rawValue)]
     }
     
 }

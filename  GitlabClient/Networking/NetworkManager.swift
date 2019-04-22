@@ -20,7 +20,7 @@ class NetworkManager {
     
     func sendRequest(_ request: Request, completion: @escaping(Result<Data>) -> Void) {
         
-        var components = AuthHelper.createBaseUrlComponents()
+        var components = URLHelper.createBaseAuthUrlComponents()
         components.path = request.path
         
         for param in request.parameters {

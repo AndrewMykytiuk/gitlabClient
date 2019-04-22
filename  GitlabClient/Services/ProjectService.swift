@@ -20,7 +20,7 @@ class ProjectService {
         self.mergeRequestManager = MergeRequestNetworkService(networkManager: networkManager)
     }
     
-    func getProjectsInfo(completion: @escaping (Result<[Project:[MergeRequest]]>) -> Void) {
+    func getProjectsInfo(completion: @escaping (Result<[(key: Project, value: [MergeRequest])]>) -> Void) {
         
         var dictionary: [Project:[MergeRequest]] = [:]
         
@@ -33,7 +33,8 @@ class ProjectService {
                         switch requestResult {
                         case .success(let values):
                             dictionary[project] = values
-                            completion(.success(dictionary))
+                            let sorted = dictionary.sorted {$0.key.date < $1.key.date}
+                            completion(.success(sorted))
                         case .error(let error):
                             completion(.error(error))
                         }

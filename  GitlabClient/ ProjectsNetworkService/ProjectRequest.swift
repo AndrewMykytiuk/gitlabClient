@@ -12,16 +12,14 @@ struct ProjectRequest: Request {
     
     let HTTPMethod: HTTPMethod
     
-    var path: String
+    let path: String
     
     var parameters: [(key: String, value: Any)]
     
     init(method: HTTPMethod, path: String) {
         self.HTTPMethod = method
         self.path = path
-        let params: [String: Any] = [Constants.KeyValues.membershipKey.rawValue: Constants.KeyValues.membershipYesKey.rawValue]
-        let sorted = params.sorted {$0.key < $1.key}
-        self.parameters = sorted
+        self.parameters = [(key: Constants.KeyValues.membershipKey.rawValue, value: Constants.KeyValues.membershipYesKey.rawValue)]
     }
     
 }

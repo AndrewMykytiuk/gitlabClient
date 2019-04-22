@@ -13,29 +13,44 @@ class MainViewController: BaseViewController {
     @IBOutlet weak var projectsTableView: UITableView! {
         didSet {
             createProjectsCellPrototype()
+            projectsTableView.refreshControl = refreshControl
         }
     }
     
     private var projectsService: ProjectService!
     private var projectsCell: ProjectsTableViewCell!
-    private var tableViewInfoDictionary: [Project:[MergeRequest]] = [:]
+    private var tableViewInfoDictionary: [(key: Project, value: [MergeRequest])] = []
     private let activityIndicator = UIActivityIndicatorView(style: .whiteLarge)
+    private let refreshControl = UIRefreshControl()
+    private var indexPathOfExpendedCell: IndexPath?
     
     func configure(with projectsService: ProjectService) {
         self.projectsService = projectsService
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setupActivityIndicator(with: self.view)
+       setupRefreshControl()
+        getData(isFromRefreshController: false)
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.setNavigationBarHidden(true, animated: animated)
-        setupActivityIndicator(with: self.view)
-        getData()
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         self.projectsCell.frame = CGRect(origin: CGPoint.zero, size: projectsTableView.frame.size)
         self.projectsCell.layoutIfNeeded()
+    }
+    
+    private func setupRefreshControl() {
+        let attributes = [NSAttributedString.Key.font: Constants.font]
+        refreshControl.addTarget(self, action: #selector(refreshProjectsData(_:)), for: .valueChanged)
+        refreshControl.tintColor = UIColor(red:226/256, green:71/256, blue:72/256, alpha:1.0)
+        refreshControl.attributedTitle = NSAttributedString(string: "Fetching Projects Data ...", attributes: attributes as [NSAttributedString.Key : Any])
     }
     
     private func setupActivityIndicator(with view: UIView) {
@@ -49,17 +64,25 @@ class MainViewController: BaseViewController {
         view.addConstraint(verticalConstraint)
     }
     
-    private func getData() {
-        activityIndicator.startAnimating()
-        projectsService?.getProjectsInfo { [weak self] (result) in
+    @objc private func refreshProjectsData(_ sender: Any) {
+        getData(isFromRefreshController: true)
+    }
+    
+    private func getData(isFromRefreshController: Bool) {
+        if !isFromRefreshController {
+            activityIndicator.startAnimating()
+        }
+        projectsService.getProjectsInfo { [weak self] (result) in
             guard let welf = self else { return }
             DispatchQueue.main.async {
                 switch result {
                 case .success(let data):
                     welf.tableViewInfoDictionary = data
+                    welf.refreshControl.endRefreshing()
                     welf.activityIndicator.stopAnimating()
                     welf.projectsTableView.reloadData()
                 case .error(let error):
+                    welf.refreshControl.endRefreshing()
                     welf.activityIndicator.stopAnimating()
                     let alert = AlertHelper.createErrorAlert(message: error.localizedDescription, handler: nil)
                     welf.present(alert, animated: true)
@@ -82,7 +105,7 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if tableViewInfoDictionary.count > 0 {
-            return Array(tableViewInfoDictionary)[section].key.name
+            return tableViewInfoDictionary[section].key.name
         } else {
             return nil
         }
@@ -94,7 +117,7 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if tableViewInfoDictionary.count > 0 {
-            return Array(tableViewInfoDictionary)[section].value.count
+            return tableViewInfoDictionary[section].value.count
         } else {
             return 0
         }
@@ -104,9 +127,9 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: ProjectsTableViewCell.identifier(), for: indexPath) as? ProjectsTableViewCell else {
             fatalError(FatalError.invalidCellCreate.rawValue + ProjectsTableViewCell.identifier())
         }
-        if tableViewInfoDictionary.count > 0 {
-            cell.setup(with: Array(tableViewInfoDictionary)[indexPath.section].value[indexPath.row])
-        }
+        
+        cell.setup(with: tableViewInfoDictionary[indexPath.section].value[indexPath.row], isExpanded: indexPathOfExpendedCell == indexPath)
+        cell.delegate = self
         
         return cell
     }
@@ -123,57 +146,31 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
         coordinator.animate(alongsideTransition: completionHandler, completion: completionHandler)
     }
     
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return CGFloat.leastNonzeroMagnitude
+    }
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return calculateCellHeight(with: indexPath)
+            return projectsCell.getCellSize(with: tableViewInfoDictionary[indexPath.section].value[indexPath.row], isExpanded: indexPathOfExpendedCell == indexPath)
     }
     
-    private func calculateCellHeight(with indexPath: IndexPath) -> CGFloat {
-        let attributes = [NSAttributedString.Key.font: Constants.font]
+}
+
+extension MainViewController: ProjectsTableViewCellDelegate {
+    
+    func moreTapped(cell: ProjectsTableViewCell) {
+        guard let indexPath = projectsTableView.indexPath(for: cell) else { return }
         
-        var height: CGFloat = 0
-        
-        let names = projectsCell.getStaticNames()
-        
-        if tableViewInfoDictionary.count > 0 {
-            let request = Array(tableViewInfoDictionary)[indexPath.section].value[indexPath.row]
-            let size = projectsCell.getLabelsSize(with:request)
-            
-            let mergeRequestTitleRect = NSString(string: request.title).boundingRect(
-                with: CGSize(width: size.mergeRequest.width, height: CGFloat.greatestFiniteMagnitude),
-                options: [.usesLineFragmentOrigin, .usesFontLeading],
-                attributes: attributes as [NSAttributedString.Key : Any], context: nil)
-            
-            let authorNameRect = NSString(string: names.author).boundingRect(
-                with: CGSize(width: size.authorName.width, height: CGFloat.greatestFiniteMagnitude),
-                options: [.usesLineFragmentOrigin, .usesFontLeading],
-                attributes: attributes as [NSAttributedString.Key : Any], context: nil)
-            
-            let assignToRect = NSString(string: names.assign).boundingRect(
-                with: CGSize(width: size.assignName.width, height: CGFloat.greatestFiniteMagnitude),
-                options: [.usesLineFragmentOrigin, .usesFontLeading],
-                attributes: attributes as [NSAttributedString.Key : Any], context: nil)
-            
-            let authorDataRect = NSString(string: request.authorName).boundingRect(
-                with: CGSize(width: size.authorNameData.width, height: CGFloat.greatestFiniteMagnitude),
-                options: [.usesLineFragmentOrigin, .usesFontLeading],
-                attributes: attributes as [NSAttributedString.Key : Any], context: nil)
-            
-            let assignDataRect = NSString(string: request.assigneeName).boundingRect(
-                with: CGSize(width: size.assignNameData.width, height: CGFloat.greatestFiniteMagnitude),
-                options: [.usesLineFragmentOrigin, .usesFontLeading],
-                attributes: attributes as [NSAttributedString.Key : Any], context: nil)
-            
-            let mergeRequestDescriptionRect = NSString(string: request.description).boundingRect(
-                with: CGSize(width: size.mergeRequestDesription.width, height: CGFloat.greatestFiniteMagnitude),
-                options: [.usesLineFragmentOrigin, .usesFontLeading],
-                attributes: attributes as [NSAttributedString.Key : Any], context: nil)
-            
-            height = ceil(mergeRequestTitleRect.height) + max(authorNameRect.height, assignToRect.height) + max(authorDataRect.height, assignDataRect.height) + ceil(mergeRequestDescriptionRect.height)
-            
-            height += projectsCell.cellOffsets()
+        if indexPath != indexPathOfExpendedCell {
+            indexPathOfExpendedCell = indexPath
+        } else {
+            indexPathOfExpendedCell = nil
         }
-        return height
-    }
     
+        self.projectsTableView.beginUpdates()
+        self.projectsTableView.reloadRows(at: [indexPath], with: .automatic)
+        self.projectsTableView.endUpdates()
+        
+    }
 }
 

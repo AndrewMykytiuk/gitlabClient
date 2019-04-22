@@ -44,22 +44,4 @@ struct User: Codable {
         
     }
     
-    init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        id = try container.decode(Int.self, forKey: .id)
-        name = try container.decode(String.self, forKey: .name)
-        username = try container.decode(String.self, forKey: .username)
-        email = try container.decode(String.self, forKey: .email)
-        publicEmail = try container.decode(String?.self, forKey: .publicEmail)
-        skype = try container.decode(String?.self, forKey: .skype)
-        linkedin = try container.decode(String?.self, forKey: .linkedin)
-        twitter = try container.decode(String?.self, forKey: .twitter)
-        websiteUrl = try container.decode(String?.self, forKey: .websiteUrl)
-        location = try container.decode(String?.self, forKey: .location)
-        organization = try container.decode(String?.self, forKey: .organization)
-        bio = try container.decode(String?.self, forKey: .bio)
-        privateProfile = try container.decode(Bool.self, forKey: .privateProfile)
-        avatarUrl = try container.decode(URL.self, forKey: .avatarUrl)
-    }
-    
 }

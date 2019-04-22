@@ -10,11 +10,11 @@ import UIKit
 
 class ProfileTableViewCell: UITableViewCell {
     
-    @IBOutlet weak var descriptionLabelTopConstraint: NSLayoutConstraint!
-    @IBOutlet weak var descriptionLabelBottomConstraint: NSLayoutConstraint!
+    @IBOutlet private weak var descriptionLabelTopConstraint: NSLayoutConstraint!
+    @IBOutlet private weak var descriptionLabelBottomConstraint: NSLayoutConstraint!
     
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet private weak var titleLabel: UILabel!
+    @IBOutlet private weak var descriptionLabel: UILabel!
     
     private var ranges: [NSRange] = []
     private var gesture: UITapGestureRecognizer?
@@ -46,7 +46,7 @@ class ProfileTableViewCell: UITableViewCell {
     
     func checkForUrl(text: String, storeRange: Bool) -> NSMutableAttributedString? {
         let attributes = [NSAttributedString.Key.font: Constants.font]
-        switch DecoderHelper.urlsInString(with: text) {
+        switch TextHelper.urlsInString(with: text) {
         case .success(let urls):
             if urls.count > 0 {
                 let attribute = NSMutableAttributedString(string: text, attributes: attributes as [NSAttributedString.Key : Any])

@@ -41,7 +41,7 @@ class AuthHelper {
     
     static func createURL(for operation: URLKind) -> Result<URL> {
         
-        var components = AuthHelper.createBaseUrlComponents()
+        var components = URLHelper.createBaseAuthUrlComponents()
         components.path = operation.rawValue
         let queryItemClientID = URLQueryItem(name: Constants.KeyValues.clientIDKey.rawValue, value: Constants.Network.clientID.rawValue)
         
@@ -62,15 +62,5 @@ class AuthHelper {
             return .error(NetworkError.invalidUrl(components.description))
         }
         
-    }
-    
-    static func createBaseUrlComponents() -> URLComponents {
-        var components = URLComponents()
-        
-        components.scheme = Constants.Network.secureScheme.rawValue
-        components.host = Constants.Network.host.rawValue
-        components.queryItems = []
-        
-        return components
     }
 }

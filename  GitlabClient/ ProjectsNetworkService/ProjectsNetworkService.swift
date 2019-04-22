@@ -22,7 +22,7 @@ class ProjectsNetworkService: ProjectsNetworkServiceType {
     
     func getProjects(completion: @escaping (Result<[Project]>) -> Void) {
         
-        let request = ProjectRequest(method: .GET, path: Constants.NetworkPath.projects.rawValue)
+        let request = ProjectRequest(method: .GET, path: Constants.NetworkPath.api.rawValue + Constants.NetworkPath.projects.rawValue)
         
         networkManager.sendRequest(request) { [weak self] (data) in
             switch data {
