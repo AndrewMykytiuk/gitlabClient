@@ -11,7 +11,7 @@
 		CE3B6950225374EA00FB7DEA /* ProjectRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3B694F225374EA00FB7DEA /* ProjectRequest.swift */; };
 		CE3B69522253750200FB7DEA /* ProjectsNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3B69512253750200FB7DEA /* ProjectsNetworkService.swift */; };
 		CE3B695422537BED00FB7DEA /* ProjectService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3B695322537BED00FB7DEA /* ProjectService.swift */; };
-		CE3B695622537CE500FB7DEA /* ProjectModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3B695522537CE500FB7DEA /* ProjectModel.swift */; };
+		CE3B695622537CE500FB7DEA /* Project.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3B695522537CE500FB7DEA /* Project.swift */; };
 		CE6FF0142236AECB003F7C56 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6FF0132236AECB003F7C56 /* AppDelegate.swift */; };
 		CE6FF0162236AECB003F7C56 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6FF0152236AECB003F7C56 /* LogInViewController.swift */; };
 		CE6FF0192236AECC003F7C56 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE6FF0172236AECB003F7C56 /* Main.storyboard */; };
@@ -36,7 +36,7 @@
 		CE729F382244D7580006C37C /* LoginService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE729F372244D7560006C37C /* LoginService.swift */; };
 		CE729F3B2244D7720006C37C /* KeychainItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE729F3A2244D7720006C37C /* KeychainItem.swift */; };
 		CE729F3D2244F5120006C37C /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE729F3C2244F5120006C37C /* ProfileViewController.swift */; };
-		CE729F40224532750006C37C /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE729F3F224532750006C37C /* UserModel.swift */; };
+		CE729F40224532750006C37C /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE729F3F224532750006C37C /* User.swift */; };
 		CE729F43224536B80006C37C /* ProfileRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE729F42224536B80006C37C /* ProfileRequest.swift */; };
 		CE729F45224536CF0006C37C /* ProfileNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE729F44224536CF0006C37C /* ProfileNetworkService.swift */; };
 		CE729F4722453AD60006C37C /* ProfileService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE729F4622453AD60006C37C /* ProfileService.swift */; };
@@ -46,11 +46,13 @@
 		CEE5101E225F384A0049EC69 /* ProfileItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE5101C225F384A0049EC69 /* ProfileItemViewModel.swift */; };
 		CEE5101F225F384A0049EC69 /* ProfileCellSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE5101D225F384A0049EC69 /* ProfileCellSize.swift */; };
 		CEE51021225F461C0049EC69 /* MergeRqst.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE51020225F461C0049EC69 /* MergeRqst.swift */; };
-		CEE51023225F4DC90049EC69 /* MergeRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE51022225F4DC90049EC69 /* MergeRequestModel.swift */; };
+		CEE51023225F4DC90049EC69 /* MergeRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE51022225F4DC90049EC69 /* MergeRequest.swift */; };
 		CEE51025225F532F0049EC69 /* MergeRequestNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE51024225F532F0049EC69 /* MergeRequestNetworkService.swift */; };
 		CEE5102A2264F36E0049EC69 /* URLHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE510292264F36E0049EC69 /* URLHelper.swift */; };
 		CEE5102C2265E2E50049EC69 /* TextHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE5102B2265E2E50049EC69 /* TextHelper.swift */; };
 		CEE5102E22673BF10049EC69 /* DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE5102D22673BF10049EC69 /* DateFormatter.swift */; };
+		CEE510302267405D0049EC69 /* MergeRequestAuthor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE5102F2267405D0049EC69 /* MergeRequestAuthor.swift */; };
+		CEE510322267413D0049EC69 /* MergeRequestAssignee.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE510312267413D0049EC69 /* MergeRequestAssignee.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -58,7 +60,7 @@
 		CE3B694F225374EA00FB7DEA /* ProjectRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectRequest.swift; sourceTree = "<group>"; };
 		CE3B69512253750200FB7DEA /* ProjectsNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectsNetworkService.swift; sourceTree = "<group>"; };
 		CE3B695322537BED00FB7DEA /* ProjectService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectService.swift; sourceTree = "<group>"; };
-		CE3B695522537CE500FB7DEA /* ProjectModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectModel.swift; sourceTree = "<group>"; };
+		CE3B695522537CE500FB7DEA /* Project.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Project.swift; sourceTree = "<group>"; };
 		CE6FF0102236AECB003F7C56 /* GitlabClient.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GitlabClient.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE6FF0132236AECB003F7C56 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CE6FF0152236AECB003F7C56 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
@@ -88,7 +90,7 @@
 		CE729F372244D7560006C37C /* LoginService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginService.swift; sourceTree = "<group>"; };
 		CE729F3A2244D7720006C37C /* KeychainItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainItem.swift; sourceTree = "<group>"; };
 		CE729F3C2244F5120006C37C /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
-		CE729F3F224532750006C37C /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
+		CE729F3F224532750006C37C /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		CE729F42224536B80006C37C /* ProfileRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileRequest.swift; sourceTree = "<group>"; };
 		CE729F44224536CF0006C37C /* ProfileNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileNetworkService.swift; sourceTree = "<group>"; };
 		CE729F4622453AD60006C37C /* ProfileService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileService.swift; sourceTree = "<group>"; };
@@ -98,11 +100,13 @@
 		CEE5101C225F384A0049EC69 /* ProfileItemViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileItemViewModel.swift; sourceTree = "<group>"; };
 		CEE5101D225F384A0049EC69 /* ProfileCellSize.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileCellSize.swift; sourceTree = "<group>"; };
 		CEE51020225F461C0049EC69 /* MergeRqst.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MergeRqst.swift; sourceTree = "<group>"; };
-		CEE51022225F4DC90049EC69 /* MergeRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MergeRequestModel.swift; sourceTree = "<group>"; };
+		CEE51022225F4DC90049EC69 /* MergeRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MergeRequest.swift; sourceTree = "<group>"; };
 		CEE51024225F532F0049EC69 /* MergeRequestNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MergeRequestNetworkService.swift; sourceTree = "<group>"; };
 		CEE510292264F36E0049EC69 /* URLHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLHelper.swift; sourceTree = "<group>"; };
 		CEE5102B2265E2E50049EC69 /* TextHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextHelper.swift; sourceTree = "<group>"; };
 		CEE5102D22673BF10049EC69 /* DateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatter.swift; sourceTree = "<group>"; };
+		CEE5102F2267405D0049EC69 /* MergeRequestAuthor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MergeRequestAuthor.swift; sourceTree = "<group>"; };
+		CEE510312267413D0049EC69 /* MergeRequestAssignee.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MergeRequestAssignee.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -149,7 +153,7 @@
 				CEE51015225F38070049EC69 /* Extensions */,
 				CE3B694E225374B800FB7DEA /*  ProjectsNetworkService */,
 				CE729F412245366C0006C37C /* ProfileNetworkService */,
-				CE729F3E2245325B0006C37C /* Models */,
+				CE729F3E2245325B0006C37C /* Model */,
 				CE729F392244D7720006C37C /* Keychain */,
 				CE729F362244D7560006C37C /* Services */,
 				CE729F1D224124EA0006C37C /* DependencyProviders */,
@@ -265,14 +269,16 @@
 			path = Keychain;
 			sourceTree = "<group>";
 		};
-		CE729F3E2245325B0006C37C /* Models */ = {
+		CE729F3E2245325B0006C37C /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				CE729F3F224532750006C37C /* UserModel.swift */,
-				CE3B695522537CE500FB7DEA /* ProjectModel.swift */,
-				CEE51022225F4DC90049EC69 /* MergeRequestModel.swift */,
+				CE729F3F224532750006C37C /* User.swift */,
+				CE3B695522537CE500FB7DEA /* Project.swift */,
+				CEE51022225F4DC90049EC69 /* MergeRequest.swift */,
+				CEE5102F2267405D0049EC69 /* MergeRequestAuthor.swift */,
+				CEE510312267413D0049EC69 /* MergeRequestAssignee.swift */,
 			);
-			path = Models;
+			path = Model;
 			sourceTree = "<group>";
 		};
 		CE729F412245366C0006C37C /* ProfileNetworkService */ = {
@@ -403,7 +409,7 @@
 				CE6FF032223A6A17003F7C56 /* AuthHelper.swift in Sources */,
 				CE729F45224536CF0006C37C /* ProfileNetworkService.swift in Sources */,
 				CE6FF03C223AE29E003F7C56 /* NetworkManager.swift in Sources */,
-				CEE51023225F4DC90049EC69 /* MergeRequestModel.swift in Sources */,
+				CEE51023225F4DC90049EC69 /* MergeRequest.swift in Sources */,
 				CEE5101F225F384A0049EC69 /* ProfileCellSize.swift in Sources */,
 				CEE5101A225F38070049EC69 /* ProfileTableViewCell.swift in Sources */,
 				CE6FF041223B96CB003F7C56 /* LoginRequest.swift in Sources */,
@@ -425,13 +431,15 @@
 				CEE51021225F461C0049EC69 /* MergeRqst.swift in Sources */,
 				CE6FF02D2237DD9E003F7C56 /* Router.swift in Sources */,
 				CE6FF02F22390905003F7C56 /* BaseViewController.swift in Sources */,
-				CE3B695622537CE500FB7DEA /* ProjectModel.swift in Sources */,
+				CEE510302267405D0049EC69 /* MergeRequestAuthor.swift in Sources */,
+				CE3B695622537CE500FB7DEA /* Project.swift in Sources */,
 				CE6FF034223AAB01003F7C56 /* Result.swift in Sources */,
 				CE729F3B2244D7720006C37C /* KeychainItem.swift in Sources */,
 				CE3B695422537BED00FB7DEA /* ProjectService.swift in Sources */,
 				CE6FF0142236AECB003F7C56 /* AppDelegate.swift in Sources */,
-				CE729F40224532750006C37C /* UserModel.swift in Sources */,
+				CE729F40224532750006C37C /* User.swift in Sources */,
 				CEE51025225F532F0049EC69 /* MergeRequestNetworkService.swift in Sources */,
+				CEE510322267413D0049EC69 /* MergeRequestAssignee.swift in Sources */,
 				CE729F49224A24B80006C37C /* DecoderHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

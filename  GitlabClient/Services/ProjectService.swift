@@ -20,9 +20,9 @@ class ProjectService {
         self.mergeRequestManager = MergeRequestNetworkService(networkManager: networkManager)
     }
     
-    func getProjectsInfo(completion: @escaping (Result<[(key: ProjectModel, value: [MergeRequestModel])]>) -> Void) {
+    func getProjectsInfo(completion: @escaping (Result<[(key: Project, value: [MergeRequest])]>) -> Void) {
         
-        var dictionary: [ProjectModel:[MergeRequestModel]] = [:]
+        var dictionary: [Project:[MergeRequest]] = [:]
         
         projectsManager.getProjects { [weak self] (result) in
             guard let welf = self else { return }
