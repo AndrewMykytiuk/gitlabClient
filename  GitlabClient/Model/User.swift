@@ -13,7 +13,7 @@ struct User: Codable {
     let id: Int
     let name: String
     let username: String
-    let email: String
+    let email: String?
     let publicEmail: String?
     let skype: String?
     let linkedin: String?
@@ -22,7 +22,7 @@ struct User: Codable {
     let location: String?
     let organization: String?
     let bio: String?
-    let privateProfile: Bool
+    let privateProfile: Bool?
     let avatarUrl: URL
     
     private enum CodingKeys: String, CodingKey {

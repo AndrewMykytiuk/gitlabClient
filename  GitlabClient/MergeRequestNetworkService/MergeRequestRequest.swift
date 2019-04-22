@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct MergeRqst: Request {
+struct MergeRequestRequest: Request {
     
     let HTTPMethod: HTTPMethod
     

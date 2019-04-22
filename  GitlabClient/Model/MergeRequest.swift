@@ -13,8 +13,8 @@ struct MergeRequest: Codable {
     let iid: Int
     let title: String
     let description: String
-    let author: MergeRequestAuthor
-    let assignee: MergeRequestAssignee
+    let author: User
+    let assignee: User
     
     private enum CodingKeys: String, CodingKey {
         

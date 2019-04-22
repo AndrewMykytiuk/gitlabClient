@@ -45,14 +45,12 @@
 		CEE5101A225F38070049EC69 /* ProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE51018225F38070049EC69 /* ProfileTableViewCell.swift */; };
 		CEE5101E225F384A0049EC69 /* ProfileItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE5101C225F384A0049EC69 /* ProfileItemViewModel.swift */; };
 		CEE5101F225F384A0049EC69 /* ProfileCellSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE5101D225F384A0049EC69 /* ProfileCellSize.swift */; };
-		CEE51021225F461C0049EC69 /* MergeRqst.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE51020225F461C0049EC69 /* MergeRqst.swift */; };
+		CEE51021225F461C0049EC69 /* MergeRequestRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE51020225F461C0049EC69 /* MergeRequestRequest.swift */; };
 		CEE51023225F4DC90049EC69 /* MergeRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE51022225F4DC90049EC69 /* MergeRequest.swift */; };
 		CEE51025225F532F0049EC69 /* MergeRequestNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE51024225F532F0049EC69 /* MergeRequestNetworkService.swift */; };
 		CEE5102A2264F36E0049EC69 /* URLHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE510292264F36E0049EC69 /* URLHelper.swift */; };
 		CEE5102C2265E2E50049EC69 /* TextHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE5102B2265E2E50049EC69 /* TextHelper.swift */; };
 		CEE5102E22673BF10049EC69 /* DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE5102D22673BF10049EC69 /* DateFormatter.swift */; };
-		CEE510302267405D0049EC69 /* MergeRequestAuthor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE5102F2267405D0049EC69 /* MergeRequestAuthor.swift */; };
-		CEE510322267413D0049EC69 /* MergeRequestAssignee.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE510312267413D0049EC69 /* MergeRequestAssignee.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -99,14 +97,12 @@
 		CEE51018225F38070049EC69 /* ProfileTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileTableViewCell.swift; sourceTree = "<group>"; };
 		CEE5101C225F384A0049EC69 /* ProfileItemViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileItemViewModel.swift; sourceTree = "<group>"; };
 		CEE5101D225F384A0049EC69 /* ProfileCellSize.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileCellSize.swift; sourceTree = "<group>"; };
-		CEE51020225F461C0049EC69 /* MergeRqst.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MergeRqst.swift; sourceTree = "<group>"; };
+		CEE51020225F461C0049EC69 /* MergeRequestRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MergeRequestRequest.swift; sourceTree = "<group>"; };
 		CEE51022225F4DC90049EC69 /* MergeRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MergeRequest.swift; sourceTree = "<group>"; };
 		CEE51024225F532F0049EC69 /* MergeRequestNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MergeRequestNetworkService.swift; sourceTree = "<group>"; };
 		CEE510292264F36E0049EC69 /* URLHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLHelper.swift; sourceTree = "<group>"; };
 		CEE5102B2265E2E50049EC69 /* TextHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextHelper.swift; sourceTree = "<group>"; };
 		CEE5102D22673BF10049EC69 /* DateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatter.swift; sourceTree = "<group>"; };
-		CEE5102F2267405D0049EC69 /* MergeRequestAuthor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MergeRequestAuthor.swift; sourceTree = "<group>"; };
-		CEE510312267413D0049EC69 /* MergeRequestAssignee.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MergeRequestAssignee.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -275,8 +271,6 @@
 				CE729F3F224532750006C37C /* User.swift */,
 				CE3B695522537CE500FB7DEA /* Project.swift */,
 				CEE51022225F4DC90049EC69 /* MergeRequest.swift */,
-				CEE5102F2267405D0049EC69 /* MergeRequestAuthor.swift */,
-				CEE510312267413D0049EC69 /* MergeRequestAssignee.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -320,7 +314,7 @@
 		CEE51026225F53360049EC69 /* MergeRequestNetworkService */ = {
 			isa = PBXGroup;
 			children = (
-				CEE51020225F461C0049EC69 /* MergeRqst.swift */,
+				CEE51020225F461C0049EC69 /* MergeRequestRequest.swift */,
 				CEE51024225F532F0049EC69 /* MergeRequestNetworkService.swift */,
 			);
 			path = MergeRequestNetworkService;
@@ -428,10 +422,9 @@
 				CE3B69522253750200FB7DEA /* ProjectsNetworkService.swift in Sources */,
 				CEE5102C2265E2E50049EC69 /* TextHelper.swift in Sources */,
 				CEE5102E22673BF10049EC69 /* DateFormatter.swift in Sources */,
-				CEE51021225F461C0049EC69 /* MergeRqst.swift in Sources */,
+				CEE51021225F461C0049EC69 /* MergeRequestRequest.swift in Sources */,
 				CE6FF02D2237DD9E003F7C56 /* Router.swift in Sources */,
 				CE6FF02F22390905003F7C56 /* BaseViewController.swift in Sources */,
-				CEE510302267405D0049EC69 /* MergeRequestAuthor.swift in Sources */,
 				CE3B695622537CE500FB7DEA /* Project.swift in Sources */,
 				CE6FF034223AAB01003F7C56 /* Result.swift in Sources */,
 				CE729F3B2244D7720006C37C /* KeychainItem.swift in Sources */,
@@ -439,7 +432,6 @@
 				CE6FF0142236AECB003F7C56 /* AppDelegate.swift in Sources */,
 				CE729F40224532750006C37C /* User.swift in Sources */,
 				CEE51025225F532F0049EC69 /* MergeRequestNetworkService.swift in Sources */,
-				CEE510322267413D0049EC69 /* MergeRequestAssignee.swift in Sources */,
 				CE729F49224A24B80006C37C /* DecoderHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
