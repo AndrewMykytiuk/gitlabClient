@@ -22,7 +22,7 @@ class MainViewController: BaseViewController {
     private var tableViewInfoDictionary: [(key: Project, value: [MergeRequest])] = []
     private let activityIndicator = UIActivityIndicatorView(style: .whiteLarge)
     private let refreshControl = UIRefreshControl()
-    private var indexPathOfExpendedCell: IndexPath?
+    private var indexPathOfExpendedCell: [IndexPath] = []
     
     func configure(with projectsService: ProjectService) {
         self.projectsService = projectsService
@@ -127,7 +127,7 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
             fatalError(FatalError.invalidCellCreate.rawValue + ProjectsTableViewCell.identifier())
         }
         
-        cell.setup(with: tableViewInfoDictionary[indexPath.section].value[indexPath.row], isExpanded: indexPathOfExpendedCell == indexPath)
+        cell.setup(with: tableViewInfoDictionary[indexPath.section].value[indexPath.row], isExpanded: indexPathOfExpendedCell.contains(indexPath))
         cell.delegate = self
         
         return cell
@@ -150,7 +150,7 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return projectsCell.getCellSize(with: tableViewInfoDictionary[indexPath.section].value[indexPath.row], isExpanded: indexPathOfExpendedCell == indexPath)
+        return projectsCell.getCellSize(with: tableViewInfoDictionary[indexPath.section].value[indexPath.row], isExpanded: indexPathOfExpendedCell.contains(indexPath))
     }
     
 }
@@ -160,17 +160,16 @@ extension MainViewController: ProjectsTableViewCellDelegate {
     func moreTapped(cell: ProjectsTableViewCell) {
         guard let indexPath = projectsTableView.indexPath(for: cell) else { return }
         
-        if indexPath != indexPathOfExpendedCell && indexPathOfExpendedCell == nil {
-            indexPathOfExpendedCell = indexPath
-        } else if indexPath == indexPathOfExpendedCell {
-            indexPathOfExpendedCell = nil
+        if  indexPathOfExpendedCell.contains(indexPath) {
+            guard let index = indexPathOfExpendedCell.index(of: indexPath) else { return }
+            indexPathOfExpendedCell.remove(at: index)
+        } else {
+            indexPathOfExpendedCell.append(indexPath)
         }
         
-        if indexPath == indexPathOfExpendedCell || indexPathOfExpendedCell == nil {
         self.projectsTableView.beginUpdates()
         self.projectsTableView.reloadRows(at: [indexPath], with: .automatic)
         self.projectsTableView.endUpdates()
-        }
     }
 }
 
