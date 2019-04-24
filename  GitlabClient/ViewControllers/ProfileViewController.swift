@@ -161,9 +161,8 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
     
-    override func willTransition(to newCollection: UITraitCollection, with coordinator: UIViewControllerTransitionCoordinator) {
-        super.viewWillTransition(to: newCollection.accessibilityFrame.size, with: coordinator)
-        
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
         let completionHandler: ((UIViewControllerTransitionCoordinatorContext) -> Void) = { [weak self] (context) in
             guard let welf = self else { return }
             if welf.profileTableView != nil {
