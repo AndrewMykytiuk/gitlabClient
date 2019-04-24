@@ -24,6 +24,7 @@ class Router: MainRouterType, ApplicationRouterType {
     private var rootVC: UINavigationController?
     private var authRootVC: UINavigationController?
     private var tabBarVC: UITabBarController?
+    private var mainRootVC: UINavigationController?
     private let keychainItem: KeychainItem
     
     enum Destination {
@@ -53,7 +54,7 @@ class Router: MainRouterType, ApplicationRouterType {
         case .mainController:
             let vc = factory.createNewVc(with: .main)
             vc.router = self
-            let mainNavigationVC = self.rootVC
+            let mainNavigationVC = self.mainRootVC
             mainNavigationVC?.pushViewController(vc, animated: animated)
         case .mergeRequestController(let request):
             let vc = factory.createNewVc(with: .mergeRequest)
@@ -61,10 +62,7 @@ class Router: MainRouterType, ApplicationRouterType {
             if let mergeRequestVC = vc as? MergeRequestViewController {
                 mergeRequestVC.setUpMergeRequestInfo(id: request.projectId, iid: request.iid)
                 self.tabBarVC?.hidesBottomBarWhenPushed = false
-                //self.tabBarVC?.present(mergeRequestVC, animated: true, completion: nil)
-                //self.rootVC?.pushViewController(mergeRequestVC, animated: true)
-                //self.tabBarVC?.navigationController?.present(mergeRequestVC, animated: true, completion: nil)
-                self.tabBarVC?.navigationController?.pushViewController(mergeRequestVC, animated: true)
+                self.mainRootVC?.pushViewController(mergeRequestVC, animated: true)
             }
         }
     }
@@ -73,6 +71,7 @@ class Router: MainRouterType, ApplicationRouterType {
         
         
         let mainViewController = factory.createNewVc(with: .main)
+        let mainNavigationController = UINavigationController(rootViewController: mainViewController)
         var profileViewController = factory.createNewVc(with: .profile)
         
         if let profileVC = profileViewController as? ProfileViewController {
@@ -80,23 +79,26 @@ class Router: MainRouterType, ApplicationRouterType {
             profileViewController = profileVC
         }
         
-        let mainTabBarController = factory.createNewTabBarVC(with: mainViewController, profileViewController: profileViewController)
+        let mainTabBarController = factory.createNewTabBarVC(with: mainNavigationController, profileViewController: profileViewController)
         
-        let mainNavigationController = UINavigationController(rootViewController: mainTabBarController)
-        window?.rootViewController = mainNavigationController
+        let mainTabBarNavigationController = UINavigationController(rootViewController: mainTabBarController)
+        window?.rootViewController = mainTabBarNavigationController
         
         mainViewController.router = self
         profileViewController.router = self
-        self.rootVC = mainNavigationController
+        self.rootVC = mainTabBarNavigationController
         self.tabBarVC = mainTabBarController
+        self.mainRootVC = mainNavigationController
         
         switch keychainItem.readToken() {
         case .success:
             break
         case .error:
             let loginNavigationController = createAuthNavigation()
-            mainNavigationController.present(loginNavigationController, animated: false, completion: nil)
+            mainTabBarNavigationController.present(loginNavigationController, animated: false, completion: nil)
         }
+        
+        mainTabBarNavigationController.isNavigationBarHidden = true
     }
     
    private func createAuthNavigation() -> UINavigationController {

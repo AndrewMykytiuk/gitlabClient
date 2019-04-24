@@ -67,7 +67,7 @@ class ViewControllerFactory: ViewControllerFactoryType {
         return vcTemp
     }
  
-    func createNewTabBarVC(with mainViewController: BaseViewController, profileViewController: BaseViewController) -> UITabBarController {
+    func createNewTabBarVC(with mainViewController: UINavigationController, profileViewController: BaseViewController) -> UITabBarController {
         
         mainViewController.tabBarItem = UITabBarItem(title: Constants.TabBarItemNames.main.info.description, image: #imageLiteral(resourceName: "file-three-7.png"), tag: Constants.TabBarItemNames.main.info.index)
         profileViewController.tabBarItem = UITabBarItem(title: Constants.TabBarItemNames.profile.info.description, image: #imageLiteral(resourceName: "circle-user-7.png"), tag: Constants.TabBarItemNames.profile.info.index)

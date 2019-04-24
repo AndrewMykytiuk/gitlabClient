@@ -30,9 +30,12 @@ class MergeRequestTableViewCell: UITableViewCell {
         
         let fileNameHeight = TextHelper.getHeightForStringInLabel(with: changes.newPath, width: fileNameLabel.frame.width)
         let nameOfChangesHeight = TextHelper.getHeightForStringInLabel(with: changes.deletedFile.description, width: nameOfChangesLabel.frame.width)
+        changesDescriptionLabel.numberOfLines = 3
         let changesDescriptionHeight = TextHelper.getHeightForStringInLabel(with: changes.diff, width: changesDescriptionLabel.frame.width)
     
-        height = ceil(fileNameHeight) + ceil(nameOfChangesHeight) + ceil(changesDescriptionHeight)
+        let numberOfLinesHeight = changesDescriptionLabel.font.lineHeight * CGFloat(3)
+        
+        height = ceil(fileNameHeight) + ceil(nameOfChangesHeight) + ceil(numberOfLinesHeight)
         height += self.cellOffsets()
         
         return height

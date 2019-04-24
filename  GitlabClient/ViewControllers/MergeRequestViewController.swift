@@ -44,7 +44,6 @@ class MergeRequestViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.setNavigationBarHidden(false, animated: animated)
-        self.navigationController?.navigationBar.isHidden = false
     }
     
     private func setupRefreshControl() {
@@ -71,17 +70,19 @@ class MergeRequestViewController: BaseViewController {
         mergeRequestService.getMergeRequestChanges(id: id, iid: iid) { [weak self] (result) in
             guard let welf = self else { return }
             DispatchQueue.main.async {
-            switch result {
-            case .success(let changes):
-                welf.changes = changes
-                welf.activityIndicator.stopAnimating()
-                welf.mergeRequestTableView.reloadData()
-            case .error(let error):
-                welf.activityIndicator.stopAnimating()
-                let alert = AlertHelper.createErrorAlert(message: error.localizedDescription, handler: nil)
-                welf.present(alert, animated: true)
+                switch result {
+                case .success(let changes):
+                    welf.activityIndicator.stopAnimating()
+                    if changes.count > 0 {
+                    welf.changes = changes
+                    welf.mergeRequestTableView.reloadData()
+                    }
+                case .error(let error):
+                    welf.activityIndicator.stopAnimating()
+                    let alert = AlertHelper.createErrorAlert(message: error.localizedDescription, handler: nil)
+                    welf.present(alert, animated: true)
+                }
             }
-        }
         }
     }
     
