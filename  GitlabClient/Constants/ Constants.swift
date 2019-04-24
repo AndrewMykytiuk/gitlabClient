@@ -47,6 +47,7 @@ enum Constants {
         case membershipYesKey = "yes"
         case stateOpenedKey = "opened"
         case mergeRequestsKey = "/merge_requests"
+        case changesKey = "/changes"
         
     }
     

@@ -26,9 +26,10 @@ class Router: MainRouterType, ApplicationRouterType {
     private var tabBarVC: UITabBarController?
     private let keychainItem: KeychainItem
     
-    enum Destination: String {
-        case oauth = "OAuthLogInViewController"
-        case main = "MainViewController"
+    enum Destination {
+        case oauthController
+        case mainController
+        case mergeRequestController(MergeRequest)
     }
     
     init(factory: ViewControllerFactory,
@@ -40,7 +41,7 @@ class Router: MainRouterType, ApplicationRouterType {
     func navigateToScreen(with identifier: Destination, animated: Bool) {
         
         switch identifier {
-        case .oauth:
+        case .oauthController:
             let vc = factory.createNewVc(with: .oauth)
             vc.router = self
             if let authVC = vc as? OAuthLogInViewController {
@@ -49,13 +50,23 @@ class Router: MainRouterType, ApplicationRouterType {
             } else {
                 self.authRootVC?.pushViewController(vc, animated: animated)
             }
-        case .main:
+        case .mainController:
             let vc = factory.createNewVc(with: .main)
             vc.router = self
             let mainNavigationVC = self.rootVC
             mainNavigationVC?.pushViewController(vc, animated: animated)
+        case .mergeRequestController(let request):
+            let vc = factory.createNewVc(with: .mergeRequest)
+            vc.router = self
+            if let mergeRequestVC = vc as? MergeRequestViewController {
+                mergeRequestVC.setUpMergeRequestInfo(id: request.projectId, iid: request.iid)
+                self.tabBarVC?.hidesBottomBarWhenPushed = false
+                //self.tabBarVC?.present(mergeRequestVC, animated: true, completion: nil)
+                //self.rootVC?.pushViewController(mergeRequestVC, animated: true)
+                //self.tabBarVC?.navigationController?.present(mergeRequestVC, animated: true, completion: nil)
+                self.tabBarVC?.navigationController?.pushViewController(mergeRequestVC, animated: true)
+            }
         }
-        
     }
     
     func navigate(from window: UIWindow?) {
@@ -80,9 +91,9 @@ class Router: MainRouterType, ApplicationRouterType {
         self.tabBarVC = mainTabBarController
         
         switch keychainItem.readToken() {
-        case .success(_ ):
+        case .success:
             break
-        case .error(let error):
+        case .error:
             let loginNavigationController = createAuthNavigation()
             mainNavigationController.present(loginNavigationController, animated: false, completion: nil)
         }

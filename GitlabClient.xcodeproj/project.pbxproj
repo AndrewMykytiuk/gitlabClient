@@ -41,6 +41,10 @@
 		CE729F45224536CF0006C37C /* ProfileNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE729F44224536CF0006C37C /* ProfileNetworkService.swift */; };
 		CE729F4722453AD60006C37C /* ProfileService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE729F4622453AD60006C37C /* ProfileService.swift */; };
 		CE729F49224A24B80006C37C /* DecoderHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE729F48224A24B80006C37C /* DecoderHelper.swift */; };
+		CEB2FCBF226F0B3D0046B722 /* MergeRequestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB2FCBE226F0B3D0046B722 /* MergeRequestViewController.swift */; };
+		CEB2FCC1226F0F890046B722 /* MergeRequestTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB2FCC0226F0F890046B722 /* MergeRequestTableViewCell.swift */; };
+		CEB2FCC3226F15380046B722 /* MergeRequestChanges.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB2FCC2226F15380046B722 /* MergeRequestChanges.swift */; };
+		CEB2FCC5226F1F350046B722 /* MergeRequestService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB2FCC4226F1F350046B722 /* MergeRequestService.swift */; };
 		CEE51019225F38070049EC69 /* UITapGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE51016225F38070049EC69 /* UITapGestureRecognizer.swift */; };
 		CEE5101A225F38070049EC69 /* ProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE51018225F38070049EC69 /* ProfileTableViewCell.swift */; };
 		CEE5101E225F384A0049EC69 /* ProfileItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE5101C225F384A0049EC69 /* ProfileItemViewModel.swift */; };
@@ -93,6 +97,10 @@
 		CE729F44224536CF0006C37C /* ProfileNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileNetworkService.swift; sourceTree = "<group>"; };
 		CE729F4622453AD60006C37C /* ProfileService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileService.swift; sourceTree = "<group>"; };
 		CE729F48224A24B80006C37C /* DecoderHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecoderHelper.swift; sourceTree = "<group>"; };
+		CEB2FCBE226F0B3D0046B722 /* MergeRequestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MergeRequestViewController.swift; sourceTree = "<group>"; };
+		CEB2FCC0226F0F890046B722 /* MergeRequestTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MergeRequestTableViewCell.swift; sourceTree = "<group>"; };
+		CEB2FCC2226F15380046B722 /* MergeRequestChanges.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MergeRequestChanges.swift; sourceTree = "<group>"; };
+		CEB2FCC4226F1F350046B722 /* MergeRequestService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MergeRequestService.swift; sourceTree = "<group>"; };
 		CEE51016225F38070049EC69 /* UITapGestureRecognizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITapGestureRecognizer.swift; sourceTree = "<group>"; };
 		CEE51018225F38070049EC69 /* ProfileTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileTableViewCell.swift; sourceTree = "<group>"; };
 		CEE5101C225F384A0049EC69 /* ProfileItemViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileItemViewModel.swift; sourceTree = "<group>"; };
@@ -179,6 +187,7 @@
 				CE6FF0152236AECB003F7C56 /* LogInViewController.swift */,
 				CE6FF0282236B1EA003F7C56 /* OAuthLogInViewController.swift */,
 				CE729F3C2244F5120006C37C /* ProfileViewController.swift */,
+				CEB2FCBE226F0B3D0046B722 /* MergeRequestViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -253,6 +262,7 @@
 				CE729F372244D7560006C37C /* LoginService.swift */,
 				CE729F4622453AD60006C37C /* ProfileService.swift */,
 				CE3B695322537BED00FB7DEA /* ProjectService.swift */,
+				CEB2FCC4226F1F350046B722 /* MergeRequestService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -271,6 +281,7 @@
 				CE729F3F224532750006C37C /* User.swift */,
 				CE3B695522537CE500FB7DEA /* Project.swift */,
 				CEE51022225F4DC90049EC69 /* MergeRequest.swift */,
+				CEB2FCC2226F15380046B722 /* MergeRequestChanges.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -298,6 +309,7 @@
 			children = (
 				CEE51018225F38070049EC69 /* ProfileTableViewCell.swift */,
 				CE147D52224BBE5600C08C11 /* ProjectsTableViewCell.swift */,
+				CEB2FCC0226F0F890046B722 /* MergeRequestTableViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -393,6 +405,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CEB2FCC3226F15380046B722 /* MergeRequestChanges.swift in Sources */,
 				CE729F1F224125240006C37C /* DependencyProvider.swift in Sources */,
 				CE6FF0292236B1EA003F7C56 /* OAuthLogInViewController.swift in Sources */,
 				CE729F3D2244F5120006C37C /* ProfileViewController.swift in Sources */,
@@ -418,7 +431,9 @@
 				CE729F2D2243A1C40006C37C /* AlertHelper.swift in Sources */,
 				CE729F382244D7580006C37C /* LoginService.swift in Sources */,
 				CEE5102A2264F36E0049EC69 /* URLHelper.swift in Sources */,
+				CEB2FCC5226F1F350046B722 /* MergeRequestService.swift in Sources */,
 				CE729F4722453AD60006C37C /* ProfileService.swift in Sources */,
+				CEB2FCC1226F0F890046B722 /* MergeRequestTableViewCell.swift in Sources */,
 				CE3B69522253750200FB7DEA /* ProjectsNetworkService.swift in Sources */,
 				CEE5102C2265E2E50049EC69 /* TextHelper.swift in Sources */,
 				CEE5102E22673BF10049EC69 /* DateFormatter.swift in Sources */,
@@ -426,6 +441,7 @@
 				CE6FF02D2237DD9E003F7C56 /* Router.swift in Sources */,
 				CE6FF02F22390905003F7C56 /* BaseViewController.swift in Sources */,
 				CE3B695622537CE500FB7DEA /* Project.swift in Sources */,
+				CEB2FCBF226F0B3D0046B722 /* MergeRequestViewController.swift in Sources */,
 				CE6FF034223AAB01003F7C56 /* Result.swift in Sources */,
 				CE729F3B2244D7720006C37C /* KeychainItem.swift in Sources */,
 				CE3B695422537BED00FB7DEA /* ProjectService.swift in Sources */,

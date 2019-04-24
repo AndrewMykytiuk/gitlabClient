@@ -23,6 +23,7 @@ class ViewControllerFactory: ViewControllerFactoryType {
         case login = "LogInViewController"
         case main = "MainViewController"
         case profile = "ProfileViewController"
+        case mergeRequest = "MergeRequestViewController"
     }
     
     init(provider: DependencyProvider) {
@@ -55,6 +56,12 @@ class ViewControllerFactory: ViewControllerFactoryType {
                 let profileService = ProfileService(networkManager: dependencyProvider.networkManager)
                 profileViewController.configure(with: loginService, profileService: profileService)
                 vcTemp = profileViewController
+            }
+        case .mergeRequest:
+            if let mergeRequestViewController = vcTemp as? MergeRequestViewController {
+                let mergeRequestService = MergeRequestService(networkManager: dependencyProvider.networkManager)
+                mergeRequestViewController.configure(with: mergeRequestService)
+                vcTemp = mergeRequestViewController
             }
         }
         return vcTemp

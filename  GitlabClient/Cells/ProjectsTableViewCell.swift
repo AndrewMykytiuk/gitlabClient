@@ -53,6 +53,7 @@ class ProjectsTableViewCell: UITableViewCell {
         self.assignToLabel.text = localStrings.assign
         self.authorNameLabel.text = request.author.name
         self.assignToNameLabel.text = request.assignee.name
+        self.selectionStyle = .gray
         
         let mergeRequestDescriptionHeight = TextHelper.getHeightForStringInLabel(with: request.description, width: mergesLabelDescription.frame.width)
         let isButtonNeeded = mergeRequestDescriptionHeight > numberOfLinesHeight

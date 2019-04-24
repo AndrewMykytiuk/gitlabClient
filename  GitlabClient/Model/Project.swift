@@ -8,12 +8,13 @@
 
 import Foundation
 
-struct Project: Codable, Hashable {
+struct Project: Codable {
     
     let id: Int
     let name: String
     let description: String
-    let date: Date 
+    let date: Date
+    var mergeRequest: [MergeRequest]?
     
     private enum CodingKeys: String, CodingKey {
         
@@ -21,6 +22,7 @@ struct Project: Codable, Hashable {
         case name
         case description
         case date = "last_activity_at"
+        case mergeRequest
         
     }
     
