@@ -15,7 +15,7 @@ class MergeRequestTableViewCell: UITableViewCell {
     @IBOutlet private weak var changesDescriptionLabel: UILabel!
     
     @IBOutlet var cellOutlets: [NSLayoutConstraint]!
-    
+    private let numberOfLines: Int = 3
 
     func setup(with changes: MergeRequestChanges) {
         
@@ -33,7 +33,7 @@ class MergeRequestTableViewCell: UITableViewCell {
         changesDescriptionLabel.numberOfLines = 3
         let changesDescriptionHeight = TextHelper.getHeightForStringInLabel(with: changes.diff, width: changesDescriptionLabel.frame.width)
     
-        let numberOfLinesHeight = changesDescriptionLabel.font.lineHeight * CGFloat(3)
+        let numberOfLinesHeight = changesDescriptionLabel.font.lineHeight * CGFloat(numberOfLines)
         
         height = ceil(fileNameHeight) + ceil(nameOfChangesHeight) + ceil(numberOfLinesHeight)
         height += self.cellOffsets()

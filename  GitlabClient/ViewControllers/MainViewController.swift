@@ -159,6 +159,7 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let mergeRequests = projectsData[indexPath.section].mergeRequest else { return }
         self.router?.navigateToScreen(with: .mergeRequestController(mergeRequests[indexPath.row]), animated: true)
+        tableView.deselectRow(at: indexPath, animated: false)
     }
     
 }
