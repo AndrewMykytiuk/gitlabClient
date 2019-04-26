@@ -60,7 +60,9 @@ enum Constants {
     }
     
     enum RefreshControl: String {
-        case title = "Fetching Projects Data"
+        case projectsTableViewTitle = "ProjectsTableView.RefreshControl"
+        case profileTableViewTitle = "ProfileTableView.RefreshControl"
+        case mergeRequestsChangesTableViewTitle = "MergeRequestChangesTableView.RefreshControl"
     }
     
     enum TabBarItemNames {

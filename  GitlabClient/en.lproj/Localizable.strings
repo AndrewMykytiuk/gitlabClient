@@ -14,7 +14,9 @@
 "Linkedin" = "Linkedin:";
 "Twitter" = "Twitter:";
 "Website" = "Website:";
-"Fetching Projects Data" = "Fetching Projects Data ...";
+"ProjectsTableView.RefreshControl" = "Fetching projects data...";
+"ProfileTableView.RefreshControl" = "Fetching profile data ...";
+"MergeRequestChangesTableView.RefreshControl" = "Fetching changed files data ...";
 "Show less" = "Show less...";
 "Show more" = "Show more...";
 "author" = "author:";
