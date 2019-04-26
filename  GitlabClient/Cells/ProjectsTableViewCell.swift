@@ -61,15 +61,17 @@ class ProjectsTableViewCell: UITableViewCell {
         let mergeRequestDescriptionHeight = TextHelper.getHeightForStringInLabel(with: request.description, width: mergesDescriptionLabel.frame.width)
         let isButtonNeeded = mergeRequestDescriptionHeight > numberOfLinesHeight
         
-        setupForButton(isNeeded: isButtonNeeded, isExpanded: isExpanded)
+        self.showMoreButton.isHidden = !isButtonNeeded
+        setUpBottomConstraint(isButtonNeeded: isButtonNeeded)
+        
+        setupForButton(isExpanded: isExpanded)
         self.mergesDescriptionLabel.text = request.description
         
         let _ = calculateSameLineForAuthorAndAssignee(authorName: request.author.name, assigneeName: request.assignee.name)
     }
     
-    private func setupForButton(isNeeded: Bool, isExpanded: Bool) {
-        self.showMoreButton.isHidden = !isNeeded
-        setUpBottomConstraint(isButtonNeeded: isNeeded)
+    private func setupForButton(isExpanded: Bool) {
+        
         self.mergesDescriptionLabel.numberOfLines = isExpanded ? 0 : numberOfLines
         self.showMoreButton.setTitle(isExpanded ? NSLocalizedString(cellStaticTitles.lessButtonTitle.rawValue, comment: "") : NSLocalizedString(cellStaticTitles.moreButtonTitle.rawValue, comment: ""), for: .normal)
     }
