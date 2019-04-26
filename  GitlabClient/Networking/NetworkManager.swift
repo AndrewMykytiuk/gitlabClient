@@ -28,7 +28,7 @@ class NetworkManager {
             components.queryItems?.append(queryItem) }
         
         if token != nil {
-            let queryItem = URLQueryItem(name: Constants.KeyValues.accessTokenKey.rawValue, value: token)
+            let queryItem = URLQueryItem(name: Constants.Network.accessToken.rawValue, value: token)
             components.queryItems?.append(queryItem)
         }
         

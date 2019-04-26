@@ -24,6 +24,7 @@ enum Constants {
         case responseType = "code"
         case grantType = "authorization_code"
         case state = "1234567"
+        case accessToken = "access_token"
         
     }
     
@@ -34,20 +35,23 @@ enum Constants {
         case mergeRequest = "projects/"
     }
     
-    enum KeyValues: String {
-        
-        case clientIDKey = "client_id"
-        case redirectURLKey = "redirect_uri"
-        case responseTypeKey = "response_type"
-        case stateKey = "state"
-        case accessTokenKey = "access_token"
-        case clientSecretKey = "client_secret"
-        case grantTypeKey = "grant_type"
+    enum ProjectRequestKeyValues: String {
         case membershipKey = "membership"
         case membershipYesKey = "yes"
+    }
+    
+    enum MergeRequestKeyValues: String {
         case stateOpenedKey = "opened"
         case mergeRequestsKey = "/merge_requests"
-        
+    }
+    
+    enum AuthorizeKeyValues: String {
+        case clientIDKey = "client_id"
+        case redirectURLKey = "redirect_uri"
+        case clientSecretKey = "client_secret"
+        case grantTypeKey = "grant_type"
+        case stateKey = "state"
+        case responseTypeKey = "response_type"
     }
     
     enum AlertStrings: String {

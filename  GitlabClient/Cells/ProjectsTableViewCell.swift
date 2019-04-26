@@ -19,9 +19,9 @@ class ProjectsTableViewCell: UITableViewCell {
     @IBOutlet private weak var showMoreButton: UIButton!
     
     @IBOutlet private weak var mergesLabel: UILabel!
-    @IBOutlet private weak var mergesLabelDescription: UILabel! {
+    @IBOutlet private weak var mergesDescriptionLabel: UILabel! {
         didSet {
-            numberOfLinesHeight = mergesLabelDescription.font.lineHeight * CGFloat(numberOfLines)
+            numberOfLinesHeight = mergesDescriptionLabel.font.lineHeight * CGFloat(numberOfLines)
         }
     }
     @IBOutlet private weak var authorOneLineLabel: UILabel!
@@ -58,11 +58,11 @@ class ProjectsTableViewCell: UITableViewCell {
         self.authorOneLineLabel.text = request.author.name
         self.assignToOneLineLabel.text = request.assignee.name
         
-        let mergeRequestDescriptionHeight = TextHelper.getHeightForStringInLabel(with: request.description, width: mergesLabelDescription.frame.width)
+        let mergeRequestDescriptionHeight = TextHelper.getHeightForStringInLabel(with: request.description, width: mergesDescriptionLabel.frame.width)
         let isButtonNeeded = mergeRequestDescriptionHeight > numberOfLinesHeight
         
         setupForButton(isNeeded: isButtonNeeded, isExpanded: isExpanded)
-        self.mergesLabelDescription.text = request.description
+        self.mergesDescriptionLabel.text = request.description
         
         let _ = calculateSameLineForAuthorAndAssignee(authorName: request.author.name, assigneeName: request.assignee.name)
     }
@@ -70,7 +70,7 @@ class ProjectsTableViewCell: UITableViewCell {
     private func setupForButton(isNeeded: Bool, isExpanded: Bool) {
         self.showMoreButton.isHidden = !isNeeded
         setUpBottomConstraint(isButtonNeeded: isNeeded)
-        self.mergesLabelDescription.numberOfLines = isExpanded ? 0 : numberOfLines
+        self.mergesDescriptionLabel.numberOfLines = isExpanded ? 0 : numberOfLines
         self.showMoreButton.setTitle(isExpanded ? NSLocalizedString(cellStaticTitles.lessButtonTitle.rawValue, comment: "") : NSLocalizedString(cellStaticTitles.moreButtonTitle.rawValue, comment: ""), for: .normal)
     }
     
@@ -125,7 +125,7 @@ class ProjectsTableViewCell: UITableViewCell {
     }
     
     private func calculatingHeightForDescriptionLabel(with string: String, isExpanded: Bool) -> (CGFloat, Bool) {
-        let mergeRequestDescriptionHeight = TextHelper.getHeightForStringInLabel(with: string, width: mergesLabelDescription.frame.width)
+        let mergeRequestDescriptionHeight = TextHelper.getHeightForStringInLabel(with: string, width: mergesDescriptionLabel.frame.width)
         
         let isButtonNeeded = mergeRequestDescriptionHeight > numberOfLinesHeight
         

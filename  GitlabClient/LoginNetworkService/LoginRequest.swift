@@ -20,10 +20,10 @@ struct LoginRequest: Request {
         self.HTTPMethod = method
         self.path = path
         
-        let params: [String: Any] = [Constants.KeyValues.clientIDKey.rawValue: Constants.Network.clientID.rawValue,
-        Constants.KeyValues.clientSecretKey.rawValue: Constants.Network.clientSecret.rawValue,
+        let params: [String: Any] = [Constants.AuthorizeKeyValues.clientIDKey.rawValue: Constants.Network.clientID.rawValue,
+        Constants.AuthorizeKeyValues.clientSecretKey.rawValue: Constants.Network.clientSecret.rawValue,
         Constants.Network.responseType.rawValue: code,
-        Constants.KeyValues.grantTypeKey.rawValue: Constants.Network.grantType.rawValue, Constants.KeyValues.redirectURLKey.rawValue: Constants.Network.redirectURL.rawValue]
+        Constants.AuthorizeKeyValues.grantTypeKey.rawValue: Constants.Network.grantType.rawValue, Constants.AuthorizeKeyValues.redirectURLKey.rawValue: Constants.Network.redirectURL.rawValue]
         let sorted = params.sorted {$0.key < $1.key}
         self.parameters = sorted
     }

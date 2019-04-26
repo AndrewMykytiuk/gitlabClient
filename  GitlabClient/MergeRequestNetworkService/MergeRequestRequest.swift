@@ -19,7 +19,7 @@ struct MergeRequestRequest: Request {
     init(method: HTTPMethod, path: String) {
         self.HTTPMethod = method
         self.path = path
-        self.parameters = [(key: Constants.KeyValues.stateKey.rawValue, value: Constants.KeyValues.stateOpenedKey.rawValue)]
+        self.parameters = [(key: Constants.AuthorizeKeyValues.stateKey.rawValue, value: Constants.MergeRequestKeyValues.stateOpenedKey.rawValue)]
     }
     
 }

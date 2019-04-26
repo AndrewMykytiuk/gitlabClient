@@ -43,13 +43,13 @@ class AuthHelper {
         
         var components = URLHelper.createBaseAuthUrlComponents()
         components.path = operation.rawValue
-        let queryItemClientID = URLQueryItem(name: Constants.KeyValues.clientIDKey.rawValue, value: Constants.Network.clientID.rawValue)
+        let queryItemClientID = URLQueryItem(name: Constants.AuthorizeKeyValues.clientIDKey.rawValue, value: Constants.Network.clientID.rawValue)
         
         switch operation {
         case .authorize:
-            let queryItemRedirectURI = URLQueryItem(name: Constants.KeyValues.redirectURLKey.rawValue, value: Constants.Network.redirectURL.rawValue)
-            let queryItemResponseType = URLQueryItem(name: Constants.KeyValues.responseTypeKey.rawValue, value: Constants.Network.responseType.rawValue)
-            let queryItemState = URLQueryItem(name: Constants.KeyValues.stateKey.rawValue, value: Constants.Network.state.rawValue)
+            let queryItemRedirectURI = URLQueryItem(name: Constants.AuthorizeKeyValues.redirectURLKey.rawValue, value: Constants.Network.redirectURL.rawValue)
+            let queryItemResponseType = URLQueryItem(name: Constants.AuthorizeKeyValues.responseTypeKey.rawValue, value: Constants.Network.responseType.rawValue)
+            let queryItemState = URLQueryItem(name: Constants.AuthorizeKeyValues.stateKey.rawValue, value: Constants.Network.state.rawValue)
             
             components.queryItems = [queryItemClientID, queryItemRedirectURI, queryItemResponseType, queryItemState]
         default:

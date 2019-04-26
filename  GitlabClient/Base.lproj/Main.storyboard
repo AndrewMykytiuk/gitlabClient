@@ -205,8 +205,8 @@
                                             <outlet property="authorNameLabel" destination="1Vy-qN-Q8l" id="vMm-CZ-ndG"/>
                                             <outlet property="authorOneLineLabel" destination="w4P-wX-wX1" id="fEC-H2-cNn"/>
                                             <outlet property="bottomCellNSLayoutConstraint" destination="r1b-vN-dZx" id="ncI-Sf-Cir"/>
+                                            <outlet property="mergesDescriptionLabel" destination="BH5-Gd-3dh" id="pKF-P0-eeD"/>
                                             <outlet property="mergesLabel" destination="FJU-iH-GmM" id="Stq-wZ-V3l"/>
-                                            <outlet property="mergesLabelDescription" destination="BH5-Gd-3dh" id="QlL-px-ZYN"/>
                                             <outlet property="showMoreButton" destination="Eca-c3-qP2" id="Y8y-Xf-lIN"/>
                                             <outletCollection property="cellNSLayoutConstraints" destination="6to-ZO-qFo" collectionClass="NSMutableArray" id="oPa-kW-brc"/>
                                             <outletCollection property="cellNSLayoutConstraints" destination="30J-3r-Nei" collectionClass="NSMutableArray" id="IxC-TO-9Ll"/>
