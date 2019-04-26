@@ -170,10 +170,10 @@
 				CEE51017225F38070049EC69 /* Cells */,
 				CE6FF03022390AB0003F7C56 /* ViewControllers */,
 				CE6FF0172236AECB003F7C56 /* Main.storyboard */,
+				CE6FF0222236AECE003F7C56 /* Info.plist */,
 				CE6FF0132236AECB003F7C56 /* AppDelegate.swift */,
 				CE6FF01D2236AECE003F7C56 /* Assets.xcassets */,
 				CE6FF01F2236AECE003F7C56 /* LaunchScreen.storyboard */,
-				CE6FF0222236AECE003F7C56 /* Info.plist */,
 				CE729F342243E5BA0006C37C /* Localizable.strings */,
 			);
 			path = " GitlabClient";

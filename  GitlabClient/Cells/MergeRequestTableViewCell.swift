@@ -11,38 +11,37 @@ import UIKit
 class MergeRequestTableViewCell: UITableViewCell {
 
     @IBOutlet private weak var fileNameLabel: UILabel!
-    @IBOutlet private weak var nameOfChangesLabel: UILabel!
-    @IBOutlet private weak var changesDescriptionLabel: UILabel!
-    
-    @IBOutlet var cellOutlets: [NSLayoutConstraint]!
-    private let numberOfLines: Int = 3
+    @IBOutlet private var cellOutlets: [NSLayoutConstraint]!
 
     func setup(with changes: MergeRequestChanges) {
-        
         self.fileNameLabel.text = changes.newPath
-        self.nameOfChangesLabel.text = changes.deletedFile.description
-        self.changesDescriptionLabel.text = changes.diff
-        
+        self.setupCellColor(with: changes)
     }
     
     func getCellSize(with changes: MergeRequestChanges) -> CGFloat {
         var height: CGFloat = 0
         
         let fileNameHeight = TextHelper.getHeightForStringInLabel(with: changes.newPath, width: fileNameLabel.frame.width)
-        let nameOfChangesHeight = TextHelper.getHeightForStringInLabel(with: changes.deletedFile.description, width: nameOfChangesLabel.frame.width)
-        changesDescriptionLabel.numberOfLines = 3
-        let changesDescriptionHeight = TextHelper.getHeightForStringInLabel(with: changes.diff, width: changesDescriptionLabel.frame.width)
-    
-        let numberOfLinesHeight = changesDescriptionLabel.font.lineHeight * CGFloat(numberOfLines)
         
-        height = ceil(fileNameHeight) + ceil(nameOfChangesHeight) + ceil(numberOfLinesHeight)
+        height += ceil(fileNameHeight)
+        
         height += self.cellOffsets()
         
         return height
     }
     
+    private func setupCellColor(with changes: MergeRequestChanges) {
+        if changes.deletedFile {
+            self.backgroundColor = UIColor(red:226/256, green:71/256, blue:72/256, alpha:1.0)
+        } else if changes.newFile {
+            self.backgroundColor = UIColor(red:36/256, green:112/256, blue:65/256, alpha:1.0)
+        } else {
+            self.backgroundColor = UIColor(red:237/256, green:94/256, blue:32/256, alpha:1.0)
+        }
+    }
+    
     private func cellOffsets() -> CGFloat {
-        var sum: CGFloat = 0
+        var sum: CGFloat = 1
 
         for constraint in cellOutlets {
             sum += constraint.constant
