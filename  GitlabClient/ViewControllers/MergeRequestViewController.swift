@@ -11,17 +11,18 @@ import UIKit
 
 class MergeRequestViewController: BaseViewController {
     
-    @IBOutlet weak var mergeRequestTableView: UITableView! {
+    @IBOutlet private weak var mergeRequestTableView: UITableView! {
         didSet {
             createMergeRequestCellPrototype()
+            mergeRequestTableView.refreshControl = refreshControl
         }
     }
     
+    private let activityIndicator = UIActivityIndicatorView(style: .whiteLarge)
+    private let refreshControl = UIRefreshControl()
     private var mergeRequestService: MergeRequestService!
     private var mergeRequestCell: MergeRequestTableViewCell!
     private var changes: [MergeRequestChanges] = []
-    private let activityIndicator = UIActivityIndicatorView(style: .whiteLarge)
-    private let refreshControl = UIRefreshControl()
     private var id: Int?
     private var iid: Int?
     
@@ -46,11 +47,17 @@ class MergeRequestViewController: BaseViewController {
         self.navigationController?.setNavigationBarHidden(false, animated: animated)
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        self.mergeRequestCell.frame = CGRect(origin: CGPoint.zero, size: mergeRequestTableView.frame.size)
+        self.mergeRequestCell.layoutIfNeeded()
+    }
+    
     private func setupRefreshControl() {
         let attributes = [NSAttributedString.Key.font: Constants.font]
         refreshControl.addTarget(self, action: #selector(refreshMergeRequestsData(_:)), for: .valueChanged)
-        refreshControl.tintColor = UIColor(red:226/256, green:71/256, blue:72/256, alpha:1.0)
-        refreshControl.attributedTitle = NSAttributedString(string: NSLocalizedString(Constants.RefreshControl.title.rawValue, comment: ""), attributes: attributes as [NSAttributedString.Key : Any])
+        refreshControl.tintColor = Constants.Colors.mainRed.value
+        refreshControl.attributedTitle = NSAttributedString(string: NSLocalizedString(Constants.RefreshControl.mergeRequestsChangesTableViewTitle.rawValue, comment: ""), attributes: attributes as [NSAttributedString.Key : Any])
     }
     
     private func setupActivityIndicator(with view: UIView) {
@@ -72,16 +79,16 @@ class MergeRequestViewController: BaseViewController {
             DispatchQueue.main.async {
                 switch result {
                 case .success(let changes):
-                    welf.activityIndicator.stopAnimating()
                     if changes.count > 0 {
                     welf.changes = changes
                     welf.mergeRequestTableView.reloadData()
                     }
                 case .error(let error):
-                    welf.activityIndicator.stopAnimating()
                     let alert = AlertHelper.createErrorAlert(message: error.localizedDescription, handler: nil)
                     welf.present(alert, animated: true)
                 }
+                welf.refreshControl.endRefreshing()
+                welf.activityIndicator.stopAnimating()
             }
         }
     }
@@ -116,9 +123,8 @@ extension MergeRequestViewController: UITableViewDelegate, UITableViewDataSource
         return cell
     }
     
-    override func willTransition(to newCollection: UITraitCollection, with coordinator: UIViewControllerTransitionCoordinator) {
-        super.viewWillTransition(to: newCollection.accessibilityFrame.size, with: coordinator)
-        
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
         let completionHandler: ((UIViewControllerTransitionCoordinatorContext) -> Void) = { [weak self] (context) in
             guard let welf = self else { return }
             if welf.mergeRequestTableView != nil {
