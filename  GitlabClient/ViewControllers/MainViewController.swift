@@ -49,7 +49,7 @@ class MainViewController: BaseViewController {
     private func setupRefreshControl() {
         let attributes = [NSAttributedString.Key.font: Constants.font]
         refreshControl.addTarget(self, action: #selector(refreshProjectsData(_:)), for: .valueChanged)
-        refreshControl.tintColor = UIColor(red:226/256, green:71/256, blue:72/256, alpha:1.0)
+        refreshControl.tintColor = Constants.Colors.mainRed.value
         refreshControl.attributedTitle = NSAttributedString(string: NSLocalizedString(Constants.RefreshControl.title.rawValue, comment: ""), attributes: attributes as [NSAttributedString.Key : Any])
     }
     

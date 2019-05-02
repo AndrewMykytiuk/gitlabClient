@@ -81,6 +81,24 @@ enum Constants {
         case locale = "en_US_POSIX"
     }
     
+    enum Colors {
+        
+        case mainRed
+        case mainGreen
+        case mainOrange
+        
+        var value: (UIColor) {
+            switch self {
+            case .mainRed:
+                return UIColor(red:226/256, green:71/256, blue:72/256, alpha:1.0)
+            case .mainGreen:
+                return UIColor(red:36/256, green:112/256, blue:65/256, alpha:1.0)
+            case .mainOrange:
+                return UIColor(red:237/256, green:94/256, blue:32/256, alpha:1.0)
+            }
+        }
+    }
+    
     
 }
 

@@ -12,6 +12,8 @@ class MergeRequestTableViewCell: UITableViewCell {
 
     @IBOutlet private weak var fileNameLabel: UILabel!
     @IBOutlet private var cellOutlets: [NSLayoutConstraint]!
+    
+    private let separatorHeight: CGFloat = 1
 
     func setup(with changes: MergeRequestChanges) {
         self.fileNameLabel.text = changes.newPath
@@ -31,22 +33,22 @@ class MergeRequestTableViewCell: UITableViewCell {
     }
     
     private func setupCellColor(with changes: MergeRequestChanges) {
-        if changes.deletedFile {
-            self.backgroundColor = UIColor(red:226/256, green:71/256, blue:72/256, alpha:1.0)
-        } else if changes.newFile {
-            self.backgroundColor = UIColor(red:36/256, green:112/256, blue:65/256, alpha:1.0)
-        } else {
-            self.backgroundColor = UIColor(red:237/256, green:94/256, blue:32/256, alpha:1.0)
+        var isFileDeletedFalse = false
+        
+        changes.deletedFile ? self.backgroundColor = Constants.Colors.mainRed.value : isFileDeletedFalse.toggle()
+        
+        if isFileDeletedFalse {
+            self.backgroundColor = changes.newFile ? Constants.Colors.mainGreen.value : Constants.Colors.mainOrange.value
         }
     }
     
     private func cellOffsets() -> CGFloat {
-        var sum: CGFloat = 1
+        var sum: CGFloat = 0
 
         for constraint in cellOutlets {
             sum += constraint.constant
         }
-        return sum
+        return sum + separatorHeight
     }
     
     class func identifier() -> String {
