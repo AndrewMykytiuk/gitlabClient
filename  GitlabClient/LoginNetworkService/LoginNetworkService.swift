@@ -46,7 +46,7 @@ class LoginNetworkService: LoginNetworkServiceType {
     }
     
     private func codeFromData(_ data: Data) -> Result<String> {
-        if let json = try? JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String: Any], let code = json?[Constants.Network.accessToken.rawValue] as? String {
+        if let json = try? JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String: Any], let code = json?[Constants.Network.Authorize.Keys.accessTokenKey.rawValue] as? String {
             return .success(code)
         } else {
             return .error(ParsingError.emptyResult(String(data: data, encoding: String.Encoding.utf8)))

@@ -19,7 +19,7 @@ struct ProjectRequest: Request {
     init(method: HTTPMethod, path: String) {
         self.HTTPMethod = method
         self.path = path
-        self.parameters = [(key: Constants.ProjectRequestKeyValues.membershipKey.rawValue, value: Constants.ProjectRequestKeyValues.membershipYesKey.rawValue)]
+        self.parameters = [(key: Constants.Network.ProjectRequest.membershipKey.rawValue, value: Constants.Network.ProjectRequest.membershipYesValue.rawValue)]
     }
     
 }

@@ -36,8 +36,8 @@ class ProjectsTableViewCell: UITableViewCell {
     private var numberOfLinesHeight: CGFloat = 0
     
     private enum cellStaticTitles: String {
-        case authorTitle = "author"
-        case assignTitle = "assign"
+        case authorTitle = "ProjectsTableViewCell.showMoreButton.authorTitle"
+        case assignTitle = "ProjectsTableViewCell.showMoreButton.assignTitle"
         case lessButtonTitle = "ProjectsTableViewCell.showMoreButton.lessTitle"
         case moreButtonTitle = "ProjectsTableViewCell.showMoreButton.moreTitle"
     }

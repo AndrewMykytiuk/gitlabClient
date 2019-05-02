@@ -139,12 +139,12 @@ class ProfileViewController: BaseViewController {
 extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
     
     private enum tableViewTitles: String {
-        case email = "Email"
-        case location = "Location"
-        case skype = "Skype"
-        case linkdn = "Linkedin"
-        case twitter = "Twitter"
-        case website = "Website"
+        case email = "ProjectsTableView.Title.Email"
+        case location = "ProjectsTableView.Title.Location"
+        case skype = "ProjectsTableView.Title.Skype"
+        case linkdn = "ProjectsTableView.Title.Linkedin"
+        case twitter = "ProjectsTableView.Title.Twitter"
+        case website = "ProjectsTableView.Title.Website"
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

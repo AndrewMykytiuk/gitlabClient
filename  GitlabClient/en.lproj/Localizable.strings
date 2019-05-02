@@ -6,18 +6,18 @@
   Copyright © 2019 MPTechnologies. All rights reserved.
 */
 
-"Error" = "Error";
-"OK" = "OK";
-"Email" = "Email:";
-"Location" = "Location:";
-"Skype" = "Skype:";
-"Linkedin" = "Linkedin:";
-"Twitter" = "Twitter:";
-"Website" = "Website:";
+"AlertHelper.ErrorTitle" = "Error";
+"AlertHelper.OKTitle" = "OK";
+"ProjectsTableView.Title.Email" = "Email:";
+"ProjectsTableView.Title.Location" = "Location:";
+"ProjectsTableView.Title.Skype" = "Skype:";
+"ProjectsTableView.Title.Linkedin" = "Linkedin:";
+"ProjectsTableView.Title.Twitter" = "Twitter:";
+"ProjectsTableView.Title.Website" = "Website:";
 "ProjectsTableView.RefreshControl" = "Fetching projects data...";
 "ProfileTableView.RefreshControl" = "Fetching profile data ...";
 "MergeRequestChangesTableView.RefreshControl" = "Fetching changed files data ...";
 "ProjectsTableViewCell.showMoreButton.lessTitle" = "Show less...";
 "ProjectsTableViewCell.showMoreButton.moreTitle" = "Show more...";
-"author" = "author:";
-"assign" = "assign to:";
+"ProjectsTableViewCell.showMoreButton.authorTitle" = "author:";
+"ProjectsTableViewCell.showMoreButton.assignTitle" = "assign to:";
