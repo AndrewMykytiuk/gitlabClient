@@ -18,46 +18,60 @@ enum Constants {
         case baseUrl = "www.gitlab.dataart.com"
         case secureScheme = "https"
         case host = "gitlab.dataart.com"
-        case clientID = "84318559ea36e249bd51365dca13ba9f937aa09442e67dc1c31c25a376adcafa"
-        case clientSecret = "3808bf00f1e124ef8e4046e74d0c4eef83d88823aa6a2f7465c9647cace23794"
-        case redirectURL = "https://gitlabclient.com/oauth/redirect"
-        case responseType = "code"
-        case grantType = "authorization_code"
-        case state = "1234567"
         
-    }
-    
-    enum NetworkPath: String {
-        case api = "/api/v4/"
-        case profile = "user"
-        case projects = "projects"
-        case mergeRequest = "projects/"
-    }
-    
-    enum KeyValues: String {
+        enum ProjectRequest: String {
+            case membershipKey = "membership"
+            case membershipYesValue = "yes"
+        }
         
-        case clientIDKey = "client_id"
-        case redirectURLKey = "redirect_uri"
-        case responseTypeKey = "response_type"
-        case stateKey = "state"
-        case accessTokenKey = "access_token"
-        case clientSecretKey = "client_secret"
-        case grantTypeKey = "grant_type"
-        case membershipKey = "membership"
-        case membershipYesKey = "yes"
-        case stateOpenedKey = "opened"
-        case mergeRequestsKey = "/merge_requests"
-        case changesKey = "/changes"
+        enum MergeRequest: String {
+            case stateOpenedValue = "opened"
+            case mergeRequestsKey = "/merge_requests"
+        }
+        
+        enum Authorize {
+            
+            enum Keys: String {
+                case clientIDKey = "client_id"
+                case redirectURLKey = "redirect_uri"
+                case clientSecretKey = "client_secret"
+                case grantTypeKey = "grant_type"
+                case responseTypeKey = "response_type"
+                case codeKey = "code"
+                case stateKey = "state"
+                case accessTokenKey = "access_token"
+                case changesKey = "/changes"
+            }
+            
+            enum Values: String {
+                case clientIDValue = "84318559ea36e249bd51365dca13ba9f937aa09442e67dc1c31c25a376adcafa"
+                case clientSecretValue = "3808bf00f1e124ef8e4046e74d0c4eef83d88823aa6a2f7465c9647cace23794"
+                case redirectURLValue = "https://gitlabclient.com/oauth/redirect"
+                case grantTypeValue = "authorization_code"
+                case stateValue = "1234567"
+                case codeValue = "code"
+            }
+            
+        }
+
+        enum Path: String {
+            case api = "/api/v4/"
+            case profile = "user"
+            case projects = "projects"
+            case mergeRequest = "projects/"
+        }
         
     }
     
     enum AlertStrings: String {
-        case title = "Error"
-        case okButton = "OK"
+        case title = "AlertHelper.ErrorTitle"
+        case okButton = "AlertHelper.OKTitle"
     }
     
     enum RefreshControl: String {
-        case title = "Fetching Projects Data"
+        case projectsTableViewTitle = "ProjectsTableView.RefreshControl"
+        case profileTableViewTitle = "ProfileTableView.RefreshControl"
+        case mergeRequestsChangesTableViewTitle = "MergeRequestChangesTableView.RefreshControl"
     }
     
     enum TabBarItemNames {

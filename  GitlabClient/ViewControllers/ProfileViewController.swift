@@ -139,12 +139,12 @@ class ProfileViewController: BaseViewController {
 extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
     
     private enum tableViewTitles: String {
-        case email = "Email"
-        case location = "Location"
-        case skype = "Skype"
-        case linkdn = "Linkedin"
-        case twitter = "Twitter"
-        case website = "Website"
+        case email = "ProjectsTableView.Title.Email"
+        case location = "ProjectsTableView.Title.Location"
+        case skype = "ProjectsTableView.Title.Skype"
+        case linkdn = "ProjectsTableView.Title.Linkedin"
+        case twitter = "ProjectsTableView.Title.Twitter"
+        case website = "ProjectsTableView.Title.Website"
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -161,9 +161,8 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
     
-    override func willTransition(to newCollection: UITraitCollection, with coordinator: UIViewControllerTransitionCoordinator) {
-        super.viewWillTransition(to: newCollection.accessibilityFrame.size, with: coordinator)
-        
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
         let completionHandler: ((UIViewControllerTransitionCoordinatorContext) -> Void) = { [weak self] (context) in
             guard let welf = self else { return }
             if welf.profileTableView != nil {

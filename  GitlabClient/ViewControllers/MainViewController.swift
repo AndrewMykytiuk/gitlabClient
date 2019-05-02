@@ -50,7 +50,7 @@ class MainViewController: BaseViewController {
         let attributes = [NSAttributedString.Key.font: Constants.font]
         refreshControl.addTarget(self, action: #selector(refreshProjectsData(_:)), for: .valueChanged)
         refreshControl.tintColor = Constants.Colors.mainRed.value
-        refreshControl.attributedTitle = NSAttributedString(string: NSLocalizedString(Constants.RefreshControl.title.rawValue, comment: ""), attributes: attributes as [NSAttributedString.Key : Any])
+        refreshControl.attributedTitle = NSAttributedString(string: NSLocalizedString(Constants.RefreshControl.projectsTableViewTitle.rawValue, comment: ""), attributes: attributes as [NSAttributedString.Key : Any])
     }
     
     private func setupActivityIndicator(with view: UIView) {
@@ -66,7 +66,7 @@ class MainViewController: BaseViewController {
     
     @objc private func refreshProjectsData(_ sender: Any) {
         getData()
-         activityIndicator.stopAnimating()
+        activityIndicator.stopAnimating()
     }
     
     private func getData() {
@@ -77,16 +77,13 @@ class MainViewController: BaseViewController {
                 switch result {
                 case .success(let data):
                     welf.projectsData = data
-                    welf.refreshControl.endRefreshing()
-                    welf.activityIndicator.stopAnimating()
                     welf.projectsTableView.reloadData()
                 case .error(let error):
-                    welf.refreshControl.endRefreshing()
-                    welf.activityIndicator.stopAnimating()
                     let alert = AlertHelper.createErrorAlert(message: error.localizedDescription, handler: nil)
                     welf.present(alert, animated: true)
-                    
                 }
+                welf.refreshControl.endRefreshing()
+                welf.activityIndicator.stopAnimating()
             }
         }
     }
@@ -135,9 +132,8 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
     
-    override func willTransition(to newCollection: UITraitCollection, with coordinator: UIViewControllerTransitionCoordinator) {
-        super.viewWillTransition(to: newCollection.accessibilityFrame.size, with: coordinator)
-        
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
         let completionHandler: ((UIViewControllerTransitionCoordinatorContext) -> Void) = { [weak self] (context) in
             guard let welf = self else { return }
             if welf.projectsTableView != nil {
