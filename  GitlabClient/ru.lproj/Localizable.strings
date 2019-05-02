@@ -17,8 +17,8 @@
 "ProjectsTableView.RefreshControl" = "Загружаем данные проекта...";
 "ProfileTableView.RefreshControl" = "Загружаем данные профиля...";
 "MergeRequestChangesTableView.RefreshControl" = "Загружаем данные измененных файлов...";
-"Show less" = "Показать меньше...";
-"Show more" = "Показать больше...";
+"ProjectsTableViewCell.showMoreButton.lessTitle" = "Показать меньше...";
+"ProjectsTableViewCell.showMoreButton.moreTitle" = "Показать больше...";
 "author" = "автор:";
 "assign" = "ответственный:";
 

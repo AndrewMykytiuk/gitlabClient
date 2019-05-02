@@ -38,8 +38,8 @@ class ProjectsTableViewCell: UITableViewCell {
     private enum cellStaticTitles: String {
         case authorTitle = "author"
         case assignTitle = "assign"
-        case lessButtonTitle = "Show less"
-        case moreButtonTitle = "Show more"
+        case lessButtonTitle = "ProjectsTableViewCell.showMoreButton.lessTitle"
+        case moreButtonTitle = "ProjectsTableViewCell.showMoreButton.moreTitle"
     }
     
     private enum constraintsForCell: CGFloat {
