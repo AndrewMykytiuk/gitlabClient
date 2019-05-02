@@ -20,7 +20,7 @@ class NetworkManager {
     
     func sendRequest(_ request: Request, completion: @escaping(Result<Data>) -> Void) {
         
-        var components = AuthHelper.createBaseUrlComponents()
+        var components = URLHelper.createBaseAuthUrlComponents()
         components.path = request.path
         
         for param in request.parameters {
@@ -28,7 +28,7 @@ class NetworkManager {
             components.queryItems?.append(queryItem) }
         
         if token != nil {
-            let queryItem = URLQueryItem(name: Constants.KeyValues.accessTokenKey.rawValue, value: token)
+            let queryItem = URLQueryItem(name: Constants.Network.Authorize.Keys.accessTokenKey.rawValue, value: token)
             components.queryItems?.append(queryItem)
         }
         

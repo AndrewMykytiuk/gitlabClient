@@ -6,11 +6,19 @@
   Copyright © 2019 MPTechnologies. All rights reserved.
 */
 
-"Error" = "Ошибка";
-"OK" = "Согласимся";
-"Email" = "Почта:";
-"Location" = "Страна:";
-"Skype" = "Skype:";
-"Linkedin" = "Linkedin:";
-"Twitter" = "Twitter:";
-"Website" = "Сайт:";
+"AlertHelper.ErrorTitle" = "Ошибка";
+"AlertHelper.OKTitle" = "Согласимся";
+"ProjectsTableView.Title.Email" = "Почта:";
+"ProjectsTableView.Title.Location" = "Страна:";
+"ProjectsTableView.Title.Skype" = "Skype:";
+"ProjectsTableView.Title.Linkedin" = "Linkedin:";
+"ProjectsTableView.Title.Twitter" = "Twitter:";
+"ProjectsTableView.Title.Website" = "Сайт:";
+"ProjectsTableView.RefreshControl" = "Загружаем данные проекта...";
+"ProfileTableView.RefreshControl" = "Загружаем данные профиля...";
+"MergeRequestChangesTableView.RefreshControl" = "Загружаем данные измененных файлов...";
+"ProjectsTableViewCell.showMoreButton.lessTitle" = "Показать меньше...";
+"ProjectsTableViewCell.showMoreButton.moreTitle" = "Показать больше...";
+"ProjectsTableViewCell.showMoreButton.authorTitle" = "автор:";
+"ProjectsTableViewCell.showMoreButton.assignTitle" = "ответственный:";
+

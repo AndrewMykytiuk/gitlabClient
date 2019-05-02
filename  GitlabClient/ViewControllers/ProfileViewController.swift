@@ -57,7 +57,7 @@ class ProfileViewController: BaseViewController {
             .centerYAnchor.constraint(equalTo: self.view.centerYAnchor)
         view.addConstraint(horizontalConstraint)
         view.addConstraint(verticalConstraint)
-
+        
     }
     
     override func viewDidLayoutSubviews() {
@@ -68,11 +68,11 @@ class ProfileViewController: BaseViewController {
     
     private func setup (with user:User) {
         if let data = try? Data(contentsOf: user.avatarUrl) {
-        DispatchQueue.main.async {
-            self.avatarImage.image = UIImage(data: data)
-            self.nameLabel.text = user.name
-            self.statusLabel.text = user.bio
-        }}
+            DispatchQueue.main.async {
+                self.avatarImage.image = UIImage(data: data)
+                self.nameLabel.text = user.name
+                self.statusLabel.text = user.bio
+            }}
         
         let email = ProfileItemViewModel(title: NSLocalizedString(tableViewTitles.email.rawValue, comment: ""), description: user.email)
         let location = ProfileItemViewModel(title: NSLocalizedString(tableViewTitles.location.rawValue, comment: ""), description: user.location)
@@ -98,9 +98,7 @@ class ProfileViewController: BaseViewController {
     }
     
     private func getUser() {
-        if userData.count == 0 {
-            activityIndicator.startAnimating()
-        }
+        activityIndicator.startAnimating()
         profileService?.getUser { [weak self] (result) in
             guard let welf = self else { return }
             DispatchQueue.main.async {
@@ -120,7 +118,7 @@ class ProfileViewController: BaseViewController {
             }
         }
     }
-
+    
     @IBAction func logOutButtonAction(_ sender: UIButton) {
         
         loginService.logout { [weak self] (result) in
@@ -141,12 +139,12 @@ class ProfileViewController: BaseViewController {
 extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
     
     private enum tableViewTitles: String {
-        case email = "Email"
-        case location = "Location"
-        case skype = "Skype"
-        case linkdn = "Linkedin"
-        case twitter = "Twitter"
-        case website = "Website"
+        case email = "ProjectsTableView.Title.Email"
+        case location = "ProjectsTableView.Title.Location"
+        case skype = "ProjectsTableView.Title.Skype"
+        case linkdn = "ProjectsTableView.Title.Linkedin"
+        case twitter = "ProjectsTableView.Title.Twitter"
+        case website = "ProjectsTableView.Title.Website"
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -163,9 +161,8 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
     
-    override func willTransition(to newCollection: UITraitCollection, with coordinator: UIViewControllerTransitionCoordinator) {
-        super.viewWillTransition(to: newCollection.accessibilityFrame.size, with: coordinator)
-        
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
         let completionHandler: ((UIViewControllerTransitionCoordinatorContext) -> Void) = { [weak self] (context) in
             guard let welf = self else { return }
             if welf.profileTableView != nil {
@@ -176,8 +173,6 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        let attributes = [NSAttributedString.Key.font: Constants.font]
-        
         let titleString = userData[indexPath.row].title
         let descriptionString = userData[indexPath.row].description
         let size = profileCell.getLabelsSize(with: userData[indexPath.row])
@@ -189,24 +184,17 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
             return 0
         }
         
-        let titleRect = NSString(string: titleString).boundingRect(
-            with: CGSize(width: size.titleWidth, height: size.titleHeight),
-            options: [.usesLineFragmentOrigin, .usesFontLeading],
-            attributes: attributes as [NSAttributedString.Key : Any], context: nil)
+        let titleHeight = TextHelper.getHeightForStringInLabel(with: titleString, width: size.titleWidth)
         
         guard let attribute = profileCell.checkForUrl(text: descriptionText, storeRange: false) else {
+            let descriptionHeight = TextHelper.getHeightForStringInLabel(with: descriptionText, width: size.descriptionWidth)
             
-            let descriptionRect = NSString(string: descriptionText).boundingRect(
-                with: CGSize(width: size.descriptionWidth, height: size.descriptionHeight),
-                options: [.usesLineFragmentOrigin, .usesFontLeading],
-                attributes: attributes as [NSAttributedString.Key : Any], context: nil)
-            
-            return max(descriptionRect.height, titleRect.height) + profileCell.verticalOffsets()
+            return max(descriptionHeight, titleHeight) + profileCell.verticalOffsets()
         }
         
-        let descriptionRect = NSMutableAttributedString(attributedString: attribute).boundingRect(with: CGSize(width: size.descriptionWidth, height: size.descriptionHeight), options: [.usesLineFragmentOrigin, .usesFontLeading,], context: nil)
-
-         return max(descriptionRect.height, titleRect.height) + profileCell.verticalOffsets()
+        let descriptionHeight = TextHelper.getHeightForNSAttributedStringInLabel(with: attribute, width: size.descriptionWidth)
+        
+        return max(descriptionHeight, titleHeight) + profileCell.verticalOffsets()
     }
     
 }

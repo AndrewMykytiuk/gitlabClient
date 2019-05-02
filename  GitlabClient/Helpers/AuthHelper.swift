@@ -41,15 +41,15 @@ class AuthHelper {
     
     static func createURL(for operation: URLKind) -> Result<URL> {
         
-        var components = AuthHelper.createBaseUrlComponents()
+        var components = URLHelper.createBaseAuthUrlComponents()
         components.path = operation.rawValue
-        let queryItemClientID = URLQueryItem(name: Constants.KeyValues.clientIDKey.rawValue, value: Constants.Network.clientID.rawValue)
+        let queryItemClientID = URLQueryItem(name: Constants.Network.Authorize.Keys.clientIDKey.rawValue, value: Constants.Network.Authorize.Values.clientIDValue.rawValue)
         
         switch operation {
         case .authorize:
-            let queryItemRedirectURI = URLQueryItem(name: Constants.KeyValues.redirectURLKey.rawValue, value: Constants.Network.redirectURL.rawValue)
-            let queryItemResponseType = URLQueryItem(name: Constants.KeyValues.responseTypeKey.rawValue, value: Constants.Network.responseType.rawValue)
-            let queryItemState = URLQueryItem(name: Constants.KeyValues.stateKey.rawValue, value: Constants.Network.state.rawValue)
+            let queryItemRedirectURI = URLQueryItem(name: Constants.Network.Authorize.Keys.redirectURLKey.rawValue, value: Constants.Network.Authorize.Values.redirectURLValue.rawValue)
+            let queryItemResponseType = URLQueryItem(name: Constants.Network.Authorize.Keys.responseTypeKey.rawValue, value: Constants.Network.Authorize.Values.codeValue.rawValue)
+            let queryItemState = URLQueryItem(name: Constants.Network.Authorize.Keys.stateKey.rawValue, value: Constants.Network.Authorize.Values.stateValue.rawValue)
             
             components.queryItems = [queryItemClientID, queryItemRedirectURI, queryItemResponseType, queryItemState]
         default:
@@ -62,15 +62,5 @@ class AuthHelper {
             return .error(NetworkError.invalidUrl(components.description))
         }
         
-    }
-    
-    static func createBaseUrlComponents() -> URLComponents {
-        var components = URLComponents()
-        
-        components.scheme = Constants.Network.secureScheme.rawValue
-        components.host = Constants.Network.host.rawValue
-        components.queryItems = []
-        
-        return components
     }
 }

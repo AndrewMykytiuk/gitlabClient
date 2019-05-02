@@ -37,7 +37,7 @@ class OAuthLogInViewController: BaseViewController {
         
         self.navigationController?.setNavigationBarHidden(false, animated: true)
         
-       setupWebView()
+        setupWebView()
         
     }
     
@@ -139,13 +139,13 @@ extension OAuthLogInViewController: WKNavigationDelegate {
         self.wkNavigationDelegateAction(webView, decidePolicyFor: navigationAction, decisionHandler: decisionHandler)
         
     }
-
+    
     func webView(_ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: Error) {
         if CodeError.requestTimeout.range.contains(error._code) {
-        let alert = AlertHelper.createErrorAlert(message: error.localizedDescription) { (action) in
-            self.delegate?.viewControllerDidFinishWithError(oAuthViewController: self)
-        }
-        self.present(alert, animated: true)
+            let alert = AlertHelper.createErrorAlert(message: error.localizedDescription) { (action) in
+                self.delegate?.viewControllerDidFinishWithError(oAuthViewController: self)
+            }
+            self.present(alert, animated: true)
         }
     }
     
