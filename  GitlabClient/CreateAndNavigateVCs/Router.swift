@@ -31,6 +31,7 @@ class Router: MainRouterType, ApplicationRouterType {
         case oauthController
         case mainController
         case mergeRequestController(MergeRequest)
+        case mergeRequestChangesControler(MergeRequestChanges)
     }
     
     init(factory: ViewControllerFactory,
@@ -63,6 +64,14 @@ class Router: MainRouterType, ApplicationRouterType {
                 mergeRequestVC.setUpMergeRequestInfo(id: request.projectId, iid: request.iid)
                 self.tabBarVC?.hidesBottomBarWhenPushed = false
                 self.mainRootVC?.pushViewController(mergeRequestVC, animated: true)
+            }
+        case .mergeRequestChangesControler(let change):
+            let vc = factory.createNewVc(with: .mergeRequestChanges)
+            vc.router = self
+            if let mergeRequestChangesVC = vc as? MergeRequestChangesViewController {
+                mergeRequestChangesVC.configureMergeRequestChangesInfo(change: change)
+                self.tabBarVC?.hidesBottomBarWhenPushed = false
+                self.mainRootVC?.pushViewController(mergeRequestChangesVC, animated: true)
             }
         }
     }

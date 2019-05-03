@@ -45,6 +45,7 @@
 		CEB2FCC1226F0F890046B722 /* MergeRequestTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB2FCC0226F0F890046B722 /* MergeRequestTableViewCell.swift */; };
 		CEB2FCC3226F15380046B722 /* MergeRequestChanges.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB2FCC2226F15380046B722 /* MergeRequestChanges.swift */; };
 		CEB2FCC5226F1F350046B722 /* MergeRequestService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB2FCC4226F1F350046B722 /* MergeRequestService.swift */; };
+		CEB2FCC7227B498C0046B722 /* MergeRequestChangesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB2FCC6227B498C0046B722 /* MergeRequestChangesViewController.swift */; };
 		CEE51019225F38070049EC69 /* UITapGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE51016225F38070049EC69 /* UITapGestureRecognizer.swift */; };
 		CEE5101A225F38070049EC69 /* ProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE51018225F38070049EC69 /* ProfileTableViewCell.swift */; };
 		CEE5101E225F384A0049EC69 /* ProfileItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE5101C225F384A0049EC69 /* ProfileItemViewModel.swift */; };
@@ -101,6 +102,7 @@
 		CEB2FCC0226F0F890046B722 /* MergeRequestTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MergeRequestTableViewCell.swift; sourceTree = "<group>"; };
 		CEB2FCC2226F15380046B722 /* MergeRequestChanges.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MergeRequestChanges.swift; sourceTree = "<group>"; };
 		CEB2FCC4226F1F350046B722 /* MergeRequestService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MergeRequestService.swift; sourceTree = "<group>"; };
+		CEB2FCC6227B498C0046B722 /* MergeRequestChangesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MergeRequestChangesViewController.swift; sourceTree = "<group>"; };
 		CEE51016225F38070049EC69 /* UITapGestureRecognizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITapGestureRecognizer.swift; sourceTree = "<group>"; };
 		CEE51018225F38070049EC69 /* ProfileTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileTableViewCell.swift; sourceTree = "<group>"; };
 		CEE5101C225F384A0049EC69 /* ProfileItemViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileItemViewModel.swift; sourceTree = "<group>"; };
@@ -188,6 +190,7 @@
 				CE6FF0282236B1EA003F7C56 /* OAuthLogInViewController.swift */,
 				CE729F3C2244F5120006C37C /* ProfileViewController.swift */,
 				CEB2FCBE226F0B3D0046B722 /* MergeRequestViewController.swift */,
+				CEB2FCC6227B498C0046B722 /* MergeRequestChangesViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -421,6 +424,7 @@
 				CEE5101A225F38070049EC69 /* ProfileTableViewCell.swift in Sources */,
 				CE6FF041223B96CB003F7C56 /* LoginRequest.swift in Sources */,
 				CEE51019225F38070049EC69 /* UITapGestureRecognizer.swift in Sources */,
+				CEB2FCC7227B498C0046B722 /* MergeRequestChangesViewController.swift in Sources */,
 				CE729F43224536B80006C37C /* ProfileRequest.swift in Sources */,
 				CE6FF036223AAD0C003F7C56 /*  Constants.swift in Sources */,
 				CE729F252242582B0006C37C /* MainViewController.swift in Sources */,

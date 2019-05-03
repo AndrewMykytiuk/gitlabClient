@@ -138,6 +138,11 @@ extension MergeRequestViewController: UITableViewDelegate, UITableViewDataSource
         return mergeRequestCell.getCellSize(with: changes[indexPath.row])
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.router?.navigateToScreen(with: .mergeRequestChangesControler(changes[indexPath.row]), animated: true)
+        tableView.deselectRow(at: indexPath, animated: false)
+    }
+    
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return CGFloat.leastNonzeroMagnitude
     }

@@ -386,7 +386,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="4Ls-4x-F9g">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="4Ls-4x-F9g">
                                 <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
@@ -442,6 +442,40 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rYo-8t-woB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3668" y="26.53673163418291"/>
+        </scene>
+        <!--Merge Request Changes View Controller-->
+        <scene sceneID="PCU-aW-f4P">
+            <objects>
+                <viewController storyboardIdentifier="MergeRequestChangesViewController" id="A4V-gS-Bd9" customClass="MergeRequestChangesViewController" customModule="GitlabClient" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Nzf-wZ-Myo">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="a4K-YR-GIR">
+                                <rect key="frame" x="16" y="20" width="343" height="647"/>
+                                <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="8dA-oY-IpP" firstAttribute="bottom" secondItem="a4K-YR-GIR" secondAttribute="bottom" id="S9u-Fh-5nT"/>
+                            <constraint firstItem="a4K-YR-GIR" firstAttribute="leading" secondItem="8dA-oY-IpP" secondAttribute="leading" constant="16" id="eQt-mN-GmY"/>
+                            <constraint firstItem="a4K-YR-GIR" firstAttribute="top" secondItem="8dA-oY-IpP" secondAttribute="top" id="eiW-CY-fcA"/>
+                            <constraint firstItem="8dA-oY-IpP" firstAttribute="trailing" secondItem="a4K-YR-GIR" secondAttribute="trailing" constant="16" id="l3d-Vo-xbP"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="8dA-oY-IpP"/>
+                    </view>
+                    <connections>
+                        <outlet property="MRChangesTextView" destination="a4K-YR-GIR" id="ma6-yf-hRl"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HFX-Ik-btz" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4405" y="35"/>
         </scene>
     </scenes>
     <resources>

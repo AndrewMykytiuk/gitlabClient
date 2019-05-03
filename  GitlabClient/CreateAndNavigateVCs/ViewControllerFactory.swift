@@ -24,6 +24,7 @@ class ViewControllerFactory: ViewControllerFactoryType {
         case main = "MainViewController"
         case profile = "ProfileViewController"
         case mergeRequest = "MergeRequestViewController"
+        case mergeRequestChanges = "MergeRequestChangesViewController"
     }
     
     init(provider: DependencyProvider) {
@@ -63,6 +64,8 @@ class ViewControllerFactory: ViewControllerFactoryType {
                 mergeRequestViewController.configure(with: mergeRequestService)
                 vcTemp = mergeRequestViewController
             }
+        case .mergeRequestChanges:
+            _ = 11
         }
         return vcTemp
     }
