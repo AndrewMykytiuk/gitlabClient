@@ -18,12 +18,27 @@ class ViewControllerFactory: ViewControllerFactoryType {
     private let storyboard = UIStoryboard(name: "Main", bundle: nil)
     private let dependencyProvider: DependencyProvider
     
-    enum ViewControllerIdentifier: String {
-        case oauth = "OAuthLogInViewController"
-        case login = "LogInViewController"
-        case main = "MainViewController"
-        case profile = "ProfileViewController"
-        case mergeRequest = "MergeRequestViewController"
+    enum ViewControllerIdentifier {
+        case oauth
+        case login
+        case main
+        case profile
+        case mergeRequest(MergeRequest)
+        
+        var value: (String) {
+            switch self {
+            case .oauth:
+                return "OAuthLogInViewController"
+            case .login:
+                return "LogInViewController"
+            case .main:
+                return "MainViewController"
+            case .profile:
+                return "ProfileViewController"
+            case .mergeRequest:
+                return "MergeRequestViewController"
+            }
+        }
     }
     
     init(provider: DependencyProvider) {
@@ -32,7 +47,7 @@ class ViewControllerFactory: ViewControllerFactoryType {
     
     func createNewVc(with identifier: ViewControllerIdentifier) -> BaseViewController {
         
-        guard var vcTemp = storyboard.instantiateViewController(withIdentifier: identifier.rawValue) as? BaseViewController else { fatalError(FatalError.invalidStoryboardCreate.rawValue) }
+        guard var vcTemp = storyboard.instantiateViewController(withIdentifier: identifier.value) as? BaseViewController else { fatalError(FatalError.invalidStoryboardCreate.rawValue) }
         
         switch identifier {
         case .main:
@@ -57,10 +72,11 @@ class ViewControllerFactory: ViewControllerFactoryType {
                 profileViewController.configure(with: loginService, profileService: profileService)
                 vcTemp = profileViewController
             }
-        case .mergeRequest:
+        case .mergeRequest(let request):
             if let mergeRequestViewController = vcTemp as? MergeRequestViewController {
                 let mergeRequestService = MergeRequestService(networkManager: dependencyProvider.networkManager)
                 mergeRequestViewController.configure(with: mergeRequestService)
+                mergeRequestViewController.setUpMergeRequestInfo(id: request.projectId, iid: request.iid)
                 vcTemp = mergeRequestViewController
             }
         }
@@ -69,8 +85,8 @@ class ViewControllerFactory: ViewControllerFactoryType {
  
     func createNewTabBarVC(with mainViewController: UINavigationController, profileViewController: BaseViewController) -> UITabBarController {
         
-        mainViewController.tabBarItem = UITabBarItem(title: Constants.TabBarItemNames.main.info.description, image: #imageLiteral(resourceName: "file-three-7.png"), tag: Constants.TabBarItemNames.main.info.index)
-        profileViewController.tabBarItem = UITabBarItem(title: Constants.TabBarItemNames.profile.info.description, image: #imageLiteral(resourceName: "circle-user-7.png"), tag: Constants.TabBarItemNames.profile.info.index)
+        mainViewController.tabBarItem = UITabBarItem(title: Constants.TabBarItemNames.main.info.description, image: UIImage(named: "file-three-7"), tag: Constants.TabBarItemNames.main.info.index)
+        profileViewController.tabBarItem = UITabBarItem(title: Constants.TabBarItemNames.profile.info.description, image: UIImage(named: "circle-user-7"), tag: Constants.TabBarItemNames.profile.info.index)
         
         let viewControllers = [mainViewController, profileViewController]
         

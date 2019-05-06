@@ -27,7 +27,7 @@ class LogInViewController: BaseViewController {
     }
     
     @IBAction func loginButtonDidTouch(_ sender: UIButton) {
-        self.router?.navigateToScreen(with: .oauthController, animated: true)
+        self.router?.navigateToScreen(with: .oauth, animated: true)
     }
     
 }

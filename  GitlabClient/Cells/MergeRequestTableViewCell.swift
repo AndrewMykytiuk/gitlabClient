@@ -11,16 +11,16 @@ import UIKit
 class MergeRequestTableViewCell: UITableViewCell {
 
     @IBOutlet private weak var fileNameLabel: UILabel!
-    @IBOutlet private var cellOutlets: [NSLayoutConstraint]!
+    @IBOutlet private var cellTopAndBottomConstraints: [NSLayoutConstraint]!
     
     private let separatorHeight: CGFloat = 1
 
-    func setup(with changes: MergeRequestChanges) {
-        self.fileNameLabel.text = changes.newPath
-        self.setupCellColor(with: changes)
+    func setup(with model: MergeRequestChangesViewModel) {
+        self.fileNameLabel.text = model.newPath
+        self.backgroundColor = model.backgroundColor
     }
     
-    func getCellSize(with changes: MergeRequestChanges) -> CGFloat {
+    func cellSize(with changes: MergeRequestChanges) -> CGFloat {
         var height: CGFloat = 0
         
         let fileNameHeight = TextHelper.getHeightForStringInLabel(with: changes.newPath, width: fileNameLabel.frame.width)
@@ -32,20 +32,10 @@ class MergeRequestTableViewCell: UITableViewCell {
         return height
     }
     
-    private func setupCellColor(with changes: MergeRequestChanges) {
-        var isFileDeletedFalse = false
-        
-        changes.deletedFile ? self.backgroundColor = Constants.Colors.mainRed.value : isFileDeletedFalse.toggle()
-        
-        if isFileDeletedFalse {
-            self.backgroundColor = changes.newFile ? Constants.Colors.mainGreen.value : Constants.Colors.mainOrange.value
-        }
-    }
-    
     private func cellOffsets() -> CGFloat {
         var sum: CGFloat = 0
 
-        for constraint in cellOutlets {
+        for constraint in cellTopAndBottomConstraints {
             sum += constraint.constant
         }
         return sum + separatorHeight

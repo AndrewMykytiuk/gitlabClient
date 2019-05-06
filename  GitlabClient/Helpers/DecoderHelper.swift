@@ -15,8 +15,8 @@ class DecoderHelper {
         do {
             let decoder = JSONDecoder()
             decoder.dateDecodingStrategy = .formatted(DateFormatter.iso8601Full)
-            let userData = try decoder.decode(T.self, from: data)
-            return .success(userData)
+            let decodedData = try decoder.decode(T.self, from: data)
+            return .success(decodedData)
         } catch DecodingError.dataCorrupted(let context) {
             return .error(DecodingError.dataCorrupted(context))
         } catch DecodingError.keyNotFound(let key, let context) {

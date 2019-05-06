@@ -28,9 +28,9 @@ class Router: MainRouterType, ApplicationRouterType {
     private let keychainItem: KeychainItem
     
     enum Destination {
-        case oauthController
-        case mainController
-        case mergeRequestController(MergeRequest)
+        case oauth
+        case main
+        case mergeRequest(MergeRequest)
     }
     
     init(factory: ViewControllerFactory,
@@ -42,7 +42,7 @@ class Router: MainRouterType, ApplicationRouterType {
     func navigateToScreen(with identifier: Destination, animated: Bool) {
         
         switch identifier {
-        case .oauthController:
+        case .oauth:
             let vc = factory.createNewVc(with: .oauth)
             vc.router = self
             if let authVC = vc as? OAuthLogInViewController {
@@ -51,16 +51,15 @@ class Router: MainRouterType, ApplicationRouterType {
             } else {
                 self.authRootVC?.pushViewController(vc, animated: animated)
             }
-        case .mainController:
+        case .main:
             let vc = factory.createNewVc(with: .main)
             vc.router = self
             let mainNavigationVC = self.mainRootVC
             mainNavigationVC?.pushViewController(vc, animated: animated)
-        case .mergeRequestController(let request):
-            let vc = factory.createNewVc(with: .mergeRequest)
+        case .mergeRequest(let request):
+            let vc = factory.createNewVc(with: .mergeRequest(request))
             vc.router = self
             if let mergeRequestVC = vc as? MergeRequestViewController {
-                mergeRequestVC.setUpMergeRequestInfo(id: request.projectId, iid: request.iid)
                 self.tabBarVC?.hidesBottomBarWhenPushed = false
                 self.mainRootVC?.pushViewController(mergeRequestVC, animated: true)
             }

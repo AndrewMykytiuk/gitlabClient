@@ -415,8 +415,8 @@
                                         <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
                                             <outlet property="fileNameLabel" destination="6y7-Tm-DEH" id="KO2-6D-8xA"/>
-                                            <outletCollection property="cellOutlets" destination="SOv-A9-o0W" collectionClass="NSMutableArray" id="rHT-67-tst"/>
-                                            <outletCollection property="cellOutlets" destination="4Yi-2Y-Eh6" collectionClass="NSMutableArray" id="jgc-rJ-f3e"/>
+                                            <outletCollection property="cellTopAndBottomConstraints" destination="SOv-A9-o0W" collectionClass="NSMutableArray" id="Vkr-0L-djD"/>
+                                            <outletCollection property="cellTopAndBottomConstraints" destination="4Yi-2Y-Eh6" collectionClass="NSMutableArray" id="cts-VZ-TQP"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
