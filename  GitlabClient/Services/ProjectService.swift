@@ -20,15 +20,16 @@ class ProjectService {
         self.mergeRequestManager = MergeRequestNetworkService(networkManager: networkManager)
     }
     
-    func getProjectsInfo(completion: @escaping (Result<[Project]>) -> Void) {
-
-        projectsManager.getProjects { [weak self] (result) in
+    func projectsInfo(completion: @escaping Completion<[Project]>) {
+        
+        projectsManager.projects { [weak self] (result) in
             guard let welf = self else { return }
             switch result {
             case .success(let projects):
-                welf.getMergeRequestsOfProjects(projects) { result in
+                welf.mergeRequests { result in
                     switch result{
-                    case .success(let data):
+                    case .success(let requests):
+                        let data =  welf.setUpProjectsWithMergeRequests(projects,requests)
                         completion(.success(data))
                     case .error(let error):
                         completion(.error(error))
@@ -41,25 +42,33 @@ class ProjectService {
         
     }
     
-    private func getMergeRequestsOfProjects(_ projects: [Project], completion: @escaping (Result<[Project]>) -> Void) {
+    private func mergeRequests(completion: @escaping Completion<[MergeRequest]>) {
         
-        var data: [Project] = []
-        
-        for entity in projects {
-            var project = entity
-            self.mergeRequestManager.getMergeRequests(id: project.id) { (requestResult) in
-                switch requestResult {
-                case .success(let values):
-                    project.mergeRequest = values
-                    data.append(project)
-                    if let lastProject = projects.last, lastProject.id == project.id {
-                        completion(.success(data))
-                    }
-                case .error(let error):
-                    completion(.error(error))
-                }
+        self.mergeRequestManager.mergeRequests { (requestResult) in
+            switch requestResult {
+            case .success(let values):
+                completion(.success(values))
+            case .error(let error):
+                completion(.error(error))
             }
         }
-       
+        
+    }
+    
+    private func setUpProjectsWithMergeRequests(_ projects: [Project], _ requests: [MergeRequest]) -> [Project] {
+        
+        var entities: [Project] = []
+        
+        for project in projects {
+            var entity = project
+            entity.mergeRequest = []
+            for request in requests {
+                if request.projectId == project.id {
+                    entity.mergeRequest?.append(request)
+                }
+            }
+            entities.append(entity)
+        }
+        return entities
     }
 }

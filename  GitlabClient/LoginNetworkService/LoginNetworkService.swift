@@ -9,7 +9,7 @@
 import Foundation
 
 protocol LoginNetworkServiceType {
-    func getToken(with code: String, completion: @escaping (Result<String>) -> Void)
+    func token(with code: String, completion: @escaping Completion<String>)
 }
 
 class LoginNetworkService: LoginNetworkServiceType {
@@ -20,7 +20,7 @@ class LoginNetworkService: LoginNetworkServiceType {
         self.networkManager = networkManager
     }
     
-    func getToken(with code: String, completion: @escaping (Result<String>) -> Void) {
+    func token(with code: String, completion: @escaping Completion<String>) {
         
         let request = LoginRequest(method: .POST, path: AuthHelper.URLKind.token.rawValue, code: code)
         
@@ -34,7 +34,7 @@ class LoginNetworkService: LoginNetworkServiceType {
         }
     }
     
-    private func processData(_ data: Data, completion: @escaping (Result<String>) -> Void) {
+    private func processData(_ data: Data, completion: @escaping Completion<String>) {
         let dictionary = self.codeFromData(data)
         switch dictionary {
         case .success(let token):

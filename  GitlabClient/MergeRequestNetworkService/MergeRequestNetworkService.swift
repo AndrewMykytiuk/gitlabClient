@@ -9,7 +9,7 @@
 import Foundation
 
 protocol MergeRequestNetworkServiceType {
-    func getMergeRequests(id: Int, completion: @escaping (Result<[MergeRequest]>) -> Void)
+    func mergeRequests(completion: @escaping Completion<[MergeRequest]>)
 }
 
 class MergeRequestNetworkService: MergeRequestNetworkServiceType {
@@ -20,9 +20,9 @@ class MergeRequestNetworkService: MergeRequestNetworkServiceType {
         self.networkManager = networkManager
     }
     
-    func getMergeRequests(id: Int, completion: @escaping (Result<[MergeRequest]>) -> Void) {
+    func mergeRequests(completion: @escaping Completion<[MergeRequest]>) {
         
-        let request = MergeRequestRequest(method: .GET, path: Constants.Network.Path.api.rawValue + Constants.Network.Path.mergeRequest.rawValue + "\(id)" + Constants.Network.MergeRequest.mergeRequestsKey.rawValue)
+         let request = MergeRequestRequest(method: .GET, path: Constants.Network.Path.api.rawValue + Constants.Network.MergeRequest.mergeRequestsKey.rawValue)
         
         networkManager.sendRequest(request) { [weak self] (data) in
             switch data {
@@ -34,9 +34,9 @@ class MergeRequestNetworkService: MergeRequestNetworkServiceType {
         }
     }
     
-    func getMergeRequestChanges(id: Int, iid: Int, completion: @escaping (Result<[MergeRequestChanges]>) -> Void) {
+    func mergeRequestChanges(id: Int, iid: Int, completion: @escaping Completion<[MergeRequestChanges]>) {
         
-        let request = MergeRequestRequest(method: .GET, path: Constants.Network.Path.api.rawValue + Constants.Network.Path.mergeRequest.rawValue + "\(id)" + Constants.Network.MergeRequest.mergeRequestsKey.rawValue + "/\(iid)" + Constants.Network.Authorize.Keys.changesKey.rawValue)
+        let request = MergeRequestRequest(method: .GET, path: Constants.Network.Path.api.rawValue + Constants.Network.Path.mergeRequest.rawValue + "\(id)" + Constants.Network.MergeRequest.mergeRequestsSlashKey.rawValue + "/\(iid)" + Constants.Network.MergeRequest.changesSlashKey.rawValue)
         
         networkManager.sendRequest(request) { [weak self] (data) in
             switch data {
@@ -48,7 +48,7 @@ class MergeRequestNetworkService: MergeRequestNetworkServiceType {
         }
     }
     
-    private func processMRData(_ data: Data, completion: @escaping (Result<[MergeRequest]>) -> Void) {
+    private func processMRData(_ data: Data, completion: @escaping Completion<[MergeRequest]>) {
         let result: Result<[MergeRequest]> = DecoderHelper.modelFromData(data)
         switch result {
         case .success(let requests):
@@ -59,14 +59,13 @@ class MergeRequestNetworkService: MergeRequestNetworkServiceType {
         
     }
     
-    private func processMRChangesData(_ data: Data, completion: @escaping (Result<[MergeRequestChanges]>) -> Void) {
+    private func processMRChangesData(_ data: Data, completion: @escaping Completion<[MergeRequestChanges]>) {
         let result: Result<MergeRequest> = DecoderHelper.modelFromData(data)
         switch result {
         case .success(let request):
             if let changes = request.changes {
                 completion(.success(changes))
             }
-            completion(.success([]))
         case .error(let error):
             completion(.error(error))
         }

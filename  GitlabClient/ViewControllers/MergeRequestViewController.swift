@@ -23,8 +23,8 @@ class MergeRequestViewController: BaseViewController {
     private var mergeRequestService: MergeRequestService!
     private var mergeRequestCell: MergeRequestTableViewCell!
     private var changes: [MergeRequestChanges] = []
-    private var id: Int?
-    private var iid: Int?
+    private var id: Int!
+    private var iid: Int!
     
     func configure(with mergeRequestService: MergeRequestService) {
         self.mergeRequestService = mergeRequestService
@@ -72,17 +72,14 @@ class MergeRequestViewController: BaseViewController {
     }
     
     private func getMergeRequestData() {
-        guard let id = id, let iid = iid else { return }
         activityIndicator.startAnimating()
-        mergeRequestService.getMergeRequestChanges(id: id, iid: iid) { [weak self] (result) in
+        mergeRequestService.mergeRequestChanges(id: id, iid: iid) { [weak self] (result) in
             guard let welf = self else { return }
             DispatchQueue.main.async {
                 switch result {
                 case .success(let changes):
-                    if changes.count > 0 {
                     welf.changes = changes
                     welf.mergeRequestTableView.reloadData()
-                    }
                 case .error(let error):
                     let alert = AlertHelper.createErrorAlert(message: error.localizedDescription, handler: nil)
                     welf.present(alert, animated: true)
@@ -105,6 +102,26 @@ class MergeRequestViewController: BaseViewController {
         activityIndicator.stopAnimating()
     }
     
+    private func setUpCell(_ cell: MergeRequestTableViewCell, with change: MergeRequestChanges) -> MergeRequestTableViewCell {
+        
+        var color = UIColor()
+        
+        switch change.state {
+        case .new:
+            color = Constants.Colors.mainGreen.value
+        case .deleted:
+            color = Constants.Colors.mainRed.value
+        case .modified:
+            color = Constants.Colors.mainOrange.value
+        }
+        
+        let model = MergeRequestChangesViewModel(with: change, color: color)
+        
+        cell.setup(with: model)
+        
+        return cell
+    }
+    
 }
 
 extension MergeRequestViewController: UITableViewDelegate, UITableViewDataSource {
@@ -117,10 +134,8 @@ extension MergeRequestViewController: UITableViewDelegate, UITableViewDataSource
         guard let cell = tableView.dequeueReusableCell(withIdentifier: MergeRequestTableViewCell.identifier(), for: indexPath) as? MergeRequestTableViewCell else {
             fatalError(FatalError.invalidCellCreate.rawValue + MergeRequestTableViewCell.identifier())
         }
-        
-        cell.setup(with: changes[indexPath.row])
-        
-        return cell
+        let change = changes[indexPath.row]
+        return setUpCell(cell, with: change)
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -135,7 +150,7 @@ extension MergeRequestViewController: UITableViewDelegate, UITableViewDataSource
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return mergeRequestCell.getCellSize(with: changes[indexPath.row])
+        return mergeRequestCell.cellSize(with: changes[indexPath.row])
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

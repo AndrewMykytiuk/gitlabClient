@@ -18,7 +18,7 @@ class NetworkManager {
         self.token = token
     }
     
-    func sendRequest(_ request: Request, completion: @escaping(Result<Data>) -> Void) {
+    func sendRequest(_ request: Request, completion: @escaping Completion<Data>) {
         
         var components = URLHelper.createBaseAuthUrlComponents()
         components.path = request.path

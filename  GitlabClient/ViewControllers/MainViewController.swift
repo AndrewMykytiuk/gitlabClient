@@ -71,7 +71,7 @@ class MainViewController: BaseViewController {
     
     private func getData() {
         activityIndicator.startAnimating()
-        projectsService.getProjectsInfo { [weak self] (result) in
+        projectsService.projectsInfo { [weak self] (result) in
             guard let welf = self else { return }
             DispatchQueue.main.async {
                 switch result {
@@ -154,7 +154,7 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let mergeRequests = projectsData[indexPath.section].mergeRequest else { return }
-        self.router?.navigateToScreen(with: .mergeRequestController(mergeRequests[indexPath.row]), animated: true)
+        self.router?.navigateToScreen(with: .mergeRequest(mergeRequests[indexPath.row]), animated: true)
         tableView.deselectRow(at: indexPath, animated: false)
     }
     
