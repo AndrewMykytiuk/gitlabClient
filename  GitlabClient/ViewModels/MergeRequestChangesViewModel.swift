@@ -14,8 +14,8 @@ struct MergeRequestChangesViewModel {
     let newPath: String
     var backgroundColor: UIColor
     
-    init(with changes: MergeRequestChanges, color: UIColor) {
-        self.newPath = changes.newPath
+    init(with text: String, color: UIColor) {
+        self.newPath = text
         self.backgroundColor = color
     }
     

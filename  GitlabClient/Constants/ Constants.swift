@@ -26,9 +26,8 @@ enum Constants {
         
         enum MergeRequest: String {
             case stateOpenedValue = "opened"
-            case mergeRequestsSlashKey = "/merge_requests"
-            case changesSlashKey = "/changes"
             case mergeRequestsKey = "merge_requests"
+            case changesKey = "changes"
         }
         
         enum Authorize {
@@ -59,7 +58,6 @@ enum Constants {
             case api = "/api/v4/"
             case profile = "user"
             case projects = "projects"
-            case mergeRequest = "projects/"
         }
         
     }

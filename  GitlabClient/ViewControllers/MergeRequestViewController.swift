@@ -115,7 +115,7 @@ class MergeRequestViewController: BaseViewController {
             color = Constants.Colors.mainOrange.value
         }
         
-        let model = MergeRequestChangesViewModel(with: change, color: color)
+        let model = MergeRequestChangesViewModel(with: change.newPath, color: color)
         
         cell.setup(with: model)
         
