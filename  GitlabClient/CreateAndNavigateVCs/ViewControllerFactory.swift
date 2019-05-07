@@ -25,7 +25,7 @@ class ViewControllerFactory: ViewControllerFactoryType {
         case profile
         case mergeRequest(MergeRequest)
         
-        var value: (String) {
+        var value: String {
             switch self {
             case .oauth:
                 return "OAuthLogInViewController"

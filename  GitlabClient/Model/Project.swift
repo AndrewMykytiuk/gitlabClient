@@ -14,7 +14,7 @@ struct Project: Codable {
     let name: String
     let description: String
     let date: Date
-    var mergeRequest: [MergeRequest]?
+    var mergeRequest: [MergeRequest]!
     
     private enum CodingKeys: String, CodingKey {
         
