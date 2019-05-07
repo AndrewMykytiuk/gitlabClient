@@ -25,6 +25,7 @@ class MergeRequestChangesViewController: BaseViewController {
 //
     func configureMergeRequestChangesInfo(change: MergeRequestChanges) {
         self.mergeRequestChange = change
+        self.navigationController?.title = change.newPath
     }
     
     override func viewDidLoad() {
@@ -51,30 +52,45 @@ class MergeRequestChangesViewController: BaseViewController {
     
     private func setUpDiffText() {
         guard let change = mergeRequestChange else { return }
-        
-        self.MRChangesTextView.text = change.diff
+        MRChangesTextView.textContainerInset = UIEdgeInsets(top: 0, left: 0, bottom: -16, right: 0)
+        MRChangesTextView.textContainer.lineFragmentPadding = 0
+        setUpData(change: change)
     }
     
-//    private func getMergeRequestData() {
-//        guard let id = id, let iid = iid else { return }
-//        activityIndicator.startAnimating()
-//        mergeRequestService.getMergeRequestChanges(id: id, iid: iid) { [weak self] (result) in
-//            guard let welf = self else { return }
-//            DispatchQueue.main.async {
-//                switch result {
-//                case .success(let changes):
-//                    if changes.count > 0 {
-//                        welf.changes = changes
-//                        welf.mergeRequestTableView.reloadData()
-//                    }
-//                case .error(let error):
-//                    let alert = AlertHelper.createErrorAlert(message: error.localizedDescription, handler: nil)
-//                    welf.present(alert, animated: true)
-//                }
-//                welf.refreshControl.endRefreshing()
-//                welf.activityIndicator.stopAnimating()
-//            }
-//        }
-//    }
+    private func setUpData(change: MergeRequestChanges) {
+        let attributes = [NSAttributedString.Key.font: Constants.font]
+        let attribute = NSMutableAttributedString(string: change.diff, attributes: attributes as [NSAttributedString.Key : Any])
+        let lines = change.diff.components(separatedBy: "\n")
+        var numberOfLines: Int = 0
+        var numberOfAddedLines: Int = 0
+        
+        switch change.state {
+        case .new:
+            let range = (change.diff as NSString).range(of: change.diff)
+            attribute.addAttribute(NSAttributedString.Key.backgroundColor, value: Constants.Colors.mainGreen.value, range: range)
+        case .deleted:
+            let range = (change.diff as NSString).range(of: change.diff)
+            attribute.addAttribute(NSAttributedString.Key.backgroundColor, value: Constants.Colors.mainRed.value, range: range)
+        case .modified:
+            for line in lines {
+                numberOfLines = lines.count
+                if line.first == "+"{
+                    let range = (change.diff as NSString).range(of: line)
+                    if !attribute.containsAttachments(in: range) {
+                        attribute.addAttribute(NSAttributedString.Key.backgroundColor, value: Constants.Colors.mainGreen.value, range: range)
+                        numberOfAddedLines = numberOfAddedLines + 1
+                    }
+                } else if line.first == "-" {
+                    let range = (change.diff as NSString).range(of: line)
+                    attribute.addAttribute(NSAttributedString.Key.backgroundColor, value: UIColor.red, range: range)
+                }
+            }
+        }
+        
+        
+        print("numberOfLines: ",numberOfLines)
+        print("numberOfAddedLines: ",numberOfLines)
+        self.MRChangesTextView.attributedText = attribute
+    }
     
 }

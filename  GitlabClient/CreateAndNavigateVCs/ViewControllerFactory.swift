@@ -24,9 +24,9 @@ class ViewControllerFactory: ViewControllerFactoryType {
         case main
         case profile
         case mergeRequest(MergeRequest)
-        case mergeRequestChanges(MergemergeRequestChanges)
+        case mergeRequestChanges(MergeRequestChanges)
         
-        var value: (String) {
+        var value: String {
             switch self {
             case .oauth:
                 return "OAuthLogInViewController"
@@ -82,8 +82,11 @@ class ViewControllerFactory: ViewControllerFactoryType {
                 mergeRequestViewController.setUpMergeRequestInfo(id: request.projectId, iid: request.iid)
                 vcTemp = mergeRequestViewController
             }
-        case .mergeRequestChanges:
-            _ = 11
+        case .mergeRequestChanges(let change):
+            if let mergeRequestChangesViewController = vcTemp as? MergeRequestChangesViewController {
+                mergeRequestChangesViewController.configureMergeRequestChangesInfo(change: change)
+                vcTemp = mergeRequestChangesViewController
+            }
         }
         return vcTemp
     }
