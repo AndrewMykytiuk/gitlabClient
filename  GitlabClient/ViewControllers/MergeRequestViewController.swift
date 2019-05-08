@@ -104,7 +104,7 @@ class MergeRequestViewController: BaseViewController {
     
     private func setUpCell(_ cell: MergeRequestTableViewCell, with change: MergeRequestChanges) -> MergeRequestTableViewCell {
         
-        var color = UIColor()
+        let color: UIColor
         
         switch change.state {
         case .new:

@@ -65,9 +65,7 @@ class MergeRequestNetworkService: MergeRequestNetworkServiceType {
         let result: Result<MergeRequest> = DecoderHelper.modelFromData(data)
         switch result {
         case .success(let request):
-            if let changes = request.changes {
-                completion(.success(changes))
-            }
+            completion(.success(request.changes))
         case .error(let error):
             completion(.error(error))
         }
