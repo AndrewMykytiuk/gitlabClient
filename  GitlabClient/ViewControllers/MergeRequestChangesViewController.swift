@@ -52,45 +52,94 @@ class MergeRequestChangesViewController: BaseViewController {
     
     private func setUpDiffText() {
         guard let change = mergeRequestChange else { return }
-        MRChangesTextView.textContainerInset = UIEdgeInsets(top: 0, left: 0, bottom: -16, right: 0)
+        MRChangesTextView.textContainerInset = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
         MRChangesTextView.textContainer.lineFragmentPadding = 0
         setUpData(change: change)
     }
     
     private func setUpData(change: MergeRequestChanges) {
-        let attributes = [NSAttributedString.Key.font: Constants.font]
+        let attributes = [NSAttributedString.Key.font : Constants.font]
         let attribute = NSMutableAttributedString(string: change.diff, attributes: attributes as [NSAttributedString.Key : Any])
         let lines = change.diff.components(separatedBy: "\n")
-        var numberOfLines: Int = 0
-        var numberOfAddedLines: Int = 0
         
         switch change.state {
         case .new:
-            let range = (change.diff as NSString).range(of: change.diff)
-            attribute.addAttribute(NSAttributedString.Key.backgroundColor, value: Constants.Colors.mainGreen.value, range: range)
+            setUpColorForView(self.view, with: Constants.Colors.mainGreen)
         case .deleted:
-            let range = (change.diff as NSString).range(of: change.diff)
-            attribute.addAttribute(NSAttributedString.Key.backgroundColor, value: Constants.Colors.mainRed.value, range: range)
+            setUpColorForView(self.view, with: Constants.Colors.mainRed)
         case .modified:
-            for line in lines {
-                numberOfLines = lines.count
-                if line.first == "+"{
-                    let range = (change.diff as NSString).range(of: line)
-                    if !attribute.containsAttachments(in: range) {
-                        attribute.addAttribute(NSAttributedString.Key.backgroundColor, value: Constants.Colors.mainGreen.value, range: range)
-                        numberOfAddedLines = numberOfAddedLines + 1
-                    }
-                } else if line.first == "-" {
-                    let range = (change.diff as NSString).range(of: line)
-                    attribute.addAttribute(NSAttributedString.Key.backgroundColor, value: UIColor.red, range: range)
-                }
+//            for line in lines {
+//                let range = (change.diff as NSString).range(of: line)
+//                if line.first == "+" {
+//                        setUpColorForString(attribute, with: range, with: Constants.Colors.mainGreen)
+//                } else if line.first == "-" {
+//                    setUpColorForString(attribute, with: range, with: Constants.Colors.mainRed)
+//                }
+//            }
+            let ranges = choosingSelectedTextRange(str: change.diff)
+            for addedRange in ranges.0 {
+                setUpColorForString(attribute, with: addedRange, with: Constants.Colors.mainGreen)
             }
+            for deletedRange in ranges.1 {
+                setUpColorForString(attribute, with: deletedRange, with: Constants.Colors.mainRed)
+            }
+            
         }
         
-        
-        print("numberOfLines: ",numberOfLines)
-        print("numberOfAddedLines: ",numberOfLines)
         self.MRChangesTextView.attributedText = attribute
+    }
+    
+    private func setUpColorForString(_ attribute: NSMutableAttributedString, with range: NSRange, with color: Constants.Colors) {
+        attribute.addAttribute(NSAttributedString.Key.backgroundColor, value: color.value, range: range)
+    }
+    
+    private func setUpColorForView(_ view: UIView, with color: Constants.Colors) {
+        view.backgroundColor = color.value
+    }
+    
+    private func choosingSelectedTextRange(str: String) -> ([NSRange], [NSRange]) {
+        guard let regex = try? NSRegularExpression(pattern: "(\n\\S)") else { return ([], []) }
+        let match = regex.firstMatch(in: str, options: [], range: NSRange(str.startIndex..., in: str))
+        
+        let matches = regex.matches(in: str, options: [], range: NSRange(str.startIndex..., in: str))
+        var strings: [String] = []
+        var startRange: NSRange? = nil
+        var endRange = NSRange()
+        var startDeletedRange: NSRange? = nil
+        var endDeletedRange = NSRange()
+        var ranges:([NSRange], [NSRange]) = ([], [])
+        for m in matches {
+            let range = m.range(at: 0)
+            let stringArray = (Array(str)[range.location...(range.location + range.length - 1)])
+            strings.append(String(stringArray))
+            
+            if String(stringArray) == "/n-" {
+                endRange = m.range(at: 0)
+                startDeletedRange = m.range(at: 0)
+                if m == matches.last {
+                    endDeletedRange = m.range(at: 0)
+                }
+                
+            } else if String(stringArray) == "/n+" {
+                endDeletedRange = m.range(at: 0)
+                startRange = m.range(at: 0)
+                
+                if m.range.location == matches.last?.range.location {
+                    endRange = m.range(at: 0)
+                }
+            }
+            
+            if startRange == nil {
+                guard let startDeletedRange = startDeletedRange else { return ([], []) }
+                 ranges.1.append(NSRange(location: startDeletedRange.location, length: (endDeletedRange.location - startDeletedRange.location) + (endDeletedRange.length + startDeletedRange.length)))
+            } else if startDeletedRange == nil {
+                guard let startRange = startRange else { return ([], []) }
+                ranges.0.append(NSRange(location: startRange.location, length: (endRange.location - startRange.location) + (endRange.length + startRange.length)))
+            }
+           
+        }
+//        return NSRange(location: startRange.location, length: (endRange.location - startRange.location) + (endRange.length + startRange.length))
+        return ranges
     }
     
 }

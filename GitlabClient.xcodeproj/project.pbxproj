@@ -48,7 +48,7 @@
 		CEB2FCC9227C30490046B722 /* MergeRequestChangesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB2FCC8227C30490046B722 /* MergeRequestChangesViewModel.swift */; };
 		CEB2FCCE227C382A0046B722 /* Typealiases.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB2FCCD227C382A0046B722 /* Typealiases.swift */; };
 		CEB2FCD0227C90050046B722 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB2FCCF227C90050046B722 /* UIColor.swift */; };
-		CEB2FCD22280701A0046B722 /* MergeRequestChangesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB2FCD1228070170046B722 /* MergeRequestChangesViewController.swift */; };
+		CEB2FCD62281A57C0046B722 /* MergeRequestChangesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB2FCD52281A57C0046B722 /* MergeRequestChangesViewController.swift */; };
 		CEE51019225F38070049EC69 /* UITapGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE51016225F38070049EC69 /* UITapGestureRecognizer.swift */; };
 		CEE5101A225F38070049EC69 /* ProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE51018225F38070049EC69 /* ProfileTableViewCell.swift */; };
 		CEE5101E225F384A0049EC69 /* ProfileItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE5101C225F384A0049EC69 /* ProfileItemViewModel.swift */; };
@@ -108,7 +108,7 @@
 		CEB2FCC8227C30490046B722 /* MergeRequestChangesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MergeRequestChangesViewModel.swift; sourceTree = "<group>"; };
 		CEB2FCCD227C382A0046B722 /* Typealiases.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Typealiases.swift; sourceTree = "<group>"; };
 		CEB2FCCF227C90050046B722 /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
-		CEB2FCD1228070170046B722 /* MergeRequestChangesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MergeRequestChangesViewController.swift; sourceTree = "<group>"; };
+		CEB2FCD52281A57C0046B722 /* MergeRequestChangesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MergeRequestChangesViewController.swift; sourceTree = "<group>"; };
 		CEE51016225F38070049EC69 /* UITapGestureRecognizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITapGestureRecognizer.swift; sourceTree = "<group>"; };
 		CEE51018225F38070049EC69 /* ProfileTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileTableViewCell.swift; sourceTree = "<group>"; };
 		CEE5101C225F384A0049EC69 /* ProfileItemViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileItemViewModel.swift; sourceTree = "<group>"; };
@@ -191,7 +191,7 @@
 		CE6FF03022390AB0003F7C56 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				CEB2FCD1228070170046B722 /* MergeRequestChangesViewController.swift */,
+				CEB2FCD52281A57C0046B722 /* MergeRequestChangesViewController.swift */,
 				CE729F24224258210006C37C /* MainViewController.swift */,
 				CE6FF02E22390905003F7C56 /* BaseViewController.swift */,
 				CE6FF0152236AECB003F7C56 /* LogInViewController.swift */,
@@ -444,7 +444,7 @@
 				CE729F43224536B80006C37C /* ProfileRequest.swift in Sources */,
 				CE6FF036223AAD0C003F7C56 /*  Constants.swift in Sources */,
 				CE729F252242582B0006C37C /* MainViewController.swift in Sources */,
-				CEB2FCD22280701A0046B722 /* MergeRequestChangesViewController.swift in Sources */,
+				CEB2FCD62281A57C0046B722 /* MergeRequestChangesViewController.swift in Sources */,
 				CE729F18223EE6660006C37C /* Errors.swift in Sources */,
 				CE6FF03E223AE376003F7C56 /* Request.swift in Sources */,
 				CE6FF02B2237B0E4003F7C56 /* ViewControllerFactory.swift in Sources */,
