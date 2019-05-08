@@ -16,13 +16,13 @@ struct MergeRequestDetailsRequest: Request {
     
     var parameters: [(key: String, value: Any)]
     
-    init(method: HTTPMethod, path: [String]) {
+    init(method: HTTPMethod, pathComponents: [String]) {
         self.HTTPMethod = method
-        var requestPast = ""
-        for element in path {
-            element == path.last ? requestPast.append(element) : requestPast.append(element + "/")
+        var requestPath = ""
+        for component in pathComponents {
+            requestPath.append(component + "/")
         }
-        self.path = Constants.Network.Path.api.rawValue + requestPast
+        self.path = Constants.Network.Path.api.rawValue + requestPath.dropLast()
         self.parameters = [(key: Constants.Network.Authorize.Keys.stateKey.rawValue, value: Constants.Network.MergeRequest.stateOpenedValue.rawValue)]
     }
     

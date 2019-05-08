@@ -14,7 +14,7 @@ struct Project: Codable {
     let name: String
     let description: String
     let date: Date
-    var mergeRequest: [MergeRequest]!
+    var mergeRequest: [MergeRequest]
     
     private enum CodingKeys: String, CodingKey {
         
@@ -23,6 +23,17 @@ struct Project: Codable {
         case description
         case date = "last_activity_at"
         case mergeRequest
+        
+    }
+    
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+
+        self.id = try container.decode(Int.self, forKey: .id)
+        self.name = try container.decode(String.self, forKey: .name)
+        self.description = try container.decode(String.self, forKey: .description)
+        self.date = try container.decode(Date.self, forKey: .date)
+        self.mergeRequest = (try? container.decode([MergeRequest].self, forKey: .mergeRequest)) ?? []
         
     }
     

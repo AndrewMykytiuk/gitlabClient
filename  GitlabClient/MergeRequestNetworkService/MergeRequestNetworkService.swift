@@ -36,7 +36,9 @@ class MergeRequestNetworkService: MergeRequestNetworkServiceType {
     
     func mergeRequestChanges(id: Int, iid: Int, completion: @escaping Completion<[MergeRequestChanges]>) {
         
-        let request = MergeRequestDetailsRequest(method: .GET, path: [Constants.Network.Path.projects.rawValue, "\(id)", Constants.Network.MergeRequest.mergeRequestsKey.rawValue, "\(iid)", Constants.Network.MergeRequest.changesKey.rawValue])
+        let pathComponents = [Constants.Network.Path.projects.rawValue, "\(id)", Constants.Network.MergeRequest.mergeRequestsKey.rawValue, "\(iid)", Constants.Network.MergeRequest.changesKey.rawValue]
+        
+        let request = MergeRequestDetailsRequest(method: .GET, pathComponents: pathComponents)
         
         networkManager.sendRequest(request) { [weak self] (data) in
             switch data {

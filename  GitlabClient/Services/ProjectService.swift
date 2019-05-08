@@ -64,7 +64,7 @@ class ProjectService {
             entity.mergeRequest = []
             for request in requests {
                 if request.projectId == project.id {
-                    entity.mergeRequest?.append(request)
+                    entity.mergeRequest.append(request)
                 }
             }
             entities.append(entity)
