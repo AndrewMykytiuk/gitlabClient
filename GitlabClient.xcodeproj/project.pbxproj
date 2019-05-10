@@ -48,7 +48,8 @@
 		CEB2FCC9227C30490046B722 /* MergeRequestChangesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB2FCC8227C30490046B722 /* MergeRequestChangesViewModel.swift */; };
 		CEB2FCCE227C382A0046B722 /* Typealiases.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB2FCCD227C382A0046B722 /* Typealiases.swift */; };
 		CEB2FCD0227C90050046B722 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB2FCCF227C90050046B722 /* UIColor.swift */; };
-		CEB2FCD62281A57C0046B722 /* MergeRequestChangesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB2FCD52281A57C0046B722 /* MergeRequestChangesViewController.swift */; };
+		CEB2FCDC22830B150046B722 /* MergeRequestDetailsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB2FCDB22830B130046B722 /* MergeRequestDetailsRequest.swift */; };
+		CEB2FCDE228586B70046B722 /* MergeRequestChangesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB2FCDD228586B50046B722 /* MergeRequestChangesViewController.swift */; };
 		CEE51019225F38070049EC69 /* UITapGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE51016225F38070049EC69 /* UITapGestureRecognizer.swift */; };
 		CEE5101A225F38070049EC69 /* ProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE51018225F38070049EC69 /* ProfileTableViewCell.swift */; };
 		CEE5101E225F384A0049EC69 /* ProfileItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE5101C225F384A0049EC69 /* ProfileItemViewModel.swift */; };
@@ -108,7 +109,8 @@
 		CEB2FCC8227C30490046B722 /* MergeRequestChangesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MergeRequestChangesViewModel.swift; sourceTree = "<group>"; };
 		CEB2FCCD227C382A0046B722 /* Typealiases.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Typealiases.swift; sourceTree = "<group>"; };
 		CEB2FCCF227C90050046B722 /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
-		CEB2FCD52281A57C0046B722 /* MergeRequestChangesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MergeRequestChangesViewController.swift; sourceTree = "<group>"; };
+		CEB2FCDB22830B130046B722 /* MergeRequestDetailsRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MergeRequestDetailsRequest.swift; sourceTree = "<group>"; };
+		CEB2FCDD228586B50046B722 /* MergeRequestChangesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MergeRequestChangesViewController.swift; sourceTree = "<group>"; };
 		CEE51016225F38070049EC69 /* UITapGestureRecognizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITapGestureRecognizer.swift; sourceTree = "<group>"; };
 		CEE51018225F38070049EC69 /* ProfileTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileTableViewCell.swift; sourceTree = "<group>"; };
 		CEE5101C225F384A0049EC69 /* ProfileItemViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileItemViewModel.swift; sourceTree = "<group>"; };
@@ -191,7 +193,7 @@
 		CE6FF03022390AB0003F7C56 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				CEB2FCD52281A57C0046B722 /* MergeRequestChangesViewController.swift */,
+				CEB2FCDD228586B50046B722 /* MergeRequestChangesViewController.swift */,
 				CE729F24224258210006C37C /* MainViewController.swift */,
 				CE6FF02E22390905003F7C56 /* BaseViewController.swift */,
 				CE6FF0152236AECB003F7C56 /* LogInViewController.swift */,
@@ -346,6 +348,7 @@
 		CEE51026225F53360049EC69 /* MergeRequestNetworkService */ = {
 			isa = PBXGroup;
 			children = (
+				CEB2FCDB22830B130046B722 /* MergeRequestDetailsRequest.swift */,
 				CEE51020225F461C0049EC69 /* MergeRequestRequest.swift */,
 				CEE51024225F532F0049EC69 /* MergeRequestNetworkService.swift */,
 			);
@@ -430,6 +433,7 @@
 				CE6FF0292236B1EA003F7C56 /* OAuthLogInViewController.swift in Sources */,
 				CE729F3D2244F5120006C37C /* ProfileViewController.swift in Sources */,
 				CE6FF043223B96EE003F7C56 /* LoginNetworkService.swift in Sources */,
+				CEB2FCDE228586B70046B722 /* MergeRequestChangesViewController.swift in Sources */,
 				CEE5101E225F384A0049EC69 /* ProfileItemViewModel.swift in Sources */,
 				CE3B6950225374EA00FB7DEA /* ProjectRequest.swift in Sources */,
 				CE147D53224BBE5600C08C11 /* ProjectsTableViewCell.swift in Sources */,
@@ -444,7 +448,6 @@
 				CE729F43224536B80006C37C /* ProfileRequest.swift in Sources */,
 				CE6FF036223AAD0C003F7C56 /*  Constants.swift in Sources */,
 				CE729F252242582B0006C37C /* MainViewController.swift in Sources */,
-				CEB2FCD62281A57C0046B722 /* MergeRequestChangesViewController.swift in Sources */,
 				CE729F18223EE6660006C37C /* Errors.swift in Sources */,
 				CE6FF03E223AE376003F7C56 /* Request.swift in Sources */,
 				CE6FF02B2237B0E4003F7C56 /* ViewControllerFactory.swift in Sources */,
@@ -455,6 +458,7 @@
 				CEB2FCCE227C382A0046B722 /* Typealiases.swift in Sources */,
 				CEB2FCC5226F1F350046B722 /* MergeRequestService.swift in Sources */,
 				CE729F4722453AD60006C37C /* ProfileService.swift in Sources */,
+				CEB2FCDC22830B150046B722 /* MergeRequestDetailsRequest.swift in Sources */,
 				CEB2FCC1226F0F890046B722 /* MergeRequestTableViewCell.swift in Sources */,
 				CE3B69522253750200FB7DEA /* ProjectsNetworkService.swift in Sources */,
 				CEB2FCD0227C90050046B722 /* UIColor.swift in Sources */,
@@ -639,7 +643,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.MPTechnologies.GitlabClient;
+				PRODUCT_BUNDLE_IDENTIFIER = "-com.dataart.gitlabClient";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -658,7 +662,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.MPTechnologies.GitlabClient;
+				PRODUCT_BUNDLE_IDENTIFIER = "-com.dataart.gitlabClient";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
