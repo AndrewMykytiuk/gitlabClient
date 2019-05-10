@@ -19,7 +19,7 @@ class MainViewController: BaseViewController {
     
     private var projectsService: ProjectService!
     private var projectsCell: ProjectsTableViewCell!
-    private var tableViewInfoDictionary: [(key: Project, value: [MergeRequest])] = []
+    private var projectsData: [Project] = []
     private let activityIndicator = UIActivityIndicatorView(style: .whiteLarge)
     private let refreshControl = UIRefreshControl()
     private var indexPathOfExpendedCell: [IndexPath] = []
@@ -49,7 +49,7 @@ class MainViewController: BaseViewController {
     private func setupRefreshControl() {
         let attributes = [NSAttributedString.Key.font: Constants.font]
         refreshControl.addTarget(self, action: #selector(refreshProjectsData(_:)), for: .valueChanged)
-        refreshControl.tintColor = UIColor(red:226/256, green:71/256, blue:72/256, alpha:1.0)
+        refreshControl.tintColor = Constants.Colors.mainRed.value
         refreshControl.attributedTitle = NSAttributedString(string: NSLocalizedString(Constants.RefreshControl.projectsTableViewTitle.rawValue, comment: ""), attributes: attributes as [NSAttributedString.Key : Any])
     }
     
@@ -71,12 +71,12 @@ class MainViewController: BaseViewController {
     
     private func getData() {
         activityIndicator.startAnimating()
-        projectsService.getProjectsInfo { [weak self] (result) in
+        projectsService.projectsInfo { [weak self] (result) in
             guard let welf = self else { return }
             DispatchQueue.main.async {
                 switch result {
                 case .success(let data):
-                    welf.tableViewInfoDictionary = data
+                    welf.projectsData = data
                     welf.projectsTableView.reloadData()
                 case .error(let error):
                     let alert = AlertHelper.createErrorAlert(message: error.localizedDescription, handler: nil)
@@ -100,20 +100,20 @@ class MainViewController: BaseViewController {
 extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if tableViewInfoDictionary.count > 0 {
-            return tableViewInfoDictionary[section].key.name
+        if projectsData.count > 0 {
+            return projectsData[section].name
         } else {
             return nil
         }
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return tableViewInfoDictionary.count
+        return projectsData.count
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if tableViewInfoDictionary.count > 0 {
-            return tableViewInfoDictionary[section].value.count
+        if projectsData.count > 0 {
+            return projectsData[section].mergeRequest.count
         } else {
             return 0
         }
@@ -124,7 +124,7 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
             fatalError(FatalError.invalidCellCreate.rawValue + ProjectsTableViewCell.identifier())
         }
         
-        cell.setup(with: tableViewInfoDictionary[indexPath.section].value[indexPath.row], isExpanded: indexPathOfExpendedCell.contains(indexPath))
+        cell.setup(with: projectsData[indexPath.section].mergeRequest[indexPath.row], isExpanded: indexPathOfExpendedCell.contains(indexPath))
         cell.delegate = self
         
         return cell
@@ -146,7 +146,12 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return projectsCell.getCellSize(with: tableViewInfoDictionary[indexPath.section].value[indexPath.row], isExpanded: indexPathOfExpendedCell.contains(indexPath))
+        return projectsCell.getCellSize(with: projectsData[indexPath.section].mergeRequest[indexPath.row], isExpanded: indexPathOfExpendedCell.contains(indexPath))
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.router?.navigateToScreen(with: .mergeRequest(projectsData[indexPath.section].mergeRequest[indexPath.row]), animated: true)
+        tableView.deselectRow(at: indexPath, animated: false)
     }
     
 }

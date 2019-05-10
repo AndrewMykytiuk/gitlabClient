@@ -26,7 +26,8 @@ enum Constants {
         
         enum MergeRequest: String {
             case stateOpenedValue = "opened"
-            case mergeRequestsKey = "/merge_requests"
+            case mergeRequestsKey = "merge_requests"
+            case changesKey = "changes"
         }
         
         enum Authorize {
@@ -52,12 +53,11 @@ enum Constants {
             }
             
         }
-        
+
         enum Path: String {
             case api = "/api/v4/"
             case profile = "user"
             case projects = "projects"
-            case mergeRequest = "projects/"
         }
         
     }
@@ -92,6 +92,24 @@ enum Constants {
     enum DateFormatter: String {
         case dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZZZZZ"
         case locale = "en_US_POSIX"
+    }
+    
+    enum Colors {
+        
+        case mainRed
+        case mainGreen
+        case mainOrange
+        
+        var value: UIColor {
+            switch self {
+            case .mainRed:
+                return UIColor.colorWithRGB(red: 226, green: 71, blue: 72, alpha: 1.0)
+            case .mainGreen:
+                return UIColor.colorWithRGB(red: 36, green: 112, blue: 65, alpha: 1.0)
+            case .mainOrange:
+                return UIColor.colorWithRGB(red: 237, green: 94, blue: 32, alpha: 1.0)
+            }
+        }
     }
     
     

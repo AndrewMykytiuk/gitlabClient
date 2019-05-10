@@ -9,7 +9,7 @@
 import Foundation
 
 protocol ProfileNetworkServiceType {
-    func getUser(completion: @escaping (Result<User>) -> Void)
+    func user(completion: @escaping Completion<User>)
 }
 
 class ProfileNetworkService: ProfileNetworkServiceType {
@@ -20,7 +20,7 @@ class ProfileNetworkService: ProfileNetworkServiceType {
         self.networkManager = networkManager
     }
     
-    func getUser(completion: @escaping (Result<User>) -> Void) {
+    func user(completion: @escaping Completion<User>) {
         
         let request = ProfileRequest(method: .GET, path: Constants.Network.Path.api.rawValue + Constants.Network.Path.profile.rawValue)
         
@@ -34,7 +34,7 @@ class ProfileNetworkService: ProfileNetworkServiceType {
         }
     }
     
-    private func processData(_ data: Data, completion: @escaping (Result<User>) -> Void) {
+    private func processData(_ data: Data, completion: @escaping Completion<User>) {
         
         let result: Result<User> = DecoderHelper.modelFromData(data)
         switch result {

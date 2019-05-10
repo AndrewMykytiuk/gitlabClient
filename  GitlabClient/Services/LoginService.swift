@@ -20,9 +20,9 @@ class LoginService {
         self.loginManager = LoginNetworkService(networkManager: networkManager)
     }
     
-    func login(with code: String, completion: @escaping (Result<String>) -> Void) {
+    func login(with code: String, completion: @escaping Completion<String>) {
         
-        loginManager.getToken(with: code) { [weak self] (result) in
+        loginManager.token(with: code) { [weak self] (result) in
             switch result {
             case .success(let token):
                 self?.saveToken(token, completion: { [weak self] (errorResult) in
@@ -49,7 +49,7 @@ class LoginService {
         }
     }
     
-    func logout(completion: @escaping (Result<Void>) -> Void) {
+    func logout(completion: @escaping Completion<Void>) {
         
         switch keychainItem.readToken() { 
         case .success(let token):
