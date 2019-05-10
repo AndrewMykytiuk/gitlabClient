@@ -29,7 +29,7 @@ class ProjectService {
                 welf.mergeRequests { result in
                     switch result{
                     case .success(let requests):
-                        let data =  welf.setUpProjectsWithMergeRequests(projects,requests)
+                        let data =  welf.processedProjects(with: projects,and: requests)
                         completion(.success(data))
                     case .error(let error):
                         completion(.error(error))
@@ -55,7 +55,7 @@ class ProjectService {
         
     }
     
-    private func setUpProjectsWithMergeRequests(_ projects: [Project], _ requests: [MergeRequest]) -> [Project] {
+    private func processedProjects(with projects: [Project], and requests: [MergeRequest]) -> [Project] {
         
         var entities: [Project] = []
         
@@ -64,7 +64,7 @@ class ProjectService {
             entity.mergeRequest = []
             for request in requests {
                 if request.projectId == project.id {
-                    entity.mergeRequest?.append(request)
+                    entity.mergeRequest.append(request)
                 }
             }
             entities.append(entity)

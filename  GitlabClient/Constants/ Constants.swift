@@ -26,9 +26,8 @@ enum Constants {
         
         enum MergeRequest: String {
             case stateOpenedValue = "opened"
-            case mergeRequestsSlashKey = "/merge_requests"
-            case changesSlashKey = "/changes"
             case mergeRequestsKey = "merge_requests"
+            case changesKey = "changes"
         }
         
         enum Authorize {
@@ -59,7 +58,6 @@ enum Constants {
             case api = "/api/v4/"
             case profile = "user"
             case projects = "projects"
-            case mergeRequest = "projects/"
         }
         
     }
@@ -102,7 +100,7 @@ enum Constants {
         case mainGreen
         case mainOrange
         
-        var value: (UIColor) {
+        var value: UIColor {
             switch self {
             case .mainRed:
                 return UIColor.colorWithRGB(red: 226, green: 71, blue: 72, alpha: 1.0)

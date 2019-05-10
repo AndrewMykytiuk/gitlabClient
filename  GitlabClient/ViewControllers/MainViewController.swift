@@ -112,8 +112,8 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if projectsData.count > 0, let mergeRequests = projectsData[section].mergeRequest {
-            return mergeRequests.count
+        if projectsData.count > 0 {
+            return projectsData[section].mergeRequest.count
         } else {
             return 0
         }
@@ -124,9 +124,7 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
             fatalError(FatalError.invalidCellCreate.rawValue + ProjectsTableViewCell.identifier())
         }
         
-        guard let mergeRequests = projectsData[indexPath.section].mergeRequest else { return cell }
-        
-        cell.setup(with: mergeRequests[indexPath.row], isExpanded: indexPathOfExpendedCell.contains(indexPath))
+        cell.setup(with: projectsData[indexPath.section].mergeRequest[indexPath.row], isExpanded: indexPathOfExpendedCell.contains(indexPath))
         cell.delegate = self
         
         return cell
@@ -148,13 +146,11 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-         guard let mergeRequests = projectsData[indexPath.section].mergeRequest else { return 0 }
-        return projectsCell.getCellSize(with: mergeRequests[indexPath.row], isExpanded: indexPathOfExpendedCell.contains(indexPath))
+        return projectsCell.getCellSize(with: projectsData[indexPath.section].mergeRequest[indexPath.row], isExpanded: indexPathOfExpendedCell.contains(indexPath))
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let mergeRequests = projectsData[indexPath.section].mergeRequest else { return }
-        self.router?.navigateToScreen(with: .mergeRequest(mergeRequests[indexPath.row]), animated: true)
+        self.router?.navigateToScreen(with: .mergeRequest(projectsData[indexPath.section].mergeRequest[indexPath.row]), animated: true)
         tableView.deselectRow(at: indexPath, animated: false)
     }
     

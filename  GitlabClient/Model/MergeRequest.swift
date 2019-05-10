@@ -15,7 +15,7 @@ struct MergeRequest: Codable {
     let description: String
     let author: User
     let assignee: User
-    let changes: [MergeRequestChanges]?
+    let changes: [MergeRequestChanges]
     let projectId: Int
     
     private enum CodingKeys: String, CodingKey {
@@ -27,6 +27,19 @@ struct MergeRequest: Codable {
         case iid
         case changes
         case projectId = "project_id"
+        
+    }
+    
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        
+        self.iid = try container.decode(Int.self, forKey: .iid)
+        self.title = try container.decode(String.self, forKey: .title)
+        self.description = try container.decode(String.self, forKey: .description)
+        self.author = try container.decode(User.self, forKey: .author)
+        self.assignee = try container.decode(User.self, forKey: .assignee)
+        self.projectId = try container.decode(Int.self, forKey: .projectId)
+        self.changes = (try? container.decode([MergeRequestChanges].self, forKey: .changes)) ?? []
         
     }
     

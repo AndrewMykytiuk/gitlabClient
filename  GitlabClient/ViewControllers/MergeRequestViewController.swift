@@ -39,7 +39,7 @@ class MergeRequestViewController: BaseViewController {
         super.viewDidLoad()
         setupActivityIndicator(with: self.view)
         setupRefreshControl()
-        getMergeRequestData()
+        mergeRequestData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -71,7 +71,7 @@ class MergeRequestViewController: BaseViewController {
         view.addConstraint(verticalConstraint)
     }
     
-    private func getMergeRequestData() {
+    private func mergeRequestData() {
         activityIndicator.startAnimating()
         mergeRequestService.mergeRequestChanges(id: id, iid: iid) { [weak self] (result) in
             guard let welf = self else { return }
@@ -98,13 +98,13 @@ class MergeRequestViewController: BaseViewController {
     }
     
     @objc private func refreshMergeRequestsData(_ sender: Any) {
-        getMergeRequestData()
+        mergeRequestData()
         activityIndicator.stopAnimating()
     }
     
     private func setUpCell(_ cell: MergeRequestTableViewCell, with change: MergeRequestChanges) -> MergeRequestTableViewCell {
         
-        var color = UIColor()
+        let color: UIColor
         
         switch change.state {
         case .new:
@@ -115,7 +115,7 @@ class MergeRequestViewController: BaseViewController {
             color = Constants.Colors.mainOrange.value
         }
         
-        let model = MergeRequestChangesViewModel(with: change, color: color)
+        let model = MergeRequestChangesViewModel(with: change.newPath, color: color)
         
         cell.setup(with: model)
         

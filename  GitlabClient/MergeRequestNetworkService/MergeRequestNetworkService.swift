@@ -22,7 +22,7 @@ class MergeRequestNetworkService: MergeRequestNetworkServiceType {
     
     func mergeRequests(completion: @escaping Completion<[MergeRequest]>) {
         
-         let request = MergeRequestRequest(method: .GET, path: Constants.Network.Path.api.rawValue + Constants.Network.MergeRequest.mergeRequestsKey.rawValue)
+         let request = MergeRequestsRequest(method: .GET, path: Constants.Network.Path.api.rawValue + Constants.Network.MergeRequest.mergeRequestsKey.rawValue)
         
         networkManager.sendRequest(request) { [weak self] (data) in
             switch data {
@@ -36,7 +36,9 @@ class MergeRequestNetworkService: MergeRequestNetworkServiceType {
     
     func mergeRequestChanges(id: Int, iid: Int, completion: @escaping Completion<[MergeRequestChanges]>) {
         
-        let request = MergeRequestRequest(method: .GET, path: Constants.Network.Path.api.rawValue + Constants.Network.Path.mergeRequest.rawValue + "\(id)" + Constants.Network.MergeRequest.mergeRequestsSlashKey.rawValue + "/\(iid)" + Constants.Network.MergeRequest.changesSlashKey.rawValue)
+        let pathComponents = [Constants.Network.Path.projects.rawValue, "\(id)", Constants.Network.MergeRequest.mergeRequestsKey.rawValue, "\(iid)", Constants.Network.MergeRequest.changesKey.rawValue]
+        
+        let request = MergeRequestDetailsRequest(method: .GET, pathComponents: pathComponents)
         
         networkManager.sendRequest(request) { [weak self] (data) in
             switch data {
@@ -63,9 +65,7 @@ class MergeRequestNetworkService: MergeRequestNetworkServiceType {
         let result: Result<MergeRequest> = DecoderHelper.modelFromData(data)
         switch result {
         case .success(let request):
-            if let changes = request.changes {
-                completion(.success(changes))
-            }
+            completion(.success(request.changes))
         case .error(let error):
             completion(.error(error))
         }

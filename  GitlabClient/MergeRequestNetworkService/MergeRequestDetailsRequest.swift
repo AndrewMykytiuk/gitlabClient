@@ -1,14 +1,14 @@
 //
-//  MergeRequest.swift
+//  MergeRequestDetailsRequest.swift
 //  GitlabClient
 //
-//  Created by User on 11/04/2019.
+//  Created by User on 07/04/2019.
 //  Copyright © 2019 MPTechnologies. All rights reserved.
 //
 
 import Foundation
 
-struct MergeRequestsRequest: Request {
+struct MergeRequestDetailsRequest: Request {
     
     let HTTPMethod: HTTPMethod
     
@@ -16,9 +16,13 @@ struct MergeRequestsRequest: Request {
     
     var parameters: [(key: String, value: Any)]
     
-    init(method: HTTPMethod, path: String) {
+    init(method: HTTPMethod, pathComponents: [String]) {
         self.HTTPMethod = method
-        self.path = path
+        var requestPath = ""
+        for component in pathComponents {
+            requestPath.append(component + "/")
+        }
+        self.path = Constants.Network.Path.api.rawValue + requestPath.dropLast()
         self.parameters = [(key: Constants.Network.Authorize.Keys.stateKey.rawValue, value: Constants.Network.MergeRequest.stateOpenedValue.rawValue)]
     }
     

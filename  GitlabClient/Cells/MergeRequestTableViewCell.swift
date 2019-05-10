@@ -11,7 +11,8 @@ import UIKit
 class MergeRequestTableViewCell: UITableViewCell {
 
     @IBOutlet private weak var fileNameLabel: UILabel!
-    @IBOutlet private var cellTopAndBottomConstraints: [NSLayoutConstraint]!
+    @IBOutlet weak var topLabelConstraint: NSLayoutConstraint!
+    @IBOutlet weak var bottomLabelConstraint: NSLayoutConstraint!
     
     private let separatorHeight: CGFloat = 1
 
@@ -35,9 +36,8 @@ class MergeRequestTableViewCell: UITableViewCell {
     private func cellOffsets() -> CGFloat {
         var sum: CGFloat = 0
 
-        for constraint in cellTopAndBottomConstraints {
-            sum += constraint.constant
-        }
+        sum += topLabelConstraint.constant
+        sum += bottomLabelConstraint.constant
         return sum + separatorHeight
     }
     
