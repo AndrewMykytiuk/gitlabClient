@@ -84,7 +84,8 @@ class MainViewController: BaseViewController {
                     welf.projectsData = data
                     welf.projectsTableView.isHidden = false
                     welf.projectsTableView.reloadData()
-                    welf.checkTableViewForEmptyContent(with: welf.projectsTableView)
+                    let isMergeRequestsExist = welf.hasMergeRequests(data)
+                    welf.noInfoInTableLabel.isHidden = isMergeRequestsExist
                 case .error(let error):
                     let alert = AlertHelper.createErrorAlert(message: error.localizedDescription, handler: nil)
                     welf.present(alert, animated: true)
@@ -102,20 +103,20 @@ class MainViewController: BaseViewController {
         }
     }
     
-    private func checkTableViewForEmptyContent(with tableView: UITableView) {
-        if tableView.visibleCells.isEmpty {
-            self.noInfoInTableLabel.isHidden = false
-        } else {
-            self.noInfoInTableLabel.isHidden = true
+    private func hasMergeRequests(_ projects: [Project]) -> Bool {
+        for project in projects {
+            if !project.mergeRequest.isEmpty {
+                return true
+            }
         }
+        return false
     }
-    
 }
 
 extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if projectsData.count > 0 && projectsData[section].mergeRequest.count > 0 {
+        if projectsData[section].mergeRequest.count > 0 {
            return projectsData[section].name
         } else {
             return nil

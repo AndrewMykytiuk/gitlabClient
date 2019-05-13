@@ -197,8 +197,4 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
         return max(descriptionHeight, titleHeight) + profileCell.verticalOffsets()
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: false)
-    }
-    
 }
