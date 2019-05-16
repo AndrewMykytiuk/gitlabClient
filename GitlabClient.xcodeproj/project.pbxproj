@@ -50,6 +50,7 @@
 		CEB2FCD0227C90050046B722 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB2FCCF227C90050046B722 /* UIColor.swift */; };
 		CEB2FCDC22830B150046B722 /* MergeRequestDetailsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB2FCDB22830B130046B722 /* MergeRequestDetailsRequest.swift */; };
 		CEB2FCDE228586B70046B722 /* MergeRequestChangesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB2FCDD228586B50046B722 /* MergeRequestChangesViewController.swift */; };
+		CEDC6A35228AC48000243680 /* FileDiffsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDC6A34228AC48000243680 /* FileDiffsViewModel.swift */; };
 		CEE51019225F38070049EC69 /* UITapGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE51016225F38070049EC69 /* UITapGestureRecognizer.swift */; };
 		CEE5101A225F38070049EC69 /* ProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE51018225F38070049EC69 /* ProfileTableViewCell.swift */; };
 		CEE5101E225F384A0049EC69 /* ProfileItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE5101C225F384A0049EC69 /* ProfileItemViewModel.swift */; };
@@ -111,6 +112,7 @@
 		CEB2FCCF227C90050046B722 /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		CEB2FCDB22830B130046B722 /* MergeRequestDetailsRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MergeRequestDetailsRequest.swift; sourceTree = "<group>"; };
 		CEB2FCDD228586B50046B722 /* MergeRequestChangesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MergeRequestChangesViewController.swift; sourceTree = "<group>"; };
+		CEDC6A34228AC48000243680 /* FileDiffsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileDiffsViewModel.swift; sourceTree = "<group>"; };
 		CEE51016225F38070049EC69 /* UITapGestureRecognizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITapGestureRecognizer.swift; sourceTree = "<group>"; };
 		CEE51018225F38070049EC69 /* ProfileTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileTableViewCell.swift; sourceTree = "<group>"; };
 		CEE5101C225F384A0049EC69 /* ProfileItemViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileItemViewModel.swift; sourceTree = "<group>"; };
@@ -341,6 +343,7 @@
 				CEE5101C225F384A0049EC69 /* ProfileItemViewModel.swift */,
 				CEE5101D225F384A0049EC69 /* ProfileCellSize.swift */,
 				CEB2FCC8227C30490046B722 /* MergeRequestChangesViewModel.swift */,
+				CEDC6A34228AC48000243680 /* FileDiffsViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -465,6 +468,7 @@
 				CEB2FCC9227C30490046B722 /* MergeRequestChangesViewModel.swift in Sources */,
 				CEE5102C2265E2E50049EC69 /* TextHelper.swift in Sources */,
 				CEE5102E22673BF10049EC69 /* DateFormatter.swift in Sources */,
+				CEDC6A35228AC48000243680 /* FileDiffsViewModel.swift in Sources */,
 				CEE51021225F461C0049EC69 /* MergeRequestRequest.swift in Sources */,
 				CE6FF02D2237DD9E003F7C56 /* Router.swift in Sources */,
 				CE6FF02F22390905003F7C56 /* BaseViewController.swift in Sources */,
