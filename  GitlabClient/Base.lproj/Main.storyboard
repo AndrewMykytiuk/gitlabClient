@@ -92,15 +92,15 @@
                                 <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="gray" indentationWidth="10" reuseIdentifier="ProjectsTableViewCell" focusStyle="custom" rowHeight="145" id="ehY-M5-qwO" customClass="ProjectsTableViewCell" customModule="GitlabClient" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="145"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="gray" indentationWidth="10" reuseIdentifier="ProjectsTableViewCell" focusStyle="custom" rowHeight="163" id="ehY-M5-qwO" customClass="ProjectsTableViewCell" customModule="GitlabClient" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="163"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ehY-M5-qwO" id="BNE-zz-ooe">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="144.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="162.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="none" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BH5-Gd-3dh">
-                                                    <rect key="frame" x="16" y="92" width="343" height="29.5"/>
+                                                    <rect key="frame" x="16" y="92" width="343" height="26.5"/>
                                                     <fontDescription key="fontDescription" name="Verdana" family="Verdana" pointSize="17"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
@@ -115,9 +115,9 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pbc-Pf-V5v">
-                                                    <rect key="frame" x="142.5" y="37" width="90" height="21"/>
+                                                    <rect key="frame" x="187.5" y="37" width="100" height="21"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="90" id="0ND-LZ-h3Z"/>
+                                                        <constraint firstAttribute="width" constant="100" id="0ND-LZ-h3Z"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" name="Verdana" family="Verdana" pointSize="17"/>
                                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -130,33 +130,35 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w4P-wX-wX1">
-                                                    <rect key="frame" x="100" y="27" width="38.5" height="41.5"/>
+                                                    <rect key="frame" x="100" y="37" width="83.5" height="21"/>
                                                     <fontDescription key="fontDescription" name="Verdana" family="Verdana" pointSize="17"/>
                                                     <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Vy-qN-Q8l">
-                                                    <rect key="frame" x="16" y="63" width="161.5" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Vy-qN-Q8l">
+                                                    <rect key="frame" x="16" y="63" width="171.5" height="21"/>
                                                     <fontDescription key="fontDescription" name="Verdana" family="Verdana" pointSize="17"/>
                                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HCA-e4-Fo3">
-                                                    <rect key="frame" x="197.5" y="63" width="161.5" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HCA-e4-Fo3">
+                                                    <rect key="frame" x="187.5" y="63" width="171.5" height="21"/>
                                                     <fontDescription key="fontDescription" name="Verdana" family="Verdana" pointSize="17"/>
                                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Eca-c3-qP2">
-                                                    <rect key="frame" x="16" y="125.5" width="343" height="15"/>
-                                                    <fontDescription key="fontDescription" name="Verdana" family="Verdana" pointSize="12"/>
-                                                    <state key="normal" title="Show more..."/>
+                                                    <rect key="frame" x="16" y="118.5" width="343" height="44"/>
+                                                    <fontDescription key="fontDescription" name="Verdana" family="Verdana" pointSize="14"/>
+                                                    <state key="normal" title="Show more...">
+                                                        <color key="titleColor" red="0.51764705879999995" green="0.57647058819999997" blue="0.6588235294" alpha="1" colorSpace="calibratedRGB"/>
+                                                    </state>
                                                     <connections>
                                                         <action selector="readMoreButtonAction:" destination="ehY-M5-qwO" eventType="touchUpInside" id="EJK-Vm-Nkt"/>
                                                     </connections>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hJS-yf-fqV">
-                                                    <rect key="frame" x="236.5" y="37" width="122.5" height="21"/>
+                                                    <rect key="frame" x="291.5" y="37" width="67.5" height="21"/>
                                                     <fontDescription key="fontDescription" name="Verdana" family="Verdana" pointSize="17"/>
                                                     <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
@@ -174,23 +176,23 @@
                                                 <constraint firstItem="Eca-c3-qP2" firstAttribute="leading" secondItem="BNE-zz-ooe" secondAttribute="leading" constant="16" id="FO1-yc-TPe"/>
                                                 <constraint firstItem="FdK-El-ywR" firstAttribute="leading" secondItem="BNE-zz-ooe" secondAttribute="leading" constant="16" id="H0m-l4-tFR"/>
                                                 <constraint firstItem="w4P-wX-wX1" firstAttribute="leading" secondItem="FdK-El-ywR" secondAttribute="trailing" constant="4" id="K8i-I1-wJg"/>
-                                                <constraint firstAttribute="bottom" secondItem="Eca-c3-qP2" secondAttribute="bottom" constant="4" id="KEZ-ts-vFn"/>
+                                                <constraint firstAttribute="bottom" secondItem="Eca-c3-qP2" secondAttribute="bottom" id="KEZ-ts-vFn"/>
                                                 <constraint firstAttribute="trailing" secondItem="Eca-c3-qP2" secondAttribute="trailing" constant="16" id="LgJ-b5-YZF"/>
                                                 <constraint firstItem="1Vy-qN-Q8l" firstAttribute="top" secondItem="FdK-El-ywR" secondAttribute="bottom" constant="5" id="LsT-yD-jWZ"/>
                                                 <constraint firstItem="FJU-iH-GmM" firstAttribute="leading" secondItem="BNE-zz-ooe" secondAttribute="leading" constant="16" id="ONV-i2-B73"/>
                                                 <constraint firstItem="pbc-Pf-V5v" firstAttribute="centerY" secondItem="FdK-El-ywR" secondAttribute="centerY" id="OZa-wN-KhS"/>
                                                 <constraint firstItem="w4P-wX-wX1" firstAttribute="centerY" secondItem="FdK-El-ywR" secondAttribute="centerY" id="TyY-YX-qAl"/>
-                                                <constraint firstItem="HCA-e4-Fo3" firstAttribute="leading" secondItem="1Vy-qN-Q8l" secondAttribute="trailing" constant="20" id="UW2-cf-BHU"/>
+                                                <constraint firstItem="HCA-e4-Fo3" firstAttribute="leading" secondItem="BNE-zz-ooe" secondAttribute="centerX" id="UFv-Z4-SGR"/>
                                                 <constraint firstItem="hJS-yf-fqV" firstAttribute="leading" secondItem="pbc-Pf-V5v" secondAttribute="trailing" constant="4" id="XBJ-Cp-IfT"/>
                                                 <constraint firstItem="HCA-e4-Fo3" firstAttribute="centerY" secondItem="1Vy-qN-Q8l" secondAttribute="centerY" id="ZEp-PV-T0a"/>
                                                 <constraint firstItem="BH5-Gd-3dh" firstAttribute="top" secondItem="1Vy-qN-Q8l" secondAttribute="bottom" constant="8" id="amk-cS-rK9"/>
                                                 <constraint firstAttribute="trailing" secondItem="hJS-yf-fqV" secondAttribute="trailing" constant="16" id="bgk-ui-7r4"/>
                                                 <constraint firstItem="1Vy-qN-Q8l" firstAttribute="width" secondItem="HCA-e4-Fo3" secondAttribute="width" id="cue-kD-OY4"/>
-                                                <constraint firstItem="Eca-c3-qP2" firstAttribute="top" secondItem="BH5-Gd-3dh" secondAttribute="bottom" constant="4" id="duB-ek-6D2"/>
+                                                <constraint firstItem="Eca-c3-qP2" firstAttribute="top" secondItem="BH5-Gd-3dh" secondAttribute="bottom" id="duB-ek-6D2"/>
                                                 <constraint firstAttribute="trailing" secondItem="BH5-Gd-3dh" secondAttribute="trailing" constant="16" id="hvm-du-5h2"/>
                                                 <constraint firstItem="1Vy-qN-Q8l" firstAttribute="leading" secondItem="BNE-zz-ooe" secondAttribute="leading" constant="16" id="ofg-ym-W3C"/>
-                                                <constraint firstItem="pbc-Pf-V5v" firstAttribute="centerX" secondItem="BNE-zz-ooe" secondAttribute="centerX" id="qdT-0X-VCB"/>
-                                                <constraint firstAttribute="bottom" secondItem="BH5-Gd-3dh" secondAttribute="bottom" constant="23" id="r1b-vN-dZx"/>
+                                                <constraint firstItem="pbc-Pf-V5v" firstAttribute="leading" secondItem="BNE-zz-ooe" secondAttribute="centerX" id="qdT-0X-VCB"/>
+                                                <constraint firstAttribute="bottom" secondItem="BH5-Gd-3dh" secondAttribute="bottom" constant="44" id="r1b-vN-dZx"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -258,7 +260,7 @@
                         <subviews>
                             <button opaque="NO" alpha="0.80000000000000004" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4aZ-Sc-OKG">
                                 <rect key="frame" x="0.0" y="617" width="375" height="50"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="d0a-u0-g5W"/>
                                 </constraints>
@@ -406,7 +408,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="69.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" semanticContentAttribute="forceLeftToRight" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6y7-Tm-DEH">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" semanticContentAttribute="forceLeftToRight" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6y7-Tm-DEH">
                                                     <rect key="frame" x="16" y="8" width="343" height="53.5"/>
                                                     <fontDescription key="fontDescription" name="Verdana" family="Verdana" pointSize="17"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

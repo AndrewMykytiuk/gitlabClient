@@ -52,10 +52,8 @@ class MainViewController: BaseViewController {
     }
     
     private func setupRefreshControl() {
-        let attributes = [NSAttributedString.Key.font: Constants.font]
         refreshControl.addTarget(self, action: #selector(refreshProjectsData(_:)), for: .valueChanged)
-        refreshControl.tintColor = Constants.Colors.mainRed.value
-        refreshControl.attributedTitle = NSAttributedString(string: NSLocalizedString(Constants.RefreshControl.projectsTableViewTitle.rawValue, comment: ""), attributes: attributes as [NSAttributedString.Key : Any])
+        refreshControl.tintColor = UIColor.white
     }
     
     private func setupActivityIndicator(with view: UIView) {
@@ -87,8 +85,11 @@ class MainViewController: BaseViewController {
                     let isMergeRequestsExist = welf.hasMergeRequests(data)
                     welf.noInfoInTableLabel.isHidden = isMergeRequestsExist
                 case .error(let error):
-                    let alert = AlertHelper.createErrorAlert(message: error.localizedDescription, handler: nil)
-                    welf.present(alert, animated: true)
+                    let delayTime = welf.refreshControl.isRefreshing ? 1.0 : 0.0
+                    DispatchQueue.main.asyncAfter(deadline: .now() + delayTime) {
+                        let alert = AlertHelper.createErrorAlert(message: error.localizedDescription, handler: nil)
+                        welf.present(alert, animated: true)
+                    }
                 }
                 welf.refreshControl.endRefreshing()
                 welf.activityIndicator.stopAnimating()

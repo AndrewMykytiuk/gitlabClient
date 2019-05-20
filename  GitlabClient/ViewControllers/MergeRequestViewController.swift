@@ -25,14 +25,16 @@ class MergeRequestViewController: BaseViewController {
     private var changes: [MergeRequestChanges] = []
     private var id: Int!
     private var iid: Int!
+    private var fileName: String!
     
     func configure(with mergeRequestService: MergeRequestService) {
         self.mergeRequestService = mergeRequestService
     }
     
-    func setUpMergeRequestInfo(id: Int, iid: Int) {
+    func setUpMergeRequestInfo(id: Int, iid: Int, fileName: String) {
         self.id = id
         self.iid = iid
+        self.fileName = fileName
     }
     
     override func viewDidLoad() {
@@ -40,6 +42,7 @@ class MergeRequestViewController: BaseViewController {
         setupActivityIndicator(with: self.view)
         setupRefreshControl()
         mergeRequestData()
+        self.title = fileName
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -54,10 +57,8 @@ class MergeRequestViewController: BaseViewController {
     }
     
     private func setupRefreshControl() {
-        let attributes = [NSAttributedString.Key.font: Constants.font]
         refreshControl.addTarget(self, action: #selector(refreshMergeRequestsData(_:)), for: .valueChanged)
-        refreshControl.tintColor = Constants.Colors.mainRed.value
-        refreshControl.attributedTitle = NSAttributedString(string: NSLocalizedString(Constants.RefreshControl.mergeRequestsChangesTableViewTitle.rawValue, comment: ""), attributes: attributes as [NSAttributedString.Key : Any])
+        refreshControl.tintColor = UIColor.white
     }
     
     private func setupActivityIndicator(with view: UIView) {
@@ -81,8 +82,11 @@ class MergeRequestViewController: BaseViewController {
                     welf.changes = changes
                     welf.mergeRequestTableView.reloadData()
                 case .error(let error):
-                    let alert = AlertHelper.createErrorAlert(message: error.localizedDescription, handler: nil)
-                    welf.present(alert, animated: true)
+                    let delayTime = welf.refreshControl.isRefreshing ? 1.0 : 0.0
+                    DispatchQueue.main.asyncAfter(deadline: .now() + delayTime) {
+                        let alert = AlertHelper.createErrorAlert(message: error.localizedDescription, handler: nil)
+                        welf.present(alert, animated: true)
+                    }
                 }
                 welf.refreshControl.endRefreshing()
                 welf.activityIndicator.stopAnimating()

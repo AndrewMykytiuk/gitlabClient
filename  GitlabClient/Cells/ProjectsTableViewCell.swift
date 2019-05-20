@@ -34,6 +34,7 @@ class ProjectsTableViewCell: UITableViewCell {
     weak var delegate: ProjectsTableViewCellDelegate?
     private let numberOfLines: Int = 2
     private var numberOfLinesHeight: CGFloat = 0
+    private let separatorHeight: CGFloat = 1
     
     private enum cellStaticTitles: String {
         case authorTitle = "ProjectsTableViewCell.showMoreButton.authorTitle"
@@ -43,7 +44,7 @@ class ProjectsTableViewCell: UITableViewCell {
     }
     
     private enum constraintsForCell: CGFloat {
-        case buttonNeeded = 23
+        case buttonNeeded = 44
         case noButtonNeeded = 8
     }
     
@@ -102,7 +103,7 @@ class ProjectsTableViewCell: UITableViewCell {
         }
         
         height += self.cellOffsets(isNeeded: isButtonNeeded)
-        
+        height += separatorHeight
         return height
     }
     

@@ -55,7 +55,7 @@ class ProfileTableViewCell: UITableViewCell {
                     if storeRange {
                         ranges.append(range)
                     }
-                    attribute.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.blue, range: range)
+                    attribute.addAttribute(NSAttributedString.Key.underlineStyle, value: NSUnderlineStyle.single.rawValue, range: range)
                 }
                  return attribute
             } else {
