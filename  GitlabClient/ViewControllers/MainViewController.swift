@@ -85,8 +85,11 @@ class MainViewController: BaseViewController {
                     let isMergeRequestsExist = welf.hasMergeRequests(data)
                     welf.noInfoInTableLabel.isHidden = isMergeRequestsExist
                 case .error(let error):
-                    let alert = AlertHelper.createErrorAlert(message: error.localizedDescription, handler: nil)
-                    welf.present(alert, animated: true)
+                    let delayTime = welf.refreshControl.isRefreshing ? 1.0 : 0.0
+                    DispatchQueue.main.asyncAfter(deadline: .now() + delayTime) {
+                        let alert = AlertHelper.createErrorAlert(message: error.localizedDescription, handler: nil)
+                        welf.present(alert, animated: true)
+                    }
                 }
                 welf.refreshControl.endRefreshing()
                 welf.activityIndicator.stopAnimating()
