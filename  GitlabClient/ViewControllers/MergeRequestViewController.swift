@@ -82,11 +82,8 @@ class MergeRequestViewController: BaseViewController {
                     welf.changes = changes
                     welf.mergeRequestTableView.reloadData()
                 case .error(let error):
-                    let delayTime = welf.refreshControl.isRefreshing ? 1.0 : 0.0
-                    DispatchQueue.main.asyncAfter(deadline: .now() + delayTime) {
-                        let alert = AlertHelper.createErrorAlert(message: error.localizedDescription, handler: nil)
-                        welf.present(alert, animated: true)
-                    }
+                    let alert = AlertHelper.createErrorAlert(message: error.localizedDescription, handler: nil)
+                    welf.present(alert, animated: true)
                 }
                 welf.refreshControl.endRefreshing()
                 welf.activityIndicator.stopAnimating()
