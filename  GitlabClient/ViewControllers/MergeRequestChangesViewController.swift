@@ -11,7 +11,7 @@ import UIKit
 
 class MergeRequestChangesViewController: BaseViewController {
     
-    @IBOutlet weak var MRChangesTextView: UITextView!
+    @IBOutlet private weak var MRChangesTextView: UITextView!
     
     private let activityIndicator = UIActivityIndicatorView(style: .whiteLarge)
     private var mergeRequestChange: MergeRequestChanges?
