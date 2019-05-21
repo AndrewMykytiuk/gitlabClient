@@ -10,6 +10,8 @@ import UIKit
 
 class MainViewController: BaseViewController {
     
+    
+    @IBOutlet weak var noInfoInTableLabel: UILabel!
     @IBOutlet weak var projectsTableView: UITableView! {
         didSet {
             createProjectsCellPrototype()
@@ -38,6 +40,9 @@ class MainViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.setNavigationBarHidden(true, animated: animated)
+        if projectsData.isEmpty {
+            getData()
+        }
     }
     
     override func viewDidLayoutSubviews() {
@@ -77,7 +82,10 @@ class MainViewController: BaseViewController {
                 switch result {
                 case .success(let data):
                     welf.projectsData = data
+                    welf.projectsTableView.isHidden = false
                     welf.projectsTableView.reloadData()
+                    let isMergeRequestsExist = welf.hasMergeRequests(data)
+                    welf.noInfoInTableLabel.isHidden = isMergeRequestsExist
                 case .error(let error):
                     let alert = AlertHelper.createErrorAlert(message: error.localizedDescription, handler: nil)
                     welf.present(alert, animated: true)
@@ -95,19 +103,27 @@ class MainViewController: BaseViewController {
         }
     }
     
+    private func hasMergeRequests(_ projects: [Project]) -> Bool {
+        for project in projects {
+            if !project.mergeRequest.isEmpty {
+                return true
+            }
+        }
+        return false
+    }
 }
 
 extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if projectsData.count > 0 {
-            return projectsData[section].name
+        if projectsData[section].mergeRequest.count > 0 {
+           return projectsData[section].name
         } else {
             return nil
         }
     }
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return projectsData.count
     }
     
