@@ -14,7 +14,9 @@ class MergeRequestChangesViewController: BaseViewController {
     @IBOutlet private weak var MRChangesTextView: UITextView!
     
     private let activityIndicator = UIActivityIndicatorView(style: .whiteLarge)
-    private var mergeRequestChange: MergeRequestChanges?
+    private let horizontalOffset: CGFloat = 16
+    private var fileTitle:String!
+    private var mergeRequestChange: MergeRequestChanges!
     
     private enum PatternsWithColors {
         
@@ -34,11 +36,12 @@ class MergeRequestChangesViewController: BaseViewController {
     
     func configureMergeRequestChangesInfo(change: MergeRequestChanges) {
         self.mergeRequestChange = change
-        self.navigationController?.title = change.newPath
+        self.fileTitle = change.newPath
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = fileTitle
         setupActivityIndicator(with: self.view)
         setUpDiffText()
     }
@@ -60,10 +63,9 @@ class MergeRequestChangesViewController: BaseViewController {
     }
     
     private func setUpDiffText() {
-        guard let change = mergeRequestChange else { return }
-        MRChangesTextView.textContainerInset = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
+        MRChangesTextView.textContainerInset = UIEdgeInsets(top: 0, left: horizontalOffset, bottom: 0, right: horizontalOffset)
         MRChangesTextView.textContainer.lineFragmentPadding = 0
-        setUpData(change: change)
+        setUpData(change: mergeRequestChange)
     }
     
     private func setUpData(change: MergeRequestChanges) {
