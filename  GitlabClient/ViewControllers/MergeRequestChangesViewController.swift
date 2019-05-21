@@ -76,20 +76,22 @@ class MergeRequestChangesViewController: BaseViewController {
         case .deleted:
             setUpColorForView(self.view, with: .mainRed)
         case .modified:
-            findAndHighliteText(with: .added, string: change.diff, attribute: attribute)
-            findAndHighliteText(with: .deleted, string: change.diff, attribute: attribute)
+            findAndHighliteText(with: [.added, .deleted], string: change.diff, attribute: attribute)
         }
         self.MRChangesTextView.attributedText = attribute
     }
     
-    private func findAndHighliteText(with patternsWithColors: PatternsWithColors, string: String, attribute: NSMutableAttributedString) {
-        let regex = try? NSRegularExpression(pattern: patternsWithColors.info.pattern, options: [ .anchorsMatchLines])
-        
-        guard let matches = regex?.matches(in: string, options: [], range: NSRange(string.startIndex..., in: string)) else { return }
-        
-        for match in matches {
-            let range = match.range(at: 0)
-            setUpColorForString(attribute, with: range, with: patternsWithColors.info.color)
+    private func findAndHighliteText(with patternsWithColor: [PatternsWithColors], string: String, attribute: NSMutableAttributedString) {
+        for patternWithColor in patternsWithColor {
+            
+            let regex = try? NSRegularExpression(pattern: patternWithColor.info.pattern, options: [ .anchorsMatchLines])
+            
+            guard let matches = regex?.matches(in: string, options: [], range: NSRange(string.startIndex..., in: string)) else { return }
+            
+            for match in matches {
+                let range = match.range(at: 0)
+                setUpColorForString(attribute, with: range, with: patternWithColor.info.color)
+            }
         }
     }
     
