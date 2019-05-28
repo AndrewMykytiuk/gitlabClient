@@ -18,22 +18,6 @@ class MergeRequestChangesViewController: BaseViewController {
     private var fileTitle:String!
     private var mergeRequestChange: MergeRequestChanges!
     
-    private enum PatternsWithColors {
-        
-        case added
-        case deleted
-        
-        var info: (pattern: String, color: UIColor) {
-            switch self {
-            case .added:
-                return ("^[+]\\D(.+)$", Constants.Colors.mainGreen.value)
-            case .deleted:
-                return ("^[-]\\D(.+)$", Constants.Colors.mainRed.value)
-            }
-        }
-        
-    }
-    
     func configureMergeRequestChangesInfo(change: MergeRequestChanges) {
         self.mergeRequestChange = change
         self.fileTitle = change.newPath
@@ -65,44 +49,9 @@ class MergeRequestChangesViewController: BaseViewController {
     private func setUpDiffText() {
         MRChangesTextView.textContainerInset = UIEdgeInsets(top: 0, left: horizontalOffset, bottom: 0, right: horizontalOffset)
         MRChangesTextView.textContainer.lineFragmentPadding = 0
-        setUpData(change: mergeRequestChange)
-    }
-    
-    private func setUpData(change: MergeRequestChanges) {
-        let attributes = [NSAttributedString.Key.font : Constants.font]
-        let attribute = NSMutableAttributedString(string: change.diff, attributes: attributes as [NSAttributedString.Key : Any])
-        
-        switch change.state {
-        case .new:
-            setUpColorForView(self.view, with: .mainGreen)
-        case .deleted:
-            setUpColorForView(self.view, with: .mainRed)
-        case .modified:
-            findAndHighliteText(with: [.added, .deleted], string: change.diff, attribute: attribute)
-        }
-        self.MRChangesTextView.attributedText = attribute
-    }
-    
-    private func findAndHighliteText(with patternsWithColor: [PatternsWithColors], string: String, attribute: NSMutableAttributedString) {
-        for patternWithColor in patternsWithColor {
-            
-            let regex = try? NSRegularExpression(pattern: patternWithColor.info.pattern, options: [ .anchorsMatchLines])
-            
-            guard let matches = regex?.matches(in: string, options: [], range: NSRange(string.startIndex..., in: string)) else { return }
-            
-            for match in matches {
-                let range = match.range(at: 0)
-                setUpColorForString(attribute, with: range, with: patternWithColor.info.color)
-            }
-        }
-    }
-    
-    private func setUpColorForString(_ attribute: NSMutableAttributedString, with range: NSRange, with color: UIColor) {
-        attribute.addAttribute(NSAttributedString.Key.backgroundColor, value: color, range: range)
-    }
-    
-    private func setUpColorForView(_ view: UIView, with color: Constants.Colors) {
-        view.backgroundColor = color.value
+        let parser = DiffsParser()
+        let attributedString = parser.setUpColorsForString(with: mergeRequestChange)
+        MRChangesTextView.attributedText = attributedString
     }
     
 }

@@ -12,6 +12,7 @@
 		CE3B69522253750200FB7DEA /* ProjectsNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3B69512253750200FB7DEA /* ProjectsNetworkService.swift */; };
 		CE3B695422537BED00FB7DEA /* ProjectService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3B695322537BED00FB7DEA /* ProjectService.swift */; };
 		CE3B695622537CE500FB7DEA /* Project.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3B695522537CE500FB7DEA /* Project.swift */; };
+		CE532F1C229D8B5D00130CD5 /* DiffsParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE532F1B229D8B5D00130CD5 /* DiffsParser.swift */; };
 		CE6FF0142236AECB003F7C56 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6FF0132236AECB003F7C56 /* AppDelegate.swift */; };
 		CE6FF0162236AECB003F7C56 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6FF0152236AECB003F7C56 /* LogInViewController.swift */; };
 		CE6FF0192236AECC003F7C56 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE6FF0172236AECB003F7C56 /* Main.storyboard */; };
@@ -69,6 +70,7 @@
 		CE3B69512253750200FB7DEA /* ProjectsNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectsNetworkService.swift; sourceTree = "<group>"; };
 		CE3B695322537BED00FB7DEA /* ProjectService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectService.swift; sourceTree = "<group>"; };
 		CE3B695522537CE500FB7DEA /* Project.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Project.swift; sourceTree = "<group>"; };
+		CE532F1B229D8B5D00130CD5 /* DiffsParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiffsParser.swift; sourceTree = "<group>"; };
 		CE6FF0102236AECB003F7C56 /* GitlabClient.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GitlabClient.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE6FF0132236AECB003F7C56 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CE6FF0152236AECB003F7C56 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
@@ -145,6 +147,14 @@
 			path = " ProjectsNetworkService";
 			sourceTree = "<group>";
 		};
+		CE532F1D229D8B9400130CD5 /* Parsers */ = {
+			isa = PBXGroup;
+			children = (
+				CE532F1B229D8B5D00130CD5 /* DiffsParser.swift */,
+			);
+			path = Parsers;
+			sourceTree = "<group>";
+		};
 		CE6FF0072236AECB003F7C56 = {
 			isa = PBXGroup;
 			children = (
@@ -164,9 +174,11 @@
 		CE6FF0122236AECB003F7C56 /*  GitlabClient */ = {
 			isa = PBXGroup;
 			children = (
+				CE532F1D229D8B9400130CD5 /* Parsers */,
 				CEB2FCCC227C382A0046B722 /* Misc */,
 				CEE51026225F53360049EC69 /* MergeRequestNetworkService */,
 				CEE5101B225F384A0049EC69 /* ViewModels */,
+				CE6FF03F223B967F003F7C56 /* LoginNetworkService */,
 				CEE51015225F38070049EC69 /* Extensions */,
 				CE3B694E225374B800FB7DEA /*  ProjectsNetworkService */,
 				CE729F412245366C0006C37C /* ProfileNetworkService */,
@@ -175,7 +187,6 @@
 				CE729F362244D7560006C37C /* Services */,
 				CE729F1D224124EA0006C37C /* DependencyProviders */,
 				CE729F16223EE5AF0006C37C /* Enums */,
-				CE6FF03F223B967F003F7C56 /* LoginNetworkService */,
 				CE6FF03A223AE261003F7C56 /* Networking */,
 				CE6FF039223AE19B003F7C56 /* Helpers */,
 				CE6FF038223AB689003F7C56 /* Constants */,
@@ -250,7 +261,8 @@
 				CE6FF040223B96CB003F7C56 /* LoginRequest.swift */,
 				CE6FF042223B96EE003F7C56 /* LoginNetworkService.swift */,
 			);
-			path = LoginNetworkService;
+			name = LoginNetworkService;
+			path = DependencyProviders/LoginNetworkService;
 			sourceTree = "<group>";
 		};
 		CE729F16223EE5AF0006C37C /* Enums */ = {
@@ -438,6 +450,7 @@
 				CE6FF043223B96EE003F7C56 /* LoginNetworkService.swift in Sources */,
 				CEB2FCDE228586B70046B722 /* MergeRequestChangesViewController.swift in Sources */,
 				CEE5101E225F384A0049EC69 /* ProfileItemViewModel.swift in Sources */,
+				CE532F1C229D8B5D00130CD5 /* DiffsParser.swift in Sources */,
 				CE3B6950225374EA00FB7DEA /* ProjectRequest.swift in Sources */,
 				CE147D53224BBE5600C08C11 /* ProjectsTableViewCell.swift in Sources */,
 				CE6FF032223A6A17003F7C56 /* AuthHelper.swift in Sources */,
