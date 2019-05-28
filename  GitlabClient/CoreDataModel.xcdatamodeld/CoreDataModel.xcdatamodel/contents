@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14490.98" systemVersion="18E226" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <entity name="MergeRequestEntity" representedClassName="MergeRequestEntity" syncable="YES" codeGenerationType="class">
+    <entity name="MergeRequestEntity" representedClassName="MergeRequestEntity" syncable="YES">
         <attribute name="assignee" optional="YES" attributeType="Transformable" syncable="YES"/>
         <attribute name="author" optional="YES" attributeType="Transformable" syncable="YES"/>
-        <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="iid" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="mergeRequestDescription" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="projectId" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="toProject" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProjectEntity" inverseName="toMergeRequest" inverseEntity="ProjectEntity" syncable="YES"/>
-        <relationship name="toUser" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="UserEntity" inverseName="toMergeRequest" inverseEntity="UserEntity" syncable="YES"/>
+        <relationship name="toUser" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="UserEntity" inverseName="toMergeRequest" inverseEntity="UserEntity" syncable="YES"/>
     </entity>
-    <entity name="ProjectEntity" representedClassName="ProjectEntity" syncable="YES" codeGenerationType="class">
+    <entity name="ProjectEntity" representedClassName="ProjectEntity" syncable="YES">
         <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="mergeRequests" optional="YES" attributeType="Transformable" syncable="YES"/>
@@ -18,7 +18,7 @@
         <attribute name="projectDescription" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="toMergeRequest" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="MergeRequestEntity" inverseName="toProject" inverseEntity="MergeRequestEntity" syncable="YES"/>
     </entity>
-    <entity name="UserEntity" representedClassName="UserEntity" syncable="YES" codeGenerationType="class">
+    <entity name="UserEntity" representedClassName="UserEntity" syncable="YES">
         <attribute name="avatarUrl" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
@@ -28,8 +28,8 @@
         <relationship name="toMergeRequest" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="MergeRequestEntity" inverseName="toUser" inverseEntity="MergeRequestEntity" syncable="YES"/>
     </entity>
     <elements>
-        <element name="ProjectEntity" positionX="-40.63671875" positionY="-208.2265625" width="128" height="118"/>
-        <element name="MergeRequestEntity" positionX="164.76953125" positionY="-107.86328125" width="128" height="133"/>
-        <element name="UserEntity" positionX="371.375" positionY="13.70703125" width="128" height="133"/>
+        <element name="ProjectEntity" positionX="-279.90625" positionY="-445.19921875" width="128" height="133"/>
+        <element name="MergeRequestEntity" positionX="-85.38671875" positionY="-328.0625" width="128" height="163"/>
+        <element name="UserEntity" positionX="133.7109375" positionY="-218.90234375" width="128" height="148"/>
     </elements>
 </model>

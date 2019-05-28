@@ -28,4 +28,5 @@ class DependencyProvider: DependencyProviderType {
     }()
     
     let keychainItem = KeychainItem()
+    let storage = StorageService()
 }
