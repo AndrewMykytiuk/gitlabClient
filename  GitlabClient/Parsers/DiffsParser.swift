@@ -37,9 +37,9 @@ class DiffsParser {
         
         switch change.state {
         case .new:
-            findAndHighliteText(with: [.added], string: change.diff, attribute: attribute)
+            setUpColorForFile(attribute, with: change.diff, with: .added)
         case .deleted:
-            findAndHighliteText(with: [.deleted], string: change.diff, attribute: attribute)
+            setUpColorForFile(attribute, with: change.diff, with: .deleted)
         case .modified:
             findAndHighliteText(with: [.added, .deleted], string: change.diff, attribute: attribute)
         }
@@ -58,6 +58,11 @@ class DiffsParser {
                 setUpColorForString(attribute, with: range, with: patternWithColor.info.color)
             }
         }
+    }
+    
+    private func setUpColorForFile(_ attribute: NSMutableAttributedString, with string: String, with patternWithColor: PatternsWithColors) {
+        let range = NSRange(location: 0, length: string.count)
+        attribute.addAttribute(NSAttributedString.Key.backgroundColor, value: patternWithColor.info.color, range: range)
     }
     
     private func setUpColorForString(_ attribute: NSMutableAttributedString, with range: NSRange, with color: UIColor) {

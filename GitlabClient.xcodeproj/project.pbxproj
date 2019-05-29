@@ -13,6 +13,8 @@
 		CE3B695422537BED00FB7DEA /* ProjectService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3B695322537BED00FB7DEA /* ProjectService.swift */; };
 		CE3B695622537CE500FB7DEA /* Project.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3B695522537CE500FB7DEA /* Project.swift */; };
 		CE532F1C229D8B5D00130CD5 /* DiffsParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE532F1B229D8B5D00130CD5 /* DiffsParser.swift */; };
+		CE532F21229ED27E00130CD5 /* LoginRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE532F1F229ED27E00130CD5 /* LoginRequest.swift */; };
+		CE532F22229ED27E00130CD5 /* LoginNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE532F20229ED27E00130CD5 /* LoginNetworkService.swift */; };
 		CE6FF0142236AECB003F7C56 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6FF0132236AECB003F7C56 /* AppDelegate.swift */; };
 		CE6FF0162236AECB003F7C56 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6FF0152236AECB003F7C56 /* LogInViewController.swift */; };
 		CE6FF0192236AECC003F7C56 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE6FF0172236AECB003F7C56 /* Main.storyboard */; };
@@ -27,8 +29,6 @@
 		CE6FF036223AAD0C003F7C56 /*  Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6FF035223AAD0C003F7C56 /*  Constants.swift */; };
 		CE6FF03C223AE29E003F7C56 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6FF03B223AE29E003F7C56 /* NetworkManager.swift */; };
 		CE6FF03E223AE376003F7C56 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6FF03D223AE376003F7C56 /* Request.swift */; };
-		CE6FF041223B96CB003F7C56 /* LoginRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6FF040223B96CB003F7C56 /* LoginRequest.swift */; };
-		CE6FF043223B96EE003F7C56 /* LoginNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6FF042223B96EE003F7C56 /* LoginNetworkService.swift */; };
 		CE729F18223EE6660006C37C /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE729F17223EE6660006C37C /* Errors.swift */; };
 		CE729F1F224125240006C37C /* DependencyProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE729F1E224125240006C37C /* DependencyProvider.swift */; };
 		CE729F252242582B0006C37C /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE729F24224258210006C37C /* MainViewController.swift */; };
@@ -71,6 +71,8 @@
 		CE3B695322537BED00FB7DEA /* ProjectService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectService.swift; sourceTree = "<group>"; };
 		CE3B695522537CE500FB7DEA /* Project.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Project.swift; sourceTree = "<group>"; };
 		CE532F1B229D8B5D00130CD5 /* DiffsParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiffsParser.swift; sourceTree = "<group>"; };
+		CE532F1F229ED27E00130CD5 /* LoginRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginRequest.swift; sourceTree = "<group>"; };
+		CE532F20229ED27E00130CD5 /* LoginNetworkService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginNetworkService.swift; sourceTree = "<group>"; };
 		CE6FF0102236AECB003F7C56 /* GitlabClient.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GitlabClient.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE6FF0132236AECB003F7C56 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CE6FF0152236AECB003F7C56 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
@@ -87,8 +89,6 @@
 		CE6FF035223AAD0C003F7C56 /*  Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = " Constants.swift"; sourceTree = "<group>"; };
 		CE6FF03B223AE29E003F7C56 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		CE6FF03D223AE376003F7C56 /* Request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
-		CE6FF040223B96CB003F7C56 /* LoginRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRequest.swift; sourceTree = "<group>"; };
-		CE6FF042223B96EE003F7C56 /* LoginNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginNetworkService.swift; sourceTree = "<group>"; };
 		CE729F17223EE6660006C37C /* Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
 		CE729F1E224125240006C37C /* DependencyProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DependencyProvider.swift; sourceTree = "<group>"; };
 		CE729F24224258210006C37C /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -155,6 +155,15 @@
 			path = Parsers;
 			sourceTree = "<group>";
 		};
+		CE532F1E229ED27E00130CD5 /* LoginNetworkService */ = {
+			isa = PBXGroup;
+			children = (
+				CE532F1F229ED27E00130CD5 /* LoginRequest.swift */,
+				CE532F20229ED27E00130CD5 /* LoginNetworkService.swift */,
+			);
+			path = LoginNetworkService;
+			sourceTree = "<group>";
+		};
 		CE6FF0072236AECB003F7C56 = {
 			isa = PBXGroup;
 			children = (
@@ -174,11 +183,11 @@
 		CE6FF0122236AECB003F7C56 /*  GitlabClient */ = {
 			isa = PBXGroup;
 			children = (
+				CE532F1E229ED27E00130CD5 /* LoginNetworkService */,
 				CE532F1D229D8B9400130CD5 /* Parsers */,
 				CEB2FCCC227C382A0046B722 /* Misc */,
 				CEE51026225F53360049EC69 /* MergeRequestNetworkService */,
 				CEE5101B225F384A0049EC69 /* ViewModels */,
-				CE6FF03F223B967F003F7C56 /* LoginNetworkService */,
 				CEE51015225F38070049EC69 /* Extensions */,
 				CE3B694E225374B800FB7DEA /*  ProjectsNetworkService */,
 				CE729F412245366C0006C37C /* ProfileNetworkService */,
@@ -253,16 +262,6 @@
 				CE6FF03D223AE376003F7C56 /* Request.swift */,
 			);
 			path = Networking;
-			sourceTree = "<group>";
-		};
-		CE6FF03F223B967F003F7C56 /* LoginNetworkService */ = {
-			isa = PBXGroup;
-			children = (
-				CE6FF040223B96CB003F7C56 /* LoginRequest.swift */,
-				CE6FF042223B96EE003F7C56 /* LoginNetworkService.swift */,
-			);
-			name = LoginNetworkService;
-			path = DependencyProviders/LoginNetworkService;
 			sourceTree = "<group>";
 		};
 		CE729F16223EE5AF0006C37C /* Enums */ = {
@@ -447,7 +446,6 @@
 				CE729F1F224125240006C37C /* DependencyProvider.swift in Sources */,
 				CE6FF0292236B1EA003F7C56 /* OAuthLogInViewController.swift in Sources */,
 				CE729F3D2244F5120006C37C /* ProfileViewController.swift in Sources */,
-				CE6FF043223B96EE003F7C56 /* LoginNetworkService.swift in Sources */,
 				CEB2FCDE228586B70046B722 /* MergeRequestChangesViewController.swift in Sources */,
 				CEE5101E225F384A0049EC69 /* ProfileItemViewModel.swift in Sources */,
 				CE532F1C229D8B5D00130CD5 /* DiffsParser.swift in Sources */,
@@ -459,7 +457,7 @@
 				CEE51023225F4DC90049EC69 /* MergeRequest.swift in Sources */,
 				CEE5101F225F384A0049EC69 /* ProfileCellSize.swift in Sources */,
 				CEE5101A225F38070049EC69 /* ProfileTableViewCell.swift in Sources */,
-				CE6FF041223B96CB003F7C56 /* LoginRequest.swift in Sources */,
+				CE532F22229ED27E00130CD5 /* LoginNetworkService.swift in Sources */,
 				CEE51019225F38070049EC69 /* UITapGestureRecognizer.swift in Sources */,
 				CE729F43224536B80006C37C /* ProfileRequest.swift in Sources */,
 				CE6FF036223AAD0C003F7C56 /*  Constants.swift in Sources */,
@@ -470,6 +468,7 @@
 				CE6FF0162236AECB003F7C56 /* LogInViewController.swift in Sources */,
 				CE729F2D2243A1C40006C37C /* AlertHelper.swift in Sources */,
 				CE729F382244D7580006C37C /* LoginService.swift in Sources */,
+				CE532F21229ED27E00130CD5 /* LoginRequest.swift in Sources */,
 				CEE5102A2264F36E0049EC69 /* URLHelper.swift in Sources */,
 				CEB2FCCE227C382A0046B722 /* Typealiases.swift in Sources */,
 				CEB2FCC5226F1F350046B722 /* MergeRequestService.swift in Sources */,
