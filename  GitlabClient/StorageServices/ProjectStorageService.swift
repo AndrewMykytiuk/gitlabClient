@@ -12,11 +12,9 @@ import CoreData
 class ProjectStorageService {
     
     let storage: StorageService?
-    let mapper: ProjectMapper?
     
-    init(with storage: StorageService, mapper: ProjectMapper) {
+    init(with storage: StorageService) {
         self.storage = storage
-        self.mapper = mapper
     }
     
     func createFetchRequest() -> NSFetchRequest<NSFetchRequestResult> {

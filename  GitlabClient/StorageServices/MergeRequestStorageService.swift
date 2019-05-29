@@ -12,11 +12,9 @@ import CoreData
 class MergeRequestStorageService {
     
     let storage: StorageService?
-    let mapper: MergeRequestMapper?
     
-    init(with storage: StorageService, mapper: MergeRequestMapper) {
+    init(with storage: StorageService) {
         self.storage = storage
-        self.mapper = mapper
     }
     
     func createFetchRequest() -> NSFetchRequest<NSFetchRequestResult> {

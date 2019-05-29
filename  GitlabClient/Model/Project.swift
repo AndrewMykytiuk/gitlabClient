@@ -37,4 +37,14 @@ struct Project: Codable {
         
     }
     
+    init(id: Int, name: String, description: String, date: Date, mergeRequest: [MergeRequest]) {
+        
+        self.id = id
+        self.name = name
+        self.description = description
+        self.date = date
+        self.mergeRequest = mergeRequest
+        
+    }
+    
 }

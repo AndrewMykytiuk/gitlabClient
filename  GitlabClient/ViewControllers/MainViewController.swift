@@ -20,14 +20,16 @@ class MainViewController: BaseViewController {
     }
     
     private var projectsService: ProjectService!
+    private var projectsStorageService: ProjectStorageService!
     private var projectsCell: ProjectsTableViewCell!
     private var projectsData: [Project] = []
     private let activityIndicator = UIActivityIndicatorView(style: .whiteLarge)
     private let refreshControl = UIRefreshControl()
     private var indexPathOfExpendedCell: [IndexPath] = []
     
-    func configure(with projectsService: ProjectService) {
+    func configure(with projectsService: ProjectService, projectsStorageService: ProjectStorageService) {
         self.projectsService = projectsService
+        self.projectsStorageService = projectsStorageService
     }
     
     override func viewDidLoad() {

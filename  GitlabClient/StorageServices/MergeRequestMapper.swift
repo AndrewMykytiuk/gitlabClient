@@ -30,11 +30,12 @@ class MergeRequestMapper {
         return mergeRequests
     }
     
-    private func setupMergeRequest(with mergeRequestEntity: MergeRequestEntity) -> MergeRequest? {
-        let iid = Int(mergeRequestEntity.iid)
-        guard let name = mergeRequestEntity.name, let username = mergeRequestEntity.username, let avatarUrl = mergeRequestEntity.avatarUrl, let url = URL(string: avatarUrl) else { return nil }
-        let mergeRequest = User(
-        return user
-    }
+//    private func setupMergeRequest(with mergeRequestEntity: MergeRequestEntity) -> MergeRequest? {
+//        let iid = Int(mergeRequestEntity.iid)
+//        let projectId = Int(mergeRequestEntity.projectId)
+//        guard let title = mergeRequestEntity.title, let description = mergeRequestEntity.mergeRequestDescription else { return nil }
+//        let mergeRequest = MergeRequest(iid: iid, title: title, description: description, projectId: projectId, assignee: <#T##User#>, author: <#T##User#>)
+//        return user
+//    }
     
 }
