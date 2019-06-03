@@ -11,15 +11,19 @@ import CoreData
 
 class UserStorageService {
     
-    let storage: StorageService?
-    let mapper: UserMapper?
+    let storage: StorageService!
     
-    init(with storage: StorageService, mapper: UserMapper) {
-        self.storage = storage
-        self.mapper = mapper
+    init(storageService: StorageService) {
+        self.storage = storageService
     }
     
     func createFetchRequest() -> NSFetchRequest<NSFetchRequestResult> {
         return NSFetchRequest<NSFetchRequestResult>(entityName: "UserEntity")
+    }
+    
+    func createEntity() -> UserEntity {
+        guard let entity = NSEntityDescription.entity(forEntityName: "UserEntity", in: storage.managedContext) else { return UserEntity() }
+        let userEntity = UserEntity(entity: entity, insertInto: storage.managedContext)
+        return userEntity
     }
 }

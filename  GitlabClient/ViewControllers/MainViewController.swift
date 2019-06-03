@@ -20,16 +20,14 @@ class MainViewController: BaseViewController {
     }
     
     private var projectsService: ProjectService!
-    private var projectsStorageService: ProjectStorageService!
     private var projectsCell: ProjectsTableViewCell!
     private var projectsData: [Project] = []
     private let activityIndicator = UIActivityIndicatorView(style: .whiteLarge)
     private let refreshControl = UIRefreshControl()
     private var indexPathOfExpendedCell: [IndexPath] = []
     
-    func configure(with projectsService: ProjectService, projectsStorageService: ProjectStorageService) {
+    func configure(with projectsService: ProjectService) {
         self.projectsService = projectsService
-        self.projectsStorageService = projectsStorageService
     }
     
     override func viewDidLoad() {
@@ -37,6 +35,7 @@ class MainViewController: BaseViewController {
         setupActivityIndicator(with: self.view)
         setupRefreshControl()
         getData()
+        projectsService.projectsFromDatabase()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -88,6 +87,7 @@ class MainViewController: BaseViewController {
                     welf.projectsTableView.reloadData()
                     let isMergeRequestsExist = welf.hasMergeRequests(data)
                     welf.noInfoInTableLabel.isHidden = isMergeRequestsExist
+                    //welf.projectsService.saveProjectsToDB(projects: data)
                 case .error(let error):
                     let alert = AlertHelper.createErrorAlert(message: error.localizedDescription, handler: nil)
                     welf.present(alert, animated: true)

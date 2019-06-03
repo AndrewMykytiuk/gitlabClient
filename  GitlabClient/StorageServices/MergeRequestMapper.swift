@@ -11,13 +11,20 @@ import CoreData
 
 class MergeRequestMapper {
     
-    func mapEntityIntoObject(with mergeRequest: MergeRequest, objects: [NSManagedObject]) -> [NSManagedObject] {
-        let mergeRequestEntity = MergeRequestEntity()
+    let userMapper: UserMapper!
+    
+    init(with userMapper: UserMapper) {
+        self.userMapper = userMapper
+    }
+    
+    
+    
+    func mapEntityIntoObject(with mergeRequest: MergeRequest, mergeRequestEntity: MergeRequestEntity) -> MergeRequestEntity {
         mergeRequestEntity.iid = Int32(mergeRequest.iid)
         mergeRequestEntity.projectId = Int32(mergeRequest.projectId)
         mergeRequestEntity.mergeRequestDescription = mergeRequest.description
         mergeRequestEntity.title = mergeRequest.title
-        return []
+        return mergeRequestEntity
     }
     
     func mapObjectIntoEntity(with objects: [NSManagedObject]) -> [MergeRequest] {
@@ -33,7 +40,8 @@ class MergeRequestMapper {
 //    private func setupMergeRequest(with mergeRequestEntity: MergeRequestEntity) -> MergeRequest? {
 //        let iid = Int(mergeRequestEntity.iid)
 //        let projectId = Int(mergeRequestEntity.projectId)
-//        guard let title = mergeRequestEntity.title, let description = mergeRequestEntity.mergeRequestDescription else { return nil }
+//        guard let title = mergeRequestEntity.title, let description = mergeRequestEntity.mergeRequestDescription, mergeRequestEntity.a else { return nil }
+//
 //        let mergeRequest = MergeRequest(iid: iid, title: title, description: description, projectId: projectId, assignee: <#T##User#>, author: <#T##User#>)
 //        return user
 //    }

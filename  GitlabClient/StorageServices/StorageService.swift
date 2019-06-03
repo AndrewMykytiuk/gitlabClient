@@ -84,14 +84,15 @@ class StorageService {
     }
     
     func fetchContext(with request:NSFetchRequest<NSFetchRequestResult>) -> [NSManagedObject] {
-        let result: [NSManagedObject] = []
+        var objects: [NSManagedObject] = []
         request.returnsObjectsAsFaults = false
         do {
-            var result = try self.managedContext.fetch(request)
-            result = result as! [NSManagedObject]
+            guard let results = try self.managedContext.fetch(request) as? [NSManagedObject] else { return objects }
+            //result = result as! [NSManagedObject]
+            objects = results
         } catch {
             print("Failed")
         }
-        return result
+        return objects
     }
 }

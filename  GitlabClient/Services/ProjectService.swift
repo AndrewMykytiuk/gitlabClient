@@ -10,14 +10,14 @@ import Foundation
 
 class ProjectService {
     
-    private let networkManager: NetworkManager
     private let projectsManager: ProjectsNetworkService
     private let mergeRequestManager: MergeRequestNetworkService
+    private let projectStorageManager: ProjectStorageService
     
-    init(networkManager: NetworkManager) {
-        self.networkManager = networkManager
+    init(networkManager: NetworkManager, storageService: StorageService) {
         self.projectsManager = ProjectsNetworkService(networkManager: networkManager)
         self.mergeRequestManager = MergeRequestNetworkService(networkManager: networkManager)
+        self.projectStorageManager = ProjectStorageService(storageService: storageService)
     }
     
     func projectsInfo(completion: @escaping Completion<[Project]>) {
@@ -70,5 +70,19 @@ class ProjectService {
             entities.append(entity)
         }
         return entities
+    }
+    
+    func projectsFromDatabase() -> [Project] {
+        
+        let fetchRequest = projectStorageManager.createFetchRequest()
+        let managedObjects = projectStorageManager.storage?.fetchContext(with: fetchRequest) ?? []
+        projectStorageManager.projectMapper.mapFromEntities(with: managedObjects)
+        
+        return []
+    }
+    
+    func saveProjectsToDB(projects: [Project]) {
+        projectStorageManager.mapIntoEntities(projects: projects)
+        projectStorageManager.saveProjects()
     }
 }

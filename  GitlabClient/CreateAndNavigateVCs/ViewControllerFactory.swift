@@ -52,8 +52,7 @@ class ViewControllerFactory: ViewControllerFactoryType {
         switch identifier {
         case .main:
             if let mainViewController = vcTemp as? MainViewController {
-                let projectsStorageService = ProjectStorageService(with: dependencyProvider.storage)
-                let projectsService = ProjectService(networkManager: dependencyProvider.networkManager)
+                let projectsService = ProjectService(networkManager: dependencyProvider.networkManager, storageService: dependencyProvider.storage)
                 mainViewController.configure(with: projectsService)
                 vcTemp = mainViewController
             }
