@@ -61,10 +61,10 @@ class ProjectService {
         
         for project in projects {
             var entity = project
-            entity.mergeRequest = []
+            entity.mergeRequests = []
             for request in requests {
                 if request.projectId == project.id {
-                    entity.mergeRequest.append(request)
+                    entity.mergeRequests.append(request)
                 }
             }
             entities.append(entity)
@@ -74,15 +74,25 @@ class ProjectService {
     
     func projectsFromDatabase() -> [Project] {
         
-        let fetchRequest = projectStorageManager.createFetchRequest()
-        let managedObjects = projectStorageManager.storage?.fetchContext(with: fetchRequest) ?? []
-        projectStorageManager.projectMapper.mapFromEntities(with: managedObjects)
+        let fetchRequest = projectStorageManager.storage.createFetchRequest(with: projectStorageManager.entityName())
+        let managedObjects = projectStorageManager.storage.fetchItems(with: fetchRequest) 
+        guard let entities = managedObjects as? [ProjectEntity] else { fatalError(FatalError.CoreDataEntityDowncast.failedProjectEntities.rawValue) }
+        let projects = projectStorageManager.projectMapper.mapFromEntities(with: entities)
         
-        return []
+        return projects
+    }
+    
+    func updateProjectsInDatabase(projects: [Project]) {
+        deleteProjects()
+        saveProjectsToDB(projects: projects)
     }
     
     func saveProjectsToDB(projects: [Project]) {
         projectStorageManager.mapIntoEntities(projects: projects)
         projectStorageManager.saveProjects()
+    }
+    
+    func deleteProjects() {
+        projectStorageManager.deleteProjects()
     }
 }

@@ -14,7 +14,7 @@ struct Project: Codable {
     let name: String
     let description: String
     let date: Date
-    var mergeRequest: [MergeRequest]
+    var mergeRequests: [MergeRequest]
     
     private enum CodingKeys: String, CodingKey {
         
@@ -22,7 +22,7 @@ struct Project: Codable {
         case name
         case description
         case date = "last_activity_at"
-        case mergeRequest
+        case mergeRequests
         
     }
     
@@ -33,17 +33,17 @@ struct Project: Codable {
         self.name = try container.decode(String.self, forKey: .name)
         self.description = try container.decode(String.self, forKey: .description)
         self.date = try container.decode(Date.self, forKey: .date)
-        self.mergeRequest = (try? container.decode([MergeRequest].self, forKey: .mergeRequest)) ?? []
+        self.mergeRequests = (try? container.decode([MergeRequest].self, forKey: .mergeRequests)) ?? []
         
     }
     
-    init(id: Int, name: String, description: String, date: Date, mergeRequest: [MergeRequest]) {
+    init(id: Int, name: String, description: String, date: Date, mergeRequests: [MergeRequest]) {
         
         self.id = id
         self.name = name
         self.description = description
         self.date = date
-        self.mergeRequest = mergeRequest
+        self.mergeRequests = mergeRequests
         
     }
     

@@ -2,7 +2,7 @@
 //  MergeRequestEntity+CoreDataProperties.swift
 //  GitlabClient
 //
-//  Created by User on 23/04/2019.
+//  Created by Andrey Mikityuk on 6/4/19.
 //  Copyright © 2019 MPTechnologies. All rights reserved.
 //
 //
@@ -17,30 +17,12 @@ extension MergeRequestEntity {
         return NSFetchRequest<MergeRequestEntity>(entityName: "MergeRequestEntity")
     }
 
-    @NSManaged public var projectId: Int32
     @NSManaged public var iid: Int32
-    @NSManaged public var title: String?
-    @NSManaged public var mergeRequestDescription: String?
-    @NSManaged public var author: NSObject?
-    @NSManaged public var assignee: NSObject?
-    @NSManaged public var toProject: ProjectEntity?
-    @NSManaged public var toUser: NSSet?
-
-}
-
-// MARK: Generated accessors for toUser
-extension MergeRequestEntity {
-
-    @objc(addToUserObject:)
-    @NSManaged public func addToToUser(_ value: UserEntity)
-
-    @objc(removeToUserObject:)
-    @NSManaged public func removeFromToUser(_ value: UserEntity)
-
-    @objc(addToUser:)
-    @NSManaged public func addToToUser(_ values: NSSet)
-
-    @objc(removeToUser:)
-    @NSManaged public func removeFromToUser(_ values: NSSet)
+    @NSManaged public var mergeRequestDescription: String
+    @NSManaged public var projectId: Int32
+    @NSManaged public var title: String
+    @NSManaged public var project: ProjectEntity?
+    @NSManaged public var assignee: UserEntity?
+    @NSManaged public var author: UserEntity?
 
 }

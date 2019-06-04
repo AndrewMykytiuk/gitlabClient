@@ -11,19 +11,22 @@ import CoreData
 
 class UserStorageService {
     
-    let storage: StorageService!
+    let storage: StorageService
+    let userMapper = UserMapper()
     
     init(storageService: StorageService) {
         self.storage = storageService
     }
     
-    func createFetchRequest() -> NSFetchRequest<NSFetchRequestResult> {
-        return NSFetchRequest<NSFetchRequestResult>(entityName: "UserEntity")
+    func createEntity(with user: User) -> UserEntity {
+        guard let entity = NSEntityDescription.entity(forEntityName: entityName(), in: storage.childContext) else { fatalError(FatalError.CoreDataEntityCreation.failedProject.rawValue) }
+        let userEntity = UserEntity(entity: entity, insertInto: storage.childContext)
+        let filledEntity = userMapper.mapEntityIntoObject(with: user, userEntity: userEntity)
+        return filledEntity
     }
     
-    func createEntity() -> UserEntity {
-        guard let entity = NSEntityDescription.entity(forEntityName: "UserEntity", in: storage.managedContext) else { return UserEntity() }
-        let userEntity = UserEntity(entity: entity, insertInto: storage.managedContext)
-        return userEntity
+    func entityName() -> String {
+        return "UserEntity"
     }
+    
 }

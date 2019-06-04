@@ -11,19 +11,33 @@ import CoreData
 
 class MergeRequestStorageService {
     
-    let storage: StorageService!
+    let storage: StorageService
+    let mergeRequestMapper: MergeRequestMapper
+    let userStorageService: UserStorageService
+    let userMapper = UserMapper()
     
     init(storageService: StorageService) {
         self.storage = storageService
+        self.userStorageService = UserStorageService(storageService: storageService)
+        self.mergeRequestMapper = MergeRequestMapper(with: userMapper)
     }
     
-    func createFetchRequest() -> NSFetchRequest<NSFetchRequestResult> {
-        return NSFetchRequest<NSFetchRequestResult>(entityName: "MergeRequestEntity")
+    func createEntity(with mergeRequest: MergeRequest) -> MergeRequestEntity {
+        guard let entity = NSEntityDescription.entity(forEntityName: entityName(), in: storage.childContext) else { fatalError(FatalError.CoreDataEntityCreation.failedMergeRequest.rawValue) }
+        let mergeRequestEntity = MergeRequestEntity(entity: entity, insertInto: storage.childContext)
+        let filledEntity = mergeRequestMapper.mapEntityIntoObject(with: mergeRequest,
+                                                            mergeRequestEntity: mergeRequestEntity)
+        
+        let assigneeUserEntity = userStorageService.createEntity(with: mergeRequest.assignee)
+        let authorUserEntity = userStorageService.createEntity(with: mergeRequest.author)
+        
+        filledEntity.author = authorUserEntity
+        filledEntity.assignee = assigneeUserEntity
+        
+        return filledEntity
     }
     
-    func createEntity() -> MergeRequestEntity {
-        guard let entity = NSEntityDescription.entity(forEntityName: "MergeRequestEntity", in: storage.managedContext) else { return MergeRequestEntity() }
-        let mergeRequestEntity = MergeRequestEntity(entity: entity, insertInto: storage.managedContext)
-        return mergeRequestEntity
+    func entityName() -> String {
+        return "MergeRequestEntity"
     }
 }

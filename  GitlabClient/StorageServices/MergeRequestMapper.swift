@@ -11,13 +11,11 @@ import CoreData
 
 class MergeRequestMapper {
     
-    let userMapper: UserMapper!
-    
+    let userMapper: UserMapper
+
     init(with userMapper: UserMapper) {
         self.userMapper = userMapper
     }
-    
-    
     
     func mapEntityIntoObject(with mergeRequest: MergeRequest, mergeRequestEntity: MergeRequestEntity) -> MergeRequestEntity {
         mergeRequestEntity.iid = Int32(mergeRequest.iid)
@@ -27,23 +25,17 @@ class MergeRequestMapper {
         return mergeRequestEntity
     }
     
-    func mapObjectIntoEntity(with objects: [NSManagedObject]) -> [MergeRequest] {
-        var mergeRequests: [MergeRequest] = []
-        for object in objects {
-            guard let mergeRequestEntity = object as? MergeRequestEntity else { return mergeRequests }
-            //guard let user = setupMergeRequest(with: mergeRequestEntity) else { return mergeRequests }
-            //mergeRequests.append(user)
-        }
-        return mergeRequests
+    func setupMergeRequest(with mergeRequestEntity: MergeRequestEntity) -> MergeRequest {
+        let iid = Int(mergeRequestEntity.iid)
+        let projectId = Int(mergeRequestEntity.projectId)
+        
+        guard let assigneeEntity = mergeRequestEntity.assignee, let authorEntity = mergeRequestEntity.author else { fatalError(FatalError.CoreDataEntityMapper.failedMergeRequestMap.rawValue) }
+        
+        let assignee = userMapper.setupUser(with: assigneeEntity)
+        let author = userMapper.setupUser(with: authorEntity)
+        
+        let mergeRequest = MergeRequest(iid: iid, title: mergeRequestEntity.title, description: mergeRequestEntity.mergeRequestDescription, projectId: projectId, assignee: assignee, author: author)
+        return mergeRequest
     }
-    
-//    private func setupMergeRequest(with mergeRequestEntity: MergeRequestEntity) -> MergeRequest? {
-//        let iid = Int(mergeRequestEntity.iid)
-//        let projectId = Int(mergeRequestEntity.projectId)
-//        guard let title = mergeRequestEntity.title, let description = mergeRequestEntity.mergeRequestDescription, mergeRequestEntity.a else { return nil }
-//
-//        let mergeRequest = MergeRequest(iid: iid, title: title, description: description, projectId: projectId, assignee: <#T##User#>, author: <#T##User#>)
-//        return user
-//    }
     
 }

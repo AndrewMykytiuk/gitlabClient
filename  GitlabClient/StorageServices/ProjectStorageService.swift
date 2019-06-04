@@ -11,62 +11,43 @@ import CoreData
 
 class ProjectStorageService {
     
-    let storage: StorageService!
-    let projectMapper: ProjectMapper!
-    let mergeRequestMapper: MergeRequestMapper!
-    let userMapper: UserMapper!
+    let storage: StorageService
+    let mergeRequestStorageService: MergeRequestStorageService
+    let projectMapper: ProjectMapper
     
     init(storageService: StorageService) {
         self.storage = storageService
-        self.userMapper = UserMapper()
-        self.mergeRequestMapper = MergeRequestMapper(with: self.userMapper)
-        self.projectMapper = ProjectMapper(with: self.mergeRequestMapper)
-    }
-    
-    func createFetchRequest() -> NSFetchRequest<NSFetchRequestResult> {
-        return NSFetchRequest<NSFetchRequestResult>(entityName: "ProjectEntity")
+        self.mergeRequestStorageService = MergeRequestStorageService(storageService: storage)
+        self.projectMapper = ProjectMapper(with: mergeRequestStorageService.mergeRequestMapper)
     }
     
     func saveProjects() {
         storage.saveContext()
     }
     
-    func createEntity() -> ProjectEntity {
-        guard let entity = NSEntityDescription.entity(forEntityName: "ProjectEntity", in: storage.managedContext) else { return ProjectEntity() }
-        let projectEntity = ProjectEntity(entity: entity, insertInto: storage.managedContext)
-        return projectEntity
+    func deleteProjects() {
+        let request = storage.createDeleteRequest(with: entityName())
+        storage.deleteItems(with: request)
+    }
+    
+    func createEntity(with project: Project) -> ProjectEntity {
+        guard let entity = NSEntityDescription.entity(forEntityName: entityName(), in: storage.childContext) else { fatalError(FatalError.CoreDataEntityCreation.failedProject.rawValue) }
+        let projectEntity = ProjectEntity(entity: entity, insertInto: storage.childContext)
+        let filledEntity = projectMapper.mapEntityIntoObject(with: project, projectEntity: projectEntity)
+        return filledEntity
     }
     
     func mapIntoEntities(projects: [Project]) {
-        let mergeRequestStorageService = MergeRequestStorageService(storageService: storage)
-        let userStorageService = UserStorageService(storageService: storage)
-        var projectEntities: [ProjectEntity] = []
         for project in projects {
-            let projectEntity = projectMapper.mapEntityIntoObject(with: project, projectEntity: self.createEntity())
-            var mergeRequestEntities: [MergeRequestEntity] = []
-            for mergeRequest in project.mergeRequest {
-                let mergeRequestEntity = mergeRequestMapper.mapEntityIntoObject(with: mergeRequest, mergeRequestEntity: mergeRequestStorageService.createEntity())
-                let assigneeUserEntity = userMapper.mapEntityIntoObject(with: mergeRequest.assignee, userEntity: userStorageService.createEntity())
-                let authorUserEntity = userMapper.mapEntityIntoObject(with: mergeRequest.author, userEntity: userStorageService.createEntity())
-                
-                
-                //mergeRequestEntity.assignee = assigneeUserEntity
-                
-                //mergeRequestEntity.author = authorUserEntity
-                mergeRequestEntity.managedObjectContext?.performAndWait {
-                    mergeRequestEntity.addToToUser(authorUserEntity)
-                    mergeRequestEntity.addToToUser(assigneeUserEntity)
-                    mergeRequestEntities.append(mergeRequestEntity)
-                }
-                projectEntity.managedObjectContext?.performAndWait {
-                projectEntity.addToToMergeRequest(mergeRequestEntity)
-                }
+            let projectEntity = self.createEntity(with: project)
+            for mergeRequest in project.mergeRequests {
+                let mergeRequestEntity = mergeRequestStorageService.createEntity(with: mergeRequest)
+                projectEntity.addToMergeRequests(mergeRequestEntity)
             }
-            
-            //projectEntity.mergeRequests = mergeRequestEntities as? NSObject
-            projectEntities.append(projectEntity)
-            
         }
-        //StorageService.sharedManager.saveContext()
+    }
+    
+    func entityName() -> String {
+        return "ProjectEntity"
     }
 }

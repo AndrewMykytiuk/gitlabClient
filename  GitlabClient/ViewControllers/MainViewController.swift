@@ -34,8 +34,6 @@ class MainViewController: BaseViewController {
         super.viewDidLoad()
         setupActivityIndicator(with: self.view)
         setupRefreshControl()
-        getData()
-        projectsService.projectsFromDatabase()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -82,16 +80,17 @@ class MainViewController: BaseViewController {
             DispatchQueue.main.async {
                 switch result {
                 case .success(let data):
-                    welf.projectsData = data
                     welf.projectsTableView.isHidden = false
-                    welf.projectsTableView.reloadData()
                     let isMergeRequestsExist = welf.hasMergeRequests(data)
                     welf.noInfoInTableLabel.isHidden = isMergeRequestsExist
-                    //welf.projectsService.saveProjectsToDB(projects: data)
+                    welf.projectsService.updateProjectsInDatabase(projects: data)
                 case .error(let error):
                     let alert = AlertHelper.createErrorAlert(message: error.localizedDescription, handler: nil)
                     welf.present(alert, animated: true)
                 }
+                let projects = welf.projectsService.projectsFromDatabase()
+                welf.projectsData = projects
+                welf.projectsTableView.reloadData()
                 welf.refreshControl.endRefreshing()
                 welf.activityIndicator.stopAnimating()
             }
@@ -107,7 +106,7 @@ class MainViewController: BaseViewController {
     
     private func hasMergeRequests(_ projects: [Project]) -> Bool {
         for project in projects {
-            if !project.mergeRequest.isEmpty {
+            if !project.mergeRequests.isEmpty {
                 return true
             }
         }
@@ -118,7 +117,7 @@ class MainViewController: BaseViewController {
 extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if projectsData[section].mergeRequest.count > 0 {
+        if projectsData[section].mergeRequests.count > 0 {
            return projectsData[section].name
         } else {
             return nil
@@ -131,7 +130,7 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if projectsData.count > 0 {
-            return projectsData[section].mergeRequest.count
+            return projectsData[section].mergeRequests.count
         } else {
             return 0
         }
@@ -139,10 +138,10 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: ProjectsTableViewCell.identifier(), for: indexPath) as? ProjectsTableViewCell else {
-            fatalError(FatalError.invalidCellCreate.rawValue + ProjectsTableViewCell.identifier())
+            fatalError(FatalError.CellCreation.invalidCellCreate.rawValue + ProjectsTableViewCell.identifier())
         }
         
-        cell.setup(with: projectsData[indexPath.section].mergeRequest[indexPath.row], isExpanded: indexPathOfExpendedCell.contains(indexPath))
+        cell.setup(with: projectsData[indexPath.section].mergeRequests[indexPath.row], isExpanded: indexPathOfExpendedCell.contains(indexPath))
         cell.delegate = self
         
         return cell
@@ -164,11 +163,11 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return projectsCell.getCellSize(with: projectsData[indexPath.section].mergeRequest[indexPath.row], isExpanded: indexPathOfExpendedCell.contains(indexPath))
+        return projectsCell.getCellSize(with: projectsData[indexPath.section].mergeRequests[indexPath.row], isExpanded: indexPathOfExpendedCell.contains(indexPath))
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.router?.navigateToScreen(with: .mergeRequest(projectsData[indexPath.section].mergeRequest[indexPath.row]), animated: true)
+        self.router?.navigateToScreen(with: .mergeRequest(projectsData[indexPath.section].mergeRequests[indexPath.row]), animated: true)
         tableView.deselectRow(at: indexPath, animated: false)
     }
     

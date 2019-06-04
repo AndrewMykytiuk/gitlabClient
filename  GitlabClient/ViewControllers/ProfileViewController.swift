@@ -153,7 +153,7 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: ProfileTableViewCell.identifier(), for: indexPath) as? ProfileTableViewCell else {
-            fatalError(FatalError.invalidCellCreate.rawValue + ProfileTableViewCell.identifier())
+            fatalError(FatalError.CellCreation.invalidCellCreate.rawValue + ProfileTableViewCell.identifier())
         }
         
         cell.setup(with: userData[indexPath.row])

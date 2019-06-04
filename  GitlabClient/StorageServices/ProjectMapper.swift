@@ -11,12 +11,12 @@ import CoreData
 
 class ProjectMapper {
     
-    let mergeRequestMapper: MergeRequestMapper!
+    let mergeRequestMapper: MergeRequestMapper
     
     init(with mergeRequestMapper: MergeRequestMapper) {
         self.mergeRequestMapper = mergeRequestMapper
     }
-    
+
     func mapEntityIntoObject(with project: Project, projectEntity: ProjectEntity) -> ProjectEntity {
         projectEntity.id = Int32(project.id)
         projectEntity.name = project.name
@@ -25,16 +25,18 @@ class ProjectMapper {
         return projectEntity
     }
 
-    func mapFromEntities(with objects: [NSManagedObject]) {  // -> [T:Codable]
+    func mapFromEntities(with entities: [ProjectEntity]) -> [Project] {
+        return entities.map({self.mapProjectsfromEntities(entity: $0)})
+    }
+    
+    private func mapProjectsfromEntities(entity: ProjectEntity) -> Project {
+        let id = Int(entity.id)
+        
+        guard let mergeRequestEntities = entity.mergeRequests?.allObjects as? [MergeRequestEntity] else { fatalError(FatalError.CoreDataEntityMapper.failedProjectMap.rawValue) }
 
-        for data in objects {
-            if let ggg = data as? ProjectEntity {
-                if let set = ggg.toMergeRequest?.allObjects as? [MergeRequestEntity] { // Troubles with data: <fault>
-                    for elem in set {
-                        elem.description
-                    }
-                }
-            }
-        }
+        let mergeRequests = mergeRequestEntities.map({mergeRequestMapper.setupMergeRequest(with: $0)})
+        
+        let project = Project(id: id, name: entity.name, description: entity.projectDescription, date: entity.date as Date, mergeRequests: mergeRequests)
+        return project
     }
 }

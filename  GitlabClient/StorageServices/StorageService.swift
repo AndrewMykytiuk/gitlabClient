@@ -16,83 +16,75 @@ protocol StorageServiceDelegate: class {
 
 class StorageService {
     
-//    static let sharedManager = StorageService()
+    private let modelName = "CoreDataModel"
     
-    init() {
-        
+    init() { }
+    
+    func createFetchRequest(with name: String) -> NSFetchRequest<NSFetchRequestResult> {
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: name)
+        request.entity = NSEntityDescription.entity(forEntityName: name, in: self.childContext)
+        request.returnsObjectsAsFaults = false
+        request.includesPropertyValues = false
+        return request
     }
     
-//    lazy var applicationDocumentsDirectory: NSURL = {
-//        let urls = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
-//        return urls[urls.count-1] as NSURL
-//    }()
-//
-//    func entityForName(_ entityName: String) -> NSEntityDescription {
-//        return NSEntityDescription.entity(forEntityName: entityName, in: StorageService.sharedManager.managedContext)!
-//    }
-//
-//    lazy var managedObjectModel: NSManagedObjectModel = {
-//        let modelURL = Bundle.main.url(forResource: "GitlabClient", withExtension: "momd")!
-//        return NSManagedObjectModel(contentsOf: modelURL)!
-//    }()
-//
-//    lazy var persistentStoreCoordinator: NSPersistentStoreCoordinator = {
-//        let coordinator = NSPersistentStoreCoordinator(managedObjectModel: self.managedObjectModel)
-//        let url = self.applicationDocumentsDirectory.appendingPathComponent("SingleViewCoreData.sqlite")
-//        var failureReason = "There was an error creating or loading the application's saved data."
-//        do {
-//            try coordinator.addPersistentStore(ofType: NSSQLiteStoreType, configurationName: nil, at: url, options: nil)
-//        } catch {
-//            var dict = [String: AnyObject]()
-//            dict[NSLocalizedDescriptionKey] = "Failed to initialize the application's saved data" as AnyObject
-//            dict[NSLocalizedFailureReasonErrorKey] = failureReason as AnyObject
-//            dict[NSUnderlyingErrorKey] = error as NSError
-//            let wrappedError = NSError(domain: "YOUR_ERROR_DOMAIN", code: 9999, userInfo: dict)
-//            NSLog("Unresolved error \(wrappedError), \(wrappedError.userInfo)")
-//            abort()
-//        }
-//        return coordinator
-//    }()
+    func createDeleteRequest(with name: String) -> NSBatchDeleteRequest {
+        let deleteFetch = NSFetchRequest<NSFetchRequestResult>(entityName: name)
+        let deleteRequest = NSBatchDeleteRequest(fetchRequest: deleteFetch)
+        return deleteRequest
+    }
     
     lazy var persistentContainer: NSPersistentContainer = {
         
-        let container = NSPersistentContainer(name: "CoreDataModel")
+        let container = NSPersistentContainer(name: modelName)
         
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in
             
             if let error = error as NSError? {
-                fatalError("Unresolved error \(error), \(error.userInfo)")
+                fatalError("\(FatalError.CoreDataStack.persistantContainerLoadFailed.rawValue)\(error.userInfo)")
             }
         })
         return container
     }()
     
-    lazy var managedContext: NSManagedObjectContext = {
+    lazy var childContext: NSManagedObjectContext = {
         return self.persistentContainer.viewContext
         }()
     
     func saveContext () {
-        let context = self.managedContext
+        let context = self.childContext
         if context.hasChanges {
             do {
                 try context.save()
             } catch {
                 let nserror = error as NSError
-                fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
+                fatalError("\(FatalError.CoreDataStack.saveFailed.rawValue)\(nserror.userInfo)")
             }
         }
     }
     
-    func fetchContext(with request:NSFetchRequest<NSFetchRequestResult>) -> [NSManagedObject] {
+    func fetchItems(with request: NSFetchRequest<NSFetchRequestResult>) -> [NSManagedObject] {
         var objects: [NSManagedObject] = []
-        request.returnsObjectsAsFaults = false
+       
         do {
-            guard let results = try self.managedContext.fetch(request) as? [NSManagedObject] else { return objects }
-            //result = result as! [NSManagedObject]
+            guard let results = try self.childContext.fetch(request) as? [NSManagedObject] else { return objects }
             objects = results
         } catch {
-            print("Failed")
+            let nserror = error as NSError
+            fatalError("\(FatalError.CoreDataStack.fetchFailed.rawValue)\(nserror.userInfo)")
         }
         return objects
     }
+    
+    func deleteItems(with deleteRequest: NSBatchDeleteRequest) {
+        
+        do {
+            try childContext.execute(deleteRequest)
+            try childContext.save()
+        } catch {
+            let nserror = error as NSError
+            fatalError("\(FatalError.CoreDataStack.deleteFailed.rawValue)\(nserror.userInfo)")
+        }
+    }
+    
 }
