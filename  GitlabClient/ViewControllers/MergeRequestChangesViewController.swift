@@ -27,7 +27,7 @@ class MergeRequestChangesViewController: BaseViewController {
         super.viewDidLoad()
         self.title = fileTitle
         setupActivityIndicator(with: self.view)
-        setUpDiffText()
+        setUpTextView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -46,12 +46,19 @@ class MergeRequestChangesViewController: BaseViewController {
         view.addConstraint(verticalConstraint)
     }
     
-    private func setUpDiffText() {
+    private func setUpTextView() {
         MRChangesTextView.textContainerInset = UIEdgeInsets(top: 0, left: horizontalOffset, bottom: 0, right: horizontalOffset)
         MRChangesTextView.textContainer.lineFragmentPadding = 0
-        let parser = DiffsParser()
-        let attributedString = parser.setUpColorsForString(with: mergeRequestChange)
+        let attributedString = setUpDiffText()
         MRChangesTextView.attributedText = attributedString
+    }
+    
+    private func setUpDiffText() -> NSAttributedString {
+        let decorator = DiffsDecorator(with: mergeRequestChange)
+        let parser = DiffsParser()
+        let state = decorator.changesFileState(), diffs = decorator.changesString()
+        let attributedString = parser.setUpColorsForString(with: state, diffs: diffs)
+        return attributedString
     }
     
 }

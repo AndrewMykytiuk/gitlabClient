@@ -15,6 +15,7 @@
 		CE532F1C229D8B5D00130CD5 /* DiffsParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE532F1B229D8B5D00130CD5 /* DiffsParser.swift */; };
 		CE532F21229ED27E00130CD5 /* LoginRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE532F1F229ED27E00130CD5 /* LoginRequest.swift */; };
 		CE532F22229ED27E00130CD5 /* LoginNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE532F20229ED27E00130CD5 /* LoginNetworkService.swift */; };
+		CE532F3822A7F6B400130CD5 /* DiffsDecorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE532F3722A7F6B400130CD5 /* DiffsDecorator.swift */; };
 		CE6FF0142236AECB003F7C56 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6FF0132236AECB003F7C56 /* AppDelegate.swift */; };
 		CE6FF0162236AECB003F7C56 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6FF0152236AECB003F7C56 /* LogInViewController.swift */; };
 		CE6FF0192236AECC003F7C56 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE6FF0172236AECB003F7C56 /* Main.storyboard */; };
@@ -73,6 +74,7 @@
 		CE532F1B229D8B5D00130CD5 /* DiffsParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiffsParser.swift; sourceTree = "<group>"; };
 		CE532F1F229ED27E00130CD5 /* LoginRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginRequest.swift; sourceTree = "<group>"; };
 		CE532F20229ED27E00130CD5 /* LoginNetworkService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginNetworkService.swift; sourceTree = "<group>"; };
+		CE532F3722A7F6B400130CD5 /* DiffsDecorator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiffsDecorator.swift; sourceTree = "<group>"; };
 		CE6FF0102236AECB003F7C56 /* GitlabClient.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GitlabClient.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE6FF0132236AECB003F7C56 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CE6FF0152236AECB003F7C56 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
@@ -164,6 +166,14 @@
 			path = LoginNetworkService;
 			sourceTree = "<group>";
 		};
+		CE532F3622A7F69600130CD5 /* Decorators */ = {
+			isa = PBXGroup;
+			children = (
+				CE532F3722A7F6B400130CD5 /* DiffsDecorator.swift */,
+			);
+			path = Decorators;
+			sourceTree = "<group>";
+		};
 		CE6FF0072236AECB003F7C56 = {
 			isa = PBXGroup;
 			children = (
@@ -183,6 +193,7 @@
 		CE6FF0122236AECB003F7C56 /*  GitlabClient */ = {
 			isa = PBXGroup;
 			children = (
+				CE532F3622A7F69600130CD5 /* Decorators */,
 				CE532F1E229ED27E00130CD5 /* LoginNetworkService */,
 				CE532F1D229D8B9400130CD5 /* Parsers */,
 				CEB2FCCC227C382A0046B722 /* Misc */,
@@ -452,6 +463,7 @@
 				CE3B6950225374EA00FB7DEA /* ProjectRequest.swift in Sources */,
 				CE147D53224BBE5600C08C11 /* ProjectsTableViewCell.swift in Sources */,
 				CE6FF032223A6A17003F7C56 /* AuthHelper.swift in Sources */,
+				CE532F3822A7F6B400130CD5 /* DiffsDecorator.swift in Sources */,
 				CE729F45224536CF0006C37C /* ProfileNetworkService.swift in Sources */,
 				CE6FF03C223AE29E003F7C56 /* NetworkManager.swift in Sources */,
 				CEE51023225F4DC90049EC69 /* MergeRequest.swift in Sources */,

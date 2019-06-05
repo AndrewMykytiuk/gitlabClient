@@ -27,21 +27,17 @@ class DiffsParser {
         
     }
     
-    init() {
-        
-    }
-    
-    func setUpColorsForString(with change: MergeRequestChanges) -> NSAttributedString {
+    func setUpColorsForString(with state: MergeRequestChanges.FileState, diffs: String) -> NSAttributedString {
         let attributes = [NSAttributedString.Key.font : Constants.font]
-        let attribute = NSMutableAttributedString(string: change.diff, attributes: attributes as [NSAttributedString.Key : Any])
+        let attribute = NSMutableAttributedString(string: diffs, attributes: attributes as [NSAttributedString.Key : Any])
         
-        switch change.state {
+        switch state {
         case .new:
-            setUpColorForFile(attribute, with: change.diff, with: .added)
+            setUpColorForFile(attribute, with: diffs, with: .added)
         case .deleted:
-            setUpColorForFile(attribute, with: change.diff, with: .deleted)
+            setUpColorForFile(attribute, with: diffs, with: .deleted)
         case .modified:
-            findAndHighliteText(with: [.added, .deleted], string: change.diff, attribute: attribute)
+            findAndHighliteText(with: [.added, .deleted], string: diffs, attribute: attribute)
         }
         return attribute
     }
