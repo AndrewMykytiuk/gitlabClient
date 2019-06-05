@@ -16,7 +16,7 @@ class ProjectMapper {
     init(with mergeRequestMapper: MergeRequestMapper) {
         self.mergeRequestMapper = mergeRequestMapper
     }
-
+    
     func mapEntityIntoObject(with project: Project, projectEntity: ProjectEntity) -> ProjectEntity {
         projectEntity.id = Int32(project.id)
         projectEntity.name = project.name
@@ -24,7 +24,7 @@ class ProjectMapper {
         projectEntity.date = project.date as NSDate
         return projectEntity
     }
-
+    
     func mapFromEntities(with entities: [ProjectEntity]) -> [Project] {
         return entities.map({self.mapProjectsfromEntities(entity: $0)})
     }
@@ -33,7 +33,7 @@ class ProjectMapper {
         let id = Int(entity.id)
         
         guard let mergeRequestEntities = entity.mergeRequests?.allObjects as? [MergeRequestEntity] else { fatalError(FatalError.CoreDataEntityMapper.failedProjectMap.rawValue) }
-
+        
         let mergeRequests = mergeRequestEntities.map({mergeRequestMapper.setupMergeRequest(with: $0)})
         
         let project = Project(id: id, name: entity.name, description: entity.projectDescription, date: entity.date as Date, mergeRequests: mergeRequests)

@@ -12,7 +12,7 @@ import CoreData
 class MergeRequestMapper {
     
     let userMapper: UserMapper
-
+    
     init(with userMapper: UserMapper) {
         self.userMapper = userMapper
     }

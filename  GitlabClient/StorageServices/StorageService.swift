@@ -18,8 +18,6 @@ class StorageService {
     
     private let modelName = "CoreDataModel"
     
-    init() { }
-    
     func createFetchRequest(with name: String) -> NSFetchRequest<NSFetchRequestResult> {
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: name)
         request.entity = NSEntityDescription.entity(forEntityName: name, in: self.childContext)
@@ -49,7 +47,7 @@ class StorageService {
     
     lazy var childContext: NSManagedObjectContext = {
         return self.persistentContainer.viewContext
-        }()
+    }()
     
     func saveContext () {
         let context = self.childContext
@@ -65,7 +63,7 @@ class StorageService {
     
     func fetchItems(with request: NSFetchRequest<NSFetchRequestResult>) -> [NSManagedObject] {
         var objects: [NSManagedObject] = []
-       
+        
         do {
             guard let results = try self.childContext.fetch(request) as? [NSManagedObject] else { return objects }
             objects = results

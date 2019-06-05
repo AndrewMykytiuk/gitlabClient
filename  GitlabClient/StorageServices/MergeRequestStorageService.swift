@@ -26,7 +26,7 @@ class MergeRequestStorageService {
         guard let entity = NSEntityDescription.entity(forEntityName: entityName(), in: storage.childContext) else { fatalError(FatalError.CoreDataEntityCreation.failedMergeRequest.rawValue) }
         let mergeRequestEntity = MergeRequestEntity(entity: entity, insertInto: storage.childContext)
         let filledEntity = mergeRequestMapper.mapEntityIntoObject(with: mergeRequest,
-                                                            mergeRequestEntity: mergeRequestEntity)
+                                                                  mergeRequestEntity: mergeRequestEntity)
         
         let assigneeUserEntity = userStorageService.createEntity(with: mergeRequest.assignee)
         let authorUserEntity = userStorageService.createEntity(with: mergeRequest.author)
