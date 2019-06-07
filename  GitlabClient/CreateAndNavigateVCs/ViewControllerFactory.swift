@@ -79,7 +79,7 @@ class ViewControllerFactory: ViewControllerFactoryType {
             if let mergeRequestViewController = vcTemp as? MergeRequestViewController {
                 let mergeRequestService = MergeRequestService(networkManager: dependencyProvider.networkManager)
                 mergeRequestViewController.configure(with: mergeRequestService)
-                mergeRequestViewController.setUpMergeRequestInfo(id: request.projectId, iid: request.iid)
+                mergeRequestViewController.setUpMergeRequestInfo(id: request.projectId, iid: request.iid, fileName: request.title)
                 vcTemp = mergeRequestViewController
             }
         case .mergeRequestChanges(let change):
