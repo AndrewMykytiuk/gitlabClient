@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		CE147D53224BBE5600C08C11 /* ProjectsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE147D52224BBE5600C08C11 /* ProjectsTableViewCell.swift */; };
+		CE2B8B2822AAC0CC000E5D55 /* MergeRequestChangesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2B8B2722AAC0CC000E5D55 /* MergeRequestChangesTableViewCell.swift */; };
 		CE3B6950225374EA00FB7DEA /* ProjectRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3B694F225374EA00FB7DEA /* ProjectRequest.swift */; };
 		CE3B69522253750200FB7DEA /* ProjectsNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3B69512253750200FB7DEA /* ProjectsNetworkService.swift */; };
 		CE3B695422537BED00FB7DEA /* ProjectService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3B695322537BED00FB7DEA /* ProjectService.swift */; };
@@ -67,6 +68,7 @@
 
 /* Begin PBXFileReference section */
 		CE147D52224BBE5600C08C11 /* ProjectsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectsTableViewCell.swift; sourceTree = "<group>"; };
+		CE2B8B2722AAC0CC000E5D55 /* MergeRequestChangesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MergeRequestChangesTableViewCell.swift; sourceTree = "<group>"; };
 		CE3B694F225374EA00FB7DEA /* ProjectRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectRequest.swift; sourceTree = "<group>"; };
 		CE3B69512253750200FB7DEA /* ProjectsNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectsNetworkService.swift; sourceTree = "<group>"; };
 		CE3B695322537BED00FB7DEA /* ProjectService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectService.swift; sourceTree = "<group>"; };
@@ -355,6 +357,7 @@
 				CEE51018225F38070049EC69 /* ProfileTableViewCell.swift */,
 				CE147D52224BBE5600C08C11 /* ProjectsTableViewCell.swift */,
 				CEB2FCC0226F0F890046B722 /* MergeRequestTableViewCell.swift */,
+				CE2B8B2722AAC0CC000E5D55 /* MergeRequestChangesTableViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -455,6 +458,7 @@
 			files = (
 				CEB2FCC3226F15380046B722 /* MergeRequestChanges.swift in Sources */,
 				CE729F1F224125240006C37C /* DependencyProvider.swift in Sources */,
+				CE2B8B2822AAC0CC000E5D55 /* MergeRequestChangesTableViewCell.swift in Sources */,
 				CE6FF0292236B1EA003F7C56 /* OAuthLogInViewController.swift in Sources */,
 				CE729F3D2244F5120006C37C /* ProfileViewController.swift in Sources */,
 				CEB2FCDE228586B70046B722 /* MergeRequestChangesViewController.swift in Sources */,

@@ -11,15 +11,27 @@ import UIKit
 
 struct FileDiffsViewModel {
     
-    let newContent: [String]?
-    let oldContent: [String]?
-    let newContentRanges: [NSRange]?
-    let oldContentRanges: [NSRange]?
+    var newContent: [String]?
+    var oldContent: [String]?
+    var newContentRanges: [NSRange]?
+    var oldContentRanges: [NSRange]?
+    var state = Kind.new
     
     enum Kind {
         case new
         case modified
         case deleted
+        
+        init(with state: MergeRequestChanges.FileState){
+            switch state {
+            case .new:
+                self = .new
+            case .deleted:
+                self = .deleted
+            case .modified:
+                self = .modified
+            }
+        }
     }
     
     init(with newContent: [String]?, oldContent: [String]?, newContentRanges: [NSRange]?, oldContentRanges: [NSRange]?) {
