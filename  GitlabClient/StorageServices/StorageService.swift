@@ -11,10 +11,17 @@ import CoreData
 import UIKit
 
 protocol StorageServiceDelegate: class {
-    func saveContext(storageService: StorageService)
+    func saveContext() 
+    func fetchItems(with request: NSFetchRequest<NSFetchRequestResult>) -> [NSManagedObject]
+    func deleteItems(with deleteRequest: NSBatchDeleteRequest)
 }
 
-class StorageService {
+protocol StorageServiceType: class {
+    func createFetchRequest(with name: String) -> NSFetchRequest<NSFetchRequestResult>
+    func createDeleteRequest(with name: String) -> NSBatchDeleteRequest
+}
+
+class StorageService: StorageServiceType, StorageServiceDelegate {
     
     private let modelName = "CoreDataModel"
     
@@ -39,7 +46,7 @@ class StorageService {
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in
             
             if let error = error as NSError? {
-                fatalError("\(FatalError.CoreDataStack.persistantContainerLoadFailed.rawValue)\(error.userInfo)")
+                fatalError("\(GitLabError.CoreDataStack.persistantContainerLoadFailed.rawValue)\(error.userInfo)")
             }
         })
         return container
@@ -56,7 +63,7 @@ class StorageService {
                 try context.save()
             } catch {
                 let nserror = error as NSError
-                fatalError("\(FatalError.CoreDataStack.saveFailed.rawValue)\(nserror.userInfo)")
+                fatalError("\(GitLabError.CoreDataStack.saveFailed.rawValue)\(nserror.userInfo)")
             }
         }
     }
@@ -69,7 +76,7 @@ class StorageService {
             objects = results
         } catch {
             let nserror = error as NSError
-            fatalError("\(FatalError.CoreDataStack.fetchFailed.rawValue)\(nserror.userInfo)")
+            fatalError("\(GitLabError.CoreDataStack.fetchFailed.rawValue)\(nserror.userInfo)")
         }
         return objects
     }
@@ -81,7 +88,7 @@ class StorageService {
             try childContext.save()
         } catch {
             let nserror = error as NSError
-            fatalError("\(FatalError.CoreDataStack.deleteFailed.rawValue)\(nserror.userInfo)")
+            fatalError("\(GitLabError.CoreDataStack.deleteFailed.rawValue)\(nserror.userInfo)")
         }
     }
     

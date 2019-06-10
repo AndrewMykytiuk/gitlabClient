@@ -9,7 +9,11 @@
 import Foundation
 import CoreData
 
-class MergeRequestStorageService {
+protocol MergeRequestStorageServiceType: class {
+    func createEntity(with mergeRequest: MergeRequest) -> MergeRequestEntity
+}
+
+class MergeRequestStorageService: MergeRequestStorageServiceType {
     
     let storage: StorageService
     let mergeRequestMapper: MergeRequestMapper
@@ -23,7 +27,7 @@ class MergeRequestStorageService {
     }
     
     func createEntity(with mergeRequest: MergeRequest) -> MergeRequestEntity {
-        guard let entity = NSEntityDescription.entity(forEntityName: entityName(), in: storage.childContext) else { fatalError(FatalError.CoreDataEntityCreation.failedMergeRequest.rawValue) }
+        guard let entity = NSEntityDescription.entity(forEntityName: entityName(), in: storage.childContext) else { fatalError(GitLabError.CoreDataEntityCreation.failedMergeRequest.rawValue) }
         let mergeRequestEntity = MergeRequestEntity(entity: entity, insertInto: storage.childContext)
         let filledEntity = mergeRequestMapper.mapEntityIntoObject(with: mergeRequest,
                                                                   mergeRequestEntity: mergeRequestEntity)

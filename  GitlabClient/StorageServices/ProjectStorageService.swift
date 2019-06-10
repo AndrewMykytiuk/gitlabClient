@@ -9,7 +9,13 @@
 import Foundation
 import CoreData
 
-class ProjectStorageService {
+protocol ProjectStorageServiceType: class {
+    func createEntity(with project: Project) -> ProjectEntity
+    func saveProjects(_ projects: [Project])
+    func fetchProjects(with entities: [ProjectEntity]) -> [Project]
+}
+
+class ProjectStorageService: ProjectStorageServiceType {
     
     let storage: StorageService
     let mergeRequestStorageService: MergeRequestStorageService
@@ -21,8 +27,13 @@ class ProjectStorageService {
         self.projectMapper = ProjectMapper(with: mergeRequestStorageService.mergeRequestMapper)
     }
     
-    func saveProjects() {
+    func saveProjects(_ projects: [Project]) {
+        self.mapIntoEntities(projects: projects)
         storage.saveContext()
+    }
+    
+    func fetchProjects(with entities: [ProjectEntity]) -> [Project] {
+       return projectMapper.mapFromEntities(with: entities)
     }
     
     func deleteProjects() {
@@ -31,13 +42,13 @@ class ProjectStorageService {
     }
     
     func createEntity(with project: Project) -> ProjectEntity {
-        guard let entity = NSEntityDescription.entity(forEntityName: entityName(), in: storage.childContext) else { fatalError(FatalError.CoreDataEntityCreation.failedProject.rawValue) }
+        guard let entity = NSEntityDescription.entity(forEntityName: entityName(), in: storage.childContext) else { fatalError(GitLabError.CoreDataEntityCreation.failedProject.rawValue) }
         let projectEntity = ProjectEntity(entity: entity, insertInto: storage.childContext)
         let filledEntity = projectMapper.mapEntityIntoObject(with: project, projectEntity: projectEntity)
         return filledEntity
     }
     
-    func mapIntoEntities(projects: [Project]) {
+    private func mapIntoEntities(projects: [Project]) {
         for project in projects {
             let projectEntity = self.createEntity(with: project)
             for mergeRequest in project.mergeRequests {

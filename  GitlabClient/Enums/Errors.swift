@@ -29,13 +29,13 @@ enum KeychainError: Error {
     case unhandledError(_ string: String)
 }
 
-enum FatalError {
+enum GitLabError {
     
     enum NetworkConnection: String, Error {
         case reachabilityError = "No network connection"
     }
     
-    enum StoryboardCreation: String, Error {
+    enum Storyboard: String, Error {
          case invalidStoryboardCreate = "Cannot create View storyboard"
     }
     

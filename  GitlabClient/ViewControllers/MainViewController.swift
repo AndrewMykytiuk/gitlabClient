@@ -83,12 +83,12 @@ class MainViewController: BaseViewController {
                     welf.projectsTableView.isHidden = false
                     let isMergeRequestsExist = welf.hasMergeRequests(data)
                     welf.noInfoInTableLabel.isHidden = isMergeRequestsExist
-                    welf.projectsService.updateProjectsInDatabase(projects: data)
+                    welf.projectsService.updateProjects(projects: data)
                 case .error(let error):
                     let alert = AlertHelper.createErrorAlert(message: error.localizedDescription, handler: nil)
                     welf.present(alert, animated: true)
                 }
-                let projects = welf.projectsService.projectsFromDatabase()
+                let projects = welf.projectsService.projectsFromStorage()
                 welf.projectsData = projects
                 welf.projectsTableView.reloadData()
                 welf.refreshControl.endRefreshing()
@@ -138,7 +138,7 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: ProjectsTableViewCell.identifier(), for: indexPath) as? ProjectsTableViewCell else {
-            fatalError(FatalError.CellCreation.invalidCellCreate.rawValue + ProjectsTableViewCell.identifier())
+            fatalError(GitLabError.CellCreation.invalidCellCreate.rawValue + ProjectsTableViewCell.identifier())
         }
         
         cell.setup(with: projectsData[indexPath.section].mergeRequests[indexPath.row], isExpanded: indexPathOfExpendedCell.contains(indexPath))

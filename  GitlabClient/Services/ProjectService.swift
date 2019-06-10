@@ -72,24 +72,23 @@ class ProjectService {
         return entities
     }
     
-    func projectsFromDatabase() -> [Project] {
+    func projectsFromStorage() -> [Project] {
         
         let fetchRequest = projectStorageManager.storage.createFetchRequest(with: projectStorageManager.entityName())
         let managedObjects = projectStorageManager.storage.fetchItems(with: fetchRequest) 
-        guard let entities = managedObjects as? [ProjectEntity] else { fatalError(FatalError.CoreDataEntityDowncast.failedProjectEntities.rawValue) }
-        let projects = projectStorageManager.projectMapper.mapFromEntities(with: entities)
+        guard let entities = managedObjects as? [ProjectEntity] else { fatalError(GitLabError.CoreDataEntityDowncast.failedProjectEntities.rawValue) }
+        let projects = projectStorageManager.fetchProjects(with: entities)
         
         return projects
     }
     
-    func updateProjectsInDatabase(projects: [Project]) {
+    func updateProjects(projects: [Project]) {
         deleteProjects()
-        saveProjectsToDB(projects: projects)
+        saveProjects(projects: projects)
     }
     
-    func saveProjectsToDB(projects: [Project]) {
-        projectStorageManager.mapIntoEntities(projects: projects)
-        projectStorageManager.saveProjects()
+    func saveProjects(projects: [Project]) {
+        projectStorageManager.saveProjects(projects)
     }
     
     func deleteProjects() {
