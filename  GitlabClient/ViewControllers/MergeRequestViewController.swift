@@ -126,6 +126,12 @@ class MergeRequestViewController: BaseViewController {
         return cell
     }
     
+    private func selectRow(with indexPath: IndexPath) {
+        let convertor = DiffConvertor()
+        let models = convertor.convertChangesToStrings(mergeRequestChange: changes[indexPath.row])
+        self.router?.navigateToScreen(with: .mergeRequestChanges(models, changes[indexPath.row].newPath), animated: true)
+    }
+    
 }
 
 extension MergeRequestViewController: UITableViewDelegate, UITableViewDataSource {
@@ -158,7 +164,7 @@ extension MergeRequestViewController: UITableViewDelegate, UITableViewDataSource
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.router?.navigateToScreen(with: .mergeRequestChanges(changes[indexPath.row]), animated: true)
+        self.selectRow(with: indexPath)
         tableView.deselectRow(at: indexPath, animated: false)
     }
     

@@ -17,14 +17,15 @@ class MergeRequestChangesTableViewCell: UITableViewCell {
    
     private let separatorHeight: CGFloat = 1
     
-    func setup(with string: NSAttributedString) {
-        self.diffTextLabel.attributedText = string
+    func setup(with text: String, color: UIColor) {
+        self.diffTextLabel.text = text
+        self.backgroundColor = color
     }
 
-    func cellSize(with diff: NSAttributedString) -> CGFloat {
+    func cellSize(with diff: String) -> CGFloat {
         var height: CGFloat = 0
 
-        let diffTextHeight = TextHelper.getHeightForNSAttributedStringInLabel(with: diff, width: diffTextLabel.frame.width)
+        let diffTextHeight = TextHelper.getHeightForStringInLabel(with: diff, width: diffTextLabel.frame.width)
 
         height += ceil(diffTextHeight)
 

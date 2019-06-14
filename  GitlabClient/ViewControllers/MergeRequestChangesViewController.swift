@@ -20,21 +20,21 @@ class MergeRequestChangesViewController: BaseViewController {
     
     private let activityIndicator = UIActivityIndicatorView(style: .whiteLarge)
     private let horizontalOffset: CGFloat = 16
+    private let footerHeight: CGFloat = 10
+    private let footerTitle = "•••"
     private var fileTitle:String!
-    private var mergeRequestChange: MergeRequestChanges!
     private var mergeRequestChangesCell: MergeRequestChangesTableViewCell!
-    private var attributedStrings: [NSAttributedString]!
+    private var diffModels: [DiffCellViewModel]!
     
-    func configureMergeRequestChangesInfo(change: MergeRequestChanges) {
-        self.mergeRequestChange = change
-        self.fileTitle = change.newPath
+    func configureMergeRequestChangesInfo(models: [DiffCellViewModel], string: String) {
+        self.diffModels = models
+        self.fileTitle = string
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = fileTitle
         setupActivityIndicator(with: self.view)
-        setUpDiffText()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -66,29 +66,38 @@ class MergeRequestChangesViewController: BaseViewController {
         }
     }
     
-    private func setUpDiffText(){
-        let parser = DiffsParser()
-        let model = parser.parseChangesIntoModel(with: mergeRequestChange)
-        let decorator = DiffsDecorator()
-        let diffStrings = decorator.performModel(model: model)
-        self.attributedStrings = diffStrings
+    private func createViewForFooter(with width: CGFloat, section: Int) -> UIView? {
+        let view = UIView(frame: CGRect(x: 0, y: 0, width: width, height: footerHeight))
+        let footerLabel = UILabel(frame: CGRect(x: 0, y: 0, width: width, height: footerHeight))
+        footerLabel.text = footerTitle
+        footerLabel.font = Constants.font
+        footerLabel.textAlignment = .center
+        view.addSubview(footerLabel)
+        return diffModels[section].hasFooter ? view : nil
     }
     
 }
 
 extension MergeRequestChangesViewController: UITableViewDelegate, UITableViewDataSource {
     
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return diffModels.count
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return attributedStrings.count
+        return 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: MergeRequestChangesTableViewCell.identifier(), for: indexPath) as? MergeRequestChangesTableViewCell else {
             fatalError(FatalError.invalidCellCreate.rawValue + MergeRequestChangesTableViewCell.identifier())
         }
-        let attributedString = attributedStrings[indexPath.row]
-        cell.setup(with: attributedString)
+        cell.setup(with: diffModels[indexPath.section].string, color: diffModels[indexPath.section].cellColor)
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        return createViewForFooter(with: tableView.frame.width, section: section)
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -103,7 +112,7 @@ extension MergeRequestChangesViewController: UITableViewDelegate, UITableViewDat
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return mergeRequestChangesCell.cellSize(with: attributedStrings[indexPath.row])
+        return mergeRequestChangesCell.cellSize(with: diffModels[indexPath.section].string)
     }
 
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {

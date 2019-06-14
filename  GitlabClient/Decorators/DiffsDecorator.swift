@@ -9,8 +9,8 @@
 import Foundation
 import UIKit
 
-protocol DiffsDecoratorType: class {
-    func performModel(model: FileDiffsViewModel) -> [NSMutableAttributedString]
+protocol DiffsDecoratorType {
+    func performModelIntoItem(model: FileDiffsViewModel) -> [DiffItem]
 }
 
 class DiffsDecorator: DiffsDecoratorType {
@@ -19,40 +19,33 @@ class DiffsDecorator: DiffsDecoratorType {
     let deletedColor = Constants.Colors.mainRed.value
     let attributes = [NSAttributedString.Key.font : Constants.font]
     
-    func performModel(model: FileDiffsViewModel) -> [NSMutableAttributedString] {
-        var attributes: [NSMutableAttributedString] = []
+    func performModelIntoItem(model: FileDiffsViewModel) -> [DiffItem] {
+        var items: [DiffItem]
+        
         switch model.state {
         case .new:
-            guard let strings = model.newContent else { return [] }
-            let addedStrings = strings.map({setUpColorForFile(with: $0, with: addedColor)})
-            attributes.append(contentsOf: addedStrings)
+            items = self.createItemsWith(strings: model.newContent, nonInARowStrings: model.nonInARowStrings, isNewContent: true)
         case .deleted:
-            guard let strings = model.oldContent else { return [] }
-            let deletedAttributes = strings.map({setUpColorForFile(with: $0, with: deletedColor)})
-            attributes.append(contentsOf: deletedAttributes)
+            items = self.createItemsWith(strings: model.oldContent, nonInARowStrings: model.nonInARowStrings, isNewContent: false)
         case .modified:
-            guard let addedStrings = model.newContent else { return [] }
-            let addedAttributes = addedStrings.map({setUpColorForFile(with: $0, with: addedColor)})
-            guard let deletedStrings = model.oldContent else { return addedAttributes }
-            let deletedAttributes = deletedStrings.map({setUpColorForFile(with: $0, with: deletedColor)})
-            attributes.append(contentsOf: addedAttributes)
-            attributes.append(contentsOf: deletedAttributes)
+            items = self.createItemsWith(strings: model.oldContent, nonInARowStrings: model.nonInARowStrings, isNewContent: false)
+            items.append(contentsOf: self.createItemsWith(strings: model.newContent, nonInARowStrings: model.nonInARowStrings, isNewContent: true))
         }
-        return attributes
+        
+        return items
     }
     
-    private func setUpColorForFile(with string: String, with color: UIColor) -> NSMutableAttributedString {
-        let attribute = NSMutableAttributedString(string: string, attributes: attributes as [NSAttributedString.Key : Any])
-        let range = NSRange(location: 0, length: string.count)
-        attribute.addAttribute(NSAttributedString.Key.backgroundColor, value: color, range: range)
-        return attribute
+    private func createItemsWith(strings: [String]?, nonInARowStrings: [String]?, isNewContent: Bool) -> [DiffItem] {
+        var items: [DiffItem] = []
+        guard let strings = strings else { return [] }
+        if let nonInARowStrings = nonInARowStrings {
+        for string in strings {
+            let inARowOrder = nonInARowStrings.contains(string)
+            let item = DiffItem(nonInARowOrder: inARowOrder, string: string, isNew: isNewContent)
+            items.append(item)
+        }
+        }
+        return items
     }
-//
-//    private func setUpColorForString(_ attribute: NSMutableAttributedString, with ranges: [NSRange]?, with color: UIColor) {
-//        guard let rangeArray = ranges else { return }
-//        for range in rangeArray {
-//            attribute.addAttribute(NSAttributedString.Key.backgroundColor, value: color, range: range)
-//        }
-//    }
     
 }
