@@ -27,7 +27,7 @@ class MergeRequestStorageService: MergeRequestStorageServiceType {
     }
     
     func createEntity(with mergeRequest: MergeRequest) -> MergeRequestEntity {
-        guard let entity = NSEntityDescription.entity(forEntityName: entityName(), in: storage.childContext) else { fatalError(GitLabError.CoreDataEntityCreation.failedMergeRequest.rawValue) }
+        guard let entity = NSEntityDescription.entity(forEntityName: entityName(), in: storage.childContext) else { fatalError(GitLabError.Storage.CoreDataEntityCreation.failedMergeRequest.rawValue) }
         let mergeRequestEntity = MergeRequestEntity(entity: entity, insertInto: storage.childContext)
         let filledEntity = mergeRequestMapper.mapEntityIntoObject(with: mergeRequest,
                                                                   mergeRequestEntity: mergeRequestEntity)

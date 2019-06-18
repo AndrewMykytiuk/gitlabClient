@@ -10,18 +10,13 @@ import Foundation
 import CoreData
 import UIKit
 
-protocol StorageServiceDelegate: class {
-    func saveContext() 
-    func fetchItems(with request: NSFetchRequest<NSFetchRequestResult>) -> [NSManagedObject]
-    func deleteItems(with deleteRequest: NSBatchDeleteRequest)
-}
-
 protocol StorageServiceType: class {
     func createFetchRequest(with name: String) -> NSFetchRequest<NSFetchRequestResult>
     func createDeleteRequest(with name: String) -> NSBatchDeleteRequest
+    func fetchItems(with request: NSFetchRequest<NSFetchRequestResult>) -> [NSManagedObject]
 }
 
-class StorageService: StorageServiceType, StorageServiceDelegate {
+class StorageService: StorageServiceType {
     
     private let modelName = "CoreDataModel"
     
@@ -30,6 +25,7 @@ class StorageService: StorageServiceType, StorageServiceDelegate {
         request.entity = NSEntityDescription.entity(forEntityName: name, in: self.childContext)
         request.returnsObjectsAsFaults = false
         request.includesPropertyValues = false
+        request.shouldRefreshRefetchedObjects = true
         return request
     }
     
@@ -46,7 +42,7 @@ class StorageService: StorageServiceType, StorageServiceDelegate {
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in
             
             if let error = error as NSError? {
-                fatalError("\(GitLabError.CoreDataStack.persistantContainerLoadFailed.rawValue)\(error.userInfo)")
+                fatalError("\(GitLabError.Storage.CoreDataStack.persistantContainerLoadFailed.rawValue)\(error.userInfo)")
             }
         })
         return container
@@ -63,7 +59,7 @@ class StorageService: StorageServiceType, StorageServiceDelegate {
                 try context.save()
             } catch {
                 let nserror = error as NSError
-                fatalError("\(GitLabError.CoreDataStack.saveFailed.rawValue)\(nserror.userInfo)")
+                fatalError("\(GitLabError.Storage.CoreDataStack.saveFailed.rawValue)\(nserror.userInfo)")
             }
         }
     }
@@ -76,7 +72,7 @@ class StorageService: StorageServiceType, StorageServiceDelegate {
             objects = results
         } catch {
             let nserror = error as NSError
-            fatalError("\(GitLabError.CoreDataStack.fetchFailed.rawValue)\(nserror.userInfo)")
+            fatalError("\(GitLabError.Storage.CoreDataStack.fetchFailed.rawValue)\(nserror.userInfo)")
         }
         return objects
     }
@@ -88,7 +84,7 @@ class StorageService: StorageServiceType, StorageServiceDelegate {
             try childContext.save()
         } catch {
             let nserror = error as NSError
-            fatalError("\(GitLabError.CoreDataStack.deleteFailed.rawValue)\(nserror.userInfo)")
+            fatalError("\(GitLabError.Storage.CoreDataStack.deleteFailed.rawValue)\(nserror.userInfo)")
         }
     }
     

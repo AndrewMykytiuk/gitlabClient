@@ -43,11 +43,14 @@ enum GitLabError {
         case invalidCellCreate = "The dequeued cell is not an instance of "
     }
     
+    enum Storage {
+        
     enum CoreDataStack: String, Error {
         case saveFailed = "Failed to save into context with error: "
         case persistantContainerLoadFailed = "Failed to load container with error: "
         case fetchFailed = "Failed to fetch from context with error: "
         case deleteFailed = "Failed to delete from context with error: "
+        case updateFailed = "Failed to update context with error: "
     }
     
     enum CoreDataEntityMapper: String, Error {
@@ -66,6 +69,7 @@ enum GitLabError {
         case failedProjectEntities = "Failed to downcast ProjectEntities from ManagedObjects"
         case failedMergeRequestEntities = "Failed to map MergeRequestEntities from ManagedObjects"
         case failedUserEntities = "Failed to map UserEntities from ManagedObjects"
+    }
     }
     
 }

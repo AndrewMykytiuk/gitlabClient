@@ -8,21 +8,27 @@
 
 import Foundation
 
-class ProjectService {
+protocol ProjectServiceType: class {
+    func projectsInfo(completion: @escaping Completion<[Project]>)
+    func projectsFromStorage() -> [Project]
+    func updateProjects(projects: [Project])
+}
+
+class ProjectService: ProjectServiceType {
     
-    private let projectsManager: ProjectsNetworkService
-    private let mergeRequestManager: MergeRequestNetworkService
-    private let projectStorageManager: ProjectStorageService
+    private let projectsNetworkService: ProjectsNetworkServiceType
+    private let mergeRequestNetworkService: MergeRequestNetworkServiceType
+    private let projectStorageService: ProjectStorageServiceType
     
     init(networkManager: NetworkManager, storageService: StorageService) {
-        self.projectsManager = ProjectsNetworkService(networkManager: networkManager)
-        self.mergeRequestManager = MergeRequestNetworkService(networkManager: networkManager)
-        self.projectStorageManager = ProjectStorageService(storageService: storageService)
+        self.projectsNetworkService = ProjectsNetworkService(networkManager: networkManager)
+        self.mergeRequestNetworkService = MergeRequestNetworkService(networkManager: networkManager)
+        self.projectStorageService = ProjectStorageService(storageService: storageService)
     }
     
     func projectsInfo(completion: @escaping Completion<[Project]>) {
         
-        projectsManager.projects { [weak self] (result) in
+        projectsNetworkService.projects { [weak self] (result) in
             guard let welf = self else { return }
             switch result {
             case .success(let projects):
@@ -44,7 +50,7 @@ class ProjectService {
     
     private func mergeRequests(completion: @escaping Completion<[MergeRequest]>) {
         
-        self.mergeRequestManager.mergeRequests { (requestResult) in
+        mergeRequestNetworkService.mergeRequests { (requestResult) in
             switch requestResult {
             case .success(let values):
                 completion(.success(values))
@@ -74,24 +80,23 @@ class ProjectService {
     
     func projectsFromStorage() -> [Project] {
         
-        let fetchRequest = projectStorageManager.storage.createFetchRequest(with: projectStorageManager.entityName())
-        let managedObjects = projectStorageManager.storage.fetchItems(with: fetchRequest) 
-        guard let entities = managedObjects as? [ProjectEntity] else { fatalError(GitLabError.CoreDataEntityDowncast.failedProjectEntities.rawValue) }
-        let projects = projectStorageManager.fetchProjects(with: entities)
+        let fetchRequest = projectStorageService.fetchRequest()
+        let managedObjects = projectStorageService.fetchItems(with: fetchRequest)
+        guard let entities = managedObjects as? [ProjectEntity] else { fatalError(GitLabError.Storage.CoreDataEntityDowncast.failedProjectEntities.rawValue) }
+        let projects = projectStorageService.fetchProjects(with: entities)
         
         return projects
     }
     
     func updateProjects(projects: [Project]) {
-        deleteProjects()
-        saveProjects(projects: projects)
+        projectStorageService.updateProjects(projects)
     }
     
     func saveProjects(projects: [Project]) {
-        projectStorageManager.saveProjects(projects)
+        projectStorageService.saveProjects(projects)
     }
     
     func deleteProjects() {
-        projectStorageManager.deleteProjects()
+        projectStorageService.deleteProjects()
     }
 }
