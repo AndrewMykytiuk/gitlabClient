@@ -11,16 +11,17 @@ import CoreData
 
 protocol MergeRequestStorageServiceType: class {
     func createEntity(with mergeRequest: MergeRequest) -> MergeRequestEntity
+    var mergeRequestMapper: MergeRequestMapper { get }
 }
 
 class MergeRequestStorageService: MergeRequestStorageServiceType {
     
-    let storage: StorageService
+    let storage: StorageServiceType
     let mergeRequestMapper: MergeRequestMapper
-    let userStorageService: UserStorageService
+    let userStorageService: UserStorageServiceType
     let userMapper = UserMapper()
     
-    init(storageService: StorageService) {
+    init(storageService: StorageServiceType) {
         self.storage = storageService
         self.userStorageService = UserStorageService(storageService: storageService)
         self.mergeRequestMapper = MergeRequestMapper(with: userMapper)

@@ -13,15 +13,15 @@ protocol ProjectStorageServiceType {
     func fetchItems(with request: NSFetchRequest<NSFetchRequestResult>) -> [NSManagedObject]
     func saveProjects(_ projects: [Project])
     func fetchRequest() -> NSFetchRequest<NSFetchRequestResult>
-    func fetchProjects(with entities: [ProjectEntity]) -> [Project]
+    func projectsFromEntities(with entities: [ProjectEntity]) -> [Project]
     func deleteProjects()
     func updateProjects(_ projects: [Project])
 }
 
 class ProjectStorageService: ProjectStorageServiceType {
     
-    private let storage: StorageService
-    let mergeRequestStorageService: MergeRequestStorageService
+    private let storage: StorageServiceType
+    let mergeRequestStorageService: MergeRequestStorageServiceType
     let projectMapper: ProjectMapper
     
     init(storageService: StorageService) {
@@ -31,7 +31,7 @@ class ProjectStorageService: ProjectStorageServiceType {
     }
     
     func saveProjects(_ projects: [Project]) {
-        let _ = self.mapIntoEntities(projects: projects)
+        self.mapIntoEntities(projects: projects)
         storage.saveContext()
     }
     
@@ -39,14 +39,14 @@ class ProjectStorageService: ProjectStorageServiceType {
         let fetchRequest = self.fetchRequest()
         guard var items = self.fetchItems(with: fetchRequest) as? [ProjectEntity] else { fatalError(GitLabError.Storage.CoreDataEntityDowncast.failedProjectEntities.rawValue) }
         
-        let projectsFromStorage = self.fetchProjects(with: items)
+        let projectsFromStorage = self.projectsFromEntities(with: items)
         
         if projectsFromStorage.isEmpty {
-            let _ = mapIntoEntities(projects: projects)
+            mapIntoEntities(projects: projects)
         }
         
         for project in projects {
-            if let row = projectsFromStorage.index(where: {$0.id == project.id}) {
+            if let row = projectsFromStorage.firstIndex(where: {$0.id == project.id}) {
                 items[row] = projectMapper.mapEntityIntoObject(with: project, projectEntity: items[row])
             }
         }
@@ -61,7 +61,7 @@ class ProjectStorageService: ProjectStorageServiceType {
         return self.storage.fetchItems(with: request)
     }
     
-    func fetchProjects(with entities: [ProjectEntity]) -> [Project] {
+    func projectsFromEntities(with entities: [ProjectEntity]) -> [Project] {
        return projectMapper.mapFromEntities(with: entities)
     }
     
@@ -77,17 +77,14 @@ class ProjectStorageService: ProjectStorageServiceType {
         return filledEntity
     }
     
-    private func mapIntoEntities(projects: [Project]) -> [NSManagedObject] {
-        var entities: [NSManagedObject] = []
+    private func mapIntoEntities(projects: [Project]) {
         for project in projects {
             let projectEntity = self.createEntity(with: project)
             for mergeRequest in project.mergeRequests {
                 let mergeRequestEntity = mergeRequestStorageService.createEntity(with: mergeRequest)
                 projectEntity.addToMergeRequests(mergeRequestEntity)
-                entities.append(projectEntity)
             }
         }
-        return entities
     }
     
     func entityName() -> String {

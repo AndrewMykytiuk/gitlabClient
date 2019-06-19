@@ -83,7 +83,7 @@ class ProjectService: ProjectServiceType {
         let fetchRequest = projectStorageService.fetchRequest()
         let managedObjects = projectStorageService.fetchItems(with: fetchRequest)
         guard let entities = managedObjects as? [ProjectEntity] else { fatalError(GitLabError.Storage.CoreDataEntityDowncast.failedProjectEntities.rawValue) }
-        let projects = projectStorageService.fetchProjects(with: entities)
+        let projects = projectStorageService.projectsFromEntities(with: entities)
         
         return projects
     }

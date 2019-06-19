@@ -15,10 +15,10 @@ protocol UserStorageServiceType: class {
 
 class UserStorageService: UserStorageServiceType {
     
-    let storage: StorageService
+    let storage: StorageServiceType
     let userMapper = UserMapper()
     
-    init(storageService: StorageService) {
+    init(storageService: StorageServiceType) {
         self.storage = storageService
     }
     

@@ -14,6 +14,9 @@ protocol StorageServiceType: class {
     func createFetchRequest(with name: String) -> NSFetchRequest<NSFetchRequestResult>
     func createDeleteRequest(with name: String) -> NSBatchDeleteRequest
     func fetchItems(with request: NSFetchRequest<NSFetchRequestResult>) -> [NSManagedObject]
+    func deleteItems(with deleteRequest: NSBatchDeleteRequest)
+    func saveContext()
+    var childContext: NSManagedObjectContext { get }
 }
 
 class StorageService: StorageServiceType {
@@ -52,7 +55,7 @@ class StorageService: StorageServiceType {
         return self.persistentContainer.viewContext
     }()
     
-    func saveContext () {
+    func saveContext() {
         let context = self.childContext
         if context.hasChanges {
             do {
