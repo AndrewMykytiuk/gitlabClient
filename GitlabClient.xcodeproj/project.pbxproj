@@ -49,7 +49,7 @@
 		CE729F49224A24B80006C37C /* DecoderHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE729F48224A24B80006C37C /* DecoderHelper.swift */; };
 		CEB2FCBF226F0B3D0046B722 /* MergeRequestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB2FCBE226F0B3D0046B722 /* MergeRequestViewController.swift */; };
 		CEB2FCC1226F0F890046B722 /* MergeRequestTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB2FCC0226F0F890046B722 /* MergeRequestTableViewCell.swift */; };
-		CEB2FCC3226F15380046B722 /* MergeRequestChanges.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB2FCC2226F15380046B722 /* MergeRequestChanges.swift */; };
+		CEB2FCC3226F15380046B722 /* MergeRequestChange.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB2FCC2226F15380046B722 /* MergeRequestChange.swift */; };
 		CEB2FCC5226F1F350046B722 /* MergeRequestService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB2FCC4226F1F350046B722 /* MergeRequestService.swift */; };
 		CEB2FCC9227C30490046B722 /* MergeRequestChangesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB2FCC8227C30490046B722 /* MergeRequestChangesViewModel.swift */; };
 		CEB2FCCE227C382A0046B722 /* Typealiases.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB2FCCD227C382A0046B722 /* Typealiases.swift */; };
@@ -117,7 +117,7 @@
 		CE729F48224A24B80006C37C /* DecoderHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecoderHelper.swift; sourceTree = "<group>"; };
 		CEB2FCBE226F0B3D0046B722 /* MergeRequestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MergeRequestViewController.swift; sourceTree = "<group>"; };
 		CEB2FCC0226F0F890046B722 /* MergeRequestTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MergeRequestTableViewCell.swift; sourceTree = "<group>"; };
-		CEB2FCC2226F15380046B722 /* MergeRequestChanges.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MergeRequestChanges.swift; sourceTree = "<group>"; };
+		CEB2FCC2226F15380046B722 /* MergeRequestChange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MergeRequestChange.swift; sourceTree = "<group>"; };
 		CEB2FCC4226F1F350046B722 /* MergeRequestService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MergeRequestService.swift; sourceTree = "<group>"; };
 		CEB2FCC8227C30490046B722 /* MergeRequestChangesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MergeRequestChangesViewModel.swift; sourceTree = "<group>"; };
 		CEB2FCCD227C382A0046B722 /* Typealiases.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Typealiases.swift; sourceTree = "<group>"; };
@@ -334,7 +334,7 @@
 				CE729F3F224532750006C37C /* User.swift */,
 				CE3B695522537CE500FB7DEA /* Project.swift */,
 				CEE51022225F4DC90049EC69 /* MergeRequest.swift */,
-				CEB2FCC2226F15380046B722 /* MergeRequestChanges.swift */,
+				CEB2FCC2226F15380046B722 /* MergeRequestChange.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -473,7 +473,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CEB2FCC3226F15380046B722 /* MergeRequestChanges.swift in Sources */,
+				CEB2FCC3226F15380046B722 /* MergeRequestChange.swift in Sources */,
 				CE729F1F224125240006C37C /* DependencyProvider.swift in Sources */,
 				CE2B8B2822AAC0CC000E5D55 /* MergeRequestChangesTableViewCell.swift in Sources */,
 				CE6FF0292236B1EA003F7C56 /* OAuthLogInViewController.swift in Sources */,

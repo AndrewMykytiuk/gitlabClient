@@ -64,8 +64,8 @@ class Router: MainRouterType, ApplicationRouterType {
                 self.tabBarVC?.hidesBottomBarWhenPushed = false
                 self.mainRootVC?.pushViewController(mergeRequestVC, animated: true)
             }
-        case .mergeRequestChanges(let models, let string):
-            let vc = factory.createNewVc(with: .mergeRequestChanges(models: models, title: string))
+        case .mergeRequestChanges(let models, let title):
+            let vc = factory.createNewVc(with: .mergeRequestChanges(models: models, title: title))
             vc.router = self
             if let mergeRequestChangesVC = vc as? MergeRequestChangesViewController {
                 self.tabBarVC?.hidesBottomBarWhenPushed = false

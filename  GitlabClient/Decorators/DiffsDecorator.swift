@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 protocol DiffsDecoratorType {
-    func transformModelIntoItem(model: FileDiffsViewModel) -> [DiffItem]
+    func transformModelIntoItems(model: FileDiffsViewModel) -> [DiffItem]
 }
 
 class DiffsDecorator: DiffsDecoratorType {
@@ -19,7 +19,7 @@ class DiffsDecorator: DiffsDecoratorType {
     let deletedColor = Constants.Colors.mainRed.value
     let attributes = [NSAttributedString.Key.font : Constants.font]
     
-    func transformModelIntoItem(model: FileDiffsViewModel) -> [DiffItem] {
+    func transformModelIntoItems(model: FileDiffsViewModel) -> [DiffItem] {
         var items: [DiffItem]
         
         switch model.state {
@@ -39,11 +39,11 @@ class DiffsDecorator: DiffsDecoratorType {
         var items: [DiffItem] = []
         guard let strings = strings else { return [] }
         if let nonInARowStrings = nonInARowStrings {
-        for string in strings {
-            let inARowOrder = nonInARowStrings.contains(string)
-            let item = DiffItem(nonInARowOrder: inARowOrder, string: string, color: color)
-            items.append(item)
-        }
+            for string in strings {
+                let inARowOrder = nonInARowStrings.contains(string)
+                let item = DiffItem(nonInARowOrder: inARowOrder, string: string, color: color)
+                items.append(item)
+            }
         }
         return items
     }

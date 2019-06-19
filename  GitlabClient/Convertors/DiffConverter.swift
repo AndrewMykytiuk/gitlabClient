@@ -9,18 +9,18 @@
 import Foundation
 
 protocol DiffConverterType {
-     func convertChangesToStrings(mergeRequestChange: MergeRequestChanges) -> [DiffCellViewModel]
+    func viewModels(from change: MergeRequestChange) -> [DiffCellViewModel]
 }
 
 class DiffConverter: DiffConverterType {
     
-    let parser = DiffsParser()
-    let decorator = DiffsDecorator()
+    private let parser = DiffsParser()
+    private let decorator = DiffsDecorator()
     
-    func convertChangesToStrings(mergeRequestChange: MergeRequestChanges) -> [DiffCellViewModel] {
+    func viewModels(from change: MergeRequestChange) -> [DiffCellViewModel] {
         var models: [DiffCellViewModel] = []
-        let model = parser.parseStringIntoModel(with: mergeRequestChange.diff)
-        let items = decorator.transformModelIntoItem(model: model)
+        let model = parser.parseStringIntoModel(with: change.diff)
+        let items = decorator.transformModelIntoItems(model: model)
         for item in items {
             let diffCellViewModel = DiffCellViewModel(cellColor: item.color, hasHeader: false, hasFooter: item.nonInARowOrder, string: item.string)
             models.append(diffCellViewModel)

@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct MergeRequestChanges: Codable {
+struct MergeRequestChange: Codable {
     
     let oldPath: String
     let newPath: String

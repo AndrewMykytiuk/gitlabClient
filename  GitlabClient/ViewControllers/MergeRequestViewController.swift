@@ -22,7 +22,7 @@ class MergeRequestViewController: BaseViewController {
     private let refreshControl = UIRefreshControl()
     private var mergeRequestService: MergeRequestService!
     private var mergeRequestCell: MergeRequestTableViewCell!
-    private var changes: [MergeRequestChanges] = []
+    private var changes: [MergeRequestChange] = []
     private var id: Int!
     private var iid: Int!
     private var fileName: String!
@@ -107,7 +107,7 @@ class MergeRequestViewController: BaseViewController {
         activityIndicator.stopAnimating()
     }
     
-    private func setUpCell(_ cell: MergeRequestTableViewCell, with change: MergeRequestChanges) -> MergeRequestTableViewCell {
+    private func setUpCell(_ cell: MergeRequestTableViewCell, with change: MergeRequestChange) -> MergeRequestTableViewCell {
         
         let color: UIColor
         
@@ -128,7 +128,7 @@ class MergeRequestViewController: BaseViewController {
     }
     
     private func selectRow(with indexPath: IndexPath) {
-        let models = converter.convertChangesToStrings(mergeRequestChange: changes[indexPath.row])
+        let models = converter.viewModels(from: changes[indexPath.row])
         self.router?.navigateToScreen(with: .mergeRequestChanges(models: models, title: changes[indexPath.row].newPath), animated: true)
     }
     

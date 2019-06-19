@@ -82,9 +82,9 @@ class ViewControllerFactory: ViewControllerFactoryType {
                 mergeRequestViewController.setUpMergeRequestInfo(id: request.projectId, iid: request.iid, fileName: request.title)
                 vcTemp = mergeRequestViewController
             }
-        case .mergeRequestChanges(let model, let string):
+        case .mergeRequestChanges(let model, let title):
             if let mergeRequestChangesViewController = vcTemp as? MergeRequestChangesViewController {
-                mergeRequestChangesViewController.configureMergeRequestChangesInfo(models: model, string: string)
+                mergeRequestChangesViewController.configureMergeRequestChangesInfo(models: model, string: title)
                 vcTemp = mergeRequestChangesViewController
             }
         }
