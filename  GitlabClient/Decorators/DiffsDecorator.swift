@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 protocol DiffsDecoratorType {
-    func performModelIntoItem(model: FileDiffsViewModel) -> [DiffItem]
+    func transformModelIntoItem(model: FileDiffsViewModel) -> [DiffItem]
 }
 
 class DiffsDecorator: DiffsDecoratorType {
@@ -19,29 +19,29 @@ class DiffsDecorator: DiffsDecoratorType {
     let deletedColor = Constants.Colors.mainRed.value
     let attributes = [NSAttributedString.Key.font : Constants.font]
     
-    func performModelIntoItem(model: FileDiffsViewModel) -> [DiffItem] {
+    func transformModelIntoItem(model: FileDiffsViewModel) -> [DiffItem] {
         var items: [DiffItem]
         
         switch model.state {
         case .new:
-            items = self.createItemsWith(strings: model.newContent, nonInARowStrings: model.nonInARowStrings, isNewContent: true)
+            items = self.createItemsWith(strings: model.newContent, nonInARowStrings: model.nonInARowStrings, color: addedColor)
         case .deleted:
-            items = self.createItemsWith(strings: model.oldContent, nonInARowStrings: model.nonInARowStrings, isNewContent: false)
+            items = self.createItemsWith(strings: model.oldContent, nonInARowStrings: model.nonInARowStrings, color: deletedColor)
         case .modified:
-            items = self.createItemsWith(strings: model.oldContent, nonInARowStrings: model.nonInARowStrings, isNewContent: false)
-            items.append(contentsOf: self.createItemsWith(strings: model.newContent, nonInARowStrings: model.nonInARowStrings, isNewContent: true))
+            items = self.createItemsWith(strings: model.oldContent, nonInARowStrings: model.nonInARowStrings, color: deletedColor)
+            items.append(contentsOf: self.createItemsWith(strings: model.newContent, nonInARowStrings: model.nonInARowStrings, color: addedColor))
         }
         
         return items
     }
     
-    private func createItemsWith(strings: [String]?, nonInARowStrings: [String]?, isNewContent: Bool) -> [DiffItem] {
+    private func createItemsWith(strings: [String]?, nonInARowStrings: [String]?, color: UIColor) -> [DiffItem] {
         var items: [DiffItem] = []
         guard let strings = strings else { return [] }
         if let nonInARowStrings = nonInARowStrings {
         for string in strings {
             let inARowOrder = nonInARowStrings.contains(string)
-            let item = DiffItem(nonInARowOrder: inARowOrder, string: string, isNew: isNewContent)
+            let item = DiffItem(nonInARowOrder: inARowOrder, string: string, color: color)
             items.append(item)
         }
         }

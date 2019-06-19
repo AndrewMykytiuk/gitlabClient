@@ -26,6 +26,7 @@ class MergeRequestViewController: BaseViewController {
     private var id: Int!
     private var iid: Int!
     private var fileName: String!
+    private let converter: DiffConverterType = DiffConverter()
     
     func configure(with mergeRequestService: MergeRequestService) {
         self.mergeRequestService = mergeRequestService
@@ -127,9 +128,8 @@ class MergeRequestViewController: BaseViewController {
     }
     
     private func selectRow(with indexPath: IndexPath) {
-        let convertor = DiffConvertor()
-        let models = convertor.convertChangesToStrings(mergeRequestChange: changes[indexPath.row])
-        self.router?.navigateToScreen(with: .mergeRequestChanges(models, changes[indexPath.row].newPath), animated: true)
+        let models = converter.convertChangesToStrings(mergeRequestChange: changes[indexPath.row])
+        self.router?.navigateToScreen(with: .mergeRequestChanges(models: models, title: changes[indexPath.row].newPath), animated: true)
     }
     
 }

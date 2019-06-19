@@ -67,13 +67,17 @@ class MergeRequestChangesViewController: BaseViewController {
     }
     
     private func createViewForFooter(with width: CGFloat, section: Int) -> UIView? {
+        if diffModels[section].hasFooter {
         let view = UIView(frame: CGRect(x: 0, y: 0, width: width, height: footerHeight))
         let footerLabel = UILabel(frame: CGRect(x: 0, y: 0, width: width, height: footerHeight))
         footerLabel.text = footerTitle
         footerLabel.font = Constants.font
         footerLabel.textAlignment = .center
         view.addSubview(footerLabel)
-        return diffModels[section].hasFooter ? view : nil
+        return view
+        } else {
+            return nil
+        }
     }
     
 }

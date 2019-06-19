@@ -31,7 +31,7 @@ class Router: MainRouterType, ApplicationRouterType {
         case oauth
         case main
         case mergeRequest(MergeRequest)
-        case mergeRequestChanges([DiffCellViewModel], String)
+        case mergeRequestChanges(models: [DiffCellViewModel], title: String)
     }
     
     init(factory: ViewControllerFactory,
@@ -65,7 +65,7 @@ class Router: MainRouterType, ApplicationRouterType {
                 self.mainRootVC?.pushViewController(mergeRequestVC, animated: true)
             }
         case .mergeRequestChanges(let models, let string):
-            let vc = factory.createNewVc(with: .mergeRequestChanges(models, string))
+            let vc = factory.createNewVc(with: .mergeRequestChanges(models: models, title: string))
             vc.router = self
             if let mergeRequestChangesVC = vc as? MergeRequestChangesViewController {
                 self.tabBarVC?.hidesBottomBarWhenPushed = false

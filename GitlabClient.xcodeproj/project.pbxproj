@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		CE147D53224BBE5600C08C11 /* ProjectsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE147D52224BBE5600C08C11 /* ProjectsTableViewCell.swift */; };
 		CE2B8B2822AAC0CC000E5D55 /* MergeRequestChangesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2B8B2722AAC0CC000E5D55 /* MergeRequestChangesTableViewCell.swift */; };
-		CE2B8B2B22AFA4AF000E5D55 /* DiffConvertor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2B8B2A22AFA4AF000E5D55 /* DiffConvertor.swift */; };
+		CE2B8B2B22AFA4AF000E5D55 /* DiffConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2B8B2A22AFA4AF000E5D55 /* DiffConverter.swift */; };
 		CE2B8B2D22AFC3D1000E5D55 /* DiffCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2B8B2C22AFC3D1000E5D55 /* DiffCellViewModel.swift */; };
 		CE2B8B2F22B13807000E5D55 /* DiffItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2B8B2E22B13807000E5D55 /* DiffItem.swift */; };
 		CE3B6950225374EA00FB7DEA /* ProjectRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3B694F225374EA00FB7DEA /* ProjectRequest.swift */; };
@@ -72,7 +72,7 @@
 /* Begin PBXFileReference section */
 		CE147D52224BBE5600C08C11 /* ProjectsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectsTableViewCell.swift; sourceTree = "<group>"; };
 		CE2B8B2722AAC0CC000E5D55 /* MergeRequestChangesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MergeRequestChangesTableViewCell.swift; sourceTree = "<group>"; };
-		CE2B8B2A22AFA4AF000E5D55 /* DiffConvertor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiffConvertor.swift; sourceTree = "<group>"; };
+		CE2B8B2A22AFA4AF000E5D55 /* DiffConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiffConverter.swift; sourceTree = "<group>"; };
 		CE2B8B2C22AFC3D1000E5D55 /* DiffCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiffCellViewModel.swift; sourceTree = "<group>"; };
 		CE2B8B2E22B13807000E5D55 /* DiffItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiffItem.swift; sourceTree = "<group>"; };
 		CE3B694F225374EA00FB7DEA /* ProjectRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectRequest.swift; sourceTree = "<group>"; };
@@ -151,7 +151,7 @@
 		CE2B8B2922AFA48A000E5D55 /* Convertors */ = {
 			isa = PBXGroup;
 			children = (
-				CE2B8B2A22AFA4AF000E5D55 /* DiffConvertor.swift */,
+				CE2B8B2A22AFA4AF000E5D55 /* DiffConverter.swift */,
 			);
 			path = Convertors;
 			sourceTree = "<group>";
@@ -488,7 +488,7 @@
 				CE729F45224536CF0006C37C /* ProfileNetworkService.swift in Sources */,
 				CE6FF03C223AE29E003F7C56 /* NetworkManager.swift in Sources */,
 				CEE51023225F4DC90049EC69 /* MergeRequest.swift in Sources */,
-				CE2B8B2B22AFA4AF000E5D55 /* DiffConvertor.swift in Sources */,
+				CE2B8B2B22AFA4AF000E5D55 /* DiffConverter.swift in Sources */,
 				CE2B8B2D22AFC3D1000E5D55 /* DiffCellViewModel.swift in Sources */,
 				CEE5101F225F384A0049EC69 /* ProfileCellSize.swift in Sources */,
 				CEE5101A225F38070049EC69 /* ProfileTableViewCell.swift in Sources */,

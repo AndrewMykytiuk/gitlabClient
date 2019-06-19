@@ -24,7 +24,7 @@ class ViewControllerFactory: ViewControllerFactoryType {
         case main
         case profile
         case mergeRequest(MergeRequest)
-        case mergeRequestChanges([DiffCellViewModel], String)
+        case mergeRequestChanges(models: [DiffCellViewModel], title: String)
         
         var value: String {
             switch self {

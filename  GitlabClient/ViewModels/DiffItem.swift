@@ -11,7 +11,7 @@ import UIKit
 
 struct DiffItem {
     
-    let isNew: Bool
+    let color: UIColor
     let nonInARowOrder: Bool
     let string: String
     
@@ -20,10 +20,10 @@ struct DiffItem {
         case deleted
     }
     
-    init(nonInARowOrder: Bool, string: String, isNew: Bool) {
+    init(nonInARowOrder: Bool, string: String, color: UIColor) {
         self.nonInARowOrder = nonInARowOrder
         self.string = string
-        self.isNew = isNew
+        self.color = color
     }
     
 }
