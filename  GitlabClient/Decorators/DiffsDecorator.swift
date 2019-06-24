@@ -24,18 +24,18 @@ class DiffsDecorator: DiffsDecoratorType {
         
         switch model.state {
         case .new:
-            items = self.createItemsWith(strings: model.newContent, nonInARowStrings: model.nonInARowStrings, color: addedColor)
+            items = self.createItems(with: model.newContent, nonInARowStrings: model.nonInARowStrings, color: addedColor)
         case .deleted:
-            items = self.createItemsWith(strings: model.oldContent, nonInARowStrings: model.nonInARowStrings, color: deletedColor)
+            items = self.createItems(with: model.oldContent, nonInARowStrings: model.nonInARowStrings, color: deletedColor)
         case .modified:
-            items = self.createItemsWith(strings: model.oldContent, nonInARowStrings: model.nonInARowStrings, color: deletedColor)
-            items.append(contentsOf: self.createItemsWith(strings: model.newContent, nonInARowStrings: model.nonInARowStrings, color: addedColor))
+            items = self.createItems(with: model.oldContent, nonInARowStrings: model.nonInARowStrings, color: deletedColor)
+            items.append(contentsOf: self.createItems(with: model.newContent, nonInARowStrings: model.nonInARowStrings, color: addedColor))
         }
         
         return items
     }
     
-    private func createItemsWith(strings: [String]?, nonInARowStrings: [String]?, color: UIColor) -> [DiffItem] {
+    private func createItems(with strings: [String]?, nonInARowStrings: [String]?, color: UIColor) -> [DiffItem] {
         var items: [DiffItem] = []
         guard let strings = strings else { return [] }
         if let nonInARowStrings = nonInARowStrings {
