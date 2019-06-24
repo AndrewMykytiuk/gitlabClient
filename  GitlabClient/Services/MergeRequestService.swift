@@ -18,7 +18,7 @@ class MergeRequestService {
         self.mergeRequestManager = MergeRequestNetworkService(networkManager: networkManager)
     }
     
-    func mergeRequestChanges(id: Int, iid: Int, completion: @escaping Completion<[MergeRequestChanges]>) {
+    func mergeRequestChanges(id: Int, iid: Int, completion: @escaping Completion<[MergeRequestChange]>) {
         
         self.mergeRequestManager.mergeRequestChanges(id: id, iid: iid) { [weak self] result in
             guard self != nil else { return }

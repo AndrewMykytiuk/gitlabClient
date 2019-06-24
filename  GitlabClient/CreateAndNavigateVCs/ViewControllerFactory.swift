@@ -24,6 +24,7 @@ class ViewControllerFactory: ViewControllerFactoryType {
         case main
         case profile
         case mergeRequest(MergeRequest)
+        case mergeRequestChanges(models: [DiffCellViewModel], title: String)
         
         var value: String {
             switch self {
@@ -37,6 +38,8 @@ class ViewControllerFactory: ViewControllerFactoryType {
                 return "ProfileViewController"
             case .mergeRequest:
                 return "MergeRequestViewController"
+            case .mergeRequestChanges:
+                return "MergeRequestChangesViewController"
             }
         }
     }
@@ -78,6 +81,11 @@ class ViewControllerFactory: ViewControllerFactoryType {
                 mergeRequestViewController.configure(with: mergeRequestService)
                 mergeRequestViewController.setUpMergeRequestInfo(id: request.projectId, iid: request.iid, fileName: request.title)
                 vcTemp = mergeRequestViewController
+            }
+        case .mergeRequestChanges(let model, let title):
+            if let mergeRequestChangesViewController = vcTemp as? MergeRequestChangesViewController {
+                mergeRequestChangesViewController.configureMergeRequestChangesInfo(models: model, string: title)
+                vcTemp = mergeRequestChangesViewController
             }
         }
         return vcTemp

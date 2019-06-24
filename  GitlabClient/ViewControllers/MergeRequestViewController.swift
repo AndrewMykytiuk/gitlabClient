@@ -22,10 +22,11 @@ class MergeRequestViewController: BaseViewController {
     private let refreshControl = UIRefreshControl()
     private var mergeRequestService: MergeRequestService!
     private var mergeRequestCell: MergeRequestTableViewCell!
-    private var changes: [MergeRequestChanges] = []
+    private var changes: [MergeRequestChange] = []
     private var id: Int!
     private var iid: Int!
     private var fileName: String!
+    private let converter: DiffConverterType = DiffConverter()
     
     func configure(with mergeRequestService: MergeRequestService) {
         self.mergeRequestService = mergeRequestService
@@ -106,7 +107,7 @@ class MergeRequestViewController: BaseViewController {
         activityIndicator.stopAnimating()
     }
     
-    private func setUpCell(_ cell: MergeRequestTableViewCell, with change: MergeRequestChanges) -> MergeRequestTableViewCell {
+    private func setUpCell(_ cell: MergeRequestTableViewCell, with change: MergeRequestChange) -> MergeRequestTableViewCell {
         
         let color: UIColor
         
@@ -124,6 +125,11 @@ class MergeRequestViewController: BaseViewController {
         cell.setup(with: model)
         
         return cell
+    }
+    
+    private func selectRow(with indexPath: IndexPath) {
+        let models = converter.viewModels(from: changes[indexPath.row])
+        self.router?.navigateToScreen(with: .mergeRequestChanges(models: models, title: changes[indexPath.row].newPath), animated: true)
     }
     
 }
@@ -155,6 +161,11 @@ extension MergeRequestViewController: UITableViewDelegate, UITableViewDataSource
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return mergeRequestCell.cellSize(with: changes[indexPath.row])
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.selectRow(with: indexPath)
+        tableView.deselectRow(at: indexPath, animated: false)
     }
     
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {

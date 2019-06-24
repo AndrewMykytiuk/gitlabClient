@@ -46,7 +46,7 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" white="0.79952375856164382" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="97f-BL-9ZC" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="18e-9d-lQH"/>
                             <constraint firstItem="97f-BL-9ZC" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="3y5-ml-AG7"/>
@@ -71,7 +71,7 @@
                     <view key="view" contentMode="scaleToFill" id="VB9-Nj-7GL">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" white="0.80051369863013699" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="OUy-kf-r5U"/>
                     </view>
                     <navigationItem key="navigationItem" id="V9m-n4-HrZ"/>
@@ -90,7 +90,7 @@
                         <subviews>
                             <tableView hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="26S-wY-Qn0">
                                 <rect key="frame" x="0.0" y="20" width="375" height="647"/>
-                                <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="gray" indentationWidth="10" reuseIdentifier="ProjectsTableViewCell" focusStyle="custom" rowHeight="163" id="ehY-M5-qwO" customClass="ProjectsTableViewCell" customModule="GitlabClient" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="163"/>
@@ -102,7 +102,7 @@
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="none" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BH5-Gd-3dh">
                                                     <rect key="frame" x="16" y="92" width="343" height="26.5"/>
                                                     <fontDescription key="fontDescription" name="Verdana" family="Verdana" pointSize="17"/>
-                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FdK-El-ywR">
@@ -126,7 +126,7 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FJU-iH-GmM">
                                                     <rect key="frame" x="16" y="8" width="343" height="21"/>
                                                     <fontDescription key="fontDescription" name="Verdana" family="Verdana" pointSize="17"/>
-                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w4P-wX-wX1">
@@ -164,7 +164,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
-                                            <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
                                                 <constraint firstItem="hJS-yf-fqV" firstAttribute="centerY" secondItem="FdK-El-ywR" secondAttribute="centerY" id="1Ig-vy-max"/>
                                                 <constraint firstItem="FdK-El-ywR" firstAttribute="top" secondItem="FJU-iH-GmM" secondAttribute="bottom" constant="8" id="30J-3r-Nei"/>
@@ -195,7 +195,7 @@
                                                 <constraint firstAttribute="bottom" secondItem="BH5-Gd-3dh" secondAttribute="bottom" constant="44" id="r1b-vN-dZx"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="backgroundColor" white="0.80046018835616439" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstItem="Eca-c3-qP2" firstAttribute="centerX" secondItem="ehY-M5-qwO" secondAttribute="centerX" id="uKS-Ha-gpP"/>
                                         </constraints>
@@ -230,7 +230,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" white="0.80150363869863017" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="26S-wY-Qn0" firstAttribute="top" secondItem="ZZj-74-obh" secondAttribute="top" id="7a2-hP-wKq"/>
                             <constraint firstItem="26S-wY-Qn0" firstAttribute="trailing" secondItem="ZZj-74-obh" secondAttribute="trailing" id="Gfb-Tw-2Os"/>
@@ -293,13 +293,13 @@
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="900-4g-R6U">
                                         <rect key="frame" x="0.0" y="0.0" width="240" height="31.5"/>
                                         <fontDescription key="fontDescription" name="Verdana" family="Verdana" pointSize="17"/>
-                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Status" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="DWZ-xy-psp">
                                         <rect key="frame" x="0.0" y="36.5" width="240" height="33.5"/>
                                         <fontDescription key="fontDescription" name="Verdana" family="Verdana" pointSize="17"/>
-                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
@@ -310,7 +310,7 @@
                             </stackView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Sdc-dg-CwC">
                                 <rect key="frame" x="0.0" y="130" width="375" height="487"/>
-                                <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" white="0.80139661815068497" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="ProfileTableViewCell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ProfileTableViewCell" rowHeight="37" id="rpd-Pa-FQA" customClass="ProfileTableViewCell" customModule="GitlabClient" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="37"/>
@@ -322,7 +322,7 @@
                                                 <label opaque="NO" contentMode="TopLeft" semanticContentAttribute="forceLeftToRight" text="SOS" lineBreakMode="characterWrap" numberOfLines="0" baselineAdjustment="none" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pfb-d7-Iye">
                                                     <rect key="frame" x="105" y="8" width="265" height="21"/>
                                                     <fontDescription key="fontDescription" name="Verdana" family="Verdana" pointSize="17"/>
-                                                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="center" semanticContentAttribute="forceLeftToRight" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email:" lineBreakMode="characterWrap" numberOfLines="0" baselineAdjustment="none" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ciB-pg-cCX">
@@ -331,7 +331,7 @@
                                                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="80" id="6kh-lL-3MH"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" name="Verdana" family="Verdana" pointSize="17"/>
-                                                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -344,7 +344,7 @@
                                                 <constraint firstItem="ciB-pg-cCX" firstAttribute="leading" secondItem="dXW-Fm-tO8" secondAttribute="leading" constant="5" id="rrF-bt-W9i"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="backgroundColor" white="0.79534995719178081" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
                                             <outlet property="descriptionLabel" destination="pfb-d7-Iye" id="w4S-aA-mAk"/>
                                             <outlet property="descriptionLabelBottomConstraint" destination="ndz-it-quf" id="p0T-Qw-yF2"/>
@@ -359,7 +359,7 @@
                                 </connections>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" white="0.79821275684931503" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="Zr0-vS-96H" firstAttribute="top" secondItem="p9x-Q3-4Yq" secondAttribute="top" constant="10" id="1La-3d-bRP"/>
                             <constraint firstItem="LNQ-eB-nhZ" firstAttribute="top" secondItem="p9x-Q3-4Yq" secondAttribute="top" constant="10" id="5AR-La-huQ"/>
@@ -397,9 +397,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="4Ls-4x-F9g">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="4Ls-4x-F9g">
                                 <rect key="frame" x="0.0" y="20" width="375" height="647"/>
-                                <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MergeRequestTableViewCell" rowHeight="70" id="1lC-Aa-F1y" customClass="MergeRequestTableViewCell" customModule="GitlabClient" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="70"/>
@@ -411,7 +411,7 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" semanticContentAttribute="forceLeftToRight" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6y7-Tm-DEH">
                                                     <rect key="frame" x="16" y="8" width="343" height="53.5"/>
                                                     <fontDescription key="fontDescription" name="Verdana" family="Verdana" pointSize="17"/>
-                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -423,7 +423,7 @@
                                                 <constraint firstAttribute="trailing" secondItem="6y7-Tm-DEH" secondAttribute="trailing" constant="16" id="bFd-X0-v2q"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="backgroundColor" white="0.80185145547945202" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
                                             <outlet property="bottomLabelConstraint" destination="4Yi-2Y-Eh6" id="LoB-wJ-o4E"/>
                                             <outlet property="fileNameLabel" destination="6y7-Tm-DEH" id="KO2-6D-8xA"/>
@@ -437,7 +437,7 @@
                                 </connections>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" white="0.8028413955479452" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="4Ls-4x-F9g" firstAttribute="top" secondItem="8U0-cl-xDY" secondAttribute="top" id="G97-31-QRN"/>
                             <constraint firstItem="8U0-cl-xDY" firstAttribute="bottom" secondItem="4Ls-4x-F9g" secondAttribute="bottom" id="Rgv-8y-lxK"/>
@@ -453,6 +453,71 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rYo-8t-woB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3668" y="26.53673163418291"/>
+        </scene>
+        <!--Merge Request Changes View Controller-->
+        <scene sceneID="PCU-aW-f4P">
+            <objects>
+                <viewController storyboardIdentifier="MergeRequestChangesViewController" id="A4V-gS-Bd9" customClass="MergeRequestChangesViewController" customModule="GitlabClient" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Nzf-wZ-Myo">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="DJw-wV-cmF">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MergeRequestChangesTableViewCell" rowHeight="70" id="PEv-Fb-f1S" customClass="MergeRequestChangesTableViewCell" customModule="GitlabClient" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="70"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="PEv-Fb-f1S" id="oCO-gO-Le1">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="69.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" semanticContentAttribute="forceLeftToRight" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IPL-EX-9Gc">
+                                                    <rect key="frame" x="16" y="8" width="343" height="53.5"/>
+                                                    <fontDescription key="fontDescription" name="Verdana" family="Verdana" pointSize="17"/>
+                                                    <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="IPL-EX-9Gc" secondAttribute="bottom" constant="8" id="8wh-g1-zxn"/>
+                                                <constraint firstAttribute="trailing" secondItem="IPL-EX-9Gc" secondAttribute="trailing" constant="16" id="RyM-iK-MhA"/>
+                                                <constraint firstItem="IPL-EX-9Gc" firstAttribute="leading" secondItem="oCO-gO-Le1" secondAttribute="leading" constant="16" id="evo-sP-SrA"/>
+                                                <constraint firstItem="IPL-EX-9Gc" firstAttribute="top" secondItem="oCO-gO-Le1" secondAttribute="top" constant="8" id="hnv-FQ-fwf"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.80185145550000003" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <connections>
+                                            <outlet property="diffTextLabel" destination="IPL-EX-9Gc" id="dGL-Q8-2qe"/>
+                                            <outlet property="labelBottomConstraint" destination="8wh-g1-zxn" id="zBm-nU-kx9"/>
+                                            <outlet property="labelTopConstraint" destination="hnv-FQ-fwf" id="zwR-ar-fRs"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="A4V-gS-Bd9" id="CxE-Wd-0QP"/>
+                                    <outlet property="delegate" destination="A4V-gS-Bd9" id="R8c-aC-5Oe"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="0.80332298801369861" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="DJw-wV-cmF" firstAttribute="top" secondItem="8dA-oY-IpP" secondAttribute="top" id="40n-g7-8XQ"/>
+                            <constraint firstAttribute="trailing" secondItem="DJw-wV-cmF" secondAttribute="trailing" id="kaV-mW-Vec"/>
+                            <constraint firstItem="DJw-wV-cmF" firstAttribute="leading" secondItem="8dA-oY-IpP" secondAttribute="leading" id="pa0-J9-8Zf"/>
+                            <constraint firstAttribute="bottom" secondItem="DJw-wV-cmF" secondAttribute="bottom" id="qkR-mA-zqy"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="8dA-oY-IpP"/>
+                    </view>
+                    <connections>
+                        <outlet property="mergeRequestChangesTableView" destination="DJw-wV-cmF" id="Ojn-ek-m8d"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HFX-Ik-btz" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4405" y="35"/>
         </scene>
     </scenes>
     <resources>
