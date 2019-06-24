@@ -9,9 +9,7 @@
 import Foundation
 
 protocol ProjectServiceType: class {
-    func projectsInfo(completion: @escaping Completion<[Project]>)
-    func projectsFromStorage() -> [Project]
-    func updateProjects(projects: [Project])
+    func projectsInfo(completion: @escaping Completion<[Project]>, cachedResult: @escaping ([Project]) -> Void)
 }
 
 class ProjectService: ProjectServiceType {
@@ -26,7 +24,7 @@ class ProjectService: ProjectServiceType {
         self.projectStorageService = ProjectStorageService(storageService: storageService)
     }
     
-    func projectsInfo(completion: @escaping Completion<[Project]>) {
+    func projectsInfo(completion: @escaping Completion<[Project]>, cachedResult: @escaping ([Project]) -> Void) {
         
         projectsNetworkService.projects { [weak self] (result) in
             guard let welf = self else { return }
@@ -35,8 +33,11 @@ class ProjectService: ProjectServiceType {
                 welf.mergeRequests { result in
                     switch result{
                     case .success(let requests):
-                        let data =  welf.processedProjects(with: projects,and: requests)
-                        completion(.success(data))
+                        let data = welf.processedProjects(with: projects,and: requests)
+                        welf.updateProjects(projects: data)
+                        welf.projectsFromStorage {[weak self] projectsFromStorage in
+                            completion(.success(projectsFromStorage))
+                        }
                     case .error(let error):
                         completion(.error(error))
                     }
@@ -44,6 +45,10 @@ class ProjectService: ProjectServiceType {
             case .error(let error):
                 completion(.error(error))
             }
+            welf.projectsFromStorage {[weak self] projectsFromStorage in
+                cachedResult(projectsFromStorage)
+            }
+            
         }
         
     }
@@ -78,25 +83,23 @@ class ProjectService: ProjectServiceType {
         return entities
     }
     
-    func projectsFromStorage() -> [Project] {
+    private func projectsFromStorage(completion: @escaping ([Project]) -> Void) {
         
         let fetchRequest = projectStorageService.fetchRequest()
-        let managedObjects = projectStorageService.fetchItems(with: fetchRequest)
-        guard let entities = managedObjects as? [ProjectEntity] else { fatalError(GitLabError.Storage.CoreDataEntityDowncast.failedProjectEntities.rawValue) }
+        let entities = projectStorageService.fetchProjects(with: fetchRequest)
         let projects = projectStorageService.projectsFromEntities(with: entities)
-        
-        return projects
+        completion(projects)
     }
     
-    func updateProjects(projects: [Project]) {
+    private func updateProjects(projects: [Project]) {
         projectStorageService.updateProjects(projects)
     }
     
-    func saveProjects(projects: [Project]) {
+    private func saveProjects(projects: [Project]) {
         projectStorageService.saveProjects(projects)
     }
     
-    func deleteProjects() {
+    private func deleteProjects() {
         projectStorageService.deleteProjects()
     }
 }

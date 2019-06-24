@@ -21,7 +21,7 @@ class UserMapper {
     
     func setupUser(with userEntity: UserEntity) -> User {
         let id = Int(userEntity.id)
-        guard let url = URL(string: userEntity.avatarUrl) else { fatalError(GitLabError.Storage.CoreDataEntityMapper.failedUserMap.rawValue) }
+        guard let url = URL(string: userEntity.avatarUrl) else { fatalError(GitLabError.Storage.EntityMapper.failedUserMap.rawValue) }
         let user = User(id: id, name: userEntity.name, username: userEntity.username, email: nil, publicEmail: nil, skype: nil, linkedin: nil, twitter: nil, websiteUrl: nil, location: nil, organization: nil, bio: nil, privateProfile: nil, avatarUrl: url)
         return user
     }

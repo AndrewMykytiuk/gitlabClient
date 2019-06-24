@@ -10,7 +10,7 @@ import Foundation
 import CoreData
 
 protocol ProjectStorageServiceType {
-    func fetchItems(with request: NSFetchRequest<NSFetchRequestResult>) -> [NSManagedObject]
+    func fetchProjects(with request: NSFetchRequest<NSFetchRequestResult>) -> [ProjectEntity]
     func saveProjects(_ projects: [Project])
     func fetchRequest() -> NSFetchRequest<NSFetchRequestResult>
     func projectsFromEntities(with entities: [ProjectEntity]) -> [Project]
@@ -31,23 +31,17 @@ class ProjectStorageService: ProjectStorageServiceType {
     }
     
     func saveProjects(_ projects: [Project]) {
-        self.mapIntoEntities(projects: projects)
+        let _ = self.mapIntoEntities(projects: projects)
         storage.saveContext()
     }
     
     func updateProjects(_ projects: [Project]) {
         let fetchRequest = self.fetchRequest()
-        guard var items = self.fetchItems(with: fetchRequest) as? [ProjectEntity] else { fatalError(GitLabError.Storage.CoreDataEntityDowncast.failedProjectEntities.rawValue) }
-        
-        let projectsFromStorage = self.projectsFromEntities(with: items)
-        
-        if projectsFromStorage.isEmpty {
-            mapIntoEntities(projects: projects)
-        }
+        let items = self.fetchProjects(with: fetchRequest)
         
         for project in projects {
-            if let row = projectsFromStorage.firstIndex(where: {$0.id == project.id}) {
-                items[row] = projectMapper.mapEntityIntoObject(with: project, projectEntity: items[row])
+            if var element = items.first(where: {$0.id == project.id}) {
+                element = projectMapper.mapEntityIntoObject(with: project, projectEntity: element)
             }
         }
         self.storage.saveContext()
@@ -57,8 +51,9 @@ class ProjectStorageService: ProjectStorageServiceType {
         return self.storage.createFetchRequest(with: self.entityName())
     }
     
-    func fetchItems(with request: NSFetchRequest<NSFetchRequestResult>) -> [NSManagedObject] {
-        return self.storage.fetchItems(with: request)
+    func fetchProjects(with request: NSFetchRequest<NSFetchRequestResult>) -> [ProjectEntity] {
+        guard let entities = self.storage.fetchItems(with: request) as? [ProjectEntity] else { fatalError(GitLabError.Storage.EntityDowncast.failedProjectEntities.rawValue) }
+        return entities
     }
     
     func projectsFromEntities(with entities: [ProjectEntity]) -> [Project] {
@@ -71,20 +66,23 @@ class ProjectStorageService: ProjectStorageServiceType {
     }
     
     func createEntity(with project: Project) -> ProjectEntity {
-        guard let entity = NSEntityDescription.entity(forEntityName: entityName(), in: storage.childContext) else { fatalError(GitLabError.Storage.CoreDataEntityCreation.failedProject.rawValue) }
+        guard let entity = NSEntityDescription.entity(forEntityName: entityName(), in: storage.childContext) else { fatalError(GitLabError.Storage.EntityCreation.failedProject.rawValue) }
         let projectEntity = ProjectEntity(entity: entity, insertInto: storage.childContext)
         let filledEntity = projectMapper.mapEntityIntoObject(with: project, projectEntity: projectEntity)
         return filledEntity
     }
     
-    private func mapIntoEntities(projects: [Project]) {
+    private func mapIntoEntities(projects: [Project]) -> [ProjectEntity] {
+        var entities: [ProjectEntity] = []
         for project in projects {
             let projectEntity = self.createEntity(with: project)
             for mergeRequest in project.mergeRequests {
                 let mergeRequestEntity = mergeRequestStorageService.createEntity(with: mergeRequest)
                 projectEntity.addToMergeRequests(mergeRequestEntity)
+                entities.append(projectEntity)
             }
         }
+        return entities
     }
     
     func entityName() -> String {

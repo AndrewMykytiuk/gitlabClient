@@ -29,7 +29,7 @@ class MergeRequestMapper {
         let iid = Int(mergeRequestEntity.iid)
         let projectId = Int(mergeRequestEntity.projectId)
         
-        guard let assigneeEntity = mergeRequestEntity.assignee, let authorEntity = mergeRequestEntity.author else { fatalError(GitLabError.Storage.CoreDataEntityMapper.failedMergeRequestMap.rawValue) }
+        guard let assigneeEntity = mergeRequestEntity.assignee, let authorEntity = mergeRequestEntity.author else { fatalError(GitLabError.Storage.EntityMapper.failedMergeRequestMap.rawValue) }
         
         let assignee = userMapper.setupUser(with: assigneeEntity)
         let author = userMapper.setupUser(with: authorEntity)

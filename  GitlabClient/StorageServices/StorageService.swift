@@ -45,7 +45,7 @@ class StorageService: StorageServiceType {
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in
             
             if let error = error as NSError? {
-                fatalError("\(GitLabError.Storage.CoreDataStack.persistantContainerLoadFailed.rawValue)\(error.userInfo)")
+                fatalError("\(GitLabError.Storage.Stack.persistantContainerLoadFailed.rawValue)\(error.userInfo)")
             }
         })
         return container
@@ -62,7 +62,7 @@ class StorageService: StorageServiceType {
                 try context.save()
             } catch {
                 let nserror = error as NSError
-                fatalError("\(GitLabError.Storage.CoreDataStack.saveFailed.rawValue)\(nserror.userInfo)")
+                fatalError("\(GitLabError.Storage.Stack.saveFailed.rawValue)\(nserror.userInfo)")
             }
         }
     }
@@ -75,7 +75,7 @@ class StorageService: StorageServiceType {
             objects = results
         } catch {
             let nserror = error as NSError
-            fatalError("\(GitLabError.Storage.CoreDataStack.fetchFailed.rawValue)\(nserror.userInfo)")
+            fatalError("\(GitLabError.Storage.Stack.fetchFailed.rawValue)\(nserror.userInfo)")
         }
         return objects
     }
@@ -87,7 +87,7 @@ class StorageService: StorageServiceType {
             try childContext.save()
         } catch {
             let nserror = error as NSError
-            fatalError("\(GitLabError.Storage.CoreDataStack.deleteFailed.rawValue)\(nserror.userInfo)")
+            fatalError("\(GitLabError.Storage.Stack.deleteFailed.rawValue)\(nserror.userInfo)")
         }
     }
     

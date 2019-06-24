@@ -38,6 +38,8 @@ class MainViewController: BaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        projectsTableView.tableFooterView = UIView()
+        projectsTableView.tableHeaderView = UIView()
         self.navigationController?.setNavigationBarHidden(true, animated: animated)
         if projectsData.isEmpty {
             getData()
@@ -74,27 +76,27 @@ class MainViewController: BaseViewController {
     }
     
     private func getData() {
-        activityIndicator.startAnimating()
-        projectsService.projectsInfo { [weak self] (result) in
+        self.activityIndicator.startAnimating()
+        self.projectsService.projectsInfo(completion: { [weak self] (result) in
             guard let welf = self else { return }
             DispatchQueue.main.async {
                 switch result {
                 case .success(let data):
-                    welf.projectsTableView.isHidden = false
                     let isMergeRequestsExist = welf.hasMergeRequests(data)
                     welf.noInfoInTableLabel.isHidden = isMergeRequestsExist
-                    welf.projectsService.updateProjects(projects: data)
+                    welf.projectsData = data
                 case .error(let error):
                     let alert = AlertHelper.createErrorAlert(message: error.localizedDescription, handler: nil)
                     welf.present(alert, animated: true)
                 }
-                let projects = welf.projectsService.projectsFromStorage()
-                welf.projectsData = projects
                 welf.projectsTableView.reloadData()
                 welf.refreshControl.endRefreshing()
                 welf.activityIndicator.stopAnimating()
             }
-        }
+            }, cachedResult: { [weak self] (projects) in
+                guard let welf = self else { return }
+                welf.projectsData = projects
+        })
     }
     
     private func createProjectsCellPrototype() {
@@ -138,7 +140,7 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: ProjectsTableViewCell.identifier(), for: indexPath) as? ProjectsTableViewCell else {
-            fatalError(GitLabError.CellCreation.invalidCellCreate.rawValue + ProjectsTableViewCell.identifier())
+            fatalError(GitLabError.CellCreation.invalidIdentifier.rawValue + ProjectsTableViewCell.identifier())
         }
         
         cell.setup(with: projectsData[indexPath.section].mergeRequests[indexPath.row], isExpanded: indexPathOfExpendedCell.contains(indexPath))
