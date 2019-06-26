@@ -89,14 +89,18 @@ class MainViewController: BaseViewController {
                     let alert = AlertHelper.createErrorAlert(message: error.localizedDescription, handler: nil)
                     welf.present(alert, animated: true)
                 }
-                welf.projectsTableView.reloadData()
-                welf.refreshControl.endRefreshing()
-                welf.activityIndicator.stopAnimating()
+                welf.tableViewUpdate()
             }
             }, cachedResult: { [weak self] (projects) in
                 guard let welf = self else { return }
                 welf.projectsData = projects
         })
+    }
+    
+    private func tableViewUpdate() {
+        self.projectsTableView.reloadData()
+        self.refreshControl.endRefreshing()
+        self.activityIndicator.stopAnimating()
     }
     
     private func createProjectsCellPrototype() {
@@ -140,7 +144,7 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: ProjectsTableViewCell.identifier(), for: indexPath) as? ProjectsTableViewCell else {
-            fatalError(GitLabError.CellCreation.invalidIdentifier.rawValue + ProjectsTableViewCell.identifier())
+            fatalError(GitLabError.Cell.invalidIdentifier.rawValue + ProjectsTableViewCell.identifier())
         }
         
         cell.setup(with: projectsData[indexPath.section].mergeRequests[indexPath.row], isExpanded: indexPathOfExpendedCell.contains(indexPath))

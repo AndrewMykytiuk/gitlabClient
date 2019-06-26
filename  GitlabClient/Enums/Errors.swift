@@ -39,7 +39,7 @@ enum GitLabError {
         case createViewController = "Cannot create View from storyboard"
     }
     
-    enum CellCreation: String, Error {
+    enum Cell: String, Error {
         case invalidIdentifier = "The dequeued cell is not an instance of "
     }
     
@@ -53,22 +53,26 @@ enum GitLabError {
             case updateFailed = "Failed to update context with error: "
         }
         
-        enum EntityMapper: String, Error {
-            case failedProjectMap = "Failed to map Project from entity"
-            case failedMergeRequestMap = "Failed to map MergeRequest from entity"
-            case failedUserMap = "Failed to map User from entity"
-        }
-        
-        enum EntityCreation: String, Error {
-            case failedProject = "Failed to create ProjectEntity"
-            case failedMergeRequest = "Failed to create MergeRequestEntity"
-            case failedUser = "Failed to create UserEntity"
-        }
-        
-        enum EntityDowncast: String, Error {
-            case failedProjectEntities = "Failed to downcast ProjectEntities from ManagedObjects"
-            case failedMergeRequestEntities = "Failed to map MergeRequestEntities from ManagedObjects"
-            case failedUserEntities = "Failed to map UserEntities from ManagedObjects"
+        enum Entity {
+            
+            enum Mapper: String, Error {
+                case failedProjectMap = "Failed to map Project from entity"
+                case failedMergeRequestMap = "Failed to map MergeRequest from entity"
+                case failedUserMap = "Failed to map User from entity"
+            }
+            
+            enum Creation: String, Error {
+                case failedProject = "Failed to create ProjectEntity"
+                case failedMergeRequest = "Failed to create MergeRequestEntity"
+                case failedUser = "Failed to create UserEntity"
+            }
+            
+            enum Downcast: String, Error {
+                case failedProjectEntities = "Failed to downcast ProjectEntities from ManagedObjects"
+                case failedMergeRequestEntities = "Failed to map MergeRequestEntities from ManagedObjects"
+                case failedUserEntities = "Failed to map UserEntities from ManagedObjects"
+            }
+            
         }
     }
     

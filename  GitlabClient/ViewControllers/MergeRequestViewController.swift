@@ -132,7 +132,7 @@ extension MergeRequestViewController: UITableViewDelegate, UITableViewDataSource
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: MergeRequestTableViewCell.identifier(), for: indexPath) as? MergeRequestTableViewCell else {
-            fatalError(GitLabError.CellCreation.invalidIdentifier.rawValue + MergeRequestTableViewCell.identifier())
+            fatalError(GitLabError.Cell.invalidIdentifier.rawValue + MergeRequestTableViewCell.identifier())
         }
         let change = changes[indexPath.row]
         return setUpCell(cell, with: change)

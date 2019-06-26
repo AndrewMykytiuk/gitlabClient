@@ -32,11 +32,16 @@ class ProjectMapper {
     private func mapProjectsfromEntities(entity: ProjectEntity) -> Project {
         let id = Int(entity.id)
         
-        guard let mergeRequestEntities = entity.mergeRequests?.allObjects as? [MergeRequestEntity] else { fatalError(GitLabError.Storage.EntityMapper.failedProjectMap.rawValue) }
+        let mergeRequestEntities = self.mergeRequestEntities(from: entity)
         
         let mergeRequests = mergeRequestEntities.map({mergeRequestMapper.setupMergeRequest(with: $0)})
         
         let project = Project(id: id, name: entity.name, description: entity.projectDescription, date: entity.date as Date, mergeRequests: mergeRequests)
         return project
+    }
+    
+    func mergeRequestEntities(from entity: ProjectEntity) -> [MergeRequestEntity] {
+         guard let mergeRequestEntities = entity.mergeRequests?.allObjects as? [MergeRequestEntity] else { fatalError(GitLabError.Storage.Entity.Mapper.failedProjectMap.rawValue) }
+        return mergeRequestEntities
     }
 }

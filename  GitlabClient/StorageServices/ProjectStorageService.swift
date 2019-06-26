@@ -14,7 +14,6 @@ protocol ProjectStorageServiceType {
     func saveProjects(_ projects: [Project])
     func fetchRequest() -> NSFetchRequest<NSFetchRequestResult>
     func projectsFromEntities(with entities: [ProjectEntity]) -> [Project]
-    func deleteProjects()
     func updateProjects(_ projects: [Project])
 }
 
@@ -38,13 +37,23 @@ class ProjectStorageService: ProjectStorageServiceType {
     func updateProjects(_ projects: [Project]) {
         let fetchRequest = self.fetchRequest()
         let items = self.fetchProjects(with: fetchRequest)
-        
+        var projectIds: [Int] = []
         for project in projects {
-            if var element = items.first(where: {$0.id == project.id}) {
+            if var element = items.first(where: {$0.id == project.id}), projects.count == items.count {
                 element = projectMapper.mapEntityIntoObject(with: project, projectEntity: element)
+                let mergeRequestEntities = projectMapper.mergeRequestEntities(from: element)
+                
+                mergeRequestStorageService.updateMergeRequestEntities(with: project.mergeRequests, mergeRequestEntities: mergeRequestEntities, projectEntity: element)
+            } else {
+                projectIds = items.map{(Int($0.id))}
             }
         }
-        self.storage.saveContext()
+        if !projectIds.isEmpty {
+            self.deleteProjects(with: projectIds)
+            self.saveProjects(projects)
+        } else {
+            self.storage.saveContext()
+        }
     }
     
     func fetchRequest() -> NSFetchRequest<NSFetchRequestResult> {
@@ -52,7 +61,7 @@ class ProjectStorageService: ProjectStorageServiceType {
     }
     
     func fetchProjects(with request: NSFetchRequest<NSFetchRequestResult>) -> [ProjectEntity] {
-        guard let entities = self.storage.fetchItems(with: request) as? [ProjectEntity] else { fatalError(GitLabError.Storage.EntityDowncast.failedProjectEntities.rawValue) }
+        guard let entities = self.storage.fetchItems(with: request) as? [ProjectEntity] else { fatalError(GitLabError.Storage.Entity.Downcast.failedProjectEntities.rawValue) }
         return entities
     }
     
@@ -60,13 +69,17 @@ class ProjectStorageService: ProjectStorageServiceType {
        return projectMapper.mapFromEntities(with: entities)
     }
     
-    func deleteProjects() {
-        let request = storage.createDeleteRequest(with: entityName())
-        storage.deleteItems(with: request)
+    func deleteProjects(with projectsIds: [Int]) {
+        let fetchRequest = self.fetchRequest()
+        for id in projectsIds {
+            fetchRequest.predicate = NSPredicate(format: "id == %d", id)
+            let items = self.fetchProjects(with: fetchRequest)
+            items.map{(storage.deleteItem(for: $0))}
+        }
     }
     
     func createEntity(with project: Project) -> ProjectEntity {
-        guard let entity = NSEntityDescription.entity(forEntityName: entityName(), in: storage.childContext) else { fatalError(GitLabError.Storage.EntityCreation.failedProject.rawValue) }
+        guard let entity = NSEntityDescription.entity(forEntityName: entityName(), in: storage.childContext) else { fatalError(GitLabError.Storage.Entity.Creation.failedProject.rawValue) }
         let projectEntity = ProjectEntity(entity: entity, insertInto: storage.childContext)
         let filledEntity = projectMapper.mapEntityIntoObject(with: project, projectEntity: projectEntity)
         return filledEntity

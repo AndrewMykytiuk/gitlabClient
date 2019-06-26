@@ -25,32 +25,29 @@ class ProjectService: ProjectServiceType {
     }
     
     func projectsInfo(completion: @escaping Completion<[Project]>, cachedResult: @escaping ([Project]) -> Void) {
-        
-        projectsNetworkService.projects { [weak self] (result) in
+        self.projectsFromStorage { [weak self] projectsFromStorage in
             guard let welf = self else { return }
-            switch result {
-            case .success(let projects):
-                welf.mergeRequests { result in
-                    switch result{
-                    case .success(let requests):
-                        let data = welf.processedProjects(with: projects,and: requests)
-                        welf.updateProjects(projects: data)
-                        welf.projectsFromStorage {[weak self] projectsFromStorage in
-                            completion(.success(projectsFromStorage))
+            cachedResult(projectsFromStorage)
+            welf.projectsNetworkService.projects { (result) in
+                switch result {
+                case .success(let projects):
+                    welf.mergeRequests { result in
+                        switch result{
+                        case .success(let requests):
+                            let data = welf.processedProjects(with: projects,and: requests)
+                            welf.updateProjects(projects: data)
+                            welf.projectsFromStorage { projectsFromStorage in
+                                completion(.success(projectsFromStorage))
+                            }
+                        case .error(let error):
+                            completion(.error(error))
                         }
-                    case .error(let error):
-                        completion(.error(error))
                     }
+                case .error(let error):
+                    completion(.error(error))
                 }
-            case .error(let error):
-                completion(.error(error))
             }
-            welf.projectsFromStorage {[weak self] projectsFromStorage in
-                cachedResult(projectsFromStorage)
-            }
-            
         }
-        
     }
     
     private func mergeRequests(completion: @escaping Completion<[MergeRequest]>) {
@@ -84,11 +81,12 @@ class ProjectService: ProjectServiceType {
     }
     
     private func projectsFromStorage(completion: @escaping ([Project]) -> Void) {
-        
-        let fetchRequest = projectStorageService.fetchRequest()
-        let entities = projectStorageService.fetchProjects(with: fetchRequest)
-        let projects = projectStorageService.projectsFromEntities(with: entities)
-        completion(projects)
+        DispatchQueue.main.async {
+            let fetchRequest = self.projectStorageService.fetchRequest()
+            let entities = self.projectStorageService.fetchProjects(with: fetchRequest)
+            let projects = self.projectStorageService.projectsFromEntities(with: entities)
+            completion(projects)
+        }
     }
     
     private func updateProjects(projects: [Project]) {
@@ -97,9 +95,5 @@ class ProjectService: ProjectServiceType {
     
     private func saveProjects(projects: [Project]) {
         projectStorageService.saveProjects(projects)
-    }
-    
-    private func deleteProjects() {
-        projectStorageService.deleteProjects()
     }
 }

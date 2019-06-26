@@ -14,7 +14,7 @@ protocol StorageServiceType: class {
     func createFetchRequest(with name: String) -> NSFetchRequest<NSFetchRequestResult>
     func createDeleteRequest(with name: String) -> NSBatchDeleteRequest
     func fetchItems(with request: NSFetchRequest<NSFetchRequestResult>) -> [NSManagedObject]
-    func deleteItems(with deleteRequest: NSBatchDeleteRequest)
+    func deleteItem(for object: NSManagedObject) 
     func saveContext()
     var childContext: NSManagedObjectContext { get }
 }
@@ -80,10 +80,10 @@ class StorageService: StorageServiceType {
         return objects
     }
     
-    func deleteItems(with deleteRequest: NSBatchDeleteRequest) {
+    func deleteItem(for object: NSManagedObject) {
         
         do {
-            try childContext.execute(deleteRequest)
+            try childContext.delete(object)
             try childContext.save()
         } catch {
             let nserror = error as NSError
