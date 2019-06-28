@@ -82,8 +82,8 @@ class ProjectService: ProjectServiceType {
     
     private func projectsFromStorage(completion: @escaping ([Project]) -> Void) {
         DispatchQueue.main.async {
-            let fetchRequest = self.projectStorageService.fetchRequest()
-            let entities = self.projectStorageService.fetchProjects(with: fetchRequest)
+            let fetchRequest = self.projectStorageService.projectFetchRequest()
+            let entities = self.projectStorageService.fetchProjectsEntities(with: fetchRequest)
             let projects = self.projectStorageService.projectsFromEntities(with: entities)
             completion(projects)
         }
