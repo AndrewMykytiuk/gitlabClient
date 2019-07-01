@@ -10,10 +10,9 @@ import Foundation
 import CoreData
 
 protocol ProjectStorageServiceType {
-    func fetchProjectsEntities(with request: NSFetchRequest<NSFetchRequestResult>) -> [ProjectEntity]
+    func fetchProjectsEntities(with request: NSFetchRequest<NSFetchRequestResult>, completion: @escaping ([ProjectEntity]) -> Void)
     func saveProjects(_ projects: [Project])
-    func projectFetchRequest() -> NSFetchRequest<NSFetchRequestResult>
-    func projectsFromEntities(with entities: [ProjectEntity]) -> [Project]
+    func projectsFromStorage(completion: @escaping ([Project]) -> Void)
     func updateProjects(_ projects: [Project])
 }
 
@@ -36,50 +35,64 @@ class ProjectStorageService: ProjectStorageServiceType {
     
     func updateProjects(_ projects: [Project]) {
         let fetchRequest = self.projectFetchRequest()
-        let entities = self.fetchProjectsEntities(with: fetchRequest)
-        var updatedProjectIds: [Int] = []
-        for project in projects {
-            //Compare projects as entities from Storage and Network
-            if var element = entities.first(where: {$0.id == project.id}), projects.count == entities.count {
-                element = projectMapper.mapEntityIntoObject(with: project, projectEntity: element)
-                let mergeRequestEntities = projectMapper.mergeRequestEntities(from: element)
-                updatedProjectIds.append(project.id)
-                mergeRequestStorageService.updateMergeRequestEntities(with: project.mergeRequests, mergeRequestEntities: mergeRequestEntities, projectEntity: element)
+        self.fetchProjectsEntities(with: fetchRequest, completion: { [weak self] entities in
+            guard let welf = self else { return }
+            var updatedProjectIds: [Int] = []
+            for project in projects {
+                if var element = entities.first(where: {$0.id == project.id}), projects.count == entities.count {
+                    element = welf.projectMapper.mapEntityIntoObject(with: project, projectEntity: element)
+                    let mergeRequestEntities = welf.projectMapper.mergeRequestEntities(from: element)
+                    updatedProjectIds.append(project.id)
+                    welf.mergeRequestStorageService.updateMergeRequestEntities(with: project.mergeRequests, mergeRequestEntities: mergeRequestEntities, projectEntity: element)
+                }
             }
-        }
-        
-        let filteredStorageIds = entities.map({Int($0.id)}).filter({!updatedProjectIds.contains($0)})
-        let filteredNetworkIds = projects.map({$0.id}).filter({!updatedProjectIds.contains($0)})
-        
-        self.deleteProjects(with: filteredStorageIds)
-        self.addProjects(with: filteredNetworkIds, projectEntities: projects)
-        self.storage.saveContext()
+            
+            let filteredStorageIds = entities.map({Int($0.id)}).filter({!updatedProjectIds.contains($0)})
+            let filteredNetworkIds = projects.map({$0.id}).filter({!updatedProjectIds.contains($0)})
+            
+            welf.deleteProjects(with: filteredStorageIds)
+            welf.addProjects(with: filteredNetworkIds, projectEntities: projects)
+            welf.storage.saveContext()
+        })
         
     }
     
-    func projectFetchRequest() -> NSFetchRequest<NSFetchRequestResult> {
+    private func projectFetchRequest() -> NSFetchRequest<NSFetchRequestResult> {
         return self.storage.createFetchRequest(with: self.entityName())
     }
     
-    func fetchProjectsEntities(with request: NSFetchRequest<NSFetchRequestResult>) -> [ProjectEntity] {
-        guard let entities = self.storage.fetchItems(with: request) as? [ProjectEntity] else { fatalError(GitLabError.Storage.Entity.Downcast.failedProjectEntities.rawValue) }
-        return entities
-    }
-    
-    func projectsFromEntities(with entities: [ProjectEntity]) -> [Project] {
-       return projectMapper.mapFromEntities(with: entities)
-    }
-    
-    func deleteProjects(with projectsIds: [Int]) {
-        let fetchRequest = self.projectFetchRequest()
-        for id in projectsIds {
-            fetchRequest.predicate = NSPredicate(format: "id == %d", id)
-            let entities = self.fetchProjectsEntities(with: fetchRequest)
-            entities.map{(storage.deleteItem(for: $0))}
+    func fetchProjectsEntities(with request: NSFetchRequest<NSFetchRequestResult>, completion: @escaping ([ProjectEntity]) -> Void) {
+        DispatchQueue.global().async {
+            guard let entities = self.storage.fetchItems(with: request) as? [ProjectEntity] else { fatalError(GitLabError.Storage.Entity.Downcast.failedProjectEntities.rawValue) }
+            completion(entities)
         }
     }
     
-    func createEntity(with project: Project) -> ProjectEntity {
+    private func projectsFromEntities(with entities: [ProjectEntity]) -> [Project] {
+        return projectMapper.mapFromEntities(with: entities)
+    }
+    
+    private func deleteProjects(with projectsIds: [Int]) {
+        let fetchRequest = self.projectFetchRequest()
+        for id in projectsIds {
+            fetchRequest.predicate = NSPredicate(format: "id == %d", id)
+            self.fetchProjectsEntities(with: fetchRequest, completion: { [weak self] entities in
+                guard let welf = self else { return }
+                entities.map{(welf.storage.deleteItem(for: $0))}
+            })
+            
+        }
+    }
+    
+    func projectsFromStorage(completion: @escaping ([Project]) -> Void) {
+        let fetchRequest = self.projectFetchRequest()
+        self.fetchProjectsEntities(with: fetchRequest, completion: { entities in
+            let projects = self.projectsFromEntities(with: entities)
+            completion(projects)
+        })
+    }
+    
+    private func createEntity(with project: Project) -> ProjectEntity {
         guard let entity = NSEntityDescription.entity(forEntityName: entityName(), in: storage.childContext) else { fatalError(GitLabError.Storage.Entity.Creation.failedProject.rawValue) }
         let projectEntity = ProjectEntity(entity: entity, insertInto: storage.childContext)
         let filledEntity = projectMapper.mapEntityIntoObject(with: project, projectEntity: projectEntity)
@@ -90,7 +103,7 @@ class ProjectStorageService: ProjectStorageServiceType {
         var addedProjects: [Project] = []
         for id in ids {
             if let addedProject = projectEntities.first(where: {id == (Int($0.id))}) {
-               addedProjects.append(addedProject)
+                addedProjects.append(addedProject)
             }
         }
         let _ = self.mapIntoEntities(projects: addedProjects)

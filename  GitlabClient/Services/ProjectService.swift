@@ -28,24 +28,28 @@ class ProjectService: ProjectServiceType {
         self.projectsFromStorage { [weak self] projectsFromStorage in
             guard let welf = self else { return }
             cachedResult(projectsFromStorage)
-            welf.projectsNetworkService.projects { (result) in
-                switch result {
-                case .success(let projects):
-                    welf.mergeRequests { result in
-                        switch result{
-                        case .success(let requests):
-                            let data = welf.processedProjects(with: projects,and: requests)
-                            welf.updateProjects(projects: data)
-                            welf.projectsFromStorage { projectsFromStorage in
-                                completion(.success(projectsFromStorage))
-                            }
-                        case .error(let error):
-                            completion(.error(error))
+            welf.projectsFromNetwork(with: welf, completion: completion)
+        }
+    }
+    
+    private func projectsFromNetwork(with welf: ProjectService, completion: @escaping Completion<[Project]>) {
+        welf.projectsNetworkService.projects { (result) in
+            switch result {
+            case .success(let projects):
+                welf.mergeRequests { result in
+                    switch result{
+                    case .success(let requests):
+                        let data = welf.processedProjects(with: projects,and: requests)
+                        welf.updateProjects(projects: data)
+                        welf.projectsFromStorage { projectsFromStorage in
+                            completion(.success(projectsFromStorage))
                         }
+                    case .error(let error):
+                        completion(.error(error))
                     }
-                case .error(let error):
-                    completion(.error(error))
                 }
+            case .error(let error):
+                completion(.error(error))
             }
         }
     }
@@ -81,11 +85,8 @@ class ProjectService: ProjectServiceType {
     }
     
     private func projectsFromStorage(completion: @escaping ([Project]) -> Void) {
-        DispatchQueue.main.async {
-            let fetchRequest = self.projectStorageService.projectFetchRequest()
-            let entities = self.projectStorageService.fetchProjectsEntities(with: fetchRequest)
-            let projects = self.projectStorageService.projectsFromEntities(with: entities)
-            completion(projects)
+        DispatchQueue.global().async {
+            self.projectStorageService.projectsFromStorage(completion: completion)
         }
     }
     
