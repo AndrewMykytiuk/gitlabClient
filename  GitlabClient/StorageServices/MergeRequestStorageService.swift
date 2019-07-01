@@ -77,7 +77,7 @@ class MergeRequestStorageService: MergeRequestStorageServiceType {
         var sameIids: [Int] = []
         
         for mergeRequest in mergeRequests {
-            if var mergeRequestEntity = mergeRequestEntities.first(where: {$0.iid == mergeRequest.iid}), mergeRequestEntities.count == mergeRequests.count  {
+            if var mergeRequestEntity = mergeRequestEntities.first(where: {$0.iid == mergeRequest.iid}) {
                 sameIids.append(mergeRequest.iid)
                 mergeRequestEntity = mergeRequestMapper.mapEntityIntoObject(with: mergeRequest, mergeRequestEntity: mergeRequestEntity)
                 

@@ -28,12 +28,13 @@ class ProjectService: ProjectServiceType {
         self.projectsFromStorage { [weak self] projectsFromStorage in
             guard let welf = self else { return }
             cachedResult(projectsFromStorage)
-            welf.projectsFromNetwork(with: welf, completion: completion)
+            welf.projectsFromNetwork(completion: completion)
         }
     }
     
-    private func projectsFromNetwork(with welf: ProjectService, completion: @escaping Completion<[Project]>) {
-        welf.projectsNetworkService.projects { (result) in
+    private func projectsFromNetwork(completion: @escaping Completion<[Project]>) {
+        self.projectsNetworkService.projects { [weak self] (result) in
+            guard let welf = self else { return }
             switch result {
             case .success(let projects):
                 welf.mergeRequests { result in

@@ -39,7 +39,7 @@ class ProjectStorageService: ProjectStorageServiceType {
             guard let welf = self else { return }
             var updatedProjectIds: [Int] = []
             for project in projects {
-                if var element = entities.first(where: {$0.id == project.id}), projects.count == entities.count {
+                if var element = entities.first(where: {$0.id == project.id}) {
                     element = welf.projectMapper.mapEntityIntoObject(with: project, projectEntity: element)
                     let mergeRequestEntities = welf.projectMapper.mergeRequestEntities(from: element)
                     updatedProjectIds.append(project.id)
@@ -50,8 +50,10 @@ class ProjectStorageService: ProjectStorageServiceType {
             let filteredStorageIds = entities.map({Int($0.id)}).filter({!updatedProjectIds.contains($0)})
             let filteredNetworkIds = projects.map({$0.id}).filter({!updatedProjectIds.contains($0)})
             
+            let filteredToAddProjects = projects.map({$0}).filter({filteredNetworkIds.contains($0.id)})
+            
             welf.deleteProjects(with: filteredStorageIds)
-            welf.addProjects(with: filteredNetworkIds, projectEntities: projects)
+            welf.addProjects(filteredToAddProjects)
             welf.storage.saveContext()
         })
         
@@ -99,14 +101,8 @@ class ProjectStorageService: ProjectStorageServiceType {
         return filledEntity
     }
     
-    private func addProjects(with ids: [Int], projectEntities: [Project]) {
-        var addedProjects: [Project] = []
-        for id in ids {
-            if let addedProject = projectEntities.first(where: {id == (Int($0.id))}) {
-                addedProjects.append(addedProject)
-            }
-        }
-        let _ = self.mapIntoEntities(projects: addedProjects)
+    private func addProjects(_ projects: [Project]) {
+        let _ = self.mapIntoEntities(projects: projects)
     }
     
     private func mapIntoEntities(projects: [Project]) -> [ProjectEntity] {
