@@ -74,10 +74,10 @@ class MainViewController: BaseViewController {
     }
     
     private func getData() {
+        DispatchQueue.main.async {
         self.activityIndicator.startAnimating()
         self.projectsService.projectsInfo(completion: { [weak self] (result) in
             guard let welf = self else { return }
-            DispatchQueue.main.async {
                 switch result {
                 case .success(let data):
                     let isMergeRequestsExist = welf.hasMergeRequests(data)
@@ -92,14 +92,13 @@ class MainViewController: BaseViewController {
                 }
                 welf.tableViewUpdate()
                 welf.activityIndicator.stopAnimating()
-            }
+            
             }, cachedResult: { [weak self] (projects) in
                 guard let welf = self else { return }
                 welf.projectsData = projects
-                DispatchQueue.main.async {
                 welf.tableViewUpdate()
-                }
         })
+        }
     }
     
     private func tableViewUpdate() {
