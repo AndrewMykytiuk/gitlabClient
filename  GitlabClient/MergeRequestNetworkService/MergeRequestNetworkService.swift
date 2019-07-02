@@ -34,7 +34,7 @@ class MergeRequestNetworkService: MergeRequestNetworkServiceType {
         }
     }
     
-    func mergeRequestChanges(id: Int, iid: Int, completion: @escaping Completion<[MergeRequestChanges]>) {
+    func mergeRequestChanges(id: Int, iid: Int, completion: @escaping Completion<[MergeRequestChange]>) {
         
         let pathComponents = [Constants.Network.Path.projects.rawValue, "\(id)", Constants.Network.MergeRequest.mergeRequestsKey.rawValue, "\(iid)", Constants.Network.MergeRequest.changesKey.rawValue]
         
@@ -61,7 +61,7 @@ class MergeRequestNetworkService: MergeRequestNetworkServiceType {
         
     }
     
-    private func processMRChangesData(_ data: Data, completion: @escaping Completion<[MergeRequestChanges]>) {
+    private func processMRChangesData(_ data: Data, completion: @escaping Completion<[MergeRequestChange]>) {
         let result: Result<MergeRequest> = DecoderHelper.modelFromData(data)
         switch result {
         case .success(let request):

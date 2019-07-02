@@ -20,5 +20,5 @@
 "ProjectsTableViewCell.showMoreButton.lessTitle" = "Показать меньше...";
 "ProjectsTableViewCell.showMoreButton.moreTitle" = "Показать больше...";
 "ProjectsTableViewCell.showMoreButton.authorTitle" = "автор:";
-"ProjectsTableViewCell.showMoreButton.assignTitle" = "ответственный:";
+"ProjectsTableViewCell.showMoreButton.assignTitle" = "добавлен:";
 

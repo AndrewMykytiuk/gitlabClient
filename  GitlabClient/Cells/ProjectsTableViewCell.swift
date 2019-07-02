@@ -34,6 +34,7 @@ class ProjectsTableViewCell: UITableViewCell {
     weak var delegate: ProjectsTableViewCellDelegate?
     private let numberOfLines: Int = 2
     private var numberOfLinesHeight: CGFloat = 0
+    private let separatorHeight: CGFloat = 1
     
     private enum cellStaticTitles: String {
         case authorTitle = "ProjectsTableViewCell.showMoreButton.authorTitle"
@@ -43,8 +44,8 @@ class ProjectsTableViewCell: UITableViewCell {
     }
     
     private enum constraintsForCell: CGFloat {
-        case buttonNeeded = 23
-        case noButtonNeeded = 8
+        case expandedButton = 44
+        case compressedButton = 8
     }
     
     func setup(with request: MergeRequest, isExpanded: Bool) {
@@ -78,9 +79,9 @@ class ProjectsTableViewCell: UITableViewCell {
     
     private func setUpBottomConstraint(isButtonNeeded: Bool) {
         if isButtonNeeded {
-            self.bottomCellNSLayoutConstraint.constant = constraintsForCell.buttonNeeded.rawValue
+            self.bottomCellNSLayoutConstraint.constant = constraintsForCell.expandedButton.rawValue
         } else {
-            self.bottomCellNSLayoutConstraint.constant = constraintsForCell.noButtonNeeded.rawValue
+            self.bottomCellNSLayoutConstraint.constant = constraintsForCell.compressedButton.rawValue
         }
     }
     
@@ -102,7 +103,7 @@ class ProjectsTableViewCell: UITableViewCell {
         }
         
         height += self.cellOffsets(isNeeded: isButtonNeeded)
-        
+        height += separatorHeight
         return height
     }
     

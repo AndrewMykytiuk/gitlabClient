@@ -21,7 +21,7 @@ class MergeRequestTableViewCell: UITableViewCell {
         self.backgroundColor = model.backgroundColor
     }
     
-    func cellSize(with changes: MergeRequestChanges) -> CGFloat {
+    func cellSize(with changes: MergeRequestChange) -> CGFloat {
         var height: CGFloat = 0
         
         let fileNameHeight = TextHelper.getHeightForStringInLabel(with: changes.newPath, width: fileNameLabel.frame.width)

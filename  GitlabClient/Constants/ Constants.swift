@@ -103,11 +103,11 @@ enum Constants {
         var value: UIColor {
             switch self {
             case .mainRed:
-                return UIColor.colorWithRGB(red: 226, green: 71, blue: 72, alpha: 1.0)
+                return UIColor.colorWithRGB(red: 250, green: 197, blue: 205, alpha: 1.0)
             case .mainGreen:
-                return UIColor.colorWithRGB(red: 36, green: 112, blue: 65, alpha: 1.0)
+                return UIColor.colorWithRGB(red: 199, green: 240, blue: 210, alpha: 1.0)
             case .mainOrange:
-                return UIColor.colorWithRGB(red: 237, green: 94, blue: 32, alpha: 1.0)
+                return UIColor.colorWithRGB(red: 229, green: 191, blue: 60, alpha: 1.0)
             }
         }
     }
