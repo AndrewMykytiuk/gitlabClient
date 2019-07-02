@@ -91,17 +91,20 @@ class MainViewController: BaseViewController {
                     }
                 }
                 welf.tableViewUpdate()
+                welf.activityIndicator.stopAnimating()
             }
             }, cachedResult: { [weak self] (projects) in
                 guard let welf = self else { return }
                 welf.projectsData = projects
+                DispatchQueue.main.async {
+                welf.tableViewUpdate()
+                }
         })
     }
     
     private func tableViewUpdate() {
         self.projectsTableView.reloadData()
         self.refreshControl.endRefreshing()
-        self.activityIndicator.stopAnimating()
     }
     
     private func createProjectsCellPrototype() {
