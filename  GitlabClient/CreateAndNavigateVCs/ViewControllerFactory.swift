@@ -50,12 +50,12 @@ class ViewControllerFactory: ViewControllerFactoryType {
     
     func createNewVc(with identifier: ViewControllerIdentifier) -> BaseViewController {
         
-        guard var vcTemp = storyboard.instantiateViewController(withIdentifier: identifier.value) as? BaseViewController else { fatalError(FatalError.invalidStoryboardCreate.rawValue) }
+        guard var vcTemp = storyboard.instantiateViewController(withIdentifier: identifier.value) as? BaseViewController else { fatalError(GitLabError.Storyboard.createViewController.rawValue) }
         
         switch identifier {
         case .main:
             if let mainViewController = vcTemp as? MainViewController {
-                let projectsService = ProjectService(networkManager: dependencyProvider.networkManager)
+                let projectsService = ProjectService(networkManager: dependencyProvider.networkManager, storageService: dependencyProvider.storage)
                 mainViewController.configure(with: projectsService)
                 vcTemp = mainViewController
             }

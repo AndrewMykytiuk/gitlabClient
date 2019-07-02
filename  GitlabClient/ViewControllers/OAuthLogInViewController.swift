@@ -58,7 +58,7 @@ class OAuthLogInViewController: BaseViewController {
                 if result {
                     welf.webView.load(URLRequest(url: url))
                 } else {
-                    let alert = AlertHelper.createErrorAlert(message: FatalError.reachabilityError.rawValue) { (action) in
+                    let alert = AlertHelper.createErrorAlert(message: GitLabError.Network.reachability.rawValue) { (action) in
                         welf.delegate?.viewControllerDidFinishWithError(oAuthViewController: welf)
                     }
                     welf.present(alert, animated: true)

@@ -43,4 +43,16 @@ struct MergeRequest: Codable {
         
     }
     
+    init(iid: Int, title: String, description: String, projectId: Int, assignee: User, author: User) {
+        
+        self.iid = iid
+        self.title = title
+        self.description = description
+        self.projectId = projectId
+        self.assignee = assignee
+        self.author = author
+        self.changes = []
+        
+    }
+    
 }

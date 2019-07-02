@@ -8,29 +8,43 @@
 
 import Foundation
 
-class ProjectService {
+protocol ProjectServiceType: class {
+    func projectsInfo(completion: @escaping Completion<[Project]>, cachedResult: @escaping ([Project]) -> Void)
+}
+
+class ProjectService: ProjectServiceType {
     
-    private let networkManager: NetworkManager
-    private let projectsManager: ProjectsNetworkService
-    private let mergeRequestManager: MergeRequestNetworkService
+    private let projectsNetworkService: ProjectsNetworkServiceType
+    private let mergeRequestNetworkService: MergeRequestNetworkServiceType
+    private let projectStorageService: ProjectStorageServiceType
     
-    init(networkManager: NetworkManager) {
-        self.networkManager = networkManager
-        self.projectsManager = ProjectsNetworkService(networkManager: networkManager)
-        self.mergeRequestManager = MergeRequestNetworkService(networkManager: networkManager)
+    init(networkManager: NetworkManager, storageService: StorageService) {
+        self.projectsNetworkService = ProjectsNetworkService(networkManager: networkManager)
+        self.mergeRequestNetworkService = MergeRequestNetworkService(networkManager: networkManager)
+        self.projectStorageService = ProjectStorageService(storageService: storageService)
     }
     
-    func projectsInfo(completion: @escaping Completion<[Project]>) {
-        
-        projectsManager.projects { [weak self] (result) in
+    func projectsInfo(completion: @escaping Completion<[Project]>, cachedResult: @escaping ([Project]) -> Void) {
+        self.projectsFromStorage { [weak self] projectsFromStorage in
+            guard let welf = self else { return }
+            cachedResult(projectsFromStorage)
+            welf.projectsFromNetwork(completion: completion)
+        }
+    }
+    
+    private func projectsFromNetwork(completion: @escaping Completion<[Project]>) {
+        self.projectsNetworkService.projects { [weak self] (result) in
             guard let welf = self else { return }
             switch result {
             case .success(let projects):
                 welf.mergeRequests { result in
                     switch result{
                     case .success(let requests):
-                        let data =  welf.processedProjects(with: projects,and: requests)
-                        completion(.success(data))
+                        let data = welf.processedProjects(with: projects,and: requests)
+                        welf.updateProjects(projects: data)
+                        welf.projectsFromStorage { projectsFromStorage in
+                            completion(.success(projectsFromStorage))
+                        }
                     case .error(let error):
                         completion(.error(error))
                     }
@@ -39,12 +53,11 @@ class ProjectService {
                 completion(.error(error))
             }
         }
-        
     }
     
     private func mergeRequests(completion: @escaping Completion<[MergeRequest]>) {
         
-        self.mergeRequestManager.mergeRequests { (requestResult) in
+        mergeRequestNetworkService.mergeRequests { (requestResult) in
             switch requestResult {
             case .success(let values):
                 completion(.success(values))
@@ -61,14 +74,28 @@ class ProjectService {
         
         for project in projects {
             var entity = project
-            entity.mergeRequest = []
+            entity.mergeRequests = []
             for request in requests {
                 if request.projectId == project.id {
-                    entity.mergeRequest.append(request)
+                    entity.mergeRequests.append(request)
                 }
             }
             entities.append(entity)
         }
         return entities
+    }
+    
+    private func projectsFromStorage(completion: @escaping ([Project]) -> Void) {
+        DispatchQueue.global().async {
+            self.projectStorageService.projectsFromStorage(completion: completion)
+        }
+    }
+    
+    private func updateProjects(projects: [Project]) {
+        projectStorageService.updateProjects(projects)
+    }
+    
+    private func saveProjects(projects: [Project]) {
+        projectStorageService.saveProjects(projects)
     }
 }

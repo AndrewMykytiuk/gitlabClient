@@ -62,7 +62,7 @@ class NetworkManager {
                 })
                 task.resume()
             } else {
-                return completion(.error(FatalError.reachabilityError))
+                return completion(.error(GitLabError.Network.reachability))
         }
     }
    

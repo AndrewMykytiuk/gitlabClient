@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14460.32" systemVersion="18D109" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="MergeRequestEntity" representedClassName="MergeRequestEntity" syncable="YES">
+        <attribute name="iid" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="mergeRequestDescription" attributeType="String" defaultValueString="default" syncable="YES"/>
+        <attribute name="projectId" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="title" attributeType="String" defaultValueString="default" syncable="YES"/>
+        <relationship name="assignee" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="UserEntity" inverseName="mergeRequest" inverseEntity="UserEntity" syncable="YES"/>
+        <relationship name="author" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="UserEntity" syncable="YES"/>
+        <relationship name="project" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProjectEntity" inverseName="mergeRequests" inverseEntity="ProjectEntity" syncable="YES"/>
+    </entity>
+    <entity name="ProjectEntity" representedClassName="ProjectEntity" syncable="YES">
+        <attribute name="date" attributeType="Date" defaultDateTimeInterval="581333280" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="id" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="name" attributeType="String" defaultValueString="default" syncable="YES"/>
+        <attribute name="projectDescription" attributeType="String" defaultValueString="default" syncable="YES"/>
+        <relationship name="mergeRequests" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="MergeRequestEntity" inverseName="project" inverseEntity="MergeRequestEntity" syncable="YES"/>
+    </entity>
+    <entity name="UserEntity" representedClassName="UserEntity" syncable="YES">
+        <attribute name="avatarUrl" attributeType="String" defaultValueString="default" syncable="YES"/>
+        <attribute name="email" attributeType="String" defaultValueString="default" syncable="YES"/>
+        <attribute name="id" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="linkedin" attributeType="String" defaultValueString="default" syncable="YES"/>
+        <attribute name="location" attributeType="String" defaultValueString="default" syncable="YES"/>
+        <attribute name="name" attributeType="String" defaultValueString="default" syncable="YES"/>
+        <attribute name="status" attributeType="String" defaultValueString="default" syncable="YES"/>
+        <attribute name="twitter" attributeType="String" defaultValueString="default" syncable="YES"/>
+        <attribute name="username" attributeType="String" defaultValueString="default" syncable="YES"/>
+        <attribute name="website" optional="YES" attributeType="String" defaultValueString="default" syncable="YES"/>
+        <relationship name="mergeRequest" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="MergeRequestEntity" inverseName="assignee" inverseEntity="MergeRequestEntity" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="MergeRequestEntity" positionX="-85.38671875" positionY="-328.0625" width="128" height="148"/>
+        <element name="ProjectEntity" positionX="-279.90625" positionY="-445.19921875" width="128" height="118"/>
+        <element name="UserEntity" positionX="192.19921875" positionY="-402.375" width="128" height="208"/>
+    </elements>
+</model>
