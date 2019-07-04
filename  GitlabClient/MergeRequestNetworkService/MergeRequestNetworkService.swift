@@ -50,6 +50,38 @@ class MergeRequestNetworkService: MergeRequestNetworkServiceType {
         }
     }
     
+    func starMergeRequest(id: Int, completion: @escaping Completion<Void>) {
+        let request = MergeRequestStarRequest(method: .POST, projectId: id, isStar: true)
+        
+        networkManager.sendRequest(request) { (data) in
+            switch data {
+            case .success:
+                return completion(.success(Void()))
+            case .error(let error):
+                if error._code == 304 {
+                    completion(.success(Void()))
+                }
+                return completion(.error(error))
+            }
+        }
+    }
+    
+    func unstarMergeRequest(id: Int, completion: @escaping Completion<Void>) {
+        let request = MergeRequestStarRequest(method: .POST, projectId: id, isStar: false)
+        
+        networkManager.sendRequest(request) { (data) in
+            switch data {
+            case .success:
+                return completion(.success(Void()))
+            case .error(let error):
+                if error._code == 304 {
+                    completion(.success(Void()))
+                }
+                return completion(.error(error))
+            }
+        }
+    }
+    
     private func processMRData(_ data: Data, completion: @escaping Completion<[MergeRequest]>) {
         let result: Result<[MergeRequest]> = DecoderHelper.modelFromData(data)
         switch result {

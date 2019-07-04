@@ -18,6 +18,12 @@ class MergeRequestViewController: BaseViewController {
         }
     }
     
+    private enum FunctionsNames: String {
+        case likeButtonAction = "likeButtonAction"
+        case unlikeButtonAction = "unlikeButtonAction"
+    }
+    
+    
     private let activityIndicator = UIActivityIndicatorView(style: .whiteLarge)
     private let refreshControl = UIRefreshControl()
     private var mergeRequestService: MergeRequestService!
@@ -26,6 +32,7 @@ class MergeRequestViewController: BaseViewController {
     private var id: Int!
     private var iid: Int!
     private var fileName: String!
+    private var isLikeButtonTapped: Bool = false
     private let converter: DiffConverterType = DiffConverter()
     
     func configure(with mergeRequestService: MergeRequestService) {
@@ -43,7 +50,7 @@ class MergeRequestViewController: BaseViewController {
         setupActivityIndicator(with: self.view)
         setupRefreshControl()
         mergeRequestData()
-        self.title = fileName
+        setupNavigationBar()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -55,6 +62,14 @@ class MergeRequestViewController: BaseViewController {
         super.viewDidLayoutSubviews()
         self.mergeRequestCell.frame = CGRect(origin: CGPoint.zero, size: mergeRequestTableView.frame.size)
         self.mergeRequestCell.layoutIfNeeded()
+    }
+    
+    private func setupNavigationBar() {
+        self.title = fileName
+        let likeButton = MergeRequestHelper.createButtonForLikes(with: FunctionsNames.likeButtonAction.rawValue, for: self, type: .like)
+        let unlikeButton = MergeRequestHelper.createButtonForLikes(with: FunctionsNames.unlikeButtonAction.rawValue, for: self, type: .unlike)
+       
+        self.navigationItem.rightBarButtonItem = isLikeButtonTapped ? unlikeButton : likeButton
     }
     
     private func setupRefreshControl() {
@@ -105,6 +120,36 @@ class MergeRequestViewController: BaseViewController {
     @objc private func refreshMergeRequestsData(_ sender: Any) {
         mergeRequestData()
         activityIndicator.stopAnimating()
+    }
+    
+    @objc func likeButtonAction() {
+        let unlikeButton = MergeRequestHelper.createButtonForLikes(with: FunctionsNames.unlikeButtonAction.rawValue, for: self, type: .unlike)
+        self.navigationItem.rightBarButtonItem = unlikeButton
+        mergeRequestService.starMergeRequest(id: iid) { [weak self] (result) in
+            guard let welf = self else { return }
+            switch result {
+            case .success:
+                welf.isLikeButtonTapped = true
+            case .error(let error):
+                let alert = AlertHelper.createErrorAlert(message: error.localizedDescription, handler: nil)
+                welf.present(alert, animated: true)
+            }
+        }
+        
+    }
+    @objc func unlikeButtonAction() {
+        let likeButton = MergeRequestHelper.createButtonForLikes(with: FunctionsNames.likeButtonAction.rawValue, for: self, type: .like)
+        self.navigationItem.rightBarButtonItem = likeButton
+        mergeRequestService.unstarMergeRequest(id: iid) { [weak self] (result) in
+            guard let welf = self else { return }
+            switch result {
+            case .success:
+                welf.isLikeButtonTapped = false
+            case .error(let error):
+                let alert = AlertHelper.createErrorAlert(message: error.localizedDescription, handler: nil)
+                welf.present(alert, animated: true)
+            }
+        }
     }
     
     private func setUpCell(_ cell: MergeRequestTableViewCell, with change: MergeRequestChange) -> MergeRequestTableViewCell {

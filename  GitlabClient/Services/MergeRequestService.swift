@@ -30,4 +30,35 @@ class MergeRequestService {
             }
         }
     }
+    
+    func starMergeRequest(id: Int, completion: @escaping Completion<Void>) {
+        
+        self.mergeRequestManager.starMergeRequest(id: id, completion: { (result) in
+            switch result {
+            case .success:
+                completion(.success(Void()))
+            case .error(let error):
+                if error._code == 304 {
+                    completion(.success(Void()))
+                }
+                completion(.error(error))
+            }
+        })
+    }
+    
+    func unstarMergeRequest(id: Int, completion: @escaping Completion<Void>) {
+        
+        self.mergeRequestManager.unstarMergeRequest(id: id, completion: { (result) in
+            switch result {
+            case .success(let void):
+                completion(.success(void))
+            case .error(let error):
+                if error._code == 304 {
+                    completion(.success(Void()))
+                }
+                completion(.error(error))
+            }
+        })
+    }
+    
 }
