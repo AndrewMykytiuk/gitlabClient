@@ -16,7 +16,7 @@ protocol LikeButtonDelegate: class {
 
 class MergeRequestLikeButton: UIButton {
     
-    @IBOutlet var likeButton: MergeRequestLikeButton!
+    @IBOutlet weak var likeButton: MergeRequestLikeButton!
     
     weak var delegate: LikeButtonDelegate?
     
@@ -56,6 +56,10 @@ class MergeRequestLikeButton: UIButton {
             self.activityIndicator.stopAnimating()
             
         })
+    }
+    
+    func hideButton() {
+        self.likeButton.isHidden = true
     }
     
     private func createActivityIndicator() {

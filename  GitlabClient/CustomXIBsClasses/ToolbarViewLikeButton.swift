@@ -11,4 +11,10 @@ import UIKit
 
 class ToolbarViewLikeButton: UIView {
     
+    private var likeButton: MergeRequestLikeButton?
+    
+    func setLikeButton() {
+        likeButton?.hideButton()
+    }
+    
 }

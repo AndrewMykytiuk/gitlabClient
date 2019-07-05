@@ -62,6 +62,7 @@ class MergeRequestViewController: BaseViewController, LikeButtonDelegate {
         guard let view = Bundle.main.loadNibNamed("ToolbarViewForLikeButton", owner: self, options: nil)?.first as? ToolbarViewLikeButton else { return }
         
         let fff = MergeRequestLikeButton()
+        view.setLikeButton()
         guard let button = Bundle.main.loadNibNamed("LikeButtonForMergeRequest", owner: fff, options: nil)?.first as? MergeRequestLikeButton else { return }
         button.delegate = self
         //self.navigationController?.navigationBar.bounds.height
