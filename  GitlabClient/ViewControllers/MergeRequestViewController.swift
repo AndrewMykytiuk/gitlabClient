@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class MergeRequestViewController: BaseViewController {
+class MergeRequestViewController: BaseViewController, LikeButtonDelegate {
     
     @IBOutlet private weak var mergeRequestTableView: UITableView! {
         didSet {
@@ -43,6 +43,7 @@ class MergeRequestViewController: BaseViewController {
         setupActivityIndicator(with: self.view)
         setupRefreshControl()
         mergeRequestData()
+        setUpXIBsFiles()
         self.title = fileName
     }
     
@@ -55,6 +56,44 @@ class MergeRequestViewController: BaseViewController {
         super.viewDidLayoutSubviews()
         self.mergeRequestCell.frame = CGRect(origin: CGPoint.zero, size: mergeRequestTableView.frame.size)
         self.mergeRequestCell.layoutIfNeeded()
+    }
+    
+    private func setUpXIBsFiles() {
+        guard let view = Bundle.main.loadNibNamed("ToolbarViewForLikeButton", owner: self, options: nil)?.first as? ToolbarViewLikeButton else { return }
+        
+        let fff = MergeRequestLikeButton()
+        guard let button = Bundle.main.loadNibNamed("LikeButtonForMergeRequest", owner: fff, options: nil)?.first as? MergeRequestLikeButton else { return }
+        button.delegate = self
+        //self.navigationController?.navigationBar.bounds.height
+        view.frame = CGRect(x: 0, y: 90, width: self.view.bounds.width, height: 50)
+        view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        button.frame = CGRect(x: self.view.bounds.width - 50, y: 0, width: 50, height: 50)
+        
+        button.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        view.addSubview(button)
+        
+//        NSLayoutConstraint.activate([
+//            button.widthAnchor.constraint(equalToConstant: 0),
+//            button.heightAnchor.constraint(equalToConstant: 0),
+//            button.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+//            button.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+//            ])
+        
+//        view.addConstraints([NSLayoutConstraint(item: button, attribute: .trailing, relatedBy: .equal, toItem: view, attribute: .trailing, multiplier: 1, constant: 0),
+//                                  NSLayoutConstraint(item: button, attribute: .height, relatedBy: .equal, toItem: view, attribute: .height, multiplier: 1, constant: 0),
+//                                  NSLayoutConstraint(item: button, attribute: .bottom, relatedBy: .equal, toItem: view, attribute: .bottom, multiplier: 1, constant: 0)])
+        
+        
+        self.view.addSubview(view)
+        
+    }
+    
+    func likeButtonClicked() {
+        print("DELEGATE WORKS")
+    }
+    
+    func changeCurrentImage() {
+        
     }
     
     private func setupRefreshControl() {
