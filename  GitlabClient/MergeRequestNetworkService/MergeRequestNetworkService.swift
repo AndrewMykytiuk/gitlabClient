@@ -63,7 +63,7 @@ class MergeRequestNetworkService: MergeRequestNetworkServiceType {
         }
     }
     
-    func unapproveMergeRequest(id: Int, iid: Int, completion: @escaping Completion<Void>) {
+    func disapproveMergeRequest(id: Int, iid: Int, completion: @escaping Completion<Void>) {
         let request = MergeRequestApproveRequest(method: .POST, projectId: id, iid: iid, isApprove: false)
         
         networkManager.sendRequest(request) { (data) in

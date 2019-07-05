@@ -29,9 +29,7 @@ class MergeRequestViewController: BaseViewController {
     private var mergeRequestService: MergeRequestService!
     private var mergeRequestCell: MergeRequestTableViewCell!
     private var changes: [MergeRequestChange] = []
-    private var id: Int!
-    private var iid: Int!
-    private var fileName: String!
+    private var mergeRequest: MergeRequest!
     private var isLikeButtonTapped: Bool = false
     private let converter: DiffConverterType = DiffConverter()
     
@@ -39,10 +37,8 @@ class MergeRequestViewController: BaseViewController {
         self.mergeRequestService = mergeRequestService
     }
     
-    func setUpMergeRequestInfo(id: Int, iid: Int, fileName: String) {
-        self.id = id
-        self.iid = iid
-        self.fileName = fileName
+    func setUpMergeRequest(mergeRequest: MergeRequest) {
+        self.mergeRequest = mergeRequest
     }
     
     override func viewDidLoad() {
@@ -65,7 +61,7 @@ class MergeRequestViewController: BaseViewController {
     }
     
     private func setupNavigationBar() {
-        self.title = fileName
+        self.title = mergeRequest.title
        
     }
     
@@ -87,7 +83,7 @@ class MergeRequestViewController: BaseViewController {
     
     private func mergeRequestData() {
         activityIndicator.startAnimating()
-        mergeRequestService.mergeRequestChanges(id: id, iid: iid) { [weak self] (result) in
+        mergeRequestService.mergeRequestChanges(mergeRequest: mergeRequest) { [weak self] (result) in
             guard let welf = self else { return }
             DispatchQueue.main.async {
                 switch result {
@@ -120,7 +116,7 @@ class MergeRequestViewController: BaseViewController {
     }
     
     private func likeButtonAction() {
-        mergeRequestService.approveMergeRequest(id: id, iid: iid) { [weak self] (result) in
+        mergeRequestService.approveMergeRequest(mergeRequest: mergeRequest) { [weak self] (result) in
             guard let welf = self else { return }
             switch result {
             case .success:
@@ -133,7 +129,7 @@ class MergeRequestViewController: BaseViewController {
         
     }
     private func dislikeButtonAction() {
-        mergeRequestService.unapproveMergeRequest(id: iid, iid: iid) { [weak self] (result) in
+        mergeRequestService.disapproveMergeRequest(mergeRequest: mergeRequest) { [weak self] (result) in
             guard let welf = self else { return }
             switch result {
             case .success:

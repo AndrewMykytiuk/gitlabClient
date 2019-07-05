@@ -18,9 +18,9 @@ class MergeRequestService {
         self.mergeRequestManager = MergeRequestNetworkService(networkManager: networkManager)
     }
     
-    func mergeRequestChanges(id: Int, iid: Int, completion: @escaping Completion<[MergeRequestChange]>) {
+    func mergeRequestChanges(mergeRequest: MergeRequest, completion: @escaping Completion<[MergeRequestChange]>) {
         
-        self.mergeRequestManager.mergeRequestChanges(id: id, iid: iid) { [weak self] result in
+        self.mergeRequestManager.mergeRequestChanges(id: mergeRequest.projectId, iid: mergeRequest.iid) { [weak self] result in
             guard self != nil else { return }
             switch result {
             case .success(let changes):
@@ -31,9 +31,9 @@ class MergeRequestService {
         }
     }
     
-    func approveMergeRequest(id: Int, iid: Int, completion: @escaping Completion<Void>) {
+    func approveMergeRequest(mergeRequest: MergeRequest, completion: @escaping Completion<Void>) {
         
-        self.mergeRequestManager.approveMergeRequest(id: id, iid: iid, completion: { (result) in
+        self.mergeRequestManager.approveMergeRequest(id: mergeRequest.projectId, iid: mergeRequest.iid, completion: { (result) in
             switch result {
             case .success:
                 completion(.success(Void()))
@@ -43,9 +43,9 @@ class MergeRequestService {
         })
     }
     
-    func unapproveMergeRequest(id: Int, iid: Int, completion: @escaping Completion<Void>) {
+    func disapproveMergeRequest(mergeRequest: MergeRequest, completion: @escaping Completion<Void>) {
         
-        self.mergeRequestManager.unapproveMergeRequest(id: id, iid: iid, completion: { (result) in
+        self.mergeRequestManager.disapproveMergeRequest(id: mergeRequest.projectId, iid: mergeRequest.iid, completion: { (result) in
             switch result {
             case .success(let void):
                 completion(.success(void))
