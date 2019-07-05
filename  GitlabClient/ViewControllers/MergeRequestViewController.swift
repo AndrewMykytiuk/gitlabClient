@@ -66,10 +66,7 @@ class MergeRequestViewController: BaseViewController {
     
     private func setupNavigationBar() {
         self.title = fileName
-        let likeButton = MergeRequestHelper.createButtonForLikes(with: FunctionsNames.likeButtonAction.rawValue, for: self, type: .like)
-        let unlikeButton = MergeRequestHelper.createButtonForLikes(with: FunctionsNames.unlikeButtonAction.rawValue, for: self, type: .unlike)
        
-        self.navigationItem.rightBarButtonItem = isLikeButtonTapped ? unlikeButton : likeButton
     }
     
     private func setupRefreshControl() {
@@ -122,10 +119,8 @@ class MergeRequestViewController: BaseViewController {
         activityIndicator.stopAnimating()
     }
     
-    @objc func likeButtonAction() {
-        let unlikeButton = MergeRequestHelper.createButtonForLikes(with: FunctionsNames.unlikeButtonAction.rawValue, for: self, type: .unlike)
-        self.navigationItem.rightBarButtonItem = unlikeButton
-        mergeRequestService.starMergeRequest(id: iid) { [weak self] (result) in
+    private func likeButtonAction() {
+        mergeRequestService.approveMergeRequest(id: id, iid: iid) { [weak self] (result) in
             guard let welf = self else { return }
             switch result {
             case .success:
@@ -137,10 +132,8 @@ class MergeRequestViewController: BaseViewController {
         }
         
     }
-    @objc func unlikeButtonAction() {
-        let likeButton = MergeRequestHelper.createButtonForLikes(with: FunctionsNames.likeButtonAction.rawValue, for: self, type: .like)
-        self.navigationItem.rightBarButtonItem = likeButton
-        mergeRequestService.unstarMergeRequest(id: iid) { [weak self] (result) in
+    private func dislikeButtonAction() {
+        mergeRequestService.unapproveMergeRequest(id: iid, iid: iid) { [weak self] (result) in
             guard let welf = self else { return }
             switch result {
             case .success:

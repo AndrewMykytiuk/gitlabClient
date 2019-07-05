@@ -30,6 +30,11 @@ enum Constants {
             case changesKey = "changes"
         }
         
+        enum ApproveKey: String {
+            case approve = "approve"
+            case unapprove = "unapprove"
+        }
+        
         enum Authorize {
             
             enum Keys: String {
