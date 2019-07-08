@@ -16,42 +16,24 @@ protocol LikeButtonDelegate: class {
 
 class MergeRequestLikeButton: UIButton {
     
-    @IBOutlet weak var likeButton: MergeRequestLikeButton!
+    enum likeButtonImages: String {
+        case approve = "icons8-chevron-up-filled-50.png"
+        case disapprove = "icons8-chevron-down-50.png"
+    }
     
     weak var delegate: LikeButtonDelegate?
     
     @IBAction func likeButtonAction(_ sender: MergeRequestLikeButton) {
         delegate?.likeButtonClicked()
-        showLoading()
     }
     
+    private var activityIndicator: UIActivityIndicatorView!
     
-    
-    private var activityIndicator: UIActivityIndicatorView! {
-        didSet {
-            
-        }
+    func setUpActivityIndicator(with indicator: UIActivityIndicatorView) {
+        self.activityIndicator = indicator
     }
     
-    func showLoading() {
-        
-        showSpinning()
-    }
-    
-    func changeImageAnimated(image: UIImage?) {
-        guard let imageView = self.imageView, let currentImage = imageView.image, let newImage = image else {
-            return
-        }
-        let crossFade: CABasicAnimation = CABasicAnimation(keyPath: "contents")
-        crossFade.duration = 0.3
-        crossFade.fromValue = currentImage.cgImage
-        crossFade.toValue = newImage.cgImage
-        crossFade.isRemovedOnCompletion = false
-        crossFade.fillMode = CAMediaTimingFillMode.forwards
-        imageView.layer.add(crossFade, forKey: "animateContents")
-    }
-    
-    func hideLoading(with pressedButton: Bool) {
+    private func hideLoading() {
         DispatchQueue.main.async(execute: {
             self.activityIndicator.stopAnimating()
             
@@ -59,21 +41,32 @@ class MergeRequestLikeButton: UIButton {
     }
     
     func hideButton() {
-        self.likeButton.isHidden = true
+        UIView.animate(withDuration: 0.3,
+                       delay: 0,
+                       options: [.curveEaseIn],
+                       animations: {
+                        self.imageView?.layer.transform = CATransform3DMakeScale(0.0, 0.0, 0.0)
+                        
+        }, completion: { _ in
+            self.showSpinning()
+        })
     }
     
-    private func createActivityIndicator() {
-        activityIndicator = UIActivityIndicatorView()
-        activityIndicator.hidesWhenStopped = true
-        activityIndicator.color = .blue
+    func buttonAppear(with path: likeButtonImages) {
+        hideLoading()
+        let image = UIImage.init(named: path.rawValue)
+        self.setBackgroundImage(image, for: .normal)
+        UIView.animate(withDuration: 0.3,
+                       delay: 0,
+                       options: [.curveEaseInOut],
+                       animations: {
+                        self.imageView?.layer.transform = CATransform3DIdentity
+        }, completion: nil)
     }
     
     private func showSpinning() {
-        createActivityIndicator() //Каждый раз??? ТЫ ШОТО НАПУТАЛ
         activityIndicator.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(activityIndicator)
-        //self.changeImageAnimated(image:#imageLiteral(resourceName: "icons8-chevron-down-50"))
-        self.likeButton.isHidden = true
         centerActivityIndicatorInButton()
         activityIndicator.startAnimating()
     }
