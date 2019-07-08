@@ -74,6 +74,7 @@
 		CEB7346F22CE0E8000365943 /* LikeButtonForMergeRequest.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEB7346E22CE0E8000365943 /* LikeButtonForMergeRequest.xib */; };
 		CEB7347222CE0EFE00365943 /* ToolbarViewLikeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB7347122CE0EFE00365943 /* ToolbarViewLikeButton.swift */; };
 		CEB7347422CE0F1400365943 /* MergeRequestLikeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB7347322CE0F1400365943 /* MergeRequestLikeButton.swift */; };
+		CEB7346022CCAC2800365943 /* MergeRequestApproveRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB7345F22CCAC2800365943 /* MergeRequestApproveRequest.swift */; };
 		CEDC6A35228AC48000243680 /* FileDiffsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDC6A34228AC48000243680 /* FileDiffsViewModel.swift */; };
 		CEE51019225F38070049EC69 /* UITapGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE51016225F38070049EC69 /* UITapGestureRecognizer.swift */; };
 		CEE5101A225F38070049EC69 /* ProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE51018225F38070049EC69 /* ProfileTableViewCell.swift */; };
@@ -160,6 +161,7 @@
 		CEB7346E22CE0E8000365943 /* LikeButtonForMergeRequest.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LikeButtonForMergeRequest.xib; sourceTree = "<group>"; };
 		CEB7347122CE0EFE00365943 /* ToolbarViewLikeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolbarViewLikeButton.swift; sourceTree = "<group>"; };
 		CEB7347322CE0F1400365943 /* MergeRequestLikeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MergeRequestLikeButton.swift; sourceTree = "<group>"; };
+		CEB7345F22CCAC2800365943 /* MergeRequestApproveRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MergeRequestApproveRequest.swift; sourceTree = "<group>"; };
 		CEDC6A34228AC48000243680 /* FileDiffsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileDiffsViewModel.swift; sourceTree = "<group>"; };
 		CEE51016225F38070049EC69 /* UITapGestureRecognizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITapGestureRecognizer.swift; sourceTree = "<group>"; };
 		CEE51018225F38070049EC69 /* ProfileTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileTableViewCell.swift; sourceTree = "<group>"; };
@@ -481,6 +483,7 @@
 			children = (
 				CEB2FCDB22830B130046B722 /* MergeRequestDetailsRequest.swift */,
 				CEE51020225F461C0049EC69 /* MergeRequestRequest.swift */,
+				CEB7345F22CCAC2800365943 /* MergeRequestApproveRequest.swift */,
 				CEE51024225F532F0049EC69 /* MergeRequestNetworkService.swift */,
 			);
 			path = MergeRequestNetworkService;
@@ -626,6 +629,7 @@
 				CE6FF034223AAB01003F7C56 /* Result.swift in Sources */,
 				CE2B8B2F22B13807000E5D55 /* DiffItem.swift in Sources */,
 				CE532F16229D4EA300130CD5 /* ProjectMapper.swift in Sources */,
+				CEB7346022CCAC2800365943 /* MergeRequestApproveRequest.swift in Sources */,
 				CE729F3B2244D7720006C37C /* KeychainItem.swift in Sources */,
 				CE3B695422537BED00FB7DEA /* ProjectService.swift in Sources */,
 				AEF0BE4B22A6B7590029E7C0 /* UserEntity+CoreDataProperties.swift in Sources */,

@@ -50,6 +50,32 @@ class MergeRequestNetworkService: MergeRequestNetworkServiceType {
         }
     }
     
+    func approveMergeRequest(id: Int, iid: Int, completion: @escaping Completion<Void>) {
+        let request = MergeRequestApproveRequest(method: .POST, projectId: id, iid: iid, isApprove: true)
+        
+        networkManager.sendRequest(request) { (data) in
+            switch data {
+            case .success:
+                return completion(.success(Void()))
+            case .error(let error):
+                return completion(.error(error))
+            }
+        }
+    }
+    
+    func disapproveMergeRequest(id: Int, iid: Int, completion: @escaping Completion<Void>) {
+        let request = MergeRequestApproveRequest(method: .POST, projectId: id, iid: iid, isApprove: false)
+        
+        networkManager.sendRequest(request) { (data) in
+            switch data {
+            case .success:
+                return completion(.success(Void()))
+            case .error(let error):
+                return completion(.error(error))
+            }
+        }
+    }
+    
     private func processMRData(_ data: Data, completion: @escaping Completion<[MergeRequest]>) {
         let result: Result<[MergeRequest]> = DecoderHelper.modelFromData(data)
         switch result {
