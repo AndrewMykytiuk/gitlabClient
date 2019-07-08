@@ -23,10 +23,6 @@
 		CE3B69522253750200FB7DEA /* ProjectsNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3B69512253750200FB7DEA /* ProjectsNetworkService.swift */; };
 		CE3B695422537BED00FB7DEA /* ProjectService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3B695322537BED00FB7DEA /* ProjectService.swift */; };
 		CE3B695622537CE500FB7DEA /* Project.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3B695522537CE500FB7DEA /* Project.swift */; };
-		CE532F1C229D8B5D00130CD5 /* DiffsParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE532F1B229D8B5D00130CD5 /* DiffsParser.swift */; };
-		CE532F21229ED27E00130CD5 /* LoginRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE532F1F229ED27E00130CD5 /* LoginRequest.swift */; };
-		CE532F22229ED27E00130CD5 /* LoginNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE532F20229ED27E00130CD5 /* LoginNetworkService.swift */; };
-		CE532F3822A7F6B400130CD5 /* DiffsDecorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE532F3722A7F6B400130CD5 /* DiffsDecorator.swift */; };
 		CE532EC3229593D700130CD5 /* StorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE532EC2229593D700130CD5 /* StorageService.swift */; };
 		CE532ED42296952400130CD5 /* CoreDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CE532ED22296952400130CD5 /* CoreDataModel.xcdatamodeld */; };
 		CE532F10229C6C8300130CD5 /* ProjectStorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE532F0F229C6C8300130CD5 /* ProjectStorageService.swift */; };
@@ -34,6 +30,10 @@
 		CE532F16229D4EA300130CD5 /* ProjectMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE532F15229D4EA300130CD5 /* ProjectMapper.swift */; };
 		CE532F18229D4EB900130CD5 /* MergeRequestMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE532F17229D4EB900130CD5 /* MergeRequestMapper.swift */; };
 		CE532F1A229D4ECB00130CD5 /* UserMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE532F19229D4ECB00130CD5 /* UserMapper.swift */; };
+		CE532F1C229D8B5D00130CD5 /* DiffsParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE532F1B229D8B5D00130CD5 /* DiffsParser.swift */; };
+		CE532F21229ED27E00130CD5 /* LoginRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE532F1F229ED27E00130CD5 /* LoginRequest.swift */; };
+		CE532F22229ED27E00130CD5 /* LoginNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE532F20229ED27E00130CD5 /* LoginNetworkService.swift */; };
+		CE532F3822A7F6B400130CD5 /* DiffsDecorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE532F3722A7F6B400130CD5 /* DiffsDecorator.swift */; };
 		CE6FF0142236AECB003F7C56 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6FF0132236AECB003F7C56 /* AppDelegate.swift */; };
 		CE6FF0162236AECB003F7C56 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6FF0152236AECB003F7C56 /* LogInViewController.swift */; };
 		CE6FF0192236AECC003F7C56 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE6FF0172236AECB003F7C56 /* Main.storyboard */; };
@@ -70,6 +70,7 @@
 		CEB2FCD0227C90050046B722 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB2FCCF227C90050046B722 /* UIColor.swift */; };
 		CEB2FCDC22830B150046B722 /* MergeRequestDetailsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB2FCDB22830B130046B722 /* MergeRequestDetailsRequest.swift */; };
 		CEB2FCDE228586B70046B722 /* MergeRequestChangesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB2FCDD228586B50046B722 /* MergeRequestChangesViewController.swift */; };
+		CEB7346022CCAC2800365943 /* MergeRequestApproveRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB7345F22CCAC2800365943 /* MergeRequestApproveRequest.swift */; };
 		CEDC6A35228AC48000243680 /* FileDiffsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDC6A34228AC48000243680 /* FileDiffsViewModel.swift */; };
 		CEE51019225F38070049EC69 /* UITapGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE51016225F38070049EC69 /* UITapGestureRecognizer.swift */; };
 		CEE5101A225F38070049EC69 /* ProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE51018225F38070049EC69 /* ProfileTableViewCell.swift */; };
@@ -100,10 +101,6 @@
 		CE3B69512253750200FB7DEA /* ProjectsNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectsNetworkService.swift; sourceTree = "<group>"; };
 		CE3B695322537BED00FB7DEA /* ProjectService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectService.swift; sourceTree = "<group>"; };
 		CE3B695522537CE500FB7DEA /* Project.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Project.swift; sourceTree = "<group>"; };
-		CE532F1B229D8B5D00130CD5 /* DiffsParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiffsParser.swift; sourceTree = "<group>"; };
-		CE532F1F229ED27E00130CD5 /* LoginRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginRequest.swift; sourceTree = "<group>"; };
-		CE532F20229ED27E00130CD5 /* LoginNetworkService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginNetworkService.swift; sourceTree = "<group>"; };
-		CE532F3722A7F6B400130CD5 /* DiffsDecorator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiffsDecorator.swift; sourceTree = "<group>"; };
 		CE532EC2229593D700130CD5 /* StorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageService.swift; sourceTree = "<group>"; };
 		CE532ED32296952400130CD5 /* CoreDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreDataModel.xcdatamodel; sourceTree = "<group>"; };
 		CE532F0F229C6C8300130CD5 /* ProjectStorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectStorageService.swift; sourceTree = "<group>"; };
@@ -111,6 +108,10 @@
 		CE532F15229D4EA300130CD5 /* ProjectMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectMapper.swift; sourceTree = "<group>"; };
 		CE532F17229D4EB900130CD5 /* MergeRequestMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MergeRequestMapper.swift; sourceTree = "<group>"; };
 		CE532F19229D4ECB00130CD5 /* UserMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserMapper.swift; sourceTree = "<group>"; };
+		CE532F1B229D8B5D00130CD5 /* DiffsParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiffsParser.swift; sourceTree = "<group>"; };
+		CE532F1F229ED27E00130CD5 /* LoginRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginRequest.swift; sourceTree = "<group>"; };
+		CE532F20229ED27E00130CD5 /* LoginNetworkService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginNetworkService.swift; sourceTree = "<group>"; };
+		CE532F3722A7F6B400130CD5 /* DiffsDecorator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiffsDecorator.swift; sourceTree = "<group>"; };
 		CE6FF0102236AECB003F7C56 /* GitlabClient.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GitlabClient.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE6FF0132236AECB003F7C56 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CE6FF0152236AECB003F7C56 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
@@ -152,6 +153,7 @@
 		CEB2FCCF227C90050046B722 /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		CEB2FCDB22830B130046B722 /* MergeRequestDetailsRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MergeRequestDetailsRequest.swift; sourceTree = "<group>"; };
 		CEB2FCDD228586B50046B722 /* MergeRequestChangesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MergeRequestChangesViewController.swift; sourceTree = "<group>"; };
+		CEB7345F22CCAC2800365943 /* MergeRequestApproveRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MergeRequestApproveRequest.swift; sourceTree = "<group>"; };
 		CEDC6A34228AC48000243680 /* FileDiffsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileDiffsViewModel.swift; sourceTree = "<group>"; };
 		CEE51016225F38070049EC69 /* UITapGestureRecognizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITapGestureRecognizer.swift; sourceTree = "<group>"; };
 		CEE51018225F38070049EC69 /* ProfileTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileTableViewCell.swift; sourceTree = "<group>"; };
@@ -193,31 +195,6 @@
 			path = " ProjectsNetworkService";
 			sourceTree = "<group>";
 		};
-		CE532F1D229D8B9400130CD5 /* Parsers */ = {
-			isa = PBXGroup;
-			children = (
-				CE532F1B229D8B5D00130CD5 /* DiffsParser.swift */,
-			);
-			path = Parsers;
-			sourceTree = "<group>";
-		};
-		CE532F1E229ED27E00130CD5 /* LoginNetworkService */ = {
-			isa = PBXGroup;
-			children = (
-				CE532F1F229ED27E00130CD5 /* LoginRequest.swift */,
-				CE532F20229ED27E00130CD5 /* LoginNetworkService.swift */,
-			);
-			path = LoginNetworkService;
-			sourceTree = "<group>";
-		};
-		CE532F3622A7F69600130CD5 /* Decorators */ = {
-			isa = PBXGroup;
-			children = (
-				CE532F3722A7F6B400130CD5 /* DiffsDecorator.swift */,
-			);
-			path = Decorators;
-			sourceTree = "<group>";
-		};
 		CE532EC42295953500130CD5 /* StorageServices */ = {
 			isa = PBXGroup;
 			children = (
@@ -243,6 +220,31 @@
 				AEF0BE4922A6B7590029E7C0 /* ProjectEntity+CoreDataProperties.swift */,
 			);
 			path = CoreDataClasses;
+			sourceTree = "<group>";
+		};
+		CE532F1D229D8B9400130CD5 /* Parsers */ = {
+			isa = PBXGroup;
+			children = (
+				CE532F1B229D8B5D00130CD5 /* DiffsParser.swift */,
+			);
+			path = Parsers;
+			sourceTree = "<group>";
+		};
+		CE532F1E229ED27E00130CD5 /* LoginNetworkService */ = {
+			isa = PBXGroup;
+			children = (
+				CE532F1F229ED27E00130CD5 /* LoginRequest.swift */,
+				CE532F20229ED27E00130CD5 /* LoginNetworkService.swift */,
+			);
+			path = LoginNetworkService;
+			sourceTree = "<group>";
+		};
+		CE532F3622A7F69600130CD5 /* Decorators */ = {
+			isa = PBXGroup;
+			children = (
+				CE532F3722A7F6B400130CD5 /* DiffsDecorator.swift */,
+			);
+			path = Decorators;
 			sourceTree = "<group>";
 		};
 		CE6FF0072236AECB003F7C56 = {
@@ -453,6 +455,7 @@
 			children = (
 				CEB2FCDB22830B130046B722 /* MergeRequestDetailsRequest.swift */,
 				CEE51020225F461C0049EC69 /* MergeRequestRequest.swift */,
+				CEB7345F22CCAC2800365943 /* MergeRequestApproveRequest.swift */,
 				CEE51024225F532F0049EC69 /* MergeRequestNetworkService.swift */,
 			);
 			path = MergeRequestNetworkService;
@@ -533,14 +536,13 @@
 			files = (
 				CEB2FCC3226F15380046B722 /* MergeRequestChange.swift in Sources */,
 				CE532F1A229D4ECB00130CD5 /* UserMapper.swift in Sources */,
-				CEB2FCC3226F15380046B722 /* MergeRequestChanges.swift in Sources */,
+				CEB2FCC3226F15380046B722 /* MergeRequestChange.swift in Sources */,
 				CE729F1F224125240006C37C /* DependencyProvider.swift in Sources */,
 				CE2B8B2822AAC0CC000E5D55 /* MergeRequestChangesTableViewCell.swift in Sources */,
 				CE6FF0292236B1EA003F7C56 /* OAuthLogInViewController.swift in Sources */,
 				CE729F3D2244F5120006C37C /* ProfileViewController.swift in Sources */,
 				CEB2FCDE228586B70046B722 /* MergeRequestChangesViewController.swift in Sources */,
 				CE532ED42296952400130CD5 /* CoreDataModel.xcdatamodeld in Sources */,
-				CE6FF043223B96EE003F7C56 /* LoginNetworkService.swift in Sources */,
 				CEE5101E225F384A0049EC69 /* ProfileItemViewModel.swift in Sources */,
 				CE532F1C229D8B5D00130CD5 /* DiffsParser.swift in Sources */,
 				AEF0BE4E22A6B7590029E7C0 /* ProjectEntity+CoreDataClass.swift in Sources */,
@@ -595,6 +597,7 @@
 				CE6FF034223AAB01003F7C56 /* Result.swift in Sources */,
 				CE2B8B2F22B13807000E5D55 /* DiffItem.swift in Sources */,
 				CE532F16229D4EA300130CD5 /* ProjectMapper.swift in Sources */,
+				CEB7346022CCAC2800365943 /* MergeRequestApproveRequest.swift in Sources */,
 				CE729F3B2244D7720006C37C /* KeychainItem.swift in Sources */,
 				CE3B695422537BED00FB7DEA /* ProjectService.swift in Sources */,
 				AEF0BE4B22A6B7590029E7C0 /* UserEntity+CoreDataProperties.swift in Sources */,
