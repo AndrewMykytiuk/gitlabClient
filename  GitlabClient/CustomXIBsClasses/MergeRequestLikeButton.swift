@@ -11,7 +11,6 @@ import UIKit
 
 protocol LikeButtonDelegate: class {
     func likeButtonClicked()
-    func changeCurrentImage()
 }
 
 class MergeRequestLikeButton: UIButton {
@@ -35,15 +34,15 @@ class MergeRequestLikeButton: UIButton {
     
     func hideButton() {
         DispatchQueue.main.async {
-        UIView.animate(withDuration: 0.3,
-                       delay: 0,
-                       options: [.curveEaseIn],
-                       animations: {
-                        self.setBackgroundImage(nil, for: .normal)
-                        
-        }, completion: { _ in
-            self.showSpinning() //Retain?
-        })
+            UIView.animate(withDuration: 0.3,
+                           delay: 0,
+                           options: [.curveEaseIn],
+                           animations: {
+                            self.setBackgroundImage(nil, for: .normal)
+                            
+            }, completion: { _ in
+                self.showSpinning() //Retain?
+            })
         }
     }
     

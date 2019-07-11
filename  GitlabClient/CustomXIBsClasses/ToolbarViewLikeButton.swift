@@ -52,12 +52,7 @@ class ToolbarViewLikeButton: UIView {
 extension ToolbarViewLikeButton: LikeButtonDelegate {
     
     func likeButtonClicked() {
-
         delegate?.likeButtonPressed()
-    }
-    
-    func changeCurrentImage() {
-        
     }
     
 }
