@@ -16,12 +16,13 @@ protocol LikeButtonToolbarViewDelegate: class {
 class ToolbarViewLikeButton: UIView {
     
     private var likeButton: MergeRequestLikeButton?
+    private let likeButtonForMergeRequest = "LikeButtonForMergeRequest"
     
     weak var delegate: LikeButtonToolbarViewDelegate?
     
     func setLikeButton() {
         likeButton = MergeRequestLikeButton()
-        guard let button = Bundle.main.loadNibNamed("LikeButtonForMergeRequest", owner: likeButton, options: nil)?.first as? MergeRequestLikeButton else { return }
+        guard let button = Bundle.main.loadNibNamed(self.likeButtonForMergeRequest, owner: likeButton, options: nil)?.first as? MergeRequestLikeButton else { return }
         likeButton = button
         button.delegate = self
         let activityIndicator = createActivityIndicator()
@@ -51,8 +52,8 @@ class ToolbarViewLikeButton: UIView {
 extension ToolbarViewLikeButton: LikeButtonDelegate {
     
     func likeButtonClicked() {
+
         delegate?.likeButtonPressed()
-        self.buttonClick()
     }
     
     func changeCurrentImage() {

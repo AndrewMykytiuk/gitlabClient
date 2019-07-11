@@ -436,18 +436,27 @@
                                     <outlet property="delegate" destination="Wrl-fD-vUt" id="Wwa-Md-zL9"/>
                                 </connections>
                             </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jCY-mD-dwi">
+                                <rect key="frame" x="0.0" y="20" width="375" height="50"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="0.8028413955479452" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="jCY-mD-dwi" firstAttribute="top" secondItem="8U0-cl-xDY" secondAttribute="top" id="9oy-xM-Tgd"/>
+                            <constraint firstItem="jCY-mD-dwi" firstAttribute="leading" secondItem="8U0-cl-xDY" secondAttribute="leading" id="FSQ-bs-Zlo"/>
                             <constraint firstItem="4Ls-4x-F9g" firstAttribute="top" secondItem="8U0-cl-xDY" secondAttribute="top" constant="50" id="G97-31-QRN"/>
                             <constraint firstItem="8U0-cl-xDY" firstAttribute="bottom" secondItem="4Ls-4x-F9g" secondAttribute="bottom" id="Rgv-8y-lxK"/>
+                            <constraint firstItem="4Ls-4x-F9g" firstAttribute="top" secondItem="jCY-mD-dwi" secondAttribute="bottom" id="YAM-KS-gc6"/>
                             <constraint firstItem="4Ls-4x-F9g" firstAttribute="leading" secondItem="8U0-cl-xDY" secondAttribute="leading" id="aBr-Ms-cXB"/>
+                            <constraint firstItem="jCY-mD-dwi" firstAttribute="trailing" secondItem="8U0-cl-xDY" secondAttribute="trailing" id="faF-Im-3Sm"/>
                             <constraint firstItem="4Ls-4x-F9g" firstAttribute="trailing" secondItem="8U0-cl-xDY" secondAttribute="trailing" id="lUq-8u-bB7"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="8U0-cl-xDY"/>
                     </view>
                     <connections>
                         <outlet property="mergeRequestTableView" destination="4Ls-4x-F9g" id="qcj-yF-GjC"/>
+                        <outlet property="viewUnderNavigationBar" destination="jCY-mD-dwi" id="jWb-Fa-sAA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rYo-8t-woB" userLabel="First Responder" sceneMemberID="firstResponder"/>

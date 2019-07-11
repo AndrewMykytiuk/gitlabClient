@@ -50,26 +50,26 @@ class MergeRequestNetworkService: MergeRequestNetworkServiceType {
         }
     }
     
-    func approveMergeRequest(id: Int, iid: Int, completion: @escaping Completion<Void>) {
+    func approveMergeRequest(id: Int, iid: Int, completion: @escaping Completion<MergeRequestApprove>) {
         let request = MergeRequestApproveRequest(method: .POST, projectId: id, iid: iid, isApprove: true)
         
-        networkManager.sendRequest(request) { (data) in
+        networkManager.sendRequest(request) { [weak self] (data) in
             switch data {
-            case .success:
-                return completion(.success(Void()))
+            case .success(let data):
+                self?.processMRApproveData(data, completion: completion)
             case .error(let error):
                 return completion(.error(error))
             }
         }
     }
     
-    func disapproveMergeRequest(id: Int, iid: Int, completion: @escaping Completion<Void>) {
+    func disapproveMergeRequest(id: Int, iid: Int, completion: @escaping Completion<MergeRequestApprove>) {
         let request = MergeRequestApproveRequest(method: .POST, projectId: id, iid: iid, isApprove: false)
         
-        networkManager.sendRequest(request) { (data) in
+        networkManager.sendRequest(request) { [weak self] (data) in
             switch data {
-            case .success:
-                return completion(.success(Void()))
+            case .success(let data):
+                self?.processMRApproveData(data, completion: completion)
             case .error(let error):
                 return completion(.error(error))
             }
@@ -92,6 +92,17 @@ class MergeRequestNetworkService: MergeRequestNetworkServiceType {
         switch result {
         case .success(let request):
             completion(.success(request.changes))
+        case .error(let error):
+            completion(.error(error))
+        }
+        
+    }
+    
+    private func processMRApproveData(_ data: Data, completion: @escaping Completion<MergeRequestApprove>) {
+        let result: Result<MergeRequestApprove> = DecoderHelper.modelFromData(data)
+        switch result {
+        case .success(let approvedData):
+            completion(.success(approvedData))
         case .error(let error):
             completion(.error(error))
         }

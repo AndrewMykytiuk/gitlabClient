@@ -17,8 +17,8 @@ protocol LikeButtonDelegate: class {
 class MergeRequestLikeButton: UIButton {
     
     enum likeButtonImages: String {
-        case approve = "icons8-chevron-up-filled-50.png"
-        case disapprove = "icons8-chevron-down-50.png"
+        case approve = "icons8-thumbs-up-50.png"
+        case disapprove = "icons8-thumbs-down-50.png"
     }
     
     weak var delegate: LikeButtonDelegate?
@@ -33,35 +33,32 @@ class MergeRequestLikeButton: UIButton {
         self.activityIndicator = indicator
     }
     
-    private func hideLoading() {
-        DispatchQueue.main.async(execute: {
-            self.activityIndicator.stopAnimating()
-            
-        })
-    }
-    
     func hideButton() {
+        DispatchQueue.main.async {
         UIView.animate(withDuration: 0.3,
                        delay: 0,
                        options: [.curveEaseIn],
                        animations: {
-                        self.imageView?.layer.transform = CATransform3DMakeScale(0.0, 0.0, 0.0)
+                        self.setBackgroundImage(nil, for: .normal)
                         
         }, completion: { _ in
-            self.showSpinning()
+            self.showSpinning() //Retain?
         })
+        }
     }
     
     func buttonAppear(with path: likeButtonImages) {
-        hideLoading()
         let image = UIImage.init(named: path.rawValue)
-        self.setBackgroundImage(image, for: .normal)
-        UIView.animate(withDuration: 0.3,
-                       delay: 0,
-                       options: [.curveEaseInOut],
-                       animations: {
-                        self.imageView?.layer.transform = CATransform3DIdentity
-        }, completion: nil)
+        DispatchQueue.main.async {
+            self.activityIndicator.stopAnimating()
+            
+            UIView.animate(withDuration: 0.3,
+                           delay: 0,
+                           options: [.curveEaseInOut],
+                           animations: {
+                            self.setBackgroundImage(image, for: .normal)
+            }, completion: nil)
+        }
     }
     
     private func showSpinning() {

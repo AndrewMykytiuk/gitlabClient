@@ -14,14 +14,10 @@
         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="SeH-au-WRw" customClass="MergeRequestLikeButton" customModule="GitlabClient" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-            <state key="normal" image="icons8-chevron-up-filled-50"/>
             <connections>
                 <action selector="likeButtonAction:" destination="-1" eventType="touchUpInside" id="b4F-bV-pb9"/>
             </connections>
             <point key="canvasLocation" x="892.02898550724649" y="65.959821428571431"/>
         </button>
     </objects>
-    <resources>
-        <image name="icons8-chevron-up-filled-50" width="50" height="50"/>
-    </resources>
 </document>

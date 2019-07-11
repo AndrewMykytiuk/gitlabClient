@@ -24,7 +24,7 @@ class UserStorageService: UserStorageServiceType {
     }
     
     func createEntity(with user: User) -> UserEntity {
-        guard let entity = NSEntityDescription.entity(forEntityName: entityName(), in: storage.childContext) else { fatalError(GitLabError.Storage.Entity.Creation.failedProject.rawValue) }
+        guard let entity = NSEntityDescription.entity(forEntityName: entityName(), in: storage.childContext) else { fatalError(GitLabError.Storage.Entity.Creation.failedUser.rawValue) }
         let userEntity = UserEntity(entity: entity, insertInto: storage.childContext)
         let filledEntity = userMapper.mapEntityIntoObject(with: user, userEntity: userEntity)
         return filledEntity

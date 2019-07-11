@@ -43,4 +43,8 @@ class MergeRequestMapper {
         return (assigneeEntity, authorEntity)
     }
     
+    func userEntities(from entity: MergeRequestEntity) -> [UserEntity] {
+        guard let userEntities = entity.approvedBy?.allObjects as? [UserEntity] else { fatalError(GitLabError.Storage.Entity.Mapper.failedUserMap.rawValue) }
+        return userEntities
+    }
 }
