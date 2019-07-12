@@ -66,7 +66,6 @@
 		CEB2FCDE228586B70046B722 /* MergeRequestChangesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB2FCDD228586B50046B722 /* MergeRequestChangesViewController.swift */; };
 		CEB7346022CCAC2800365943 /* MergeRequestApproveRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB7345F22CCAC2800365943 /* MergeRequestApproveRequest.swift */; };
 		CEB7346D22CE0E2900365943 /* ToolbarViewForLikeButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEB7346C22CE0E2900365943 /* ToolbarViewForLikeButton.xib */; };
-		CEB7346F22CE0E8000365943 /* LikeButtonForMergeRequest.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEB7346E22CE0E8000365943 /* LikeButtonForMergeRequest.xib */; };
 		CEB7347222CE0EFE00365943 /* ToolbarViewLikeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB7347122CE0EFE00365943 /* ToolbarViewLikeButton.swift */; };
 		CEB7347422CE0F1400365943 /* MergeRequestLikeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB7347322CE0F1400365943 /* MergeRequestLikeButton.swift */; };
 		CEB7347E22D4EC2C00365943 /* MergeRequestApprove.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB7347D22D4EC2C00365943 /* MergeRequestApprove.swift */; };
@@ -154,7 +153,6 @@
 		CEB2FCDD228586B50046B722 /* MergeRequestChangesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MergeRequestChangesViewController.swift; sourceTree = "<group>"; };
 		CEB7345F22CCAC2800365943 /* MergeRequestApproveRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MergeRequestApproveRequest.swift; sourceTree = "<group>"; };
 		CEB7346C22CE0E2900365943 /* ToolbarViewForLikeButton.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ToolbarViewForLikeButton.xib; sourceTree = "<group>"; };
-		CEB7346E22CE0E8000365943 /* LikeButtonForMergeRequest.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LikeButtonForMergeRequest.xib; sourceTree = "<group>"; };
 		CEB7347122CE0EFE00365943 /* ToolbarViewLikeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolbarViewLikeButton.swift; sourceTree = "<group>"; };
 		CEB7347322CE0F1400365943 /* MergeRequestLikeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MergeRequestLikeButton.swift; sourceTree = "<group>"; };
 		CEB7347D22D4EC2C00365943 /* MergeRequestApprove.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MergeRequestApprove.swift; sourceTree = "<group>"; };
@@ -433,7 +431,6 @@
 			isa = PBXGroup;
 			children = (
 				CEB7346C22CE0E2900365943 /* ToolbarViewForLikeButton.xib */,
-				CEB7346E22CE0E8000365943 /* LikeButtonForMergeRequest.xib */,
 			);
 			path = XIBs;
 			sourceTree = "<group>";
@@ -554,7 +551,6 @@
 				CE6FF0212236AECE003F7C56 /* LaunchScreen.storyboard in Resources */,
 				CE729F322243E5BA0006C37C /* Localizable.strings in Resources */,
 				CE6FF01E2236AECE003F7C56 /* Assets.xcassets in Resources */,
-				CEB7346F22CE0E8000365943 /* LikeButtonForMergeRequest.xib in Resources */,
 				CE6FF0192236AECC003F7C56 /* Main.storyboard in Resources */,
 				CEB7346D22CE0E2900365943 /* ToolbarViewForLikeButton.xib in Resources */,
 			);
