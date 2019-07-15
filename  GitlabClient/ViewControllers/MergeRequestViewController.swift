@@ -43,7 +43,7 @@ class MergeRequestViewController: BaseViewController {
         setupActivityIndicator(with: self.view)
         setupRefreshControl()
         mergeRequestData()
-        setUpXIBFile()
+        setUpXIBsFiles()
         self.title = mergeRequest.title
     }
     
@@ -58,16 +58,23 @@ class MergeRequestViewController: BaseViewController {
         self.mergeRequestCell.layoutIfNeeded()
     }
     
-    private func setUpXIBFile() {
+    private func setUpXIBsFiles() {
         
-        let toolbarView = ToolbarViewLikeButton()
-        guard let view = Bundle.main.loadNibNamed(self.toolbarViewForLikeButton, owner: toolbarView, options: nil)?.first as? ToolbarViewLikeButton else { return }
+        guard let view = Bundle.main.loadNibNamed(self.toolbarViewForLikeButton, owner: self, options: nil)?.first as? ToolbarViewLikeButton else { return }
         view.delegate = self
-        view.setUpLikeButtonDelegate()
-        view.showUpButtonImage(with: isLikeButtonTapped)
+        view.setLikeButton()
+        view.buttonAppear(with: isLikeButtonTapped)
         self.toolbarLikeView = view
+
+        view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         
         self.viewUnderNavigationBar.addSubview(view)
+        
+        NSLayoutConstraint(item: view, attribute: .leading, relatedBy: .equal, toItem: viewUnderNavigationBar, attribute: .leadingMargin, multiplier: 1.0, constant: 0.0).isActive = true
+        NSLayoutConstraint(item: view, attribute: .trailing, relatedBy: .equal, toItem: viewUnderNavigationBar, attribute: .trailingMargin, multiplier: 1.0, constant: 0.0).isActive = true
+        NSLayoutConstraint(item: view, attribute: .height, relatedBy: .equal, toItem: viewUnderNavigationBar, attribute:.width, multiplier: 1.0, constant:0.0).isActive = true
+        NSLayoutConstraint(item: view, attribute: .width, relatedBy: .equal, toItem: viewUnderNavigationBar, attribute:.width, multiplier: 1.0, constant:0.0).isActive = true
+        
         
     }
         
@@ -121,7 +128,8 @@ class MergeRequestViewController: BaseViewController {
         activityIndicator.stopAnimating()
     }
     
-    private func likeButton() {
+    private func likeButtonAction() {
+        toolbarLikeView?.buttonClick()
         mergeRequestService.approveMergeRequest(mergeRequest: mergeRequest) { [weak self] (result) in
             guard let welf = self else { return }
             switch result {
@@ -131,12 +139,13 @@ class MergeRequestViewController: BaseViewController {
                 let alert = AlertHelper.createErrorAlert(message: error.localizedDescription, handler: nil)
                 welf.present(alert, animated: true)
             }
-            welf.toolbarLikeView?.showUpButtonImage(with: welf.isLikeButtonTapped)
+            welf.toolbarLikeView?.buttonAppear(with: welf.isLikeButtonTapped)
         }
         
     }
     
-    private func dislikeButton() {
+    private func dislikeButtonAction() {
+        toolbarLikeView?.buttonClick()
         mergeRequestService.disapproveMergeRequest(mergeRequest: mergeRequest) { [weak self] (result) in
             guard let welf = self else { return }
             switch result {
@@ -146,7 +155,7 @@ class MergeRequestViewController: BaseViewController {
                 let alert = AlertHelper.createErrorAlert(message: error.localizedDescription, handler: nil)
                 welf.present(alert, animated: true)
             }
-            welf.toolbarLikeView?.showUpButtonImage(with: welf.isLikeButtonTapped)
+            welf.toolbarLikeView?.buttonAppear(with: welf.isLikeButtonTapped)
         }
     }
     
@@ -220,7 +229,7 @@ extension MergeRequestViewController: UITableViewDelegate, UITableViewDataSource
 extension MergeRequestViewController: LikeButtonToolbarViewDelegate {
     
     func likeButtonPressed() {
-        isLikeButtonTapped ? likeButton() :  dislikeButton()
+        isLikeButtonTapped ? dislikeButtonAction() : likeButtonAction()
     }
     
 }

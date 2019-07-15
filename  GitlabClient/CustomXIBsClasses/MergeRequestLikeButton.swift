@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 protocol LikeButtonDelegate: class {
-    func buttonPressed(_ button: MergeRequestLikeButton)
+    func likeButtonClicked()
 }
 
 class MergeRequestLikeButton: UIButton {
@@ -22,17 +22,15 @@ class MergeRequestLikeButton: UIButton {
     
     weak var delegate: LikeButtonDelegate?
     
-    @IBOutlet private weak var activityIndicator: UIActivityIndicatorView!
-    
     @IBAction func likeButtonAction(_ sender: MergeRequestLikeButton) {
-        delegate?.buttonPressed(self)
+        delegate?.likeButtonClicked()
     }
     
-    //private var activityIndicator: UIActivityIndicatorView!
+    private var activityIndicator: UIActivityIndicatorView!
     
-//    func setUpActivityIndicator(with indicator: UIActivityIndicatorView) {
-//        self.activityIndicator = indicator
-//    }
+    func setUpActivityIndicator(with indicator: UIActivityIndicatorView) {
+        self.activityIndicator = indicator
+    }
     
     func hideButton() {
         DispatchQueue.main.async {
@@ -43,13 +41,13 @@ class MergeRequestLikeButton: UIButton {
                             self.setBackgroundImage(nil, for: .normal)
                             
             }, completion: { _ in
-                self.showSpinning()
+                self.showSpinning() //Retain?
             })
         }
     }
     
-    func showUpButtonImage(with path: likeButtonImages) {
-        let image = UIImage(named: path.rawValue)
+    func buttonAppear(with path: likeButtonImages) {
+        let image = UIImage.init(named: path.rawValue)
         DispatchQueue.main.async {
             self.activityIndicator.stopAnimating()
             
@@ -64,7 +62,17 @@ class MergeRequestLikeButton: UIButton {
     
     private func showSpinning() {
         activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+        self.addSubview(activityIndicator)
+        centerActivityIndicatorInButton()
         activityIndicator.startAnimating()
+    }
+    
+    private func centerActivityIndicatorInButton() {
+        let xCenterConstraint = NSLayoutConstraint(item: self, attribute: .centerX, relatedBy: .equal, toItem: activityIndicator, attribute: .centerX, multiplier: 1, constant: 0)
+        self.addConstraint(xCenterConstraint)
+        
+        let yCenterConstraint = NSLayoutConstraint(item: self, attribute: .centerY, relatedBy: .equal, toItem: activityIndicator, attribute: .centerY, multiplier: 1, constant: 0)
+        self.addConstraint(yCenterConstraint)
     }
     
 }

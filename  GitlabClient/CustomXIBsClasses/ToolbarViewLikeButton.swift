@@ -15,24 +15,43 @@ protocol LikeButtonToolbarViewDelegate: class {
 
 class ToolbarViewLikeButton: UIView {
     
-    @IBOutlet private weak var likeButton: MergeRequestLikeButton!
+    private var likeButton: MergeRequestLikeButton?
+    private let likeButtonForMergeRequest = "LikeButtonForMergeRequest"
     
     weak var delegate: LikeButtonToolbarViewDelegate?
     
-    func setUpLikeButtonDelegate() {
-        likeButton.delegate = self
+    func setLikeButton() {
+        likeButton = MergeRequestLikeButton()
+        guard let button = Bundle.main.loadNibNamed(self.likeButtonForMergeRequest, owner: likeButton, options: nil)?.first as? MergeRequestLikeButton else { return }
+        likeButton = button
+        button.delegate = self
+        let activityIndicator = createActivityIndicator()
+        likeButton?.setUpActivityIndicator(with: activityIndicator)
+        button.frame = CGRect(x: self.bounds.width - 50, y: 0, width: 50, height: 50)
+        button.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        self.addSubview(button)
     }
     
-    func showUpButtonImage(with state: Bool) {
-        state ? likeButton?.showUpButtonImage(with: .approve) : likeButton?.showUpButtonImage(with: .disapprove)
+    func buttonClick() {
+        likeButton?.hideButton()
+    }
+    
+    func buttonAppear(with state: Bool) {
+        state ? likeButton?.buttonAppear(with: .approve) : likeButton?.buttonAppear(with: .disapprove)
+    }
+    
+    private func createActivityIndicator() -> UIActivityIndicatorView {
+        let activityIndicator = UIActivityIndicatorView()
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.color = .blue
+        return activityIndicator
     }
     
 }
 
 extension ToolbarViewLikeButton: LikeButtonDelegate {
     
-    func buttonPressed(_ button: MergeRequestLikeButton) {
-        likeButton?.hideButton()
+    func likeButtonClicked() {
         delegate?.likeButtonPressed()
     }
     
