@@ -28,12 +28,6 @@ class MergeRequestLikeButton: UIButton {
         delegate?.buttonPressed(self)
     }
     
-    //private var activityIndicator: UIActivityIndicatorView!
-    
-//    func setUpActivityIndicator(with indicator: UIActivityIndicatorView) {
-//        self.activityIndicator = indicator
-//    }
-    
     func hideButton() {
         DispatchQueue.main.async {
             UIView.animate(withDuration: 0.3,

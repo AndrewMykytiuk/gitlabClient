@@ -47,7 +47,7 @@
             <connections>
                 <outlet property="likeButton" destination="B30-7j-jft" id="cya-aD-5Mz"/>
             </connections>
-            <point key="canvasLocation" x="100.00000000000001" y="-31.473214285714285"/>
+            <point key="canvasLocation" x="91" y="-137"/>
         </view>
     </objects>
 </document>
