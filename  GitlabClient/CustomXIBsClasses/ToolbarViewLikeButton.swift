@@ -9,27 +9,54 @@
 import Foundation
 import UIKit
 
-protocol LikeButtonToolbarViewDelegate: class {
+protocol ToolbarViewDelegate: class {
     func likeButtonPressed()
 }
 
-class ToolbarViewLikeButton: UIView {
+class ToolbarView: UIView {
     
-    @IBOutlet private weak var likeButton: MergeRequestLikeButton!
+    private var likeButton: MergeRequestLikeButton?
+    private let likeButtonForMergeRequest = "LikeButtonForMergeRequest"
+    private let likeButtonWidthConstant: CGFloat = 50
     
-    weak var delegate: LikeButtonToolbarViewDelegate?
+    weak var delegate: ToolbarViewDelegate?
     
-    func setUpLikeButtonDelegate() {
-        likeButton.delegate = self
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+       setupLikeButtonFromXib()
     }
     
-    func showUpButtonImage(with state: Bool) {
-        state ? likeButton?.showUpButtonImage(with: .approve) : likeButton?.showUpButtonImage(with: .disapprove)
+     private func setupLikeButtonFromXib() {
+        likeButton = MergeRequestLikeButton()
+        guard let button = Bundle.main.loadNibNamed(self.likeButtonForMergeRequest, owner: likeButton, options: nil)?.first as? MergeRequestLikeButton else { return }
+        likeButton = button
+        button.delegate = self
+        self.addSubview(button)
+        setupButtonConstraints(with: button)
     }
     
+    private func setupButtonConstraints(with likeButton: MergeRequestLikeButton?) {
+        guard let button = likeButton else { return }
+        
+        let topConstraint = button
+            .topAnchor.constraint(equalTo: self.topAnchor)
+        let bottomConstraint = button
+            .bottomAnchor.constraint(equalTo: self.bottomAnchor)
+        let trailingConstraint = button
+            .trailingAnchor.constraint(equalTo: self.trailingAnchor)
+        let widthConstraint = button.widthAnchor.constraint(equalToConstant: likeButtonWidthConstant)
+        self.addConstraint(topConstraint)
+        self.addConstraint(bottomConstraint)
+        self.addConstraint(trailingConstraint)
+        self.addConstraint(widthConstraint)
+    }
+    
+    func showUpButtonImage(with name: Constants.LikeButtonImageNames) {
+        likeButton?.showUpButtonImage(with: name)
+    }
 }
 
-extension ToolbarViewLikeButton: LikeButtonDelegate {
+extension ToolbarView: LikeButtonDelegate {
     
     func buttonPressed(_ button: MergeRequestLikeButton) {
         likeButton?.hideButton()

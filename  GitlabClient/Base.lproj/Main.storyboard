@@ -444,19 +444,19 @@
                         <color key="backgroundColor" white="0.8028413955479452" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="jCY-mD-dwi" firstAttribute="top" secondItem="8U0-cl-xDY" secondAttribute="top" id="9oy-xM-Tgd"/>
+                            <constraint firstAttribute="trailing" secondItem="jCY-mD-dwi" secondAttribute="trailing" id="Es6-fb-gQb"/>
                             <constraint firstItem="jCY-mD-dwi" firstAttribute="leading" secondItem="8U0-cl-xDY" secondAttribute="leading" id="FSQ-bs-Zlo"/>
                             <constraint firstItem="4Ls-4x-F9g" firstAttribute="top" secondItem="8U0-cl-xDY" secondAttribute="top" constant="50" id="G97-31-QRN"/>
                             <constraint firstItem="8U0-cl-xDY" firstAttribute="bottom" secondItem="4Ls-4x-F9g" secondAttribute="bottom" id="Rgv-8y-lxK"/>
                             <constraint firstItem="4Ls-4x-F9g" firstAttribute="top" secondItem="jCY-mD-dwi" secondAttribute="bottom" id="YAM-KS-gc6"/>
                             <constraint firstItem="4Ls-4x-F9g" firstAttribute="leading" secondItem="8U0-cl-xDY" secondAttribute="leading" id="aBr-Ms-cXB"/>
-                            <constraint firstItem="jCY-mD-dwi" firstAttribute="trailing" secondItem="8U0-cl-xDY" secondAttribute="trailing" id="faF-Im-3Sm"/>
                             <constraint firstItem="4Ls-4x-F9g" firstAttribute="trailing" secondItem="8U0-cl-xDY" secondAttribute="trailing" id="lUq-8u-bB7"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="8U0-cl-xDY"/>
                     </view>
                     <connections>
                         <outlet property="mergeRequestTableView" destination="4Ls-4x-F9g" id="qcj-yF-GjC"/>
-                        <outlet property="viewUnderNavigationBar" destination="jCY-mD-dwi" id="jWb-Fa-sAA"/>
+                        <outlet property="viewForLikeButton" destination="jCY-mD-dwi" id="9a6-ND-G2v"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rYo-8t-woB" userLabel="First Responder" sceneMemberID="firstResponder"/>

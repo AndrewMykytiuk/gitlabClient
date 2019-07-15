@@ -67,6 +67,11 @@ enum Constants {
         
     }
     
+    enum LikeButtonImageNames: String {
+        case approve = "icons8-thumbs-up-50.png"
+        case disapprove = "icons8-thumbs-down-50.png"
+    }
+    
     enum AlertStrings: String {
         case title = "AlertHelper.ErrorTitle"
         case okButton = "AlertHelper.OKTitle"

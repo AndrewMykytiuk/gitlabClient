@@ -59,6 +59,7 @@ enum GitLabError {
                 case failedProjectMap = "Failed to map Project from entity"
                 case failedMergeRequestMap = "Failed to map MergeRequest from entity"
                 case failedUserMap = "Failed to map User from entity"
+                case failedUserFromMergeRequestMap = "Failed to map UserEntity from MergeRequestEntity"
             }
             
             enum Creation: String, Error {

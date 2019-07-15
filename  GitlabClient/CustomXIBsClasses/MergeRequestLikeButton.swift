@@ -13,16 +13,12 @@ protocol LikeButtonDelegate: class {
     func buttonPressed(_ button: MergeRequestLikeButton)
 }
 
-class MergeRequestLikeButton: UIButton {
+class MergeRequestLikeButton: UIView {
     
-    enum likeButtonImages: String {
-        case approve = "icons8-thumbs-up-50.png"
-        case disapprove = "icons8-thumbs-down-50.png"
-    }
+    @IBOutlet private weak var imageView: UIImageView!
+    @IBOutlet private weak var activityIndicator: UIActivityIndicatorView!
     
     weak var delegate: LikeButtonDelegate?
-    
-    @IBOutlet private weak var activityIndicator: UIActivityIndicatorView!
     
     @IBAction func likeButtonAction(_ sender: MergeRequestLikeButton) {
         delegate?.buttonPressed(self)
@@ -34,15 +30,16 @@ class MergeRequestLikeButton: UIButton {
                            delay: 0,
                            options: [.curveEaseIn],
                            animations: {
-                            self.setBackgroundImage(nil, for: .normal)
+                            self.imageView.image = nil
                             
-            }, completion: { _ in
-                self.showSpinning()
+            }, completion: { [weak self] _ in
+                guard let welf = self else { return }
+                welf.showSpinning()
             })
         }
     }
     
-    func showUpButtonImage(with path: likeButtonImages) {
+    func showUpButtonImage(with path: Constants.LikeButtonImageNames) {
         let image = UIImage(named: path.rawValue)
         DispatchQueue.main.async {
             self.activityIndicator.stopAnimating()
@@ -51,13 +48,12 @@ class MergeRequestLikeButton: UIButton {
                            delay: 0,
                            options: [.curveEaseInOut],
                            animations: {
-                            self.setBackgroundImage(image, for: .normal)
+                            self.imageView.image = image
             }, completion: nil)
         }
     }
     
     private func showSpinning() {
-        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
         activityIndicator.startAnimating()
     }
     
