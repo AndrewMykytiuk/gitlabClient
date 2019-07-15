@@ -9,49 +9,57 @@
 import Foundation
 import UIKit
 
-protocol LikeButtonToolbarViewDelegate: class {
+protocol ToolbarViewDelegate: class {
     func likeButtonPressed()
 }
 
-class ToolbarViewLikeButton: UIView {
+class ToolbarView: UIView {
     
     private var likeButton: MergeRequestLikeButton?
     private let likeButtonForMergeRequest = "LikeButtonForMergeRequest"
+    private let likeButtonWidthConstant: CGFloat = 50
     
-    weak var delegate: LikeButtonToolbarViewDelegate?
+    weak var delegate: ToolbarViewDelegate?
     
-    func setLikeButton() {
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+       setupLikeButtonFromXib()
+    }
+    
+     private func setupLikeButtonFromXib() {
         likeButton = MergeRequestLikeButton()
         guard let button = Bundle.main.loadNibNamed(self.likeButtonForMergeRequest, owner: likeButton, options: nil)?.first as? MergeRequestLikeButton else { return }
         likeButton = button
         button.delegate = self
-        let activityIndicator = createActivityIndicator()
-        likeButton?.setUpActivityIndicator(with: activityIndicator)
-        button.frame = CGRect(x: self.bounds.width - 50, y: 0, width: 50, height: 50)
-        button.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         self.addSubview(button)
+        setupButtonConstraints(with: button)
     }
     
-    func buttonClick() {
-        likeButton?.hideButton()
+    private func setupButtonConstraints(with likeButton: MergeRequestLikeButton?) {
+        guard let button = likeButton else { return }
+        
+        let topConstraint = button
+            .topAnchor.constraint(equalTo: self.topAnchor)
+        let bottomConstraint = button
+            .bottomAnchor.constraint(equalTo: self.bottomAnchor)
+        let trailingConstraint = button
+            .trailingAnchor.constraint(equalTo: self.trailingAnchor)
+        let widthConstraint = button.widthAnchor.constraint(equalToConstant: likeButtonWidthConstant)
+        self.addConstraint(topConstraint)
+        self.addConstraint(bottomConstraint)
+        self.addConstraint(trailingConstraint)
+        self.addConstraint(widthConstraint)
     }
     
-    func buttonAppear(with state: Bool) {
-        state ? likeButton?.buttonAppear(with: .approve) : likeButton?.buttonAppear(with: .disapprove)
+    func showUpButtonImage(with name: Constants.LikeButtonImageNames) {
+        likeButton?.showUpButtonImage(with: name)
     }
-    
-    private func createActivityIndicator() -> UIActivityIndicatorView {
-        let activityIndicator = UIActivityIndicatorView()
-        activityIndicator.hidesWhenStopped = true
-        activityIndicator.color = .blue
-        return activityIndicator
-    }
-    
 }
 
-extension ToolbarViewLikeButton: LikeButtonDelegate {
+extension ToolbarView: LikeButtonDelegate {
     
-    func likeButtonClicked() {
+    func buttonPressed(_ button: MergeRequestLikeButton) {
+        likeButton?.hideButton()
         delegate?.likeButtonPressed()
     }
     

@@ -10,26 +10,18 @@ import Foundation
 import UIKit
 
 protocol LikeButtonDelegate: class {
-    func likeButtonClicked()
+    func buttonPressed(_ button: MergeRequestLikeButton)
 }
 
-class MergeRequestLikeButton: UIButton {
+class MergeRequestLikeButton: UIView {
     
-    enum likeButtonImages: String {
-        case approve = "icons8-thumbs-up-50.png"
-        case disapprove = "icons8-thumbs-down-50.png"
-    }
+    @IBOutlet private weak var imageView: UIImageView!
+    @IBOutlet private weak var activityIndicator: UIActivityIndicatorView!
     
     weak var delegate: LikeButtonDelegate?
     
     @IBAction func likeButtonAction(_ sender: MergeRequestLikeButton) {
-        delegate?.likeButtonClicked()
-    }
-    
-    private var activityIndicator: UIActivityIndicatorView!
-    
-    func setUpActivityIndicator(with indicator: UIActivityIndicatorView) {
-        self.activityIndicator = indicator
+        delegate?.buttonPressed(self)
     }
     
     func hideButton() {
@@ -38,16 +30,17 @@ class MergeRequestLikeButton: UIButton {
                            delay: 0,
                            options: [.curveEaseIn],
                            animations: {
-                            self.setBackgroundImage(nil, for: .normal)
+                            self.imageView.image = nil
                             
-            }, completion: { _ in
-                self.showSpinning() //Retain?
+            }, completion: { [weak self] _ in
+                guard let welf = self else { return }
+                welf.showSpinning()
             })
         }
     }
     
-    func buttonAppear(with path: likeButtonImages) {
-        let image = UIImage.init(named: path.rawValue)
+    func showUpButtonImage(with path: Constants.LikeButtonImageNames) {
+        let image = UIImage(named: path.rawValue)
         DispatchQueue.main.async {
             self.activityIndicator.stopAnimating()
             
@@ -55,24 +48,13 @@ class MergeRequestLikeButton: UIButton {
                            delay: 0,
                            options: [.curveEaseInOut],
                            animations: {
-                            self.setBackgroundImage(image, for: .normal)
+                            self.imageView.image = image
             }, completion: nil)
         }
     }
     
     private func showSpinning() {
-        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
-        self.addSubview(activityIndicator)
-        centerActivityIndicatorInButton()
         activityIndicator.startAnimating()
-    }
-    
-    private func centerActivityIndicatorInButton() {
-        let xCenterConstraint = NSLayoutConstraint(item: self, attribute: .centerX, relatedBy: .equal, toItem: activityIndicator, attribute: .centerX, multiplier: 1, constant: 0)
-        self.addConstraint(xCenterConstraint)
-        
-        let yCenterConstraint = NSLayoutConstraint(item: self, attribute: .centerY, relatedBy: .equal, toItem: activityIndicator, attribute: .centerY, multiplier: 1, constant: 0)
-        self.addConstraint(yCenterConstraint)
     }
     
 }

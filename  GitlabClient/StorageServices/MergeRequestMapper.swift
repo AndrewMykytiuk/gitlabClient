@@ -39,12 +39,12 @@ class MergeRequestMapper {
     }
     
     func mapUserEntities(from mergeRequestEntity: MergeRequestEntity) -> (assigneeEntity: UserEntity, authorEntity: UserEntity){
-         guard let assigneeEntity = mergeRequestEntity.assignee, let authorEntity = mergeRequestEntity.author else { fatalError(GitLabError.Storage.Entity.Mapper.failedMergeRequestMap.rawValue) }
+        guard let assigneeEntity = mergeRequestEntity.assignee, let authorEntity = mergeRequestEntity.author else { fatalError(GitLabError.Storage.Entity.Mapper.failedUserFromMergeRequestMap.rawValue) }
         return (assigneeEntity, authorEntity)
     }
     
     func userEntities(from entity: MergeRequestEntity) -> [UserEntity] {
-        guard let userEntities = entity.approvedBy?.allObjects as? [UserEntity] else { fatalError(GitLabError.Storage.Entity.Mapper.failedUserMap.rawValue) }
+        guard let userEntities = entity.approvedBy?.allObjects as? [UserEntity] else { fatalError(GitLabError.Storage.Entity.Mapper.failedUserFromMergeRequestMap.rawValue) }
         return userEntities
     }
 }
