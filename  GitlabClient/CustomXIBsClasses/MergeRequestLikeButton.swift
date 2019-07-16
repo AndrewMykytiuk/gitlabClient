@@ -24,6 +24,10 @@ class MergeRequestLikeButton: UIView {
         delegate?.buttonPressed(self)
     }
     
+    class func instanceFromNib() -> MergeRequestLikeButton {
+        return UINib(nibName: "LikeButtonForMergeRequest", bundle: Bundle.main).instantiate(withOwner: self.init(), options: nil).first as! MergeRequestLikeButton
+    }
+    
     func hideButton() {
         DispatchQueue.main.async {
             UIView.animate(withDuration: 0.3,
@@ -39,8 +43,11 @@ class MergeRequestLikeButton: UIView {
         }
     }
     
-    func showUpButtonImage(with path: Constants.LikeButtonImageNames) {
-        let image = UIImage(named: path.rawValue)
+    func showUpButtonImage(isTapped state: Bool) {
+        
+        let name = state ? Constants.LikeButtonImageNames.approve : Constants.LikeButtonImageNames.disapprove
+        
+        let image = UIImage(named: name.rawValue)
         DispatchQueue.main.async {
             self.activityIndicator.stopAnimating()
             

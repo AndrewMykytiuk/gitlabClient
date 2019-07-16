@@ -16,19 +16,17 @@ protocol ToolbarViewDelegate: class {
 class ToolbarView: UIView {
     
     private var likeButton: MergeRequestLikeButton?
-    private let likeButtonForMergeRequest = "LikeButtonForMergeRequest"
     private let likeButtonWidthConstant: CGFloat = 50
     
     weak var delegate: ToolbarViewDelegate?
     
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-       setupLikeButtonFromXib()
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        placeLikeButton()
     }
     
-     private func setupLikeButtonFromXib() {
-        likeButton = MergeRequestLikeButton()
-        guard let button = Bundle.main.loadNibNamed(self.likeButtonForMergeRequest, owner: likeButton, options: nil)?.first as? MergeRequestLikeButton else { return }
+     private func placeLikeButton() {
+        let button = MergeRequestLikeButton.instanceFromNib()
         likeButton = button
         button.delegate = self
         self.addSubview(button)
@@ -49,8 +47,8 @@ class ToolbarView: UIView {
         self.addConstraint(trailingConstraint)
     }
     
-    func showUpButtonImage(with name: Constants.LikeButtonImageNames) {
-        likeButton?.showUpButtonImage(with: name)
+    func showUpButtonImage(isTapped state: Bool) {
+        likeButton?.showUpButtonImage(isTapped: state)
     }
 }
 

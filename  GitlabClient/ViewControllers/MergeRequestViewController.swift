@@ -25,7 +25,7 @@ class MergeRequestViewController: BaseViewController {
     private var mergeRequestCell: MergeRequestTableViewCell!
     private var changes: [MergeRequestChange] = []
     private var mergeRequest: MergeRequest!
-    private var isLikeButtonTapped: Constants.LikeButtonImageNames = .approve
+    private var isLikeButtonTapped: Bool = false
     private let toolbarView = "ToolbarViewForLikeButton"
     private let converter: DiffConverterType = DiffConverter()
     private var toolbarLikeView: ToolbarView?
@@ -62,7 +62,7 @@ class MergeRequestViewController: BaseViewController {
         
         guard let view = Bundle.main.loadNibNamed(self.toolbarView, owner: self, options: nil)?.first as? ToolbarView else { return }
         view.delegate = self
-        view.showUpButtonImage(with: isLikeButtonTapped)
+        view.showUpButtonImage(isTapped: isLikeButtonTapped)
         self.toolbarLikeView = view
         
         self.viewForLikeButton.addSubview(view)
@@ -140,12 +140,12 @@ class MergeRequestViewController: BaseViewController {
             guard let welf = self else { return }
             switch result {
             case .success:
-                welf.isLikeButtonTapped = .approve
+                welf.isLikeButtonTapped = true
             case .error(let error):
                 let alert = AlertHelper.createErrorAlert(message: error.localizedDescription, handler: nil)
                 welf.present(alert, animated: true)
             }
-            welf.toolbarLikeView?.showUpButtonImage(with: welf.isLikeButtonTapped)
+            welf.toolbarLikeView?.showUpButtonImage(isTapped: welf.isLikeButtonTapped)
         }
         
     }
@@ -155,12 +155,12 @@ class MergeRequestViewController: BaseViewController {
             guard let welf = self else { return }
             switch result {
             case .success:
-                welf.isLikeButtonTapped = .disapprove
+                welf.isLikeButtonTapped = false
             case .error(let error):
                 let alert = AlertHelper.createErrorAlert(message: error.localizedDescription, handler: nil)
                 welf.present(alert, animated: true)
             }
-            welf.toolbarLikeView?.showUpButtonImage(with: welf.isLikeButtonTapped)
+            welf.toolbarLikeView?.showUpButtonImage(isTapped: welf.isLikeButtonTapped)
         }
     }
     
@@ -235,12 +235,7 @@ extension MergeRequestViewController: ToolbarViewDelegate {
     
     func likeButtonPressed() {
         
-        switch isLikeButtonTapped {
-        case .approve:
-            likeButton()
-        case .disapprove:
-            dislikeButton()
-        }
+        isLikeButtonTapped ? dislikeButton() : likeButton()
         
     }
     
