@@ -67,7 +67,7 @@
 		CEB7346022CCAC2800365943 /* MergeRequestApproveRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB7345F22CCAC2800365943 /* MergeRequestApproveRequest.swift */; };
 		CEB7346D22CE0E2900365943 /* ToolbarViewForLikeButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEB7346C22CE0E2900365943 /* ToolbarViewForLikeButton.xib */; };
 		CEB7346F22CE0E8000365943 /* LikeButtonForMergeRequest.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEB7346E22CE0E8000365943 /* LikeButtonForMergeRequest.xib */; };
-		CEB7347222CE0EFE00365943 /* ToolbarViewLikeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB7347122CE0EFE00365943 /* ToolbarViewLikeButton.swift */; };
+		CEB7347222CE0EFE00365943 /* ToolbarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB7347122CE0EFE00365943 /* ToolbarView.swift */; };
 		CEB7347422CE0F1400365943 /* MergeRequestLikeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB7347322CE0F1400365943 /* MergeRequestLikeButton.swift */; };
 		CEB7347E22D4EC2C00365943 /* MergeRequestApprove.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB7347D22D4EC2C00365943 /* MergeRequestApprove.swift */; };
 		CEB7348522D5E20A00365943 /* UserEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB7347F22D5E20A00365943 /* UserEntity+CoreDataClass.swift */; };
@@ -155,7 +155,7 @@
 		CEB7345F22CCAC2800365943 /* MergeRequestApproveRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MergeRequestApproveRequest.swift; sourceTree = "<group>"; };
 		CEB7346C22CE0E2900365943 /* ToolbarViewForLikeButton.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ToolbarViewForLikeButton.xib; sourceTree = "<group>"; };
 		CEB7346E22CE0E8000365943 /* LikeButtonForMergeRequest.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LikeButtonForMergeRequest.xib; sourceTree = "<group>"; };
-		CEB7347122CE0EFE00365943 /* ToolbarViewLikeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolbarViewLikeButton.swift; sourceTree = "<group>"; };
+		CEB7347122CE0EFE00365943 /* ToolbarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolbarView.swift; sourceTree = "<group>"; };
 		CEB7347322CE0F1400365943 /* MergeRequestLikeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MergeRequestLikeButton.swift; sourceTree = "<group>"; };
 		CEB7347D22D4EC2C00365943 /* MergeRequestApprove.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MergeRequestApprove.swift; sourceTree = "<group>"; };
 		CEB7347F22D5E20A00365943 /* UserEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -441,7 +441,7 @@
 		CEB7347022CE0ED000365943 /* CustomXIBsClasses */ = {
 			isa = PBXGroup;
 			children = (
-				CEB7347122CE0EFE00365943 /* ToolbarViewLikeButton.swift */,
+				CEB7347122CE0EFE00365943 /* ToolbarView.swift */,
 				CEB7347322CE0F1400365943 /* MergeRequestLikeButton.swift */,
 			);
 			path = CustomXIBsClasses;
@@ -580,7 +580,7 @@
 				CE532F1C229D8B5D00130CD5 /* DiffsParser.swift in Sources */,
 				CE3B6950225374EA00FB7DEA /* ProjectRequest.swift in Sources */,
 				CEB7348722D5E20A00365943 /* ProjectEntity+CoreDataClass.swift in Sources */,
-				CEB7347222CE0EFE00365943 /* ToolbarViewLikeButton.swift in Sources */,
+				CEB7347222CE0EFE00365943 /* ToolbarView.swift in Sources */,
 				CE147D53224BBE5600C08C11 /* ProjectsTableViewCell.swift in Sources */,
 				CE6FF032223A6A17003F7C56 /* AuthHelper.swift in Sources */,
 				CE532F3822A7F6B400130CD5 /* DiffsDecorator.swift in Sources */,

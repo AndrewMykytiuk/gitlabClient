@@ -1,5 +1,5 @@
 //
-//  ToolbarViewLikeButton.swift
+//  ToolbarView.swift
 //  GitlabClient
 //
 //  Created by User on 04/04/2019.
@@ -37,18 +37,16 @@ class ToolbarView: UIView {
     
     private func setupButtonConstraints(with likeButton: MergeRequestLikeButton?) {
         guard let button = likeButton else { return }
-        
+        button.translatesAutoresizingMaskIntoConstraints = false
         let topConstraint = button
             .topAnchor.constraint(equalTo: self.topAnchor)
         let bottomConstraint = button
             .bottomAnchor.constraint(equalTo: self.bottomAnchor)
         let trailingConstraint = button
             .trailingAnchor.constraint(equalTo: self.trailingAnchor)
-        let widthConstraint = button.widthAnchor.constraint(equalToConstant: likeButtonWidthConstant)
         self.addConstraint(topConstraint)
         self.addConstraint(bottomConstraint)
         self.addConstraint(trailingConstraint)
-        self.addConstraint(widthConstraint)
     }
     
     func showUpButtonImage(with name: Constants.LikeButtonImageNames) {
