@@ -25,7 +25,7 @@ class MergeRequestViewController: BaseViewController {
     private var mergeRequestCell: MergeRequestTableViewCell!
     private var changes: [MergeRequestChange] = []
     private var mergeRequest: MergeRequest!
-    private var isLikeButtonTapped: Bool = false
+    private var isLikeButtonTapped: Bool = true
     private let toolbarView = "ToolbarViewForLikeButton"
     private let converter: DiffConverterType = DiffConverter()
     private var toolbarLikeView: ToolbarView?
