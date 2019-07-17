@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		AEF0BE3B22A67CDD0029E7C0 /* UserStorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF0BE3A22A67CDD0029E7C0 /* UserStorageService.swift */; };
 		CE147D53224BBE5600C08C11 /* ProjectsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE147D52224BBE5600C08C11 /* ProjectsTableViewCell.swift */; };
+		CE1A15F122DF21C200D7AF48 /* UserEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1A15EF22DF21C200D7AF48 /* UserEntity+CoreDataClass.swift */; };
+		CE1A15F222DF21C200D7AF48 /* UserEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1A15F022DF21C200D7AF48 /* UserEntity+CoreDataProperties.swift */; };
 		CE2B8B2822AAC0CC000E5D55 /* MergeRequestChangesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2B8B2722AAC0CC000E5D55 /* MergeRequestChangesTableViewCell.swift */; };
 		CE2B8B2B22AFA4AF000E5D55 /* DiffConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2B8B2A22AFA4AF000E5D55 /* DiffConverter.swift */; };
 		CE2B8B2D22AFC3D1000E5D55 /* DiffCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2B8B2C22AFC3D1000E5D55 /* DiffCellViewModel.swift */; };
@@ -70,8 +72,6 @@
 		CEB7347222CE0EFE00365943 /* ToolbarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB7347122CE0EFE00365943 /* ToolbarView.swift */; };
 		CEB7347422CE0F1400365943 /* MergeRequestLikeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB7347322CE0F1400365943 /* MergeRequestLikeButton.swift */; };
 		CEB7347E22D4EC2C00365943 /* MergeRequestApprove.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB7347D22D4EC2C00365943 /* MergeRequestApprove.swift */; };
-		CEB7348522D5E20A00365943 /* UserEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB7347F22D5E20A00365943 /* UserEntity+CoreDataClass.swift */; };
-		CEB7348622D5E20A00365943 /* UserEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB7348022D5E20A00365943 /* UserEntity+CoreDataProperties.swift */; };
 		CEB7348722D5E20A00365943 /* ProjectEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB7348122D5E20A00365943 /* ProjectEntity+CoreDataClass.swift */; };
 		CEB7348822D5E20A00365943 /* ProjectEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB7348222D5E20A00365943 /* ProjectEntity+CoreDataProperties.swift */; };
 		CEB7348922D5E20A00365943 /* MergeRequestEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB7348322D5E20A00365943 /* MergeRequestEntity+CoreDataClass.swift */; };
@@ -92,6 +92,8 @@
 /* Begin PBXFileReference section */
 		AEF0BE3A22A67CDD0029E7C0 /* UserStorageService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserStorageService.swift; sourceTree = "<group>"; };
 		CE147D52224BBE5600C08C11 /* ProjectsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectsTableViewCell.swift; sourceTree = "<group>"; };
+		CE1A15EF22DF21C200D7AF48 /* UserEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
+		CE1A15F022DF21C200D7AF48 /* UserEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		CE2B8B2722AAC0CC000E5D55 /* MergeRequestChangesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MergeRequestChangesTableViewCell.swift; sourceTree = "<group>"; };
 		CE2B8B2A22AFA4AF000E5D55 /* DiffConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiffConverter.swift; sourceTree = "<group>"; };
 		CE2B8B2C22AFC3D1000E5D55 /* DiffCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiffCellViewModel.swift; sourceTree = "<group>"; };
@@ -158,8 +160,6 @@
 		CEB7347122CE0EFE00365943 /* ToolbarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolbarView.swift; sourceTree = "<group>"; };
 		CEB7347322CE0F1400365943 /* MergeRequestLikeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MergeRequestLikeButton.swift; sourceTree = "<group>"; };
 		CEB7347D22D4EC2C00365943 /* MergeRequestApprove.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MergeRequestApprove.swift; sourceTree = "<group>"; };
-		CEB7347F22D5E20A00365943 /* UserEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
-		CEB7348022D5E20A00365943 /* UserEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		CEB7348122D5E20A00365943 /* ProjectEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProjectEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
 		CEB7348222D5E20A00365943 /* ProjectEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProjectEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		CEB7348322D5E20A00365943 /* MergeRequestEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MergeRequestEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -222,8 +222,8 @@
 		CE532EC5229596E700130CD5 /* CoreDataClasses */ = {
 			isa = PBXGroup;
 			children = (
-				CEB7347F22D5E20A00365943 /* UserEntity+CoreDataClass.swift */,
-				CEB7348022D5E20A00365943 /* UserEntity+CoreDataProperties.swift */,
+				CE1A15EF22DF21C200D7AF48 /* UserEntity+CoreDataClass.swift */,
+				CE1A15F022DF21C200D7AF48 /* UserEntity+CoreDataProperties.swift */,
 				CEB7348122D5E20A00365943 /* ProjectEntity+CoreDataClass.swift */,
 				CEB7348222D5E20A00365943 /* ProjectEntity+CoreDataProperties.swift */,
 				CEB7348322D5E20A00365943 /* MergeRequestEntity+CoreDataClass.swift */,
@@ -584,19 +584,18 @@
 				CE147D53224BBE5600C08C11 /* ProjectsTableViewCell.swift in Sources */,
 				CE6FF032223A6A17003F7C56 /* AuthHelper.swift in Sources */,
 				CE532F3822A7F6B400130CD5 /* DiffsDecorator.swift in Sources */,
-				CEB7348622D5E20A00365943 /* UserEntity+CoreDataProperties.swift in Sources */,
 				CE729F45224536CF0006C37C /* ProfileNetworkService.swift in Sources */,
 				AEF0BE3B22A67CDD0029E7C0 /* UserStorageService.swift in Sources */,
 				CE6FF03C223AE29E003F7C56 /* NetworkManager.swift in Sources */,
 				CEE51023225F4DC90049EC69 /* MergeRequest.swift in Sources */,
 				CE2B8B2B22AFA4AF000E5D55 /* DiffConverter.swift in Sources */,
 				CEB7348922D5E20A00365943 /* MergeRequestEntity+CoreDataClass.swift in Sources */,
-				CEB7348522D5E20A00365943 /* UserEntity+CoreDataClass.swift in Sources */,
 				CE2B8B2D22AFC3D1000E5D55 /* DiffCellViewModel.swift in Sources */,
 				CEE5101F225F384A0049EC69 /* ProfileCellSize.swift in Sources */,
 				CEE5101A225F38070049EC69 /* ProfileTableViewCell.swift in Sources */,
 				CE532F22229ED27E00130CD5 /* LoginNetworkService.swift in Sources */,
 				CEE51019225F38070049EC69 /* UITapGestureRecognizer.swift in Sources */,
+				CE1A15F222DF21C200D7AF48 /* UserEntity+CoreDataProperties.swift in Sources */,
 				CEB7347422CE0F1400365943 /* MergeRequestLikeButton.swift in Sources */,
 				CE729F43224536B80006C37C /* ProfileRequest.swift in Sources */,
 				CE6FF036223AAD0C003F7C56 /*  Constants.swift in Sources */,
@@ -640,6 +639,7 @@
 				CE3B695422537BED00FB7DEA /* ProjectService.swift in Sources */,
 				CE6FF0142236AECB003F7C56 /* AppDelegate.swift in Sources */,
 				CE729F40224532750006C37C /* User.swift in Sources */,
+				CE1A15F122DF21C200D7AF48 /* UserEntity+CoreDataClass.swift in Sources */,
 				CEE51025225F532F0049EC69 /* MergeRequestNetworkService.swift in Sources */,
 				CE729F49224A24B80006C37C /* DecoderHelper.swift in Sources */,
 			);

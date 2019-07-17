@@ -25,6 +25,10 @@ class ToolbarView: UIView {
         placeLikeButton()
     }
     
+    class func instanceFromNib() -> ToolbarView {
+        return UINib(nibName: "ToolbarViewForLikeButton", bundle: Bundle.main).instantiate(withOwner: self.init(), options: nil).first as! ToolbarView
+    }
+    
      private func placeLikeButton() {
         let button = MergeRequestLikeButton.instanceFromNib()
         likeButton = button

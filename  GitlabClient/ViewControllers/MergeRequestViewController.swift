@@ -17,7 +17,7 @@ class MergeRequestViewController: BaseViewController {
             mergeRequestTableView.refreshControl = refreshControl
         }
     }
-    @IBOutlet private weak var viewForLikeButton: UIView!
+    @IBOutlet private weak var toolbarContainerView: UIView!
     
     private let activityIndicator = UIActivityIndicatorView(style: .whiteLarge)
     private let refreshControl = UIRefreshControl()
@@ -26,9 +26,8 @@ class MergeRequestViewController: BaseViewController {
     private var changes: [MergeRequestChange] = []
     private var mergeRequest: MergeRequest!
     private var isLikeButtonTapped: Bool = true
-    private let toolbarView = "ToolbarViewForLikeButton"
     private let converter: DiffConverterType = DiffConverter()
-    private var toolbarLikeView: ToolbarView?
+    private var mergeRequestToolbarView: ToolbarView?
     
     func configure(with mergeRequestService: MergeRequestService) {
         self.mergeRequestService = mergeRequestService
@@ -43,7 +42,7 @@ class MergeRequestViewController: BaseViewController {
         setupActivityIndicator(with: self.view)
         setupRefreshControl()
         mergeRequestData()
-        setupToolbarViewFromXib()
+        placeToolbarView()
         self.title = mergeRequest.title
     }
     
@@ -58,14 +57,14 @@ class MergeRequestViewController: BaseViewController {
         self.mergeRequestCell.layoutIfNeeded()
     }
     
-    private func setupToolbarViewFromXib() {
+    private func placeToolbarView() {
         
-        guard let view = Bundle.main.loadNibNamed(self.toolbarView, owner: self, options: nil)?.first as? ToolbarView else { return }
+        let view = ToolbarView.instanceFromNib()
         view.delegate = self
         view.showUpButtonImage(isTapped: isLikeButtonTapped)
-        self.toolbarLikeView = view
+        self.mergeRequestToolbarView = view
         
-        self.viewForLikeButton.addSubview(view)
+        self.toolbarContainerView.addSubview(view)
         setupToolbarViewConstraints(with: view)
         
     }
@@ -77,13 +76,13 @@ class MergeRequestViewController: BaseViewController {
     
     private func setupToolbarViewConstraints(with view: UIView) {
         let topConstraint = view
-            .topAnchor.constraint(equalTo: self.viewForLikeButton.topAnchor)
+            .topAnchor.constraint(equalTo: self.toolbarContainerView.topAnchor)
         let bottomConstraint = view
-            .bottomAnchor.constraint(equalTo: self.viewForLikeButton.bottomAnchor)
+            .bottomAnchor.constraint(equalTo: self.toolbarContainerView.bottomAnchor)
         let trailingConstraint = view
-            .trailingAnchor.constraint(equalTo: self.viewForLikeButton.trailingAnchor)
+            .trailingAnchor.constraint(equalTo: self.toolbarContainerView.trailingAnchor)
         let leadingConstraint = view
-            .leadingAnchor.constraint(equalTo: self.viewForLikeButton.leadingAnchor)
+            .leadingAnchor.constraint(equalTo: self.toolbarContainerView.leadingAnchor)
         self.view.addConstraint(topConstraint)
         self.view.addConstraint(bottomConstraint)
         self.view.addConstraint(trailingConstraint)
@@ -145,7 +144,7 @@ class MergeRequestViewController: BaseViewController {
                 let alert = AlertHelper.createErrorAlert(message: error.localizedDescription, handler: nil)
                 welf.present(alert, animated: true)
             }
-            welf.toolbarLikeView?.showUpButtonImage(isTapped: welf.isLikeButtonTapped)
+            welf.mergeRequestToolbarView?.showUpButtonImage(isTapped: welf.isLikeButtonTapped)
         }
         
     }
@@ -160,7 +159,7 @@ class MergeRequestViewController: BaseViewController {
                 let alert = AlertHelper.createErrorAlert(message: error.localizedDescription, handler: nil)
                 welf.present(alert, animated: true)
             }
-            welf.toolbarLikeView?.showUpButtonImage(isTapped: welf.isLikeButtonTapped)
+            welf.mergeRequestToolbarView?.showUpButtonImage(isTapped: welf.isLikeButtonTapped)
         }
     }
     
