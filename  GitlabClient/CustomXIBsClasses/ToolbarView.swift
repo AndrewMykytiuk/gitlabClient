@@ -26,7 +26,7 @@ class ToolbarView: UIView {
     }
     
     class func instanceFromNib() -> ToolbarView {
-        return UINib(nibName: "ToolbarViewForLikeButton", bundle: Bundle.main).instantiate(withOwner: self.init(), options: nil).first as! ToolbarView
+        return UINib(nibName: "MergeRequestToolbarView", bundle: Bundle.main).instantiate(withOwner: self.init(), options: nil).first as! ToolbarView
     }
     
     private func placeLikeButton() {
@@ -51,15 +51,15 @@ class ToolbarView: UIView {
         self.addConstraint(trailingConstraint)
     }
     
-    func showUpButtonImage(isTapped state: Bool) {
-        likeButton?.showUpLikeButtonImage(isTapped: state)
+    func showUpLikeButtonImage(isTapped state: MergeRequestLikeButton.State) {
+        likeButton?.showUpButtonImage(isTapped: state)
     }
 }
 
 extension ToolbarView: LikeButtonDelegate {
     
     func buttonPressed(_ button: MergeRequestLikeButton) {
-        likeButton?.hideButton()
+        likeButton?.showActivityIndicator()
         delegate?.likeButtonPressed()
     }
     

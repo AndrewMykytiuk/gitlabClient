@@ -15,20 +15,25 @@ protocol LikeButtonDelegate: class {
 
 class MergeRequestLikeButton: UIView {
     
+    enum State {
+        case likeTapped
+        case dislikeTapped
+    }
+    
     @IBOutlet private weak var imageView: UIImageView!
     @IBOutlet private weak var activityIndicator: UIActivityIndicatorView!
     
     weak var delegate: LikeButtonDelegate?
     
-    @IBAction func likeButtonAction(_ sender: MergeRequestLikeButton) {
+    @IBAction func likeButtonPressed(_ sender: MergeRequestLikeButton) {
         delegate?.buttonPressed(self)
     }
     
     class func instanceFromNib() -> MergeRequestLikeButton {
-        return UINib(nibName: "LikeButtonForMergeRequest", bundle: Bundle.main).instantiate(withOwner: self.init(), options: nil).first as! MergeRequestLikeButton
+        return UINib(nibName: "MergeRequestLikeButton", bundle: Bundle.main).instantiate(withOwner: self.init(), options: nil).first as! MergeRequestLikeButton
     }
     
-    func hideButton() {
+    func showActivityIndicator() {
         
         UIView.animate(withDuration: 0.3,
                        delay: 0,
@@ -42,9 +47,16 @@ class MergeRequestLikeButton: UIView {
         
     }
     
-    func showUpLikeButtonImage(isTapped state: Bool) {
+    func showUpButtonImage(isTapped state: State) {
         
-        let name = state ? Constants.LikeButtonImageNames.approve : Constants.LikeButtonImageNames.disapprove
+        var name: Constants.LikeButtonImageNames
+        
+        switch state {
+        case .likeTapped:
+            name = Constants.LikeButtonImageNames.approve
+        case .dislikeTapped:
+            name = Constants.LikeButtonImageNames.disapprove
+        }
         
         let image = UIImage(named: name.rawValue)
         self.activityIndicator.stopAnimating()

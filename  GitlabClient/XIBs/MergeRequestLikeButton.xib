@@ -30,7 +30,7 @@
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GqG-Hw-5CH">
                     <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
                     <connections>
-                        <action selector="likeButtonAction:" destination="-1" eventType="touchUpInside" id="Hl6-mG-j6p"/>
+                        <action selector="likeButtonPressed:" destination="-1" eventType="touchUpInside" id="Hl6-mG-j6p"/>
                     </connections>
                 </button>
             </subviews>
