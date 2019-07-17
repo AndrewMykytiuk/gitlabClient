@@ -29,35 +29,33 @@ class MergeRequestLikeButton: UIView {
     }
     
     func hideButton() {
-        DispatchQueue.main.async {
-            UIView.animate(withDuration: 0.3,
-                           delay: 0,
-                           options: [.curveEaseIn],
-                           animations: {
-                            self.imageView.image = nil
-                            
-            }, completion: { [weak self] _ in
-                guard let welf = self else { return }
-                welf.showSpinning()
-            })
-        }
+        
+        UIView.animate(withDuration: 0.3,
+                       delay: 0,
+                       options: [.curveEaseIn],
+                       animations: {
+                        self.imageView.image = nil
+        }, completion: { [weak self] _ in
+            guard let welf = self else { return }
+            welf.showSpinning()
+        })
+        
     }
     
-    func showUpButtonImage(isTapped state: Bool) {
+    func showUpLikeButtonImage(isTapped state: Bool) {
         
         let name = state ? Constants.LikeButtonImageNames.approve : Constants.LikeButtonImageNames.disapprove
         
         let image = UIImage(named: name.rawValue)
-        DispatchQueue.main.async {
-            self.activityIndicator.stopAnimating()
-            
-            UIView.animate(withDuration: 0.3,
-                           delay: 0,
-                           options: [.curveEaseInOut],
-                           animations: {
-                            self.imageView.image = image
-            }, completion: nil)
-        }
+        self.activityIndicator.stopAnimating()
+        
+        UIView.animate(withDuration: 0.3,
+                       delay: 0,
+                       options: [.curveEaseInOut],
+                       animations: {
+                        self.imageView.image = image
+        }, completion: nil)
+        
     }
     
     private func showSpinning() {

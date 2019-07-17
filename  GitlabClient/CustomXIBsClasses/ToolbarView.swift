@@ -29,7 +29,7 @@ class ToolbarView: UIView {
         return UINib(nibName: "ToolbarViewForLikeButton", bundle: Bundle.main).instantiate(withOwner: self.init(), options: nil).first as! ToolbarView
     }
     
-     private func placeLikeButton() {
+    private func placeLikeButton() {
         let button = MergeRequestLikeButton.instanceFromNib()
         likeButton = button
         button.delegate = self
@@ -52,7 +52,7 @@ class ToolbarView: UIView {
     }
     
     func showUpButtonImage(isTapped state: Bool) {
-        likeButton?.showUpButtonImage(isTapped: state)
+        likeButton?.showUpLikeButtonImage(isTapped: state)
     }
 }
 

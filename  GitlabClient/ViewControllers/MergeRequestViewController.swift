@@ -134,7 +134,7 @@ class MergeRequestViewController: BaseViewController {
         activityIndicator.stopAnimating()
     }
     
-    private func likeButton() {
+    private func performLike() {
         mergeRequestService.approveMergeRequest(mergeRequest: mergeRequest) { [weak self] (result) in
             guard let welf = self else { return }
             switch result {
@@ -144,12 +144,14 @@ class MergeRequestViewController: BaseViewController {
                 let alert = AlertHelper.createErrorAlert(message: error.localizedDescription, handler: nil)
                 welf.present(alert, animated: true)
             }
+            DispatchQueue.main.async {
             welf.mergeRequestToolbarView?.showUpButtonImage(isTapped: welf.isLikeButtonTapped)
+        }
         }
         
     }
     
-    private func dislikeButton() {
+    private func performDislike() {
         mergeRequestService.disapproveMergeRequest(mergeRequest: mergeRequest) { [weak self] (result) in
             guard let welf = self else { return }
             switch result {
@@ -159,7 +161,9 @@ class MergeRequestViewController: BaseViewController {
                 let alert = AlertHelper.createErrorAlert(message: error.localizedDescription, handler: nil)
                 welf.present(alert, animated: true)
             }
+            DispatchQueue.main.async {
             welf.mergeRequestToolbarView?.showUpButtonImage(isTapped: welf.isLikeButtonTapped)
+            }
         }
     }
     
@@ -234,7 +238,7 @@ extension MergeRequestViewController: ToolbarViewDelegate {
     
     func likeButtonPressed() {
         
-        isLikeButtonTapped ? dislikeButton() : likeButton()
+        isLikeButtonTapped ? performDislike() : performLike()
         
     }
     
