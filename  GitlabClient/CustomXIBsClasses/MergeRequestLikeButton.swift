@@ -16,8 +16,9 @@ protocol LikeButtonDelegate: class {
 class MergeRequestLikeButton: UIView {
     
     enum State {
-        case likeTapped
-        case dislikeTapped
+        case liked
+        case disliked
+        case loading
     }
     
     @IBOutlet private weak var imageView: UIImageView!
@@ -26,6 +27,7 @@ class MergeRequestLikeButton: UIView {
     weak var delegate: LikeButtonDelegate?
     
     @IBAction func likeButtonPressed(_ sender: MergeRequestLikeButton) {
+        self.showActivityIndicator()
         delegate?.buttonPressed(self)
     }
     
@@ -47,15 +49,17 @@ class MergeRequestLikeButton: UIView {
         
     }
     
-    func showUpButtonImage(isTapped state: State) {
+    func showUpButtonImage(for state: State) {
         
         var name: Constants.LikeButtonImageNames
         
         switch state {
-        case .likeTapped:
+        case .liked:
             name = Constants.LikeButtonImageNames.approve
-        case .dislikeTapped:
+        case .disliked:
             name = Constants.LikeButtonImageNames.disapprove
+        default:
+            name = Constants.LikeButtonImageNames.approve
         }
         
         let image = UIImage(named: name.rawValue)

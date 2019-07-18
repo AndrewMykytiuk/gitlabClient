@@ -51,15 +51,14 @@ class ToolbarView: UIView {
         self.addConstraint(trailingConstraint)
     }
     
-    func showUpLikeButtonImage(isTapped state: MergeRequestLikeButton.State) {
-        likeButton?.showUpButtonImage(isTapped: state)
+    func changeLikeButton(to state: MergeRequestLikeButton.State) {
+        likeButton?.showUpButtonImage(for: state)
     }
 }
 
 extension ToolbarView: LikeButtonDelegate {
     
     func buttonPressed(_ button: MergeRequestLikeButton) {
-        likeButton?.showActivityIndicator()
         delegate?.likeButtonPressed()
     }
     

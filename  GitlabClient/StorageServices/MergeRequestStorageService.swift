@@ -22,7 +22,7 @@ class MergeRequestStorageService: MergeRequestStorageServiceType {
     let userStorageService: UserStorageServiceType
     let userMapper = UserMapper()
     
-    init(storageService: StorageService) {
+    init(storageService: StorageServiceType) {
         self.storage = storageService
         self.userStorageService = UserStorageService(storageService: storageService)
         self.mergeRequestMapper = MergeRequestMapper(with: userMapper)
