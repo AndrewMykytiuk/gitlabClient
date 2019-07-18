@@ -16,10 +16,9 @@ protocol LikeButtonDelegate: class {
 class MergeRequestLikeButton: UIView {
     
     enum State {
-        case liked
+        case liked //default value for button image
         case disliked
-        case empty
-        case loading
+        case loading //no images - just activity indicator
     }
     
     @IBOutlet private weak var imageView: UIImageView!
@@ -27,10 +26,7 @@ class MergeRequestLikeButton: UIView {
     
     weak var delegate: LikeButtonDelegate?
     
-    private var state: State = .loading
-    
     @IBAction func likeButtonPressed(_ sender: MergeRequestLikeButton) {
-        self.perform(state: state)
         delegate?.buttonPressed(self)
     }
     
@@ -38,7 +34,7 @@ class MergeRequestLikeButton: UIView {
         return UINib(nibName: "MergeRequestLikeButton", bundle: Bundle.main).instantiate(withOwner: self.init(), options: nil).first as! MergeRequestLikeButton
     }
     
-    private func perform(state: State) {
+    func perform(state: State) {
         switch state {
         case .liked:
             showUpButtonImage(for: state)
@@ -46,8 +42,6 @@ class MergeRequestLikeButton: UIView {
             showUpButtonImage(for: state)
         case .loading:
             showActivityIndicator()
-        case .empty:
-            break
         }
     }
     
@@ -67,7 +61,6 @@ class MergeRequestLikeButton: UIView {
     
     func showUpButtonImage(for state: State) {
         
-        self.state = state
         var name: Constants.LikeButtonImageNames = .approve
         
         switch state {
@@ -88,7 +81,7 @@ class MergeRequestLikeButton: UIView {
                        animations: {
                         self.imageView.image = image
         }, completion: nil)
-       self.state = .loading
+        
     }
     
     private func showSpinning() {

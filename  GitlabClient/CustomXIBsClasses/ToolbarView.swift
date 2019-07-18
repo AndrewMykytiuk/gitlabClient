@@ -54,6 +54,11 @@ class ToolbarView: UIView {
     func changeLikeButton(to state: MergeRequestLikeButton.State) {
         likeButton?.showUpButtonImage(for: state)
     }
+    
+    func performLikeButton(for state: MergeRequestLikeButton.State) {
+        likeButton?.perform(state: state)
+    }
+    
 }
 
 extension ToolbarView: LikeButtonDelegate {

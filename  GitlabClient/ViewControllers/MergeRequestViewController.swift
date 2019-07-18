@@ -135,6 +135,7 @@ class MergeRequestViewController: BaseViewController {
     }
     
     private func performLike() {
+        self.mergeRequestToolbarView?.performLikeButton(for: .loading)
         mergeRequestService.approveMergeRequest(mergeRequest: mergeRequest) { [weak self] (result) in
             guard let welf = self else { return }
             switch result {
@@ -152,6 +153,7 @@ class MergeRequestViewController: BaseViewController {
     }
     
     private func performDislike() {
+        self.mergeRequestToolbarView?.performLikeButton(for: .loading)
         mergeRequestService.disapproveMergeRequest(mergeRequest: mergeRequest) { [weak self] (result) in
             guard let welf = self else { return }
             switch result {
@@ -240,12 +242,10 @@ extension MergeRequestViewController: ToolbarViewDelegate {
         
         switch isLikeButtonTapped {
         case .liked:
-            performLike()
-        case .disliked:
             performDislike()
+        case .disliked:
+            performLike()
         case .loading:
-            break
-        case .empty:
             break
         }
         
