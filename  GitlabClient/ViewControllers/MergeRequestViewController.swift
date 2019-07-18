@@ -243,8 +243,10 @@ extension MergeRequestViewController: ToolbarViewDelegate {
             performLike()
         case .disliked:
             performDislike()
-        default:
-            performLike()
+        case .loading:
+            break
+        case .empty:
+            break
         }
         
     }

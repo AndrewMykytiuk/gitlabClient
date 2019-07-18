@@ -18,6 +18,7 @@ class MergeRequestLikeButton: UIView {
     enum State {
         case liked
         case disliked
+        case empty
         case loading
     }
     
@@ -26,13 +27,28 @@ class MergeRequestLikeButton: UIView {
     
     weak var delegate: LikeButtonDelegate?
     
+    private var state: State = .loading
+    
     @IBAction func likeButtonPressed(_ sender: MergeRequestLikeButton) {
-        self.showActivityIndicator()
+        self.perform(state: state)
         delegate?.buttonPressed(self)
     }
     
     class func instanceFromNib() -> MergeRequestLikeButton {
         return UINib(nibName: "MergeRequestLikeButton", bundle: Bundle.main).instantiate(withOwner: self.init(), options: nil).first as! MergeRequestLikeButton
+    }
+    
+    private func perform(state: State) {
+        switch state {
+        case .liked:
+            showUpButtonImage(for: state)
+        case .disliked:
+            showUpButtonImage(for: state)
+        case .loading:
+            showActivityIndicator()
+        case .empty:
+            break
+        }
     }
     
     func showActivityIndicator() {
@@ -51,15 +67,16 @@ class MergeRequestLikeButton: UIView {
     
     func showUpButtonImage(for state: State) {
         
-        var name: Constants.LikeButtonImageNames
+        self.state = state
+        var name: Constants.LikeButtonImageNames = .approve
         
         switch state {
         case .liked:
-            name = Constants.LikeButtonImageNames.approve
+            name = .approve
         case .disliked:
-            name = Constants.LikeButtonImageNames.disapprove
+            name = .disapprove
         default:
-            name = Constants.LikeButtonImageNames.approve
+            break
         }
         
         let image = UIImage(named: name.rawValue)
@@ -71,7 +88,7 @@ class MergeRequestLikeButton: UIView {
                        animations: {
                         self.imageView.image = image
         }, completion: nil)
-        
+       self.state = .loading
     }
     
     private func showSpinning() {
