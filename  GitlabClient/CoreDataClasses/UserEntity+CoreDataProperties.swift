@@ -2,7 +2,7 @@
 //  UserEntity+CoreDataProperties.swift
 //  GitlabClient
 //
-//  Created by Andrey Mikityuk on 6/4/19.
+//  Created by Andrew Mykytuik on 17/04/2019.
 //  Copyright © 2019 MPTechnologies. All rights reserved.
 //
 //
@@ -23,10 +23,11 @@ extension UserEntity {
     @NSManaged public var username: String
     @NSManaged public var status: String?
     @NSManaged public var email: String?
-    @NSManaged public var location: String?
     @NSManaged public var linkedin: String?
+    @NSManaged public var location: String?
     @NSManaged public var twitter: String?
     @NSManaged public var website: String?
+    @NSManaged public var approvedMergeRequest: MergeRequestEntity?
     @NSManaged public var mergeRequest: MergeRequestEntity?
 
 }

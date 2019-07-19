@@ -2,7 +2,7 @@
 //  MergeRequestEntity+CoreDataProperties.swift
 //  GitlabClient
 //
-//  Created by Andrey Mikityuk on 6/4/19.
+//  Created by Andrew Mikityuk on 10/04/2019.
 //  Copyright © 2019 MPTechnologies. All rights reserved.
 //
 //
@@ -24,5 +24,23 @@ extension MergeRequestEntity {
     @NSManaged public var project: ProjectEntity?
     @NSManaged public var assignee: UserEntity?
     @NSManaged public var author: UserEntity?
+    @NSManaged public var approvedBy: NSSet?
+
+}
+
+// MARK: Generated accessors for approvedBy
+extension MergeRequestEntity {
+
+    @objc(addApprovedByObject:)
+    @NSManaged public func addToApprovedBy(_ value: UserEntity)
+
+    @objc(removeApprovedByObject:)
+    @NSManaged public func removeFromApprovedBy(_ value: UserEntity)
+
+    @objc(addApprovedBy:)
+    @NSManaged public func addToApprovedBy(_ values: NSSet)
+
+    @objc(removeApprovedBy:)
+    @NSManaged public func removeFromApprovedBy(_ values: NSSet)
 
 }

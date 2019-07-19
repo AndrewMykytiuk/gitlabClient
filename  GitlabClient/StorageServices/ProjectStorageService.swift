@@ -24,7 +24,7 @@ class ProjectStorageService: ProjectStorageServiceType {
     
     init(storageService: StorageService) {
         self.storage = storageService
-        self.mergeRequestStorageService = MergeRequestStorageService(storageService: storage)
+        self.mergeRequestStorageService = MergeRequestStorageService(storageService: storageService)
         self.projectMapper = ProjectMapper(with: mergeRequestStorageService.mergeRequestMapper)
     }
     

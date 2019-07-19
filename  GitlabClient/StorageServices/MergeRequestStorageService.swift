@@ -17,7 +17,7 @@ protocol MergeRequestStorageServiceType: class {
 
 class MergeRequestStorageService: MergeRequestStorageServiceType {
     
-    let storage: StorageServiceType
+    private let storage: StorageServiceType
     let mergeRequestMapper: MergeRequestMapper
     let userStorageService: UserStorageServiceType
     let userMapper = UserMapper()
@@ -28,13 +28,15 @@ class MergeRequestStorageService: MergeRequestStorageServiceType {
         self.mergeRequestMapper = MergeRequestMapper(with: userMapper)
     }
     
-    func fetchRequest() -> NSFetchRequest<NSFetchRequestResult> {
+    func mergeRequestFetchRequest() -> NSFetchRequest<NSFetchRequestResult> {
         return self.storage.createFetchRequest(with: self.entityName())
     }
     
-    func fetchMergeRequests(with request: NSFetchRequest<NSFetchRequestResult>) -> [MergeRequestEntity] {
+    func fetchMergeRequests(with request: NSFetchRequest<NSFetchRequestResult>, completion: @escaping ([MergeRequestEntity]) -> Void) {
+        DispatchQueue.global().async {
         guard let entities = self.storage.fetchItems(with: request) as? [MergeRequestEntity] else { fatalError(GitLabError.Storage.Entity.Downcast.failedMergeRequestEntities.rawValue) }
-        return entities
+        completion(entities)
+        }
     }
     
     func createEntity(with mergeRequest: MergeRequest) -> MergeRequestEntity {
@@ -88,6 +90,21 @@ class MergeRequestStorageService: MergeRequestStorageServiceType {
         }
         storage.saveContext()
         return sameIids
+    }
+    
+    func updatedMergeRequestWithApprove(with mergeRequestApprove: MergeRequestApprove) {
+        
+        let fetchRequest = self.mergeRequestFetchRequest()
+        self.fetchMergeRequests(with: fetchRequest, completion: { [weak self] entities in
+            guard let welf = self else { return }
+            if let mergeRequestEntity = entities.first(where: {$0.iid == mergeRequestApprove.iid}) {
+                let userEntitiesFromNetwork = mergeRequestApprove.approvedBy.map({welf.userStorageService.createEntity(with: $0)})
+                let userEntitiesFromDB = welf.mergeRequestMapper.userEntities(from: mergeRequestEntity)
+                userEntitiesFromDB.map({mergeRequestEntity.removeFromApprovedBy($0)})
+                userEntitiesFromNetwork.map({mergeRequestEntity.addToApprovedBy($0)})
+            }
+        })
+        storage.saveContext()
     }
     
     private func deleteMergeRequests(with iids: [Int], mergeRequestEntities: [MergeRequestEntity], projectEntity: ProjectEntity) {

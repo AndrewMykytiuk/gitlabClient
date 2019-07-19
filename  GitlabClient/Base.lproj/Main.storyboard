@@ -92,7 +92,7 @@
                                 <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="gray" indentationWidth="10" reuseIdentifier="ProjectsTableViewCell" focusStyle="custom" rowHeight="163" id="ehY-M5-qwO" customClass="ProjectsTableViewCell" customModule="GitlabClient" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" preservesSuperviewLayoutMargins="YES" selectionStyle="gray" indentationWidth="10" reuseIdentifier="ProjectsTableViewCell" focusStyle="custom" rowHeight="163" id="ehY-M5-qwO" customClass="ProjectsTableViewCell" customModule="GitlabClient" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="163"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ehY-M5-qwO" id="BNE-zz-ooe">
@@ -312,7 +312,7 @@
                                 <rect key="frame" x="0.0" y="130" width="375" height="487"/>
                                 <color key="backgroundColor" white="0.80139661815068497" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="ProfileTableViewCell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ProfileTableViewCell" rowHeight="37" id="rpd-Pa-FQA" customClass="ProfileTableViewCell" customModule="GitlabClient" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" restorationIdentifier="ProfileTableViewCell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ProfileTableViewCell" rowHeight="37" id="rpd-Pa-FQA" customClass="ProfileTableViewCell" customModule="GitlabClient" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="37"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="rpd-Pa-FQA" id="dXW-Fm-tO8">
@@ -398,10 +398,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="4Ls-4x-F9g">
-                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <rect key="frame" x="0.0" y="70" width="375" height="597"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MergeRequestTableViewCell" rowHeight="70" id="1lC-Aa-F1y" customClass="MergeRequestTableViewCell" customModule="GitlabClient" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MergeRequestTableViewCell" rowHeight="70" id="1lC-Aa-F1y" customClass="MergeRequestTableViewCell" customModule="GitlabClient" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="70"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="1lC-Aa-F1y" id="85X-po-pDz">
@@ -436,11 +436,19 @@
                                     <outlet property="delegate" destination="Wrl-fD-vUt" id="Wwa-Md-zL9"/>
                                 </connections>
                             </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jCY-mD-dwi">
+                                <rect key="frame" x="0.0" y="20" width="375" height="50"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="0.8028413955479452" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="4Ls-4x-F9g" firstAttribute="top" secondItem="8U0-cl-xDY" secondAttribute="top" id="G97-31-QRN"/>
+                            <constraint firstItem="jCY-mD-dwi" firstAttribute="top" secondItem="8U0-cl-xDY" secondAttribute="top" id="9oy-xM-Tgd"/>
+                            <constraint firstAttribute="trailing" secondItem="jCY-mD-dwi" secondAttribute="trailing" id="Es6-fb-gQb"/>
+                            <constraint firstItem="jCY-mD-dwi" firstAttribute="leading" secondItem="8U0-cl-xDY" secondAttribute="leading" id="FSQ-bs-Zlo"/>
+                            <constraint firstItem="4Ls-4x-F9g" firstAttribute="top" secondItem="8U0-cl-xDY" secondAttribute="top" constant="50" id="G97-31-QRN"/>
                             <constraint firstItem="8U0-cl-xDY" firstAttribute="bottom" secondItem="4Ls-4x-F9g" secondAttribute="bottom" id="Rgv-8y-lxK"/>
+                            <constraint firstItem="4Ls-4x-F9g" firstAttribute="top" secondItem="jCY-mD-dwi" secondAttribute="bottom" id="YAM-KS-gc6"/>
                             <constraint firstItem="4Ls-4x-F9g" firstAttribute="leading" secondItem="8U0-cl-xDY" secondAttribute="leading" id="aBr-Ms-cXB"/>
                             <constraint firstItem="4Ls-4x-F9g" firstAttribute="trailing" secondItem="8U0-cl-xDY" secondAttribute="trailing" id="lUq-8u-bB7"/>
                         </constraints>
@@ -448,6 +456,7 @@
                     </view>
                     <connections>
                         <outlet property="mergeRequestTableView" destination="4Ls-4x-F9g" id="qcj-yF-GjC"/>
+                        <outlet property="toolbarContainerView" destination="jCY-mD-dwi" id="9a6-ND-G2v"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rYo-8t-woB" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -466,7 +475,7 @@
                                 <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MergeRequestChangesTableViewCell" rowHeight="70" id="PEv-Fb-f1S" customClass="MergeRequestChangesTableViewCell" customModule="GitlabClient" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MergeRequestChangesTableViewCell" rowHeight="70" id="PEv-Fb-f1S" customClass="MergeRequestChangesTableViewCell" customModule="GitlabClient" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="70"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="PEv-Fb-f1S" id="oCO-gO-Le1">
