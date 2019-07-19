@@ -16,7 +16,6 @@ protocol ToolbarViewDelegate: class {
 class ToolbarView: UIView {
     
     private var likeButton: MergeRequestLikeButton?
-    private let likeButtonWidthConstant: CGFloat = 50
     
     weak var delegate: ToolbarViewDelegate?
     
@@ -51,12 +50,8 @@ class ToolbarView: UIView {
         self.addConstraint(trailingConstraint)
     }
     
-    func changeLikeButton(to state: MergeRequestLikeButton.State) {
-        likeButton?.showUpButtonImage(for: state)
-    }
-    
-    func performLikeButton(for state: MergeRequestLikeButton.State) {
-        likeButton?.perform(state: state)
+    func updateLikeButtonState(to state: MergeRequestLikeButton.State) {
+        likeButton?.updateState(to: state)
     }
     
 }

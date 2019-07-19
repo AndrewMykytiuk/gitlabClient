@@ -34,7 +34,7 @@ class MergeRequestLikeButton: UIView {
         return UINib(nibName: "MergeRequestLikeButton", bundle: Bundle.main).instantiate(withOwner: self.init(), options: nil).first as! MergeRequestLikeButton
     }
     
-    func perform(state: State) {
+    func updateState(to state: State) {
         switch state {
         case .liked:
             showUpButtonImage(for: state)
@@ -45,7 +45,7 @@ class MergeRequestLikeButton: UIView {
         }
     }
     
-    func showActivityIndicator() {
+    private func showActivityIndicator() {
         
         UIView.animate(withDuration: 0.3,
                        delay: 0,
@@ -59,7 +59,7 @@ class MergeRequestLikeButton: UIView {
         
     }
     
-    func showUpButtonImage(for state: State) {
+    private func showUpButtonImage(for state: State) {
         
         var name: Constants.LikeButtonImageNames = .approve
         
