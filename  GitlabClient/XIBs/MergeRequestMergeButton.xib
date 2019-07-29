@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MergeRequestMergeButton" customModule="GitlabClient" customModuleProvider="target">
+            <connections>
+                <outlet property="activityIndicator" destination="FC7-K9-m8c" id="qNa-Kq-3lk"/>
+                <outlet property="textLabel" destination="BEC-Xa-sRA" id="Ohs-eD-psQ"/>
+                <outlet property="textLabelLeadingConstraint" destination="Qov-iL-8S8" id="vXE-Lt-oxc"/>
+                <outlet property="textLabelLeadingLowPriorityConstraint" destination="5sT-Pm-3JV" id="fJP-eh-ctv"/>
+                <outlet property="textLabelTrailingConstraint" destination="g2o-VW-qzw" id="foi-rc-7MS"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clipsSubviews="YES" contentMode="scaleToFill" id="iN0-l3-epB" customClass="MergeRequestMergeButton" customModule="GitlabClient" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="95" height="33"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <activityIndicatorView opaque="NO" alpha="0.0" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="FC7-K9-m8c">
+                    <rect key="frame" x="3" y="6.5" width="20" height="20"/>
+                </activityIndicatorView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="right" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Merge" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BEC-Xa-sRA">
+                    <rect key="frame" x="5" y="6" width="85" height="21"/>
+                    <fontDescription key="fontDescription" name="Verdana" family="Verdana" pointSize="17"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="0.14901960784313725" green="0.66274509803921566" blue="0.34509803921568627" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <rect key="contentStretch" x="0.25" y="0.0" width="1" height="1"/>
+            <constraints>
+                <constraint firstItem="BEC-Xa-sRA" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" priority="300" constant="30" id="5sT-Pm-3JV"/>
+                <constraint firstItem="BEC-Xa-sRA" firstAttribute="width" relation="greaterThanOrEqual" secondItem="FC7-K9-m8c" secondAttribute="width" id="BBG-ZR-EjP"/>
+                <constraint firstItem="BEC-Xa-sRA" firstAttribute="width" relation="lessThanOrEqual" secondItem="iN0-l3-epB" secondAttribute="width" id="O8K-Lp-EyW"/>
+                <constraint firstItem="BEC-Xa-sRA" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="5" id="Qov-iL-8S8"/>
+                <constraint firstItem="FC7-K9-m8c" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="VR3-b3-ORh"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="BEC-Xa-sRA" secondAttribute="trailing" constant="5" id="g2o-VW-qzw"/>
+                <constraint firstItem="FC7-K9-m8c" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="3" id="pKn-Xh-fBE"/>
+                <constraint firstItem="BEC-Xa-sRA" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="zvN-Mu-13D"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <userDefinedRuntimeAttributes>
+                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                    <integer key="value" value="10"/>
+                </userDefinedRuntimeAttribute>
+            </userDefinedRuntimeAttributes>
+            <connections>
+                <outlet property="activityIndicator" destination="FC7-K9-m8c" id="Zde-0s-tlY"/>
+                <outlet property="textLabel" destination="BEC-Xa-sRA" id="IkW-xI-1PT"/>
+                <outlet property="textLabelLeadingConstraint" destination="Qov-iL-8S8" id="vTh-GU-kWm"/>
+                <outlet property="textLabelLeadingLowPriorityConstraint" destination="5sT-Pm-3JV" id="KXa-o4-fF0"/>
+                <outlet property="textLabelTrailingConstraint" destination="g2o-VW-qzw" id="sNN-0m-qsS"/>
+            </connections>
+            <point key="canvasLocation" x="-51.449275362318843" y="-163.72767857142856"/>
+        </view>
+    </objects>
+</document>

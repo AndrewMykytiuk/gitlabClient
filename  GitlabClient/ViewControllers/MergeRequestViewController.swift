@@ -75,18 +75,19 @@ class MergeRequestViewController: BaseViewController {
     }
     
     private func setupToolbarViewConstraints(with view: UIView) {
-        let topConstraint = view
-            .topAnchor.constraint(equalTo: self.toolbarContainerView.topAnchor)
-        let bottomConstraint = view
-            .bottomAnchor.constraint(equalTo: self.toolbarContainerView.bottomAnchor)
-        let trailingConstraint = view
-            .trailingAnchor.constraint(equalTo: self.toolbarContainerView.trailingAnchor)
-        let leadingConstraint = view
-            .leadingAnchor.constraint(equalTo: self.toolbarContainerView.leadingAnchor)
-        self.view.addConstraint(topConstraint)
-        self.view.addConstraint(bottomConstraint)
-        self.view.addConstraint(trailingConstraint)
-        self.view.addConstraint(leadingConstraint)
+        view.translatesAutoresizingMaskIntoConstraints = false
+        //let topConstraint =
+            view.topAnchor.constraint(equalTo: self.toolbarContainerView.topAnchor).isActive = true
+        //let bottomConstraint =
+            view.bottomAnchor.constraint(equalTo: self.toolbarContainerView.bottomAnchor).isActive = true
+        //let trailingConstraint =
+            view.trailingAnchor.constraint(equalTo: self.toolbarContainerView.trailingAnchor).isActive = true
+        //let leadingConstraint =
+            view.leadingAnchor.constraint(equalTo: self.toolbarContainerView.leadingAnchor).isActive = true
+//        self.view.addConstraint(topConstraint)
+//        self.view.addConstraint(bottomConstraint)
+//        self.view.addConstraint(trailingConstraint)
+        //self.view.addConstraint(leadingConstraint)
     }
     
     private func setupActivityIndicator(with view: UIView) {

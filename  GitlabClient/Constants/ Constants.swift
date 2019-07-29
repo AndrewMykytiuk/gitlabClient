@@ -25,7 +25,7 @@ enum Constants {
         }
         
         enum MergeRequest: String {
-            case stateOpenedValue = "opened"
+            case stateOpenedValue = "merged"//"opened"
             case mergeRequestsKey = "merge_requests"
             case changesKey = "changes"
         }

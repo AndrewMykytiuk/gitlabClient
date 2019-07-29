@@ -11,6 +11,8 @@
 		CE147D53224BBE5600C08C11 /* ProjectsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE147D52224BBE5600C08C11 /* ProjectsTableViewCell.swift */; };
 		CE1A15F122DF21C200D7AF48 /* UserEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1A15EF22DF21C200D7AF48 /* UserEntity+CoreDataClass.swift */; };
 		CE1A15F222DF21C200D7AF48 /* UserEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1A15F022DF21C200D7AF48 /* UserEntity+CoreDataProperties.swift */; };
+		CE1A15F422E4A28F00D7AF48 /* MergeRequestMergeButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE1A15F322E4A28F00D7AF48 /* MergeRequestMergeButton.xib */; };
+		CE1A15F622E4A2CC00D7AF48 /* MergeRequestMergeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1A15F522E4A2CC00D7AF48 /* MergeRequestMergeButton.swift */; };
 		CE2B8B2822AAC0CC000E5D55 /* MergeRequestChangesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2B8B2722AAC0CC000E5D55 /* MergeRequestChangesTableViewCell.swift */; };
 		CE2B8B2B22AFA4AF000E5D55 /* DiffConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2B8B2A22AFA4AF000E5D55 /* DiffConverter.swift */; };
 		CE2B8B2D22AFC3D1000E5D55 /* DiffCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2B8B2C22AFC3D1000E5D55 /* DiffCellViewModel.swift */; };
@@ -94,6 +96,8 @@
 		CE147D52224BBE5600C08C11 /* ProjectsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectsTableViewCell.swift; sourceTree = "<group>"; };
 		CE1A15EF22DF21C200D7AF48 /* UserEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
 		CE1A15F022DF21C200D7AF48 /* UserEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		CE1A15F322E4A28F00D7AF48 /* MergeRequestMergeButton.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MergeRequestMergeButton.xib; sourceTree = "<group>"; };
+		CE1A15F522E4A2CC00D7AF48 /* MergeRequestMergeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MergeRequestMergeButton.swift; sourceTree = "<group>"; };
 		CE2B8B2722AAC0CC000E5D55 /* MergeRequestChangesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MergeRequestChangesTableViewCell.swift; sourceTree = "<group>"; };
 		CE2B8B2A22AFA4AF000E5D55 /* DiffConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiffConverter.swift; sourceTree = "<group>"; };
 		CE2B8B2C22AFC3D1000E5D55 /* DiffCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiffCellViewModel.swift; sourceTree = "<group>"; };
@@ -434,6 +438,7 @@
 			children = (
 				CEB7346C22CE0E2900365943 /* MergeRequestToolbarView.xib */,
 				CEB7346E22CE0E8000365943 /* MergeRequestLikeButton.xib */,
+				CE1A15F322E4A28F00D7AF48 /* MergeRequestMergeButton.xib */,
 			);
 			path = XIBs;
 			sourceTree = "<group>";
@@ -443,6 +448,7 @@
 			children = (
 				CEB7347122CE0EFE00365943 /* ToolbarView.swift */,
 				CEB7347322CE0F1400365943 /* MergeRequestLikeButton.swift */,
+				CE1A15F522E4A2CC00D7AF48 /* MergeRequestMergeButton.swift */,
 			);
 			path = CustomXIBsClasses;
 			sourceTree = "<group>";
@@ -551,6 +557,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE1A15F422E4A28F00D7AF48 /* MergeRequestMergeButton.xib in Resources */,
 				CE6FF0212236AECE003F7C56 /* LaunchScreen.storyboard in Resources */,
 				CE729F322243E5BA0006C37C /* Localizable.strings in Resources */,
 				CE6FF01E2236AECE003F7C56 /* Assets.xcassets in Resources */,
@@ -604,6 +611,7 @@
 				CE6FF03E223AE376003F7C56 /* Request.swift in Sources */,
 				CE6FF02B2237B0E4003F7C56 /* ViewControllerFactory.swift in Sources */,
 				CE6FF0162236AECB003F7C56 /* LogInViewController.swift in Sources */,
+				CE1A15F622E4A2CC00D7AF48 /* MergeRequestMergeButton.swift in Sources */,
 				CE729F2D2243A1C40006C37C /* AlertHelper.swift in Sources */,
 				CE729F382244D7580006C37C /* LoginService.swift in Sources */,
 				CEB7348A22D5E20A00365943 /* MergeRequestEntity+CoreDataProperties.swift in Sources */,
